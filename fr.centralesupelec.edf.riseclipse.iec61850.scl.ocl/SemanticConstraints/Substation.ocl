@@ -1,0 +1,90 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context Substation
+
+    -- Within a Substation, there cannot be two LNode elements with the same
+    -- combination of lnInst, lnClass, iedName, ldInst, and prefix.
+    -- done in LNodeContainer.ocl
+
+    -- Within a Substation, there cannot be two direct PowerTransformer elements
+    -- with the same name.
+    -- done in EquipmentContainer.ocl
+
+    -- Within a Substation, there cannot be two direct GeneralEquipment elements
+    -- with the same name.
+    -- done in EquipmentContainer.ocl
+
+    -- Within a Substation, there cannot be two VoltageLevel elements with the
+    -- same name.
+    inv Substation_unique_VoltageLevel_name
+    ( 'VoltageLevel in Substation shall have different name (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.VoltageLevel->isUnique( v : VoltageLevel | v.name )
+
+    -- Within a Substation, there cannot be two Function elements with the same
+    -- name.
+    inv Substation_unique_Function_name
+    ( 'Function in Substation shall have different name (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.Function->isUnique( f : Function | f.name )
+
+    -- In order to avoid any ambiguities, within a Substation there cannot be two
+    -- direct child elements with the same name.
+    inv Substation_unique_DirectChild_name
+    ( 'All direct childs in Substation shall have different name (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
+        -- Version when oclContents() is not available
+        --   let childs_1 : OrderedSet( Naming ) = self.Function
+        --in let childs_2 : OrderedSet( Naming ) = childs_1->union( self.GeneralEquipment )
+        --in let childs_3 : OrderedSet( Naming ) = childs_2->union( self.PowerTransformer )
+        --in let childs_4 : OrderedSet( Naming ) = childs_3->union( self.VoltageLevel )
+        --in childs_4->isUnique( n : Naming | n.name )
+
+    -- In general, at each hierarchy level within the substation section all
+    -- names shall be unique, leading to unique object
+        -- Too general
+
+    -- For a primary system template within an ICD file, the substation name
+    -- shall be TEMPLATE. There can be a maximum of one substation template in one
+    -- SCL file.
+        -- TODO (in OCL files specific to ICD files)
+
+    -- Within a Substation, the attribute pathName of a ConnectivityNode acts as
+    -- a key (a ConnectivityNode may appear at bay level below the Substation).
+    -- This implies that there cannot be two ConnectivityNode elements with the
+    -- same pathName. The connectivityNode attribute of each Terminal in this
+    -- Substation must then refer to one of these keys.
+    
+    -- Substation name are unique within a SCL, VoltageLevel name are unique
+    -- within a Substation, Bay name are unique within a Bay, and ConnectivityNode name
+    -- are unique within a Bay. Therefore, if the pathName value is correct (checked
+    -- in RequiredAttributes/ConnectivityNode.ocl), this will be verified
+    
+    -- However, 2 verifications are done:
+    -- - SCL_ConnectivityNode_unique_pathName in SCL.ocl
+    -- - ConnectivityNode_Terminal_consistency in ConnectivityNode.ocl
+
+
+endpackage
+

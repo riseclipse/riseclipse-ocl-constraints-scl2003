@@ -1,0 +1,55 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SupSubscription
+
+    -- The maxGo attribute shall be present
+    inv SupSubscription_maxGo_required
+        ( 'maxGo attribute shall be present in SupSubscription (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.maxGo <> null
+
+    -- The maxGo attribute shall be valid.
+    inv SupSubscription_maxGo_valid
+        ( 'maxGo attribute shall be valid in SupSubscription (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxGo.toString()
+        )
+    :
+        self.maxGo <> null implies self.maxGo >= 0
+
+    -- The maxSv attribute shall be present
+    inv SupSubscription_maxSv_required
+        ( 'maxSv attribute shall be present in SupSubscription (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.maxSv <> null
+
+    -- The maxSv attribute shall be valid.
+    inv SupSubscription_maxSv_valid
+        ( 'maxSv attribute shall be valid in SupSubscription (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxSv.toString()
+        )
+    :
+        self.maxSv <> null implies self.maxSv >= 0
+
+
+endpackage
+

@@ -1,0 +1,47 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/BaseSimpleTypes.ocl'
+
+package scl
+
+context Association
+
+    -- The kind attribute shall be present
+    inv Association_kind_required
+        ( 'kind attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.kind <> null
+
+    -- The kind attribute shall be valid
+    -- this is a real enum
+
+    -- The length of the association ID shall be at least one
+    inv Association_associationID_valid
+        ( 'The length of the association ID shall be at least one (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.associationID.toString()
+        )
+    :
+        self.associationID <> null implies self.associationID.validSclAssociationID()
+
+
+
+endpackage
+

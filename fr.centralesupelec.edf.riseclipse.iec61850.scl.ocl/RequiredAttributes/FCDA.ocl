@@ -1,0 +1,132 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/BaseSimpleTypes.ocl'
+import '../Helpers/Enums.ocl'
+
+package scl
+
+context FCDA
+
+    -- The fc attribute shall be present.
+    inv FCDA_fc_required
+        ( 'fc attribute shall be present in FCDA (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.fc <> null
+
+    -- FCEnum is a real enum
+    
+    -- The ldInst attribute shall always be specified except for GSSE
+    inv FCDA_ldInst_required
+        ( 'ldInst attribute shall always be specified except for GSSE in FCDA (line ' + self.lineNumber.toString() + ')' )
+    :
+        ( self.fc <> null and self.fc <> FCEnum::ST ) implies self.ldInst <> null
+
+    -- The lnClass attribute shall always be specified except for GSSE
+    inv FCDA_lnClass_required
+        ( 'lnClass attribute shall always be specified except for GSSE in FCDA (line ' + self.lineNumber.toString() + ')' )
+    :
+        ( self.fc <> null and self.fc <> FCEnum::ST ) implies self.lnClass <> null
+
+    -- The lnClass attribute shall be valid
+    inv FCDA_lnClass_valid
+        ( 'lnClass attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnClass.toString()
+        )
+    :
+        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+
+    -- The lnInst attribute is required except for LLN0
+    inv FCDA_lnInst_required
+        ( 'lnInst attribute shall be specified except for LLN0 in FCDA (line ' + self.lineNumber.toString() + ')' )
+    :
+        not self.DataSet.AnyLN.oclIsTypeOf( scl::LN0 )
+        implies
+        self.lnInst <> null
+    
+    -- The lnInst attribute shall be a number with no more than 7 digits
+    -- Note : it is a String in the model because its value is the empty string for LN0 
+    inv FCDA_lnInst_valid
+        ( 'lnInst attribute shall be a number with no more than 7 digits in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnInst.toString()
+        )
+    :
+        not self.DataSet.AnyLN.oclIsTypeOf( scl::LN0 )
+        implies
+        ( self.lnInst <> null implies self.lnInst.validSclLNInst() )
+
+    --  If all attributes of the FCDA (except fc) are missing or empty, then this
+    --  corresponds to an empty string in a GSSE DataLabel definition (fc value
+    --  should be ST) – in all other data sets, this is not allowed.
+    inv FCDA_empty_attributes_only_if_GSSE
+    :
+        (       ( self.doName  = null or self.doName.size()  = 0 )
+            and ( self.daName  = null or self.daName.size()  = 0 )
+            and ( self.ix      = null                            )
+            and ( self.ldInst  = null or self.ldInst.size()  = 0 )
+            and ( self.lnClass = null or self.lnClass.size() = 0 )
+            and ( self.lnInst  = null or self.lnInst.size()  = 0 )
+            and ( self.prefix  = null or self.prefix.size()  = 0 )
+        )
+        implies self.fc = FCEnum::ST
+
+    -- The ldInst attribute shall be valid
+    inv FCDA_ldInst_valid
+        ( 'ldInst attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.ldInst.toString()
+        )
+    :
+        self.ldInst <> null implies self.ldInst.validSclLDInst()
+
+    -- The prefix attribute shall be valid
+    inv FCDA_prefix_valid
+        ( 'prefix attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.prefix.toString()
+        )
+    :
+        self.prefix <> null implies self.prefix.validSclPrefix()
+
+    -- The doName attribute shall be valid
+    inv FCDA_doName_valid
+        ( 'doName attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.doName.toString()
+        )
+    :
+        self.doName <> null implies self.doName.validSclFullDOName()
+
+    -- The daName attribute shall be valid
+    inv FCDA_daName_valid
+        ( 'daName attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.daName.toString()
+        )
+    :
+        self.daName <> null implies self.daName.validSclFullAttributeName()
+
+    -- The ix attribute is an unsigned int
+    inv FCDA_ix_valid
+        ( 'ix attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.ix.toString()
+        )
+    :
+        self.ix <> null implies self.ix >= 0
+
+
+endpackage
+

@@ -1,0 +1,50 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/BaseSimpleTypes.ocl'
+import '../Helpers/Enums.ocl'
+
+package scl
+
+context LN
+
+    -- lnClass required and valid: in AnyLN
+    
+    -- inst required: in AnyLN
+    -- The inst attribute shall be valid
+    -- Note : it is a String in the model because its value is the empty string for LN0 
+    inv LN_inst_valid
+        ( 'inst attribute shall be a number with no more than 7 digits in LN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.inst.toString()
+        )
+    :
+        self.inst <> null implies self.inst.validSclLNInst()
+
+    -- The prefix attribute must be valid
+    inv LN_prefix_valid
+        ( 'prefix attribute shall be valid in LN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.prefix.toString()
+        )
+    :
+        self.prefix <> null implies self.prefix.validSclPrefix()
+
+
+endpackage
+

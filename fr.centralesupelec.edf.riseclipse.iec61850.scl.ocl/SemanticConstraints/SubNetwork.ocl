@@ -1,0 +1,34 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SubNetwork
+
+    -- Within a SubNetwork, there cannot be two ConnectedAP elements with the same
+    -- combination of iedName and apName.
+    inv SubNetwork_unique_ConnectedAP_combination
+    ( 'ConnectedAP in SubNetwork shall have different combination of { iedName, apName } (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.ConnectedAP->isUnique( c : ConnectedAP | Sequence{ c.iedName, c.apName } )
+
+
+endpackage
+

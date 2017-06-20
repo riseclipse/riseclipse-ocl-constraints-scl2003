@@ -1,0 +1,83 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/BaseSimpleTypes.ocl'
+import '../Helpers/Enums.ocl'
+
+package scl
+
+context IED
+
+    -- The name attribute shall be present
+    inv IED_name_required
+        ( 'name attribute shall be present in IED (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.name <> null
+
+    -- The name attribute shall be valid
+    inv IED_name_valid
+        ( 'name attribute shall have between 1 and 64 alphanumeric characters in IED (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.name.toString()
+        )
+    :
+        self.name <> null implies self.name.validSclIEDName()
+    
+    -- type is a normalizedString
+    -- manufacturer is a normalizedString
+    -- configVersion is a normalizedString
+
+    -- The originalSclVersion attribute shall be valid
+    inv IED_originalSclVersion_valid
+        ( 'originalSclVersion attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.originalSclVersion.toString()
+        )
+    :
+        self.originalSclVersion <> null implies self.originalSclVersion.validSclVersion()
+    
+    -- The originalSclRevision attribute shall be valid
+    inv IED_originalSclRevision_valid
+        ( 'originalSclRevision attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.originalSclRevision.toString()
+        )
+    :
+        self.originalSclRevision <> null implies self.originalSclRevision.validSclRevision()
+    
+    -- The originalSclRelease attribute shall be valid
+    inv IED_originalSclRelease_valid
+        ( 'originalSclRelease attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.originalSclRelease.toString()
+        )
+    :
+        self.originalSclRelease <> null implies self.originalSclRelease > 0
+    
+    -- The engRight attribute shall be valid
+    inv engRight_valid
+        ( 'engRight attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.engRight.toString()
+        )
+    :
+        self.engRight <> null implies self.engRight.validSclRightEnum()
+    
+    
+    -- owner is a normalizedString
+    
+
+endpackage
+

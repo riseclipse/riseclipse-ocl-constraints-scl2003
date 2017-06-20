@@ -1,0 +1,40 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SampledValueControl
+
+    -- A SmvOpts is required
+    inv SampledValueControl_one_SmvOpts_required
+        ( 'SampledValueControl shall contain a SmvOpts (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.SmvOpts <> null
+
+    --  If Multicast is FALSE, i.e. this is a Unicast control block, a maximum of
+    --  one client IED shall be assigned to the instance :
+    inv SampledValueControl_multicast
+        ( 'If Multicast is FALSE, a maximum of one client IED shall be assigned to the SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+    :
+        ( not self.multicast ) implies self.IEDName->size() <= 1
+
+
+endpackage
+

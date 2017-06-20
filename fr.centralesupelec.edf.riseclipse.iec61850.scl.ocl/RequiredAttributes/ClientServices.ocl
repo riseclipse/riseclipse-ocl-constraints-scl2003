@@ -1,0 +1,67 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context ClientServices
+
+    -- goose is a boolean
+    -- gsse is a boolean
+    -- bufReport is a boolean
+    -- unbufReport is a boolean
+    -- readLog is a boolean
+    -- sv is a boolean
+    -- supportsLdName is a boolean
+    
+    -- maxAttributes is an unsigned int
+    inv ClientServices_maxAttributes_valid
+        ( 'maxAttributes attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxAttributes.toString()
+        )
+    :
+        self.maxAttributes <> null implies self.maxAttributes >= 0
+
+    -- maxReports is an unsigned int
+    inv ClientServices_maxReports_valid
+        ( 'maxReports attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxReports.toString()
+        )
+    :
+        self.maxReports <> null implies self.maxReports >= 0
+
+    -- maxGOOSE is an unsigned int
+    inv ClientServices_maxGOOSE_valid
+        ( 'maxGOOSE attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxGOOSE.toString()
+        )
+    :
+        self.maxGOOSE <> null implies self.maxGOOSE >= 0
+
+    -- maxSMV is an unsigned int
+    inv ClientServices_maxSMV_valid
+        ( 'maxSMV attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxSMV.toString()
+        )
+    :
+        self.maxSMV <> null implies self.maxSMV >= 0
+
+
+endpackage
+

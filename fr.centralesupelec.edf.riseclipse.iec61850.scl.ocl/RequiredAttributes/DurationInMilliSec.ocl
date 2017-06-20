@@ -1,0 +1,58 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context DurationInMilliSec
+
+    -- The value shall be present
+    inv DurationInMilliSec_value_required
+        ( 'value shall be present in DurationInMilliSec (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.value <> null
+
+    -- The value must be positive
+    -- Note: the XSD does not force this (only decimal)
+    inv DurationInMilliSec_value_valid
+        ( 'value shall be positive in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.value.toString()
+        )
+    :
+        self.value <> null implies self.value > 0
+
+    -- If present, the unit attribute value shall be s
+    inv DurationInMilliSec_unit_value_fixed
+        ( 'unit attribute shall be s in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.unit.toString()
+        )
+    :
+        self.unit <> null implies self.unit = 's'
+
+    -- If present, the multiplier attribute value shall be m
+    inv DurationInMilliSec_multiplier_value_fixed
+        ( 'multiplier attribute shall be m in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.multiplier.toString()
+        )
+    :
+        self.multiplier <> null implies self.multiplier = UnitMultiplierEnum::milli
+
+
+endpackage
+

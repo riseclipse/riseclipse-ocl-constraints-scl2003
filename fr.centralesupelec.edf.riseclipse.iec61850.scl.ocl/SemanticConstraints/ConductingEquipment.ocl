@@ -1,0 +1,112 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context ConductingEquipment
+-- TODO: search for another way to write this constraint
+-- Hint: look at what is available in the used implementation of OCL
+
+    def: minNumberOfTerminals() : Integer = 
+        if( self.type = 'CBR' ) then 2 else
+        if( self.type = 'DIS' ) then 2 else
+        if( self.type = 'VTR' ) then 1 else
+        if( self.type = 'CTR' ) then 2 else
+        if( self.type = 'PTW' ) then 1 else
+        if( self.type = 'GEN' ) then 1 else
+        if( self.type = 'CAP' ) then 1 else
+        if( self.type = 'REA' ) then 1 else
+        if( self.type = 'CON' ) then 1 else
+        if( self.type = 'MOT' ) then 1 else
+        if( self.type = 'FAN' ) then 1 else
+        if( self.type = 'EFN' ) then 1 else
+        if( self.type = 'PSH' ) then 2 else
+        if( self.type = 'AXN' ) then 0 else
+        if( self.type = 'BAT' ) then 1 else
+        if( self.type = 'BSH' ) then 2 else
+        if( self.type = 'CAB' ) then 2 else
+        if( self.type = 'GIL' ) then 2 else
+        if( self.type = 'LIN' ) then 2 else
+        if( self.type = 'RES' ) then 2 else
+        if( self.type = 'RRC' ) then 1 else
+        if( self.type = 'SAR' ) then 1 else
+        if( self.type = 'SCR' ) then 2 else
+        if( self.type = 'SMC' ) then 1 else
+        if( self.type = 'TCF' ) then 2 else
+        if( self.type = 'TCR' ) then 2 else
+        if( self.type = 'IFL' ) then 1 else
+                                    -1
+        endif endif endif endif endif endif endif endif endif endif endif endif endif endif
+        endif endif endif endif endif endif endif endif endif endif endif endif endif 
+
+    def: maxNumberOfTerminals() : Integer = 
+        if( self.type = 'CBR' ) then 2 else
+        if( self.type = 'DIS' ) then 2 else
+        if( self.type = 'VTR' ) then 1 else
+        if( self.type = 'CTR' ) then 2 else
+        if( self.type = 'PTW' ) then 2 else
+        if( self.type = 'GEN' ) then 1 else
+        if( self.type = 'CAP' ) then 2 else
+        if( self.type = 'REA' ) then 2 else
+        if( self.type = 'CON' ) then 2 else
+        if( self.type = 'MOT' ) then 1 else
+        if( self.type = 'FAN' ) then 1 else
+        if( self.type = 'EFN' ) then 1 else
+        if( self.type = 'PSH' ) then 2 else
+        if( self.type = 'AXN' ) then 0 else
+        if( self.type = 'BAT' ) then 1 else
+        if( self.type = 'BSH' ) then 2 else
+        if( self.type = 'CAB' ) then 2 else
+        if( self.type = 'GIL' ) then 2 else
+        if( self.type = 'LIN' ) then 2 else
+        if( self.type = 'RES' ) then 2 else
+        if( self.type = 'RRC' ) then 1 else
+        if( self.type = 'SAR' ) then 1 else
+        if( self.type = 'SCR' ) then 2 else
+        if( self.type = 'SMC' ) then 1 else
+        if( self.type = 'TCF' ) then 2 else
+        if( self.type = 'TCR' ) then 2 else
+        if( self.type = 'IFL' ) then 1 else
+                                    -1
+        endif endif endif endif endif endif endif endif endif endif endif endif endif endif
+        endif endif endif endif endif endif endif endif endif endif endif endif endif 
+
+    def: expectedNumberOfTerminals() : String =
+        let min : Integer = minNumberOfTerminals() in
+        let max : Integer = maxNumberOfTerminals() in
+        if( min = max ) then 'exactly ' + min.toString()
+        else 'between ' + min.toString() + ' and ' + max.toString()
+        endif
+
+
+    -- The number of terminals depends on type
+    inv ConductingEquipment_number_of_Terminals
+        ( 'the number of Terminals in ConductingEquipment of type ' + self.type + ' (line ' + self.lineNumber.toString() + ') is wrong, it is '
+            + self.Terminal->size().toString() + ', it should be ' + self.expectedNumberOfTerminals()
+        )
+        :
+        let min : Integer = self.minNumberOfTerminals() in
+        let max : Integer = self.maxNumberOfTerminals() in
+        if( min = -1 ) then true
+        else self.Terminal->size() >= min and self.Terminal->size() <= max
+        endif
+
+endpackage
+

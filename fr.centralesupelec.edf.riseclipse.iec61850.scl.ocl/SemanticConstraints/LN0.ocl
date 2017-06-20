@@ -1,0 +1,38 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context LN0
+
+    --  The GSE control block name shall be unique within the LLN0, i.e. the
+    --  logical device. 
+    inv LN0_GSEControl_name_unique :
+        self.GSEControl -> isUnique ( c : GSEControl | c.name )
+        
+        
+    --  The SV control block name shall be unique within the LLN0, i.e. within the
+    --  LDevice.
+    inv LN0_SampledValueControl_name_unique : 
+        self.SampledValueControl -> isUnique( c : SampledValueControl | c.name )
+
+
+endpackage
+

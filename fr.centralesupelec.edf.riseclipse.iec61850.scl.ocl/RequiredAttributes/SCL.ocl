@@ -1,0 +1,68 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+include '../Helpers/BaseSimpleTypes.ocl'
+
+package scl
+
+context SCL
+
+    -- The version attribute shall be 2007
+    inv SCL_version_required
+        ( 'version attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.version <> null
+    inv SCL_version_valid
+        ( 'version attribute shall be a year between 2000 and 2999 in SCL (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.version.toString() )
+    :
+        self.version <> null implies self.version.validSclVersion()
+    inv SCL_version_value_2007
+        ( 'version attribute shall be equal to 2007 in SCL (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.version.toString() )
+    :
+        self.version <> null implies self.version = '2007'
+
+    -- The revision attribute shall be B
+    inv SCL_revision_required
+        ( 'revision attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.revision <> null
+    inv SCL_revision_valid
+        ( 'revision attribute shall be an uppercase letter in SCL (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.revision.toString() )
+    :
+        self.revision <> null implies self.revision.validSclRevision()
+    inv SCL_revision_value_B
+        ( 'revision attribute shall be equal to B in SCL (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.revision.toString() )
+    :
+        self.revision <> null implies self.revision = 'B'
+
+    -- The release attribute shall be 1
+    inv SCL_release_value_1
+        ( 'release attribute shall be equal to 1 in SCL (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.release.toString() )
+    :
+        self.release <> null implies self.release = 1
+
+
+endpackage
+

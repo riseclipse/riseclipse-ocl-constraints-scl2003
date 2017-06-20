@@ -1,0 +1,112 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/BaseSimpleTypes.ocl'
+import '../Helpers/Enums.ocl'
+
+package scl
+
+context ClientLN
+
+    -- The apRef attribute shall be valid
+    inv ClientLN_apRef_valid
+        ( 'apRef attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.apRef.toString()
+        )
+    :
+        self.apRef <> null implies self.apRef.validSclAccessPointName()
+
+    --  Both, the iedName and ldInst (as specified in the attribute group agLDRef)
+    --  shall be specified with non-zero length. If the reference is to an LN at a
+    --  pure client access point, then the value of ldInst can be arbitrary
+    --  (recommended: LD0).
+    inv ClientLN_iedName_required
+        ( 'iedName attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.iedName <> null
+
+    inv ClientLN_iedName_valid
+        ( 'iedName attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.iedName.toString()
+        )
+    :
+        self.iedName <> null implies self.iedName.validSclIEDName()
+
+    inv ClientLN_ldInst_required
+        ( 'ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.ldInst <> null
+
+    inv ClientLN_ldInst_valid
+        ( 'ldInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.ldInst.toString()
+        )
+    :
+        self.ldInst <> null implies self.ldInst.validSclLDInst()
+
+    -- lnClass required
+    inv ClientLN_lnClass_required
+        ( 'lnClass attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.lnClass <> null
+
+    -- lnClass valid
+    inv ClientLN_lnClass_valid
+        ( 'lnClass attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnClass.toString()
+        )
+    :
+        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+
+    --  lnInst is required. If the LLN0 is referenced, the value is the empty
+    --  string.
+    inv ClientLN_lnInst_required
+        ( 'lnInst attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.lnInst <> null
+        
+    inv ClientLN_lnInst_valid
+        ( 'lnInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnInst.toString()
+        )
+    :
+        self.lnInst <> null implies self.lnInst.validSclLNInstOrEmpty()
+
+    inv ClientLN_lnInst_empty_for_LLN0
+        ( 'lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnInst.toString()
+        )
+    :
+        self.lnInst <> null implies if( self.lnClass = 'LLN0' ) then self.lnInst.size() = 0 else self.lnInst.size() > 0 endif
+    
+    --  Only the prefix is optional in cases where the referenced LN instance has
+    --  no prefix (prefix value = empty string). If it is defined, it must have a
+    --  non zero length.
+    inv ClientLN_prefix_valid
+        ( 'prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.prefix.toString()
+        )
+    :
+        self.prefix <> null implies self.prefix.validSclPrefix()
+        -- TODO: referenced LN instance has no prefix
+
+
+endpackage
+

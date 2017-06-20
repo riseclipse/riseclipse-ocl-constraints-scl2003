@@ -1,0 +1,56 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context AccessPoint
+
+    -- 1 Server xor 1 ServerAt xor 1..* LN xor none of them
+    inv AccessPoint_restriction_on_content
+        ( 'AccessPoint shall contain one Server xor one ServerAt xor at least one LN xor none ' +
+          'of them (line ' + self.lineNumber.toString() + ')' )
+    :
+        let serverPresent   : Integer = if self.Server   = null then 0 else 1 endif in
+        let serverAtPresent : Integer = if self.ServerAt = null then 0 else 1 endif in
+        -- self.LN is never null
+        let lnPresent       : Integer = if self.LN->size()  = 0 then 0 else 1 endif in
+        serverPresent + serverAtPresent + lnPresent <= 1
+
+    -- At most 7 GOOSESecurity and 7 SMVSecurity
+    inv AccessPoint_at_most_securities
+        ( 'AccessPoint shall contain at most 7 GOOSESecurity and at most 7 SMVSecurity (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.GOOSESecurity->size() <= 7 and self.SMVSecurity->size() <= 7
+    
+    -- The GOOSESecurity element and the SMVSecurity element are only allowed, if the attribute certificate
+    -- of the server’s Authentication element is true
+    inv AccessPoint_securities_allowed
+        ( 'AccessPoint shall contain GOOSESecurity or SMVSecurity only if if the attribute certificate ' +
+          'of the server’s Authentication element is true (line ' + self.lineNumber.toString() + ')' )
+    :
+        if self.GOOSESecurity->isEmpty() and self.SMVSecurity->isEmpty() then true
+        else if self.Server = null then false
+        else if self.Server.Authentication = null then false
+        else self.Server.Authentication.certificate
+        endif endif endif
+
+
+endpackage
+

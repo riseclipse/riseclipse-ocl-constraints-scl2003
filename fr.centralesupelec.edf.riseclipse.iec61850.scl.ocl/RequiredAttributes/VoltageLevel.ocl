@@ -1,0 +1,47 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context VoltageLevel
+
+    -- The name attribute is verified in Naming.ocl
+
+    -- The nomFreq attribute shall be valid if present.
+    inv VoltageLevel_nomFreq_value
+        ( 'nomFreq attribute shall a positive decimal in VoltageLevel (line ' + self.lineNumber.toString() + ').'
+            + 'Current value is ' + self.nomFreq.toString()
+        )
+    :
+        self.nomFreq <> null implies self.nomFreq >= 0
+
+    -- The numPhases attribute shall be valid if present.
+    inv VoltageLevel_numPhases_value
+        ( 'numPhases attribute shall be between 1 and 255 in VoltageLevel (line ' + self.lineNumber.toString() + ').'
+            + 'Current value is ' + self.numPhases.toString()
+        )
+    :
+        -- test <= 255 is done by XML Handler because it is a byte
+        self.numPhases <> null implies self.numPhases > 0
+
+
+
+endpackage
+

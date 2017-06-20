@@ -1,0 +1,55 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/Enums.ocl'
+
+package scl
+
+context SDI
+
+    -- The name attribute shall be present
+    inv SDI_name_required
+        ( 'name attribute shall be present in SDI (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.name <> null
+    
+    -- Dots (.) are not allowed within names, only alphanumeric characters
+    -- The name shall begin with a lower-case letter, except SIUnit and the exceptions defined in IEC 61850-8-1
+    -- TODO: add allowed exceptions
+    inv SDI_name_valid
+        ( 'name attribute shall be \'SIUnit\' or begin with a lower-case letter in SDI (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.name.toString()
+        )
+    :
+        self.name <> null implies self.name.validSclAttributeNameEnum()
+
+    -- ix is unsigned int
+    inv SDI_ix_valid
+        ( 'ix attribute shall be valid in SDI (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.ix.toString()
+        )
+    :
+        self.ix <> null implies self.ix >= 0
+
+    -- sAddr is normalizedString
+   
+   
+endpackage
+

@@ -1,0 +1,36 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context ConnectedAP
+
+    -- The iedName attribute shall refer to an existing IED.
+    inv ConnectedAP_ied_exists
+        ( 'iedName attribute shall refer to an existing IED in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.iedName.toString()
+        )
+    :
+        let scl : SCL = self.SubNetwork.Communication.SCL in
+        self.iedName <> null implies scl.IED->exists( i : IED | i.name = self.iedName )
+
+
+endpackage
+

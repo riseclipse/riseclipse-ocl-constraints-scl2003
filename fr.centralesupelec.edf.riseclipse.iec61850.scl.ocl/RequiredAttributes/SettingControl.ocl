@@ -1,0 +1,58 @@
+/**
+ *  Copyright (c) 2017 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ */
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SettingControl
+
+    -- The numOfSGs attribute shall be present
+    inv SettingControl_numOfSGs_required
+        ( 'numOfSGs attribute shall be present in SettingControl (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.numOfSGs <> null
+
+    -- The numOfSGs attribute shall be greater than 0
+    inv SettingControl_numOfSGs_valid
+        ( 'numOfSGs attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.numOfSGs.toString()
+        )
+    :
+        self.numOfSGs <> null implies self.numOfSGs > 0
+
+    -- The actSG attribute shall be greater than 0
+    inv SettingControl_actSG_valid
+        ( 'actSG attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.actSG.toString()
+        )
+    :
+        self.actSG <> null implies self.actSG > 0
+
+    -- resvTms is unsignedShort
+    inv SettingControl_resvTms_valid
+        ( 'resvTms attribute shall be valid in SettingControl (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.resvTms.toString()
+        )
+    :
+        self.resvTms <> null implies self.resvTms >= 0
+
+
+
+endpackage
+
