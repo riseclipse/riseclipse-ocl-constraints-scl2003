@@ -16,7 +16,7 @@
  *  Web site:
  *      http://wdi.supelec.fr/software/RiseClipse/
  */
-EDF R&Dimport scl: 'http://www.iec.ch/61850/2003/SCL'
+import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
 
