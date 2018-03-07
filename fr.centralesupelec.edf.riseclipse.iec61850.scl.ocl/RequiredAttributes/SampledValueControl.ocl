@@ -61,7 +61,7 @@ context SampledValueControl
 
     -- The nofASDU attribute shall be an unsignedInt
     -- Note: unsignedInt are EInt in the metaModel
-    inv SampledValueControl_nofASDU_required
+    inv SampledValueControl_nofASDU_valid
         ( 'nofASDU attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.nofASDU.toString()
         )

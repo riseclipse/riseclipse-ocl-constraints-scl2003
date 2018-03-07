@@ -32,7 +32,7 @@ context SDO
         self.name <> null
 
     -- The name attribute shall be valid
-    inv SDO_name_required
+    inv SDO_name_valid
         ( 'name attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.name.toString()
         )
