@@ -30,7 +30,7 @@ context Process
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclProcessType()
+        self.type <> null implies self.validSclProcessType( type )
 
 
 endpackage

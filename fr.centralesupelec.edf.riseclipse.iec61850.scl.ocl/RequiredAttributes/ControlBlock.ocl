@@ -36,7 +36,7 @@ context ControlBlock
           + 'Current value is ' + self.ldInst.toString()
         )
     :
-        self.ldInst <> null implies self.ldInst.validSclLDInst()
+        self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     -- The cbName attribute shall be present
     inv ControlBlock_cbName_required
@@ -50,7 +50,7 @@ context ControlBlock
           + 'Current value is ' + self.cbName.toString()
         )
     :
-        self.cbName <> null implies self.cbName.validSclCBName()
+        self.cbName <> null implies self.validSclCBName( cbName )
 
 
 endpackage

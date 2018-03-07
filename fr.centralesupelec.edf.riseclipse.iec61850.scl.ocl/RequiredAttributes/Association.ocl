@@ -39,7 +39,7 @@ context Association
           + 'Current value is ' + self.associationID.toString()
         )
     :
-        self.associationID <> null implies self.associationID.validSclAssociationID()
+        self.associationID <> null implies self.validSclAssociationID( associationID )
 
 
 

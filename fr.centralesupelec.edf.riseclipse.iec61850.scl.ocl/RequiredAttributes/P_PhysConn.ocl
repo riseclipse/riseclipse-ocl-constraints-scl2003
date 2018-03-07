@@ -36,7 +36,7 @@ context P_PhysConn
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclPTypePhysConnEnum()
+        self.type <> null implies self.validSclPTypePhysConnEnum( type )
 
 
 endpackage

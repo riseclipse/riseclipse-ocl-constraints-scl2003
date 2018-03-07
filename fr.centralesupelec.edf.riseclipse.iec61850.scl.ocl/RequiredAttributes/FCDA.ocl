@@ -51,7 +51,7 @@ context FCDA
           + 'Current value is ' + self.lnClass.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- The lnInst attribute is required except for LLN0
     inv FCDA_lnInst_required
@@ -70,7 +70,7 @@ context FCDA
     :
         not self.DataSet.AnyLN.oclIsTypeOf( scl::LN0 )
         implies
-        ( self.lnInst <> null implies self.lnInst.validSclLNInst() )
+        ( self.lnInst <> null implies self.validSclLNInst( lnInst ) )
 
     --  If all attributes of the FCDA (except fc) are missing or empty, then this
     --  corresponds to an empty string in a GSSE DataLabel definition (fc value
@@ -93,7 +93,7 @@ context FCDA
           + 'Current value is ' + self.ldInst.toString()
         )
     :
-        self.ldInst <> null implies self.ldInst.validSclLDInst()
+        self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     -- The prefix attribute shall be valid
     inv FCDA_prefix_valid
@@ -101,7 +101,7 @@ context FCDA
           + 'Current value is ' + self.prefix.toString()
         )
     :
-        self.prefix <> null implies self.prefix.validSclPrefix()
+        self.prefix <> null implies self.validSclPrefix( prefix )
 
     -- The doName attribute shall be valid
     inv FCDA_doName_valid
@@ -109,7 +109,7 @@ context FCDA
           + 'Current value is ' + self.doName.toString()
         )
     :
-        self.doName <> null implies self.doName.validSclFullDOName()
+        self.doName <> null implies self.validSclFullDOName( doName )
 
     -- The daName attribute shall be valid
     inv FCDA_daName_valid
@@ -117,7 +117,7 @@ context FCDA
           + 'Current value is ' + self.daName.toString()
         )
     :
-        self.daName <> null implies self.daName.validSclFullAttributeName()
+        self.daName <> null implies self.validSclFullAttributeName( daName )
 
     -- The ix attribute is an unsigned int
     inv FCDA_ix_valid

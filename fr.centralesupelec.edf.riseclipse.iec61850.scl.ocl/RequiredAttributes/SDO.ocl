@@ -37,7 +37,7 @@ context SDO
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclSubDataName()
+        self.name <> null implies self.validSclSubDataName( name )
 
     -- The type attribute shall be present
     inv SDO_type_required
@@ -51,7 +51,7 @@ context SDO
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclName()
+        self.type <> null implies self.validSclName( type )
 
     -- The count attribute shall be valid
     inv SDO_count_valid
@@ -59,7 +59,7 @@ context SDO
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.count <> null implies self.count.validSclSDOCount()
+        self.count <> null implies self.validSclSDOCount( count )
 
 
 endpackage

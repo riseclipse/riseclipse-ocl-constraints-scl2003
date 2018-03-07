@@ -36,7 +36,7 @@ context ConductingEquipment
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclCommonConductingEquipmentEnum()
+        self.type <> null implies self.validSclCommonConductingEquipmentEnum( type )
 
 
 endpackage

@@ -37,7 +37,7 @@ context ConnectedAP
           + 'Current value is ' + self.iedName.toString()
         )
     :
-        self.iedName <> null implies self.iedName.validSclIEDName()
+        self.iedName <> null implies self.validSclIEDName( iedName )
 
     -- The apName attribute shall be present
     inv ConnectedAP_apName_required
@@ -51,7 +51,7 @@ context ConnectedAP
           + 'Current value is ' + self.apName.toString()
         )
     :
-        self.apName <> null implies self.apName.validSclAccessPointName()
+        self.apName <> null implies self.validSclAccessPointName( apName )
 
     -- If present, the redProt attribute shall be valid.
     inv ConnectedAP_redProt_valid
@@ -59,7 +59,7 @@ context ConnectedAP
           + 'Current value is ' + self.redProt.toString()
         )
     :
-        self.redProt <> null implies self.redProt.validSclRedProtEnum()
+        self.redProt <> null implies self.validSclRedProtEnum( redProt )
 
 
 endpackage

@@ -30,7 +30,7 @@ context Line
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclLineType()
+        self.type <> null implies self.validSclLineType( type )
 
 
 endpackage

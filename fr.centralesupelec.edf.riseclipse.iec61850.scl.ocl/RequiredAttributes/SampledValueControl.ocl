@@ -36,7 +36,7 @@ context SampledValueControl
           + 'Current value is ' + self.smvID.toString()
         )
     :
-        self.smvID <> null implies self.smvID.validSclMessageID()
+        self.smvID <> null implies self.validSclMessageID( smvID )
 
     -- The smpRate attribute shall be present
     inv SampledValueControl_smpRate_required

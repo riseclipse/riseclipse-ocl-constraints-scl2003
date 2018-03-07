@@ -30,7 +30,7 @@ context Log
           + 'Current value is ' + self.name.toString()
         )
     :
-       self.name <> null implies self.name.validSclLogName()
+       self.name <> null implies self.validSclLogName( name )
 
 
 endpackage

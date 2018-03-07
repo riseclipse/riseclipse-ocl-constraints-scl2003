@@ -37,7 +37,7 @@ context KDC
           + 'Current value is ' + self.iedName.toString()
         )
     :
-        self.iedName <> null implies self.iedName.validSclIEDName()
+        self.iedName <> null implies self.validSclIEDName( iedName )
 
     -- The apName attribute shall be present
     inv KDC_apName_required
@@ -51,7 +51,7 @@ context KDC
           + 'Current value is ' + self.apName.toString()
         )
     :
-        self.apName <> null implies self.apName.validSclAccessPointName()
+        self.apName <> null implies self.validSclAccessPointName( apName )
 
 
 endpackage

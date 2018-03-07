@@ -35,7 +35,7 @@ context LN
           + 'Current value is ' + self.inst.toString()
         )
     :
-        self.inst <> null implies self.inst.validSclLNInst()
+        self.inst <> null implies self.validSclLNInst( inst )
 
     -- The prefix attribute must be valid
     inv LN_prefix_valid
@@ -43,7 +43,7 @@ context LN
           + 'Current value is ' + self.prefix.toString()
         )
     :
-        self.prefix <> null implies self.prefix.validSclPrefix()
+        self.prefix <> null implies self.validSclPrefix( prefix )
 
 
 endpackage

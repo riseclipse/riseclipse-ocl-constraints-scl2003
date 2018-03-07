@@ -37,7 +37,7 @@ context P
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclPTypeEnum()
+        self.type <> null implies self.validSclPTypeEnum( type )
     
     -- The content of P shall be valid according to its type.
     inv P_value

@@ -31,7 +31,7 @@ context ClientLN
           + 'Current value is ' + self.apRef.toString()
         )
     :
-        self.apRef <> null implies self.apRef.validSclAccessPointName()
+        self.apRef <> null implies self.validSclAccessPointName( apRef )
 
     --  Both, the iedName and ldInst (as specified in the attribute group agLDRef)
     --  shall be specified with non-zero length. If the reference is to an LN at a
@@ -47,7 +47,7 @@ context ClientLN
           + 'Current value is ' + self.iedName.toString()
         )
     :
-        self.iedName <> null implies self.iedName.validSclIEDName()
+        self.iedName <> null implies self.validSclIEDName( iedName )
 
     inv ClientLN_ldInst_required
         ( 'ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
@@ -59,7 +59,7 @@ context ClientLN
           + 'Current value is ' + self.ldInst.toString()
         )
     :
-        self.ldInst <> null implies self.ldInst.validSclLDInst()
+        self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     -- lnClass required
     inv ClientLN_lnClass_required
@@ -73,7 +73,7 @@ context ClientLN
           + 'Current value is ' + self.lnClass.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     --  lnInst is required. If the LLN0 is referenced, the value is the empty
     --  string.
@@ -87,7 +87,7 @@ context ClientLN
           + 'Current value is ' + self.lnInst.toString()
         )
     :
-        self.lnInst <> null implies self.lnInst.validSclLNInstOrEmpty()
+        self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     inv ClientLN_lnInst_empty_for_LLN0
         ( 'lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
@@ -104,7 +104,7 @@ context ClientLN
           + 'Current value is ' + self.prefix.toString()
         )
     :
-        self.prefix <> null implies self.prefix.validSclPrefix()
+        self.prefix <> null implies self.validSclPrefix( prefix )
         -- TODO: referenced LN instance has no prefix
 
 

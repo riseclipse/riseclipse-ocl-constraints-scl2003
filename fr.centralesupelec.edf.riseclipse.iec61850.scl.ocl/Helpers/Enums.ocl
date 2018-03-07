@@ -17,14 +17,19 @@
  *      http://wdi.supelec.fr/software/RiseClipse/
  */
 
-include '../Helpers/BaseSimpleTypes.ocl'
+import scl: 'http://www.iec.ch/61850/2003/SCL'
 
-context ocl::String
- 
+import 'BaseSimpleTypes.ocl'
+
+
+package scl
+
+context SclObject
+
 -----------------------------------------------------------
 
-def: validSclPredefinedPTypeEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedPTypeEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'IP', 'IP-SUBNET', 'IP-GATEWAY', 'OSI-NSAP', 'OSI-TSEL', 'OSI-SSEL',
             'OSI-PSEL', 'OSI-AP-Title', 'OSI-AP-Invoke', 'OSI-AE-Qualifier',
@@ -37,26 +42,26 @@ def: validSclPredefinedPTypeEnum() : Boolean =
         false
     endif
 
-def: validSclExtensionPTypeEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclExtensionPTypeEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         -- TODO: find the corresponding OCL RE
         --self.matches( '[A-Z][0-9A-Za-z\-]*' )
-        self.matches( '[A-Z][0-9A-Za-z\u002D]*' )
+        s.matches( '[A-Z][0-9A-Za-z\u002D]*' )
     else
         false
     endif
  
-def: validSclPTypeEnum() : Boolean =
-    if validSclPredefinedPTypeEnum() then
+def: validSclPTypeEnum( s : String ) : Boolean =
+    if validSclPredefinedPTypeEnum( s ) then
         true
     else
-        validSclExtensionPTypeEnum()
+        validSclExtensionPTypeEnum( s )
     endif
 
 -----------------------------------------------------------
 
-def: validSclPredefinedPTypePhysConnEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedPTypePhysConnEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'Type', 'Plug', 'Cable', 'Port'
         }->includes( self )
@@ -64,16 +69,16 @@ def: validSclPredefinedPTypePhysConnEnum() : Boolean =
         false
     endif
 
-def: validSclPTypePhysConnEnum() : Boolean =
-    if validSclPredefinedPTypePhysConnEnum() then
+def: validSclPTypePhysConnEnum( s : String ) : Boolean =
+    if validSclPredefinedPTypePhysConnEnum( s ) then
         true
     else
-        validSclExtensionPTypeEnum()
+        validSclExtensionPTypeEnum( s )
     endif
 -----------------------------------------------------------
 
-def: validSclPredefinedAttributeNameEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedAttributeNameEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'T', 'Test', 'Check', 'SIUnit', 'Oper', 'SBO', 'SBOw', 'Cancel'
         }->includes( self )
@@ -81,24 +86,24 @@ def: validSclPredefinedAttributeNameEnum() : Boolean =
         false
     endif
 
-def: validSclExtensionAttributeNameEnum() : Boolean =
-    if( self.validSclRestrName1stL() ) then
-        self.size() <= 60
+def: validSclExtensionAttributeNameEnum( s : String ) : Boolean =
+    if( self.validSclRestrName1stL( s ) ) then
+        s.size() <= 60
     else
         false
     endif
  
-def: validSclAttributeNameEnum() : Boolean =
-    if validSclPredefinedAttributeNameEnum() then
+def: validSclAttributeNameEnum( s : String ) : Boolean =
+    if validSclPredefinedAttributeNameEnum( s ) then
         true
     else
-        validSclExtensionAttributeNameEnum()
+        validSclExtensionAttributeNameEnum( s )
     endif
     
 -----------------------------------------------------------
 
-def: validSclPredefinedCommonConductingEquipmentEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedCommonConductingEquipmentEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'CBR', 'DIS', 'VTR', 'CTR', 'GEN', 'CAP', 'REA', 'CON', 'MOT', 'EFN',
             'PSH', 'BAT', 'BSH', 'CAB', 'GIL', 'LIN', 'RES', 'RRC', 'SAR', 'TCF',
@@ -108,24 +113,24 @@ def: validSclPredefinedCommonConductingEquipmentEnum() : Boolean =
         false
     endif
 
-def: validSclExtensionEquipmentEnum() : Boolean =
-    if( self.validSclName() ) then
-        self.size() >= 3 and self.matches( 'E[A-Z]*' )
+def: validSclExtensionEquipmentEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.size() >= 3 and s.matches( 'E[A-Z]*' )
     else
         false
     endif
  
-def: validSclCommonConductingEquipmentEnum() : Boolean =
-    if validSclPredefinedCommonConductingEquipmentEnum() then
+def: validSclCommonConductingEquipmentEnum( s : String ) : Boolean =
+    if validSclPredefinedCommonConductingEquipmentEnum( s ) then
         true
     else
-        validSclExtensionEquipmentEnum()
+        validSclExtensionEquipmentEnum( s )
     endif
 
 -----------------------------------------------------------
 
-def: validSclPowerTransformerEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPowerTransformerEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'PTR'
         }->includes( self )
@@ -135,8 +140,8 @@ def: validSclPowerTransformerEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclTransformerWindingEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclTransformerWindingEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'PTW'
         }->includes( self )
@@ -146,8 +151,8 @@ def: validSclTransformerWindingEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclPredefinedGeneralEquipmentEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedGeneralEquipmentEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'AXN', 'BAT', 'MOT', 'FAN', 'FIL', 'PMP', 'TNK', 'VLV'
         }->includes( self )
@@ -155,25 +160,25 @@ def: validSclPredefinedGeneralEquipmentEnum() : Boolean =
         false
     endif
 
-def: validSclExtensionGeneralEquipmentEnum() : Boolean =
-    if( self.validSclName() ) then
-        self.size() >= 3 and self.matches( 'E[A-Z]*' )
+def: validSclExtensionGeneralEquipmentEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.size() >= 3 and s.matches( 'E[A-Z]*' )
     else
         false
     endif
  
-def: validSclGeneralEquipmentEnum() : Boolean =
-    if validSclPredefinedGeneralEquipmentEnum() then
+def: validSclGeneralEquipmentEnum( s : String ) : Boolean =
+    if validSclPredefinedGeneralEquipmentEnum( s ) then
         true
     else
-        validSclExtensionGeneralEquipmentEnum()
+        validSclExtensionGeneralEquipmentEnum( s )
     endif
 
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclServiceSettingsNoDynEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclServiceSettingsNoDynEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'Conf', 'Fix'
 --      }->includes( self )
@@ -184,8 +189,8 @@ def: validSclGeneralEquipmentEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclServiceSettingsEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclServiceSettingsEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'Dyn', 'Conf', 'Fix'
 --      }->includes( self )
@@ -195,8 +200,8 @@ def: validSclGeneralEquipmentEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclRedProtEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclRedProtEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'none', 'hsr', 'prp', 'rstp'
         }->includes( self )
@@ -207,8 +212,8 @@ def: validSclRedProtEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclSMVDeliveryEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclSMVDeliveryEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'unicast', 'multicast', 'both'
 --      }->includes( self )
@@ -219,8 +224,8 @@ def: validSclRedProtEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclPhaseEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclPhaseEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'A', 'B', 'C', 'N', 'all', 'none', 'AB', 'BC', 'CA'
 --      }->includes( self )
@@ -230,8 +235,8 @@ def: validSclRedProtEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclAuthenticationEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclAuthenticationEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'none', 'password', 'weak', 'strong', 'certificate'
         }->includes( self )
@@ -242,8 +247,8 @@ def: validSclAuthenticationEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclAssociationKindEnum() : Boolean =
---    if( self.validSclName() ) then
+--def: validSclAssociationKindEnum( s : String ) : Boolean =
+--    if( self.validSclName( s ) ) then
 --        Set{
 --           'pre-established', 'predefined'
 --        }->includes( self )
@@ -253,8 +258,8 @@ def: validSclAuthenticationEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclLPHDEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclLPHDEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'LPHD'
         }->includes( self )
@@ -263,8 +268,8 @@ def: validSclLPHDEnum() : Boolean =
     endif
 -----------------------------------------------------------
 
-def: validSclLLN0Enum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclLLN0Enum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'LLN0'
         }->includes( self )
@@ -274,8 +279,8 @@ def: validSclLLN0Enum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclSystemLNGroupEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclSystemLNGroupEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'LLN0', 'LPHD', 'LCCH', 'LGOS', 'LSVS', 'LTIM', 'LTMS', 'LTRK'
         }->includes( self )
@@ -283,8 +288,8 @@ def: validSclSystemLNGroupEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupAEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupAEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'ANCR', 'ARCO', 'ARIS', 'ATCC', 'AVCO'
         }->includes( self )
@@ -292,8 +297,8 @@ def: validSclDomainLNGroupAEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupCEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupCEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'CALH', 'CCGR', 'CILO', 'CPOW', 'CSWI', 'CSYN'
         }->includes( self )
@@ -301,8 +306,8 @@ def: validSclDomainLNGroupCEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupFEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupFEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'FCNT', 'FCSD', 'FFIL', 'FLIM', 'FPID', 'FRMP', 'FSPT', 'FXOT', 'FXUT'
         }->includes( self )
@@ -310,8 +315,8 @@ def: validSclDomainLNGroupFEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupGEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupGEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'GAPC', 'GGIO', 'GLOG', 'GSAL'
         }->includes( self )
@@ -319,8 +324,8 @@ def: validSclDomainLNGroupGEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupIEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupIEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'IARC', 'IHMI', 'ISAF', 'ITCI', 'ITMI', 'ITPC'
         }->includes( self )
@@ -328,8 +333,8 @@ def: validSclDomainLNGroupIEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupKEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupKEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'KFAN', 'KFIL', 'KPMP', 'KTNK', 'KVLV'
         }->includes( self )
@@ -337,8 +342,8 @@ def: validSclDomainLNGroupKEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupMEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupMEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'MDIF', 'MENV', 'MFLK', 'MHAI', 'MHAN', 'MHYD', 'MMDC', 'MMET', 'MMTN',
             'MMTR', 'MMXN', 'MMXU', 'MSQI', 'MSTA'
@@ -347,8 +352,8 @@ def: validSclDomainLNGroupMEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupPEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupPEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'PDIF', 'PDIR', 'PDIS', 'PDOP', 'PDUP', 'PFRC', 'PHAR', 'PHIZ', 'PIOC',
             'PMRI', 'PMSS', 'POPF', 'PPAM', 'PRTR', 'PSCH', 'PSDE', 'PTEF', 'PTHF',
@@ -359,8 +364,8 @@ def: validSclDomainLNGroupPEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupQEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupQEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'QFVR', 'QITR', 'QIUB', 'QVTR', 'QVUB', 'QVVR'
         }->includes( self )
@@ -368,8 +373,8 @@ def: validSclDomainLNGroupQEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupREnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupREnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'RADR', 'RBDR', 'RBRF', 'RDIR', 'RDRE', 'RDRS', 'RFLO', 'RMXU', 'RPSB', 'RREC', 'RSYN'
         }->includes( self )
@@ -377,8 +382,8 @@ def: validSclDomainLNGroupREnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupSEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupSEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'SARC', 'SCBR', 'SIMG', 'SIML', 'SLTC', 'SOPM', 'SPDC', 'SPTR', 'SSWI', 'STMP', 'SVBR'
         }->includes( self )
@@ -386,8 +391,8 @@ def: validSclDomainLNGroupSEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupTEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupTEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'TANG', 'TAXD', 'TCTR', 'TDST', 'TFLW', 'TFRQ', 'TGSN', 'THUM', 'TLVL',
             'TMGF', 'TMVM', 'TPOS', 'TPRS', 'TRTN', 'TSND', 'TTMP', 'TTNS', 'TVBR',
@@ -397,8 +402,8 @@ def: validSclDomainLNGroupTEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupXEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupXEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'XCBR', 'XSWI'
         }->includes( self )
@@ -406,8 +411,8 @@ def: validSclDomainLNGroupXEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupYEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupYEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'YEFN', 'YLTC', 'YPSH', 'YPTR'
         }->includes( self )
@@ -415,8 +420,8 @@ def: validSclDomainLNGroupYEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNGroupZEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclDomainLNGroupZEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'ZAXN', 'ZBAT', 'ZBSH', 'ZCAB', 'ZCAP', 'ZCON', 'ZGEN', 'ZGIL', 'ZLIN',
             'ZMOT', 'ZREA', 'ZRES', 'ZRRC', 'ZSAR', 'ZSCR', 'ZSMC', 'ZTCF', 'ZTCR'
@@ -425,45 +430,45 @@ def: validSclDomainLNGroupZEnum() : Boolean =
         false
     endif
 
-def: validSclDomainLNEnum() : Boolean =
-       validSclDomainLNGroupAEnum()
-    or validSclDomainLNGroupCEnum()
-    or validSclDomainLNGroupFEnum()
-    or validSclDomainLNGroupGEnum()
-    or validSclDomainLNGroupIEnum()
-    or validSclDomainLNGroupKEnum()
-    or validSclDomainLNGroupMEnum()
-    or validSclDomainLNGroupPEnum()
-    or validSclDomainLNGroupQEnum()
-    or validSclDomainLNGroupREnum()
-    or validSclDomainLNGroupSEnum()
-    or validSclDomainLNGroupTEnum()
-    or validSclDomainLNGroupXEnum()
-    or validSclDomainLNGroupYEnum()
-    or validSclDomainLNGroupZEnum()
+def: validSclDomainLNEnum( s : String ) : Boolean =
+       validSclDomainLNGroupAEnum( s )
+    or validSclDomainLNGroupCEnum( s )
+    or validSclDomainLNGroupFEnum( s )
+    or validSclDomainLNGroupGEnum( s )
+    or validSclDomainLNGroupIEnum( s )
+    or validSclDomainLNGroupKEnum( s )
+    or validSclDomainLNGroupMEnum( s )
+    or validSclDomainLNGroupPEnum( s )
+    or validSclDomainLNGroupQEnum( s )
+    or validSclDomainLNGroupREnum( s )
+    or validSclDomainLNGroupSEnum( s )
+    or validSclDomainLNGroupTEnum( s )
+    or validSclDomainLNGroupXEnum( s )
+    or validSclDomainLNGroupYEnum( s )
+    or validSclDomainLNGroupZEnum( s )
 
-def: validSclPredefinedLNClassEnum() : Boolean =
-       validSclSystemLNGroupEnum()
-    or validSclDomainLNEnum()
+def: validSclPredefinedLNClassEnum( s : String ) : Boolean =
+       validSclSystemLNGroupEnum( s )
+    or validSclDomainLNEnum( s )
 
-def: validSclExtensionLNClassEnum() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '[A-Z]{4}' )
+def: validSclExtensionLNClassEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '[A-Z]{4}' )
     else
         false
     endif
  
-def: validSclLNClassEnum() : Boolean =
-    if validSclPredefinedLNClassEnum() then
+def: validSclLNClassEnum( s : String ) : Boolean =
+    if validSclPredefinedLNClassEnum( s ) then
         true
     else
-        validSclExtensionLNClassEnum()
+        validSclExtensionLNClassEnum( s )
     endif
     
 -----------------------------------------------------------
 
-def: validSclPredefinedCDCEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedCDCEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'SPS', 'DPS', 'INS', 'ENS', 'ACT', 'ACD', 'SEC', 'BCR', 'HST', 'VSS', 'MV',
             'CMV', 'SAV', 'WYE', 'DEL', 'SEQ', 'HMV', 'HWYE', 'HDEL', 'SPC', 'DPC', 'INC',
@@ -475,25 +480,25 @@ def: validSclPredefinedCDCEnum() : Boolean =
         false
     endif
 
-def: validSclExtensionCDCEnum() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '[A-Za-z]{1,5}' )
+def: validSclExtensionCDCEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '[A-Za-z]{1,5}' )
     else
         false
     endif
  
-def: validSclCDCEnum() : Boolean =
-    if validSclPredefinedCDCEnum() then
+def: validSclCDCEnum( s : String ) : Boolean =
+    if validSclPredefinedCDCEnum( s ) then
         true
     else
-        validSclExtensionCDCEnum()
+        validSclExtensionCDCEnum( s )
     endif
         
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclFCEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclFCEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'ST', 'MX', 'CO', 'SP', 'SG', 'SE', 'SV', 'CF', 'DC', 'EX', 'SR', 'BL', 'OR'
 --      }->includes( self )
@@ -503,8 +508,8 @@ def: validSclCDCEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclPredefinedBasicTypeEnum() : Boolean =
-    if( self.validSclName() ) then
+def: validSclPredefinedBasicTypeEnum( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
         Set{
             'BOOLEAN', 'INT8', 'INT16', 'INT24', 'INT32', 'INT64', 'INT128', 'INT8U',
             'INT16U', 'INT24U', 'INT32U', 'FLOAT32', 'FLOAT64', 'Enum', 'Dbpos', 'Tcmd',
@@ -517,14 +522,14 @@ def: validSclPredefinedBasicTypeEnum() : Boolean =
         false
     endif
 
-def: validSclBasicTypeEnum() : Boolean =
-    validSclPredefinedBasicTypeEnum()
+def: validSclBasicTypeEnum( s : String ) : Boolean =
+    validSclPredefinedBasicTypeEnum( s )
 
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclValKindEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclValKindEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'Spec', 'Conf', 'RO', 'Set'
 --      }->includes( self )
@@ -535,8 +540,8 @@ def: validSclBasicTypeEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclGSEControlTypeEnum() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclGSEControlTypeEnum( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'GSSE', 'GOOSE'
 --      }->includes( self )
@@ -547,8 +552,8 @@ def: validSclBasicTypeEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclUnitMultiplierEnum() : Boolean =
---  if( self.size() = 0 ) then
+--def: validSclUnitMultiplierEnum( s : String ) : Boolean =
+--  if( self.size( s ) = 0 ) then
 --      true
 --  else
 --      Set{
@@ -558,57 +563,57 @@ def: validSclBasicTypeEnum() : Boolean =
 
 -----------------------------------------------------------
 
-def: validSclRightEnum() : Boolean =
+def: validSclRightEnum( s : String ) : Boolean =
         Set{
             'full', 'fix', 'dataflow'
         }->includes( self )
 
 -----------------------------------------------------------
 
-def: validSclSDOCount() : Boolean =
-    self.matches( '[0-9]+' )
+def: validSclSDOCount( s : String ) : Boolean =
+    s.matches( '[0-9]+' )
     or
-    self.validSclRestrName1stL()
+    self.validSclRestrName1stL( s )
 
 -----------------------------------------------------------
 
-def: validSclDACount() : Boolean =
-    self.matches( '[0-9]+' )
+def: validSclDACount( s : String ) : Boolean =
+    s.matches( '[0-9]+' )
     or
-    self.validSclAttributeNameEnum()
+    self.validSclAttributeNameEnum( s )
 
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclSmpMod() : Boolean =
+--def: validSclSmpMod( s : String ) : Boolean =
 --      Set{
 --          'SmpPerPeriod', 'SmpPerSec', 'SecPerSmp'
 --      }->includes( self )
 
 -----------------------------------------------------------
 
-def: validSclPredefinedPhysConnTypeEnum() : Boolean =
+def: validSclPredefinedPhysConnTypeEnum( s : String ) : Boolean =
     Set{
         'Connection', 'RedConn'
     }->includes( self )
 
-def: validSclExtensionPhysConnTypeEnum() : Boolean =
-    self.matches( '[A-Z][0-9A-Za-z]*' )
+def: validSclExtensionPhysConnTypeEnum( s : String ) : Boolean =
+    s.matches( '[A-Z][0-9A-Za-z]*' )
     -- TODO
     --self.matches( '[A-Z][0-9A-Za-z\-]*' )
  
-def: validSclPhysConnTypeEnum() : Boolean =
-    if validSclPredefinedPhysConnTypeEnum() then
+def: validSclPhysConnTypeEnum( s : String ) : Boolean =
+    if validSclPredefinedPhysConnTypeEnum( s ) then
         true
     else
-        validSclExtensionPhysConnTypeEnum()
+        validSclExtensionPhysConnTypeEnum( s )
     endif
     
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclServiceType() : Boolean =
---  if( self.validSclName() ) then
+--def: validSclServiceType( s : String ) : Boolean =
+--  if( self.validSclName( s ) ) then
 --      Set{
 --          'Poll', 'Report', 'GOOSE', 'SMV'
 --      }->includes( self )
@@ -619,9 +624,11 @@ def: validSclPhysConnTypeEnum() : Boolean =
 -----------------------------------------------------------
 
 -- This is a real enum
---def: validSclPredefinedTypeOfSecurityEnum() : Boolean =
+--def: validSclPredefinedTypeOfSecurityEnum( s : String ) : Boolean =
 --  Set{
 --      'None', 'Signature', 'SignatureAndEncryption'
 --  }->includes( self )
+
+endpackage
 
 

@@ -36,7 +36,7 @@ context GeneralEquipment
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclGeneralEquipmentEnum()
+        self.type <> null implies self.validSclGeneralEquipmentEnum( type )
 
 
 endpackage
