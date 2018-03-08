@@ -118,7 +118,7 @@ def: validSclLDInstOrEmpty( s : String ) : Boolean =
     endif
 
 def: validSclPrefix( s : String ) : Boolean =
-    if( self = '' ) then
+    if( s = '' ) then
         true
     else
         s.matches( '[A-Za-z][0-9A-Za-z_]{0,10}' )
