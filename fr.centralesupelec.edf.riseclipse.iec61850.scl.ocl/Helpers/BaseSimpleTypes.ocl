@@ -19,194 +19,195 @@
 
 -----------------------------------------------------------
 
-context ocl::String
+import scl: 'http://www.iec.ch/61850/2003/SCL'
 
-def: validSclRef() : Boolean =
-    self.matches( '.+/.+/.+/.+(/.+)*' )
+package scl
 
-def: validSclAnyName() : Boolean =
+context SclObject
+
+def: validSclRef( s : String ) : Boolean =
+    s.matches( '.+/.+/.+/.+(/.+)*' )
+
+def: validSclAnyName( s : String ) : Boolean =
     true
  
-def: validSclName() : Boolean =
-    if( self.validSclAnyName() ) then
-        self.size() >= 1
+def: validSclName( s : String ) : Boolean =
+    if( self.validSclAnyName( s ) ) then
+        s.size() >= 1
     else
         false
     endif
 
-def: validSclAcsiName() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '[A-Za-z][0-9A-Za-z_]*' )
+def: validSclAcsiName( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '[A-Za-z][0-9A-Za-z_]*' )
     else
         false
     endif
 
-def: validSclRestrName1stU() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '[A-Z][0-9A-Za-z]*' )
+def: validSclRestrName1stU( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '[A-Z][0-9A-Za-z]*' )
     else
         false
     endif
 
-def: validSclRestrName1stL() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '[a-z][0-9A-Za-z]*' )
+def: validSclRestrName1stL( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '[a-z][0-9A-Za-z]*' )
     else
         false
     endif
 
-def: validSclPAddr() : Boolean =
-    self.size() >= 1
+def: validSclPAddr( s : String ) : Boolean =
+    s.size() >= 1
 
-def: validSclVersion() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '2[0-2][0-9]{2}' )
+def: validSclVersion( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '2[0-2][0-9]{2}' )
     else
         false
     endif
  
-def: validSclRevision() : Boolean =
-    if( self.validSclName() ) then
-        self.matches( '[A-Z]' )
+def: validSclRevision( s : String ) : Boolean =
+    if( self.validSclName( s ) ) then
+        s.matches( '[A-Z]' )
     else
         false
     endif
 
 -----------------------------------------------------------
 
-context ocl::Integer
- 
-def: validSclRelease() : Boolean =
-    self >= 0 and self <= 255
+def: validSclRelease( i : Integer ) : Boolean =
+    i >= 0 and i <= 255
 
 -----------------------------------------------------------
 
-context ocl::String
+def: validSclEmpty( s : String ) : Boolean =
+    s.size() <= 0
 
-def: validSclEmpty() : Boolean =
-    self.size() <= 0
-
-def: validSclIEDName() : Boolean =
-    if( self.validSclVisibleBasicLatin() ) then
-        self.size() >= 1 and self.size() <= 129
+def: validSclIEDName( s : String ) : Boolean =
+    if( self.validSclVisibleBasicLatin( s ) ) then
+        s.size() >= 1 and s.size() <= 129
     else
         false
     endif
  
-def: validSclOnlyRelativeIEDName() : Boolean =
+def: validSclOnlyRelativeIEDName( s : String ) : Boolean =
     -- XSD: <xs:pattern value="&#x0040;"/>
-    self.matches( '\u0040' )
+    s.matches( '\u0040' )
 
-def: validSclIEDNameOrRelative() : Boolean =
-    if( self.validSclIEDName() ) then
+def: validSclIEDNameOrRelative( s : String ) : Boolean =
+    if( self.validSclIEDName( s ) ) then
         true
     else
-        self.validSclOnlyRelativeIEDName()
+        self.validSclOnlyRelativeIEDName( s )
     endif
 
-def: validSclLDName() : Boolean =
-    self.matches( '[A-Za-z][0-9A-Za-z_]{0,63}' )
+def: validSclLDName( s : String ) : Boolean =
+    s.matches( '[A-Za-z][0-9A-Za-z_]{0,63}' )
  
-def: validSclLDInst() : Boolean =
-    self.matches( '[A-Za-z0-9][0-9A-Za-z_]{0,63}' )
+def: validSclLDInst( s : String ) : Boolean =
+    s.matches( '[A-Za-z0-9][0-9A-Za-z_]{0,63}' )
  
-def: validSclLDInstOrEmpty() : Boolean =
-    if( self.validSclEmpty() ) then
+def: validSclLDInstOrEmpty( s : String ) : Boolean =
+    if( self.validSclEmpty( s ) ) then
         true
     else
-        self.validSclLDInst()
+        self.validSclLDInst( s )
     endif
 
-def: validSclPrefix() : Boolean =
-    if( self = '' ) then
+def: validSclPrefix( s : String ) : Boolean =
+    if( s = '' ) then
         true
     else
-        self.matches( '[A-Za-z][0-9A-Za-z_]{0,10}' )
+        s.matches( '[A-Za-z][0-9A-Za-z_]{0,10}' )
     endif
  
-def: validSclLNInst() : Boolean =
-    self.matches( '[0-9]{1,12}' )
+def: validSclLNInst( s : String ) : Boolean =
+    s.matches( '[0-9]{1,12}' )
  
-def: validSclLNInstOrEmpty() : Boolean =
-    if( self.validSclEmpty() ) then
+def: validSclLNInstOrEmpty( s : String ) : Boolean =
+    if( self.validSclEmpty( s ) ) then
         true
     else
-        self.validSclLNInst()
+        self.validSclLNInst( s )
     endif
 
-def: validSclDataName() : Boolean =
-    if( self.validSclRestrName1stU() ) then
-        self.size() <= 12
+def: validSclDataName( s : String ) : Boolean =
+    if( self.validSclRestrName1stU( s ) ) then
+        s.size() <= 12
     else
         false
     endif
  
-def: validSclDataSetName() : Boolean =
-    if( self.validSclAcsiName() ) then
-        self.size() <= 32
+def: validSclDataSetName( s : String ) : Boolean =
+    if( self.validSclAcsiName( s ) ) then
+        s.size() <= 32
     else
         false
     endif
  
-def: validSclCBName() : Boolean =
-    if( self.validSclAcsiName() ) then
-        self.size() <= 32
+def: validSclCBName( s : String ) : Boolean =
+    if( self.validSclAcsiName( s ) ) then
+        s.size() <= 32
     else
         false
     endif
  
-def: validSclLogName() : Boolean =
-    if( self.validSclAcsiName() ) then
-        self.size() <= 32
+def: validSclLogName( s : String ) : Boolean =
+    if( self.validSclAcsiName( s ) ) then
+        s.size() <= 32
     else
         false
     endif
  
-def: validSclAccessPointName() : Boolean =
-    self.matches( '[A-Za-z0-9][0-9A-Za-z_]*' )
+def: validSclAccessPointName( s : String ) : Boolean =
+    s.matches( '[A-Za-z0-9][0-9A-Za-z_]*' )
 
-def: validSclAssociationID() : Boolean =
-    self.matches( '[0-9A-Za-z]+' )
+def: validSclAssociationID( s : String ) : Boolean =
+    s.matches( '[0-9A-Za-z]+' )
 
-def: validSclVisibleBasicLatin() : Boolean =
+def: validSclVisibleBasicLatin( s : String ) : Boolean =
     -- XSD: <xs:pattern value="[&#x0020;-&#x007E;]*"/>
     -- using \u0020 because \x20 is not recognized
-    self.matches( '[\u0020-\u007E]*' )
+    s.matches( '[\u0020-\u007E]*' )
 
-def: validSclMessageID() : Boolean =
-    if( self.validSclVisibleBasicLatin() ) then
-        self.size() <= 64
+def: validSclMessageID( s : String ) : Boolean =
+    if( self.validSclVisibleBasicLatin( s ) ) then
+        s.size() <= 64
     else
         false
     endif
 
-def: validSclFullAttributeName() : Boolean =
+def: validSclFullAttributeName( s : String ) : Boolean =
     -- XSD: <xs:pattern value="[a-zA-Z][a-zA-Z0-9]*(\([0-9]+\))?(\.[a-zA-Z][a-zA-Z0-9]*(\([0-9]+\))?)*"/>
-    self.matches( '[a-zA-Z][a-zA-Z0-9]*(\u0028[0-9]+\u0029)?(\u002E[a-zA-Z][a-zA-Z0-9]*(\u0028[0-9]+\u0029)?)*' )
+    s.matches( '[a-zA-Z][a-zA-Z0-9]*(\u0028[0-9]+\u0029)?(\u002E[a-zA-Z][a-zA-Z0-9]*(\u0028[0-9]+\u0029)?)*' )
 
-def: validSclFullDOName() : Boolean =
+def: validSclFullDOName( s : String ) : Boolean =
     -- XSD: <xs:pattern value="[A-Z][0-9A-Za-z]{0,11}(\.[a-z][0-9A-Za-z]*(\([0-9]+\))?)?"/>
-    self.matches( '[A-Z][0-9A-Za-z]{0,11}(\u002E[a-z][0-9A-Za-z]*(\u0028[0-9]+\u0029)?)?' )
+    s.matches( '[A-Z][0-9A-Za-z]{0,11}(\u002E[a-z][0-9A-Za-z]*(\u0028[0-9]+\u0029)?)?' )
  
-def: validSclSubDataName() : Boolean =
-    if( self.validSclRestrName1stL() ) then
-        self.size() >= 1 and self.size() <= 60
+def: validSclSubDataName( s : String ) : Boolean =
+    if( self.validSclRestrName1stL( s ) ) then
+        s.size() >= 1 and s.size() <= 60
     else
         false
     endif
 
-def: validSclNamespaceName() : Boolean =
+def: validSclNamespaceName( s : String ) : Boolean =
     -- XSD: <xs:pattern value="[&#x0020;-&#x007E;]+:20\d\d[A-Z]?"/>
     -- \d not recognized ?
-    self.matches( '[\u0020-\u007E]+:20[0-9][0-9][A-Z]?' )
+    s.matches( '[\u0020-\u007E]+:20[0-9][0-9][A-Z]?' )
 
-def: validSclLineType() : Boolean =
-    self.size() >= 1
+def: validSclLineType( s : String ) : Boolean =
+    s.size() >= 1
 
-def: validSclProcessType() : Boolean =
-    self.size() >= 1
+def: validSclProcessType( s : String ) : Boolean =
+    s.size() >= 1
 
-def: validSclProcessName() : Boolean =
-    self.matches( '.+(/.+)*' )
+def: validSclProcessName( s : String ) : Boolean =
+    s.matches( '.+(/.+)*' )
  
+endpackage
 

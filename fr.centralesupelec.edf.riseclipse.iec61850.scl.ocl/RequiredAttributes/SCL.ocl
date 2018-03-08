@@ -33,7 +33,7 @@ context SCL
         ( 'version attribute shall be a year between 2000 and 2999 in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.version.toString() )
     :
-        self.version <> null implies self.version.validSclVersion()
+        self.version <> null implies self.validSclVersion( version )
     inv SCL_version_value_2007
         ( 'version attribute shall be equal to 2007 in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.version.toString() )
@@ -49,7 +49,7 @@ context SCL
         ( 'revision attribute shall be an uppercase letter in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.revision.toString() )
     :
-        self.revision <> null implies self.revision.validSclRevision()
+        self.revision <> null implies self.validSclRevision( revision )
     inv SCL_revision_value_B
         ( 'revision attribute shall be equal to B in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.revision.toString() )

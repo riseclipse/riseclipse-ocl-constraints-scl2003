@@ -36,7 +36,7 @@ context GSEControl
           + 'Current value is ' + self.appID.toString()
         )
     :
-        self.appID <> null implies self.appID.validSclMessageID()
+        self.appID <> null implies self.validSclMessageID( appID )
         
     -- type is a GSEControlTypeEnum, a real enum
     -- fixedOffs is a boolean

@@ -37,7 +37,7 @@ context AnyLN
           + 'Current value is ' + self.lnClass.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- The inst attribute is required
     inv LN_inst_required
@@ -57,7 +57,7 @@ context AnyLN
           + 'Current value is ' + self.lnType.toString()
         )
     :
-        self.lnType <> null implies self.lnType.validSclName()
+        self.lnType <> null implies self.validSclName( lnType )
 
 
 endpackage

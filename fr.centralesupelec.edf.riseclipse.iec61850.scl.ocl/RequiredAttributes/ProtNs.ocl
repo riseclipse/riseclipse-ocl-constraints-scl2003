@@ -36,7 +36,7 @@ context ProtNs
           + 'Current value is ' + self.value.toString()
         )
     :
-        self.value <> null implies self.value.validSclNamespaceName()
+        self.value <> null implies self.validSclNamespaceName( value )
 
     -- The type attribute shall be valid
     inv ProtNs_type_valid

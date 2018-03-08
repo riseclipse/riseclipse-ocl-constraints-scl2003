@@ -37,7 +37,7 @@ context IED
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclIEDName()
+        self.name <> null implies self.validSclIEDName( name )
     
     -- type is a normalizedString
     -- manufacturer is a normalizedString
@@ -49,7 +49,7 @@ context IED
           + 'Current value is ' + self.originalSclVersion.toString()
         )
     :
-        self.originalSclVersion <> null implies self.originalSclVersion.validSclVersion()
+        self.originalSclVersion <> null implies self.validSclVersion( originalSclVersion )
     
     -- The originalSclRevision attribute shall be valid
     inv IED_originalSclRevision_valid
@@ -57,7 +57,7 @@ context IED
           + 'Current value is ' + self.originalSclRevision.toString()
         )
     :
-        self.originalSclRevision <> null implies self.originalSclRevision.validSclRevision()
+        self.originalSclRevision <> null implies self.validSclRevision( originalSclRevision )
     
     -- The originalSclRelease attribute shall be valid
     inv IED_originalSclRelease_valid
@@ -73,7 +73,7 @@ context IED
           + 'Current value is ' + self.engRight.toString()
         )
     :
-        self.engRight <> null implies self.engRight.validSclRightEnum()
+        self.engRight <> null implies self.validSclRightEnum( engRight )
     
     
     -- owner is a normalizedString

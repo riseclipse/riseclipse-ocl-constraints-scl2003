@@ -36,7 +36,7 @@ context IDNaming
           + 'Current value is ' + self.id.toString()
         )
     :
-        self.id <> null implies self.id.validSclName()
+        self.id <> null implies self.validSclName( id )
 
     -- desc is a normalizedString
 

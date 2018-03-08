@@ -36,10 +36,10 @@ context Terminal
           + 'Current value is ' + self.connectivityNode.toString()
         )
     :
-        self.connectivityNode <> null implies self.connectivityNode.validSclRef()
+        self.connectivityNode <> null implies self.validSclRef( connectivityNode )
 
     -- The connectivityNode attribute value shall be the pathName.
-    inv Terminal_connectivityNode_required
+    inv Terminal_connectivityNode_value_shall_be_pathname
         ( 'connectivityNode attribute value shall be the pathName in Terminal (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.connectivityNode.toString()
         )
@@ -68,7 +68,7 @@ context Terminal
           + 'Current value is ' + self.substationName.toString()
         )
     :
-        self.substationName <> null implies self.substationName.validSclName()
+        self.substationName <> null implies self.validSclName( substationName )
 
     -- The voltageLevelName attribute shall be present.
     inv Terminal_voltageLevelName_required
@@ -82,7 +82,7 @@ context Terminal
           + 'Current value is ' + self.voltageLevelName.toString()
         )
     :
-        self.voltageLevelName <> null implies self.voltageLevelName.validSclName()
+        self.voltageLevelName <> null implies self.validSclName( voltageLevelName )
 
     -- The bayName attribute shall be present.
     inv Terminal_bayName_required
@@ -96,7 +96,7 @@ context Terminal
           + 'Current value is ' + self.bayName.toString()
         )
     :
-        self.bayName <> null implies self.bayName.validSclName()
+        self.bayName <> null implies self.validSclName( bayName )
 
     -- The cNodeName attribute shall be present.
     inv Terminal_cNodeName_required
@@ -110,7 +110,7 @@ context Terminal
           + 'Current value is ' + self.cNodeName.toString()
         )
     :
-        self.cNodeName <> null implies self.cNodeName.validSclName()
+        self.cNodeName <> null implies self.validSclName( cNodeName )
 
     -- The processName attribute shall be valid.
     inv Terminal_processName_valid
@@ -118,7 +118,7 @@ context Terminal
           + 'Current value is ' + self.processName.toString()
         )
     :
-        self.processName <> null implies self.processName.validSclProcessName()
+        self.processName <> null implies self.validSclProcessName( processName )
 
 
 endpackage

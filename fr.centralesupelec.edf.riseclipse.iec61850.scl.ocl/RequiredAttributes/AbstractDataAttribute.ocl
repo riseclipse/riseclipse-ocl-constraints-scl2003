@@ -40,7 +40,7 @@ context AbstractDataAttribute
           + 'Current value is ' + self.bType.toString()
         )
     :
-        self.bType <> null implies self.bType.validSclBasicTypeEnum()
+        self.bType <> null implies self.validSclBasicTypeEnum( bType )
 
     -- sAddr is normalizedString
     -- valKind is a real enum
@@ -51,7 +51,7 @@ context AbstractDataAttribute
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.bType.validSclAnyName()
+        self.type <> null implies self.validSclAnyName( bType )
 
     -- The count attribute shall be valid
     inv AbstractDataAttribute_count_valid
@@ -59,7 +59,7 @@ context AbstractDataAttribute
           + 'Current value is ' + self.count.toString()
         )
     :
-        self.count <> null implies self.count.validSclDACount()
+        self.count <> null implies self.validSclDACount( count )
 
     -- valImport is a boolean
 

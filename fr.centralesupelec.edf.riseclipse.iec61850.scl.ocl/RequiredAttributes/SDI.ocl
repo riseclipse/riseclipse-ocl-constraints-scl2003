@@ -38,7 +38,7 @@ context SDI
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclAttributeNameEnum()
+        self.name <> null implies self.validSclAttributeNameEnum( name )
 
     -- ix is unsigned int
     inv SDI_ix_valid

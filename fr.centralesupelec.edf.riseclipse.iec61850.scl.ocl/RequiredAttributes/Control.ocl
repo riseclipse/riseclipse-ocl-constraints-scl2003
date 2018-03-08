@@ -36,7 +36,7 @@ context Control
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclCBName()
+        self.name <> null implies self.validSclCBName( name )
 
     -- The name attribute shall be valid
     inv Control_datSet_valid
@@ -44,7 +44,7 @@ context Control
           + 'Current value is ' + self.datSet.toString()
         )
     :
-        self.datSet <> null implies self.datSet.validSclDataSetName()
+        self.datSet <> null implies self.validSclDataSetName( datSet )
 
 
 endpackage

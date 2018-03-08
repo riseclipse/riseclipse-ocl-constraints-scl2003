@@ -36,7 +36,7 @@ context LDevice
           + 'Current value is ' + self.inst.toString()
         )
     :
-        self.inst <> null implies self.inst.validSclLDInst()
+        self.inst <> null implies self.validSclLDInst( inst )
 
     -- The ldName attribute shall be valid
     -- Note: default value (IED name concatenated with inst) done by RiseClipse
@@ -45,7 +45,7 @@ context LDevice
           + 'Current value is ' + self.ldName.toString()
         )
     :
-        self.ldName.validSclLDName()
+        self.validSclLDName( ldName )
     
 
 endpackage

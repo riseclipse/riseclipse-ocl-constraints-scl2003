@@ -37,7 +37,7 @@ context DOType
           + 'Current value is ' + self.cdc.toString()
         )
     :
-        self.cdc <> null implies self.cdc.validSclCDCEnum()
+        self.cdc <> null implies self.validSclCDCEnum( cdc )
 
     -- The iedType attribute shall be valid
     inv DOType_iedType_valid
@@ -45,7 +45,7 @@ context DOType
           + 'Current value is ' + self.iedType.toString()
         )
     :
-        self.iedType <> null implies self.iedType.validSclAnyName()
+        self.iedType <> null implies self.validSclAnyName( iedType )
 
 
 endpackage

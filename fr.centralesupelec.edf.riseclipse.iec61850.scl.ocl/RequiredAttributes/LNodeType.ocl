@@ -36,7 +36,7 @@ context LNodeType
           + 'Current value is ' + self.lnClass.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- iedType is AnyName
 

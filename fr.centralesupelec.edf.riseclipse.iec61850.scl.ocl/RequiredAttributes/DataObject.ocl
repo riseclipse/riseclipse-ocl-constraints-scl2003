@@ -34,7 +34,7 @@ context DataObject
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclDataName()
+        self.name <> null implies self.validSclDataName( name )
 
 
 endpackage

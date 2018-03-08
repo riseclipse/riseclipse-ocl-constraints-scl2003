@@ -25,7 +25,7 @@ context LN0
     -- lnClass required and valid: in AnyLN
     -- The lnClass attribute shall be LLN0
     inv LN0_lnClass_value
-        ( 'lnClass attribute shall LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
+        ( 'lnClass attribute shall be LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :

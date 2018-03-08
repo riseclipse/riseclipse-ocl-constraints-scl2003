@@ -30,21 +30,21 @@ context ExtRef
           + 'Current value is ' + self.iedName.toString()
         )
     :
-        self.iedName <> null implies self.iedName.validSclIEDNameOrRelative()
+        self.iedName <> null implies self.validSclIEDNameOrRelative( iedName )
 
     inv ExtRef_ldInst_valid
         ( 'ldInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
-        self.ldInst <> null implies self.ldInst.validSclLDInst()
+        self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     inv ExtRef_prefix_valid
         ( 'prefix attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
-        self.prefix <> null implies self.prefix.validSclPrefix()
+        self.prefix <> null implies self.validSclPrefix( prefix )
 
     -- lnClass valid
     inv ExtRef_lnClass_valid
@@ -52,14 +52,14 @@ context ExtRef
           + 'Current value is ' + self.lnClass.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     inv ExtRef_lnInst_valid
         ( 'lnInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
-        self.lnInst <> null implies self.lnInst.validSclLNInstOrEmpty()
+        self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     -- The doName attribute shall be valid
     inv FCDA_doName_valid
@@ -67,7 +67,7 @@ context ExtRef
           + 'Current value is ' + self.doName.toString()
         )
     :
-        self.doName <> null implies self.doName.validSclFullDOName()
+        self.doName <> null implies self.validSclFullDOName( doName )
 
     -- The daName attribute shall be valid
     inv FCDA_daName_valid
@@ -75,7 +75,7 @@ context ExtRef
           + 'Current value is ' + self.daName.toString()
         )
     :
-        self.daName <> null implies self.daName.validSclFullAttributeName()
+        self.daName <> null implies self.validSclFullAttributeName( daName )
 
     -- intAddr is normalizedString
     -- serviceType is a real enum
@@ -85,14 +85,14 @@ context ExtRef
           + 'Current value is ' + self.srcLDInst.toString()
         )
     :
-        self.srcLDInst <> null implies self.srcLDInst.validSclLDInst()
+        self.srcLDInst <> null implies self.validSclLDInst( srcLDInst )
 
     inv ExtRef_srcPrefix_valid
         ( 'srcPrefix attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcPrefix.toString()
         )
     :
-        self.srcPrefix <> null implies self.srcPrefix.validSclPrefix()
+        self.srcPrefix <> null implies self.validSclPrefix( srcPrefix )
 
     -- lnClass valid
     inv ExtRef_srcLNClass_valid
@@ -100,21 +100,21 @@ context ExtRef
           + 'Current value is ' + self.srcLNClass.toString()
         )
     :
-        self.srcLNClass <> null implies self.srcLNClass.validSclLNClassEnum()
+        self.srcLNClass <> null implies self.validSclLNClassEnum( srcLNClass )
 
     inv ExtRef_srcLNInst_valid
         ( 'srcLNInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcLNInst.toString()
         )
     :
-        self.srcLNInst <> null implies self.srcLNInst.validSclLNInstOrEmpty()
+        self.srcLNInst <> null implies self.validSclLNInstOrEmpty( srcLNInst )
 
     inv ExtRef_srcCBName_valid
         ( 'srcCBName attribute shall be valid ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcCBName.toString()
         )
     :
-        self.srcCBName <> null implies self.srcCBName.validSclCBName()
+        self.srcCBName <> null implies self.validSclCBName( srcCBName )
 
 
 endpackage

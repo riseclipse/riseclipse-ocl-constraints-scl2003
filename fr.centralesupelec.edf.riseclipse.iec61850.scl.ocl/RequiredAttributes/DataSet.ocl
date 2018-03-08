@@ -34,7 +34,7 @@ context DataSet
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclDataSetName()
+        self.name <> null implies self.validSclDataSetName( name )
 
 
 endpackage

@@ -36,7 +36,7 @@ context TapChanger
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclName()
+        self.type <> null implies self.validSclName( type )
 
     -- The type attribute shall be LTC
     inv TapChanger_type_value

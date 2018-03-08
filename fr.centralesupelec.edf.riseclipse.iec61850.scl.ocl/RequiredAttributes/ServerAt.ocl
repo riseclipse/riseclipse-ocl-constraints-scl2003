@@ -36,7 +36,7 @@ context ServerAt
           + 'Current value is ' + self.apName.toString()
         )
     :
-        self.apName <> null implies self.apName.validSclAccessPointName()
+        self.apName <> null implies self.validSclAccessPointName( apName )
 
 
 endpackage

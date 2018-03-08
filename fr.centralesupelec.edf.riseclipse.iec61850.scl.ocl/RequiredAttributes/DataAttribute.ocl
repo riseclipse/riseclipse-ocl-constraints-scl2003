@@ -34,7 +34,7 @@ context DataAttribute
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.name.validSclAttributeNameEnum()
+        self.name <> null implies self.validSclAttributeNameEnum( name )
 
 
 endpackage

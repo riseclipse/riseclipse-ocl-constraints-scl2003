@@ -38,7 +38,7 @@ context ConnectivityNode
           + 'Current value is ' + self.pathName.toString()
         )
     :
-        self.pathName <> null implies self.pathName.validSclRef()
+        self.pathName <> null implies self.validSclRef( pathName )
 
     --  The Bay's name attribute identifies the ConnectivityNode instance within the
     --  bay; its pathName is an absolute reference within the SCL file. The

@@ -47,7 +47,7 @@ context ReportControl
           + 'Current value is ' + self.rptID.toString()
         )
     :
-        self.rptID <> null implies self.rptID.validSclMessageID()
+        self.rptID <> null implies self.validSclMessageID( rptID )
 
     -- buffered is a boolean
     

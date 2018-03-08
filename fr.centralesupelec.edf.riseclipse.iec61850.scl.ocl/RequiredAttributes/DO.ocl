@@ -39,7 +39,7 @@ context DO
           + 'Current value is ' + self.type.toString()
         )
     :
-        self.type <> null implies self.type.validSclName()
+        self.type <> null implies self.validSclName( type )
 
     -- accessControl is a normalizedString
     -- transient is a boolean

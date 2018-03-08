@@ -36,7 +36,7 @@ context LNode
           + 'Current value is ' + self.lnClass.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclLNClassEnum()
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- The lnInst can only be missing for lnClass=LLN0
     inv LNode_lnInst_required
@@ -51,7 +51,7 @@ context LNode
           + 'Current value is ' + self.iedName.toString()
         )
     :
-        self.lnClass <> null implies self.lnClass.validSclIEDName()
+        self.lnClass <> null implies self.validSclIEDName( lnClass )
 
     -- The ldInst attribute shall be valid if present.
     inv LNode_ldInst_value
@@ -59,7 +59,7 @@ context LNode
           + 'Current value is ' + self.ldInst.toString()
         )
     :
-        self.ldInst <> null implies self.ldInst.validSclLDInstOrEmpty()
+        self.ldInst <> null implies self.validSclLDInstOrEmpty( ldInst )
 
     -- The prefix attribute shall be valid if present.
     inv LNode_prefix_value
@@ -67,7 +67,7 @@ context LNode
           + 'Current value is ' + self.prefix.toString()
         )
     :
-        self.prefix <> null implies self.prefix.validSclPrefix()
+        self.prefix <> null implies self.validSclPrefix( prefix )
 
     -- The lnInst attribute shall be valid if present.
     inv LNode_lnInst_value
@@ -75,7 +75,7 @@ context LNode
           + 'Current value is ' + self.lnInst.toString()
         )
     :
-        self.lnInst <> null implies self.lnInst.validSclLNInstOrEmpty()
+        self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     -- The lnType attribute shall be valid if present.
     inv LNode_lnType_value
@@ -83,7 +83,7 @@ context LNode
           + 'Current value is ' + self.lnType.toString()
         )
     :
-        self.lnType <> null implies self.lnType.validSclName()
+        self.lnType <> null implies self.validSclName( lnType )
 
 
 endpackage

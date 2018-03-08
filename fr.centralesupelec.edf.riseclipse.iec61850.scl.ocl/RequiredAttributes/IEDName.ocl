@@ -32,7 +32,7 @@ context IEDName
           + 'Current value is ' + self.value.toString()
         )
     :
-        self.value <> null implies self.value.validSclIEDName()
+        self.value <> null implies self.validSclIEDName( value )
 
 
 endpackage
