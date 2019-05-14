@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context ServiceConfReportControl
+-- extends ServiceWithMax
 
   -- bufMode is a real enum
   -- bufConf is a boolean

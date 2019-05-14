@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Log
+-- extends UnNaming
 
     -- The name attribute shall be valid
     inv Log_name_valid

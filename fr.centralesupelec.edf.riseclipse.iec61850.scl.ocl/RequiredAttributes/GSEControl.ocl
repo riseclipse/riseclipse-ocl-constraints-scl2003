@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context GSEControl
+-- extends ControlWithIEDName
 
     -- The appID attribute shall be present
     inv GSEControl_appID_required

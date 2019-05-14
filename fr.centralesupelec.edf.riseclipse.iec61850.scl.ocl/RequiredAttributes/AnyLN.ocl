@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context AnyLN
+-- extends UnNaming
 
     -- The lnClass attribute is required
     inv LN_lnClass_required

@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ReportControl
+-- extends ControlWithTriggerOpt
 
     -- The confRev attribute shall be present
     inv ReportControl_confRev_required

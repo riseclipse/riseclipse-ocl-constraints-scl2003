@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context P_PhysConn
+-- extends PAddr
 
     -- The type attribute shall be present
     inv P_PhysConn_type_required

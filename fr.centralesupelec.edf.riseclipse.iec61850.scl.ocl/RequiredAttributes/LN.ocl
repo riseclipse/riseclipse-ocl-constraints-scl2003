@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context LN
+-- extends AnyLN
 
     -- lnClass required and valid: in AnyLN
     

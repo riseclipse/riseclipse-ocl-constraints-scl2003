@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context TapChanger
+-- extends PowerSystemResource
 
     -- The type attribute shall be present
     inv TapChanger_type_required

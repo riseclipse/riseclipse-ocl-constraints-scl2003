@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context ServiceWithMaxAndMaxAttributes
+-- extends ServiceWithMax
 
     -- The maxAttributes attribute shall be valid
     inv ServiceWithMax_maxAttributes_valid

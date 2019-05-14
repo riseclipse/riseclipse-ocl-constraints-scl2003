@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context SDI
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv SDI_name_required

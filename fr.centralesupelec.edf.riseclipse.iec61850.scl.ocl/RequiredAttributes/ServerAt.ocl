@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ServerAt
+-- extends UnNaming
 
     -- The apName attribute shall be present
     inv ServerAt_apName_required

@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context LNodeType
+-- extends IDNaming
 
     -- The lnClass attribute shall be present
     inv LNodeType_lnClass_required

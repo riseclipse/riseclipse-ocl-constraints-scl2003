@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context LN0
+-- extends AnyLN
 
     -- lnClass required and valid: in AnyLN
     -- The lnClass attribute shall be LLN0

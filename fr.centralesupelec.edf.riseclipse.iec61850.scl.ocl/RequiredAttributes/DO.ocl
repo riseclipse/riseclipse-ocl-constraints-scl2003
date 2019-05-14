@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context DO
+-- extends AbstractDataObject
 
     -- The name attribute shall be present and valid
     -- In AbstractDataObject.ocl

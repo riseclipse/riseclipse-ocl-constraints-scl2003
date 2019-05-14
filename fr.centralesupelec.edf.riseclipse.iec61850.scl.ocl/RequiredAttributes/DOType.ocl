@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context DOType
+-- extends IDNaming
 
     -- The cdc attribute shall be present
     inv DOType_cdc_required

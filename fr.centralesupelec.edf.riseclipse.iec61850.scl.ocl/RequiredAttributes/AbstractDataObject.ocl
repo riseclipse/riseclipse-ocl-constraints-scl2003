@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context AbstractDataObject
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv AbstractDataObject_name_required

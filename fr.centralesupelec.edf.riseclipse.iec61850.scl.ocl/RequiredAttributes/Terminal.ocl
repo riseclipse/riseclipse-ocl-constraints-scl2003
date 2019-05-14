@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Terminal
+-- extends UnNaming
 
     -- The connectivityNode attribute shall be present
     inv Terminal_connectivityNode_required

@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ConnectivityNode
+-- extends LNodeContainer
 
     -- The name attribute is verified in Naming.ocl
 

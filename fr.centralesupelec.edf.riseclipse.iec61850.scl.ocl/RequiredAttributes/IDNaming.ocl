@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context IDNaming
+-- extends BaseElement
 
     -- The id attribute shall be present
     inv IDNaming_id_required

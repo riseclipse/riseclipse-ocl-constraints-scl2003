@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context DAType
+-- extends IDNaming
 
     -- iedType is AnyName
     inv DAType_nothing

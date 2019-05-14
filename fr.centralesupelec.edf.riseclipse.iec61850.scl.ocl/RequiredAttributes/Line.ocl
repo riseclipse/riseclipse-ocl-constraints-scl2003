@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Line
+-- extends GeneralEquipmentContainer
 
     -- The type attribute shall be valid
     inv Line_type_valid

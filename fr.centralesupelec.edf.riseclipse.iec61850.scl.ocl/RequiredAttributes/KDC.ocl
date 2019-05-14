@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context KDC
+-- extends NONE
 
     -- The iedName attribute shall be present
     inv KDC_iedName_required

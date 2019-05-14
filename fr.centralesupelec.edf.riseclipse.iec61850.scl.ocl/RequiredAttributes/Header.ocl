@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Header
+-- extends NONE
 
     -- The id attribute shall be present.
     inv Header_id_required

@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ProtNs
+-- extends NONE
 
     -- The value shall be present
     inv ProtNs_value_required

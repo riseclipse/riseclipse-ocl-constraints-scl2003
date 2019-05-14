@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context DAI
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv DAI_name_required

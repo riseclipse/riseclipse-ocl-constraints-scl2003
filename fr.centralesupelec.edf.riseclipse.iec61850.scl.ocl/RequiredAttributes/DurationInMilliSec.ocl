@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context DurationInMilliSec
+-- extends NONE
 
     -- The value shall be present
     inv DurationInMilliSec_value_required

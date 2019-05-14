@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context PhysConn
+-- extends UnNaming
 
     -- The type attribute shall be present
     inv PhysConn_type_required

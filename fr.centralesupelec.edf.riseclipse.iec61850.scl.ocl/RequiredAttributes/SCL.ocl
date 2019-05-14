@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context SCL
+-- extends BaseElement
 
     -- The version attribute shall be 2007
     inv SCL_version_required

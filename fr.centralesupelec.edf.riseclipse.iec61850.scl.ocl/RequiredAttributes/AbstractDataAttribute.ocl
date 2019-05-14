@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context AbstractDataAttribute
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv DataAttribute_name_required

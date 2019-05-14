@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context ConductingEquipment
+-- extends AbstractConductingEquipment
 
     -- The type attribute shall be present.
     inv ConductingEquipment_type_required

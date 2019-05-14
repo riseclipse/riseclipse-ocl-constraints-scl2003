@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context FCDA
+-- extends NONE
 
     -- The fc attribute shall be present.
     inv FCDA_fc_required

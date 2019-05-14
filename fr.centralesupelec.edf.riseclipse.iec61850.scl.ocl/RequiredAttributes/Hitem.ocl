@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Hitem
+-- extends NONE
 
     -- The version attribute shall be present.
     inv Hitem_version_required

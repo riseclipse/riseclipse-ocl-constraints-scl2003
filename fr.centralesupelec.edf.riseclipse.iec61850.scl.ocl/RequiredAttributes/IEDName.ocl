@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context IEDName
+-- extends NONE
 
     -- TODO: other attributes
     

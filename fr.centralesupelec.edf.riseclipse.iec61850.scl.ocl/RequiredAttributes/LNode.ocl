@@ -23,6 +23,7 @@ include '../Helpers/Enums.ocl'
 package scl
 
 context LNode
+-- extends UnNaming
 
     -- The lnClass attribute shall be present.
     inv LNode_lnClass_required

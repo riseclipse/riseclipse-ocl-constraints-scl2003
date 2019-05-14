@@ -23,6 +23,7 @@ include '../Helpers/Enums.ocl'
 package scl
 
 context GeneralEquipment
+-- extends Equipment
 
     -- The type attribute shall be present
     inv GeneralEquipment_type_required

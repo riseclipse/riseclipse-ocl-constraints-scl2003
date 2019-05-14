@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context DurationInSec
+-- extends ValueWithUnit
 
     -- The unit attribute value shall be s
     inv DurationInSec_unit_value_fixed

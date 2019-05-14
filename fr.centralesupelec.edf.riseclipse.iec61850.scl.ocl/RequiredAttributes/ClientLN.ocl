@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context ClientLN
+-- extends NONE
 
     -- The apRef attribute shall be valid
     inv ClientLN_apRef_valid

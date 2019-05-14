@@ -24,6 +24,7 @@ include '../Helpers/Enums.ocl'
 package scl
 
 context ConnectedAP
+-- extends UnNaming
 
     -- The iedName attribute shall be present
     inv ConnectedAP_iedName_required

@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context LDevice
+-- extends UnNaming
 
     -- The inst attribute shall be present
     inv LDevice_inst_required

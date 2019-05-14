@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context DOI
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv DOI_name_required

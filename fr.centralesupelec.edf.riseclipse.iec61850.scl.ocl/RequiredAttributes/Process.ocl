@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Process
+-- extends GeneralEquipmentContainer
 
     -- The type attribute shall be valid
     inv Process_type_valid

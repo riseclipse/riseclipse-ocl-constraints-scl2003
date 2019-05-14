@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context GSESettings
+-- extends ServiceSettings
 
     -- appID is a real enum
     -- dataLabel is a real enum

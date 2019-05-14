@@ -23,6 +23,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context P
+-- extends PAddr
 
     -- The type attribute shall be present and shall not be the empty string.
     inv P_type_required

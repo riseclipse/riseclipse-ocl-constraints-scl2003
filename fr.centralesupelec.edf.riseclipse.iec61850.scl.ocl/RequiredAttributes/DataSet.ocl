@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context DataSet
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv DataSet_name_required

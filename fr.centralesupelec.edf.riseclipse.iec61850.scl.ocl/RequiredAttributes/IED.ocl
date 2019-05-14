@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context IED
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv IED_name_required

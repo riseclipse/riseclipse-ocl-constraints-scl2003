@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Val
+-- extends NONE
 
     -- The sGroup attribute is an unsigned int
     inv Val_sGroup_valid

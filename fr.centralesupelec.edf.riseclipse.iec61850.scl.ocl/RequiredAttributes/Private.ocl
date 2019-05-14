@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Private
+-- extends AnyContentFromOtherNamespace
 
     -- The type attribute shall be present
     inv Private_type_required

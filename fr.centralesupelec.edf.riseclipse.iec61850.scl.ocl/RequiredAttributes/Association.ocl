@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Association
+-- extends BaseElement
 
     -- The kind attribute shall be present
     inv Association_kind_required

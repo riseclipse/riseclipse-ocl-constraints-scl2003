@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context ValueHandling
+-- extends NONE
 
     -- setToRO is a boolean
     inv ValueHandling_nothing

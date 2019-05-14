@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ControlBlock
+-- extends UnNaming
 
     -- The ldInst attribute shall be present
     inv ControlBlock_ldInst_required

@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context BitRateInMbPerSec
+-- extends NONE
 
     -- The value shall be present
     inv BitRateInMbPerSec_value_required

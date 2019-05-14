@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context ExtRef
+-- extends BaseElement
 
     inv ExtRef_iedName_valid
         ( 'iedName attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '

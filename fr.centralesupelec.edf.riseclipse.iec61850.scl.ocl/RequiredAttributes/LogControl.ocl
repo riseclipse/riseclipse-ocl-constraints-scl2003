@@ -24,6 +24,7 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context LogControl
+-- extends ControlWithTriggerOpt
 
     -- The logName attribute shall be present
     inv LogControl_logName_required

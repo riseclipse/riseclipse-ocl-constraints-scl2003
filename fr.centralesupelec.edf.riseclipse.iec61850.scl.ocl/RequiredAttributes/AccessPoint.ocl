@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context AccessPoint
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv AccessPoint_name_required

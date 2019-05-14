@@ -23,6 +23,7 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Naming
+-- extends BaseElement
 
     -- The name attribute shall be present
     inv Naming_name_required

@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context SampledValueControl
+-- extends ControlWithIEDName
 
     -- The smvID attribute shall be present
     inv SampledValueControl_smvID_required

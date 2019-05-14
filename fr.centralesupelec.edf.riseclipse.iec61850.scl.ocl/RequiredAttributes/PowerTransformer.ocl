@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context PowerTransformer
+-- extends Equipment
 
     -- The type attribute shall be PTR
     inv PowerTransformer_type_value

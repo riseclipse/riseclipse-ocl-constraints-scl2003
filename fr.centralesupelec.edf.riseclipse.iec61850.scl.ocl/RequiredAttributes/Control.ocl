@@ -23,6 +23,7 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Control
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv Control_name_required
