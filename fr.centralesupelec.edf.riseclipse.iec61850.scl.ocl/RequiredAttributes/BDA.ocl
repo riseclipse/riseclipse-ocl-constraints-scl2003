@@ -22,6 +22,9 @@ package scl
 
 context BDA
 
+    -- The name attribute shall be present and valid
+    -- In AbstractDataAttribute.ocl
+
     inv BDA_nothing
     :
         true
