@@ -57,7 +57,7 @@ context FCDA
     inv FCDA_lnInst_required
         ( 'lnInst attribute shall be specified except for LLN0 in FCDA (line ' + self.lineNumber.toString() + ')' )
     :
-        not self.DataSet.AnyLN.oclIsTypeOf( scl::LN0 )
+        not self.ParentDataSet.ParentAnyLN.oclIsTypeOf( scl::LN0 )
         implies
         self.lnInst <> null
     
@@ -68,7 +68,7 @@ context FCDA
           + 'Current value is ' + self.lnInst.toString()
         )
     :
-        not self.DataSet.AnyLN.oclIsTypeOf( scl::LN0 )
+        not self.ParentDataSet.ParentAnyLN.oclIsTypeOf( scl::LN0 )
         implies
         ( self.lnInst <> null implies self.validSclLNInst( lnInst ) )
 

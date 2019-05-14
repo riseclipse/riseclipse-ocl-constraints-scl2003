@@ -47,17 +47,17 @@ context ConnectivityNode
     inv ConnectivityNode_pathName_value
         ( 'pathName of ConnectivityNode shall be its path starting from Substation (line ' + self.lineNumber.toString() + '). '
           + 'Current value is '  + self.pathName + ', '
-          + 'expected value is ' + self.Bay.VoltageLevel.Substation.name
-                           + '/' + self.Bay.VoltageLevel.name
-                           + '/' + self.Bay.name
+          + 'expected value is ' + self.ParentBay.ParentVoltageLevel.ParentSubstation.name
+                           + '/' + self.ParentBay.ParentVoltageLevel.name
+                           + '/' + self.ParentBay.name
                            + '/' + self.name
         )
     :
         self.pathName <> null
         implies
-        self.pathName = self.Bay.VoltageLevel.Substation.name
-                + '/' + self.Bay.VoltageLevel.name
-                + '/' + self.Bay.name
+        self.pathName = self.ParentBay.ParentVoltageLevel.ParentSubstation.name
+                + '/' + self.ParentBay.ParentVoltageLevel.name
+                + '/' + self.ParentBay.name
                 + '/' + self.name
 
 endpackage
