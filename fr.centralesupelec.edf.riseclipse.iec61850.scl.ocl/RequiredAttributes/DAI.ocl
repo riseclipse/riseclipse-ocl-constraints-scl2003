@@ -27,13 +27,13 @@ context DAI
 
     -- The name attribute shall be present
     inv DAI_name_required
-        ( 'name attribute shall be present in DAI (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in DAI (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
     
     -- The name attribute shall be valid
     inv DAI_name_valid
-        ( 'name attribute shall be valid in DAI (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in DAI (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :
@@ -44,7 +44,7 @@ context DAI
     
     -- The ix attribute is an unsigned int
     inv DAI_ix_valid
-        ( 'ix attribute shall be valid in DAI (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] ix attribute shall be valid in DAI (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ix.toString()
         )
     :

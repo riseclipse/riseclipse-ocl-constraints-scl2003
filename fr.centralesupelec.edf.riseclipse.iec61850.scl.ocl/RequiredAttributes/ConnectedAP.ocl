@@ -28,13 +28,13 @@ context ConnectedAP
 
     -- The iedName attribute shall be present
     inv ConnectedAP_iedName_required
-        ( 'iedName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] iedName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
 
     -- The iedName attribute shall be valid.
     inv ConnectedAP_iedName_valid
-        ( 'iedName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] iedName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
@@ -42,13 +42,13 @@ context ConnectedAP
 
     -- The apName attribute shall be present
     inv ConnectedAP_apName_required
-        ( 'apName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] apName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     :
         self.apName <> null
 
     -- The apName attribute shall be valid.
     inv ConnectedAP_apName_valid
-        ( 'apName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] apName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apName.toString()
         )
     :
@@ -56,7 +56,7 @@ context ConnectedAP
 
     -- If present, the redProt attribute shall be valid.
     inv ConnectedAP_redProt_valid
-        ( 'redProt attribute shall be valid if present in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] redProt attribute shall be valid if present in ConnectedAP (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.redProt.toString()
         )
     :

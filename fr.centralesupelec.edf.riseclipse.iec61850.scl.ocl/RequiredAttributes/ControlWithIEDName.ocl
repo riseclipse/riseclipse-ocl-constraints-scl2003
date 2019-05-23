@@ -26,7 +26,7 @@ context ControlWithIEDName
     -- The confRev attribute is an unsigned int
     -- Note: it is an Integer in the metamodel
     inv ControlWithIEDName_confRev_unsignedInt
-        ( 'confRev attribute shall be valid in ControlWithIEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] confRev attribute shall be valid in ControlWithIEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.confRev.toString()
         )
     :

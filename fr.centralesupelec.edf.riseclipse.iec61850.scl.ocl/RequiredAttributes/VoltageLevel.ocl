@@ -27,7 +27,7 @@ context VoltageLevel
 
     -- The nomFreq attribute shall be valid if present.
     inv VoltageLevel_nomFreq_value
-        ( 'nomFreq attribute shall a positive decimal in VoltageLevel (line ' + self.lineNumber.toString() + ').'
+        ( '[OCL validation] nomFreq attribute shall a positive decimal in VoltageLevel (line ' + self.lineNumber.toString() + ').'
             + 'Current value is ' + self.nomFreq.toString()
         )
     :
@@ -35,7 +35,7 @@ context VoltageLevel
 
     -- The numPhases attribute shall be valid if present.
     inv VoltageLevel_numPhases_value
-        ( 'numPhases attribute shall be between 1 and 255 in VoltageLevel (line ' + self.lineNumber.toString() + ').'
+        ( '[OCL validation] numPhases attribute shall be between 1 and 255 in VoltageLevel (line ' + self.lineNumber.toString() + ').'
             + 'Current value is ' + self.numPhases.toString()
         )
     :

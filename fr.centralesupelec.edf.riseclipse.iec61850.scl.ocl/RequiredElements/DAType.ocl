@@ -24,7 +24,7 @@ context DAType
 
     -- At least one BDA is required
     inv DAType_at_least_one_BDA_required
-        ( 'DAType shall contain at least one BDA (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] DAType shall contain at least one BDA (line ' + self.lineNumber.toString() + ')' )
     :
         self.BDA->notEmpty()
 

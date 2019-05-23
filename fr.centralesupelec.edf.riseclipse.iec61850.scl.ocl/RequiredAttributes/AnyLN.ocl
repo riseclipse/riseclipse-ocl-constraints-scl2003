@@ -28,13 +28,13 @@ context AnyLN
 
     -- The lnClass attribute is required
     inv LN_lnClass_required
-        ( 'lnClass attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnClass attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
 
     -- The lnClass attribute must be valid
     inv LN_lnClass_valid
-        ( 'lnClass attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnClass attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -42,7 +42,7 @@ context AnyLN
 
     -- The inst attribute is required
     inv LN_inst_required
-        ( 'inst attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] inst attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.inst <> null
     
@@ -51,13 +51,13 @@ context AnyLN
     
     -- The lnType attribute shall be present
     inv AnyLN_lnType_required
-        ( 'lnType attribute shall be present in AnyLN (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnType attribute shall be present in AnyLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnType <> null
 
     -- The lnType attribute shall be valid
     inv AnyLN_lnType_valid
-        ( 'lnType attribute shall be valid in AnyLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnType attribute shall be valid in AnyLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnType.toString()
         )
     :

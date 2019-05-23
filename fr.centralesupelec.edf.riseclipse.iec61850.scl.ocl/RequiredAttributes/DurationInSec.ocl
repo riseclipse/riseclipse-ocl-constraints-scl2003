@@ -25,7 +25,7 @@ context DurationInSec
 
     -- The unit attribute value shall be s
     inv DurationInSec_unit_value_fixed
-        ( 'unit attribute shall be s in DurationInSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] unit attribute shall be s in DurationInSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :

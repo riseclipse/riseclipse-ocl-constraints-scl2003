@@ -28,13 +28,13 @@ context IED
 
     -- The name attribute shall be present
     inv IED_name_required
-        ( 'name attribute shall be present in IED (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in IED (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv IED_name_valid
-        ( 'name attribute shall have between 1 and 64 alphanumeric characters in IED (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall have between 1 and 64 alphanumeric characters in IED (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :
@@ -46,7 +46,7 @@ context IED
     -- An empty string as well as the reserved name None are forbidden.
     -- The empty string is already covered by the IED_name_valid
     inv IED_name_not_None
-        ( 'name attribute cannot be None in IED (line ' + self.lineNumber.toString() + ')'
+        ( '[OCL validation] name attribute cannot be None in IED (line ' + self.lineNumber.toString() + ')'
         )
     :
         self.name <> 'None'
@@ -57,7 +57,7 @@ context IED
 
     -- The originalSclVersion attribute shall be valid
     inv IED_originalSclVersion_valid
-        ( 'originalSclVersion attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] riginalSclVersion attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.originalSclVersion.toString()
         )
     :
@@ -65,7 +65,7 @@ context IED
     
     -- The originalSclRevision attribute shall be valid
     inv IED_originalSclRevision_valid
-        ( 'originalSclRevision attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] originalSclRevision attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.originalSclRevision.toString()
         )
     :
@@ -73,7 +73,7 @@ context IED
     
     -- The originalSclRelease attribute shall be valid
     inv IED_originalSclRelease_valid
-        ( 'originalSclRelease attribute shall be an between 1 and 255 (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] originalSclRelease attribute shall be an between 1 and 255 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.originalSclRelease.toString()
         )
     :
@@ -81,7 +81,7 @@ context IED
     
     -- The engRight attribute shall be valid
     inv engRight_valid
-        ( 'engRight attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] engRight attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.engRight.toString()
         )
     :

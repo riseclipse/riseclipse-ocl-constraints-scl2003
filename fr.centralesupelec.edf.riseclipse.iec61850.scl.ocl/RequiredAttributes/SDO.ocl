@@ -34,7 +34,7 @@ context SDO
 
     -- The count attribute shall be valid
     inv SDO_count_valid
-        ( 'count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
+        ( '[OCL validation] count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.type.toString()
         )
     :

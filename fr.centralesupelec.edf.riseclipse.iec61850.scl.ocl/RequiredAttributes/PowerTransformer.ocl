@@ -25,13 +25,13 @@ context PowerTransformer
 
     -- The type attribute is required
     inv PowerTransformer_type_required
-        ( 'type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be PTR
     inv PowerTransformer_type_value
-        ( 'type attribute shall be PTR in PowerTransformer (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be PTR in PowerTransformer (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

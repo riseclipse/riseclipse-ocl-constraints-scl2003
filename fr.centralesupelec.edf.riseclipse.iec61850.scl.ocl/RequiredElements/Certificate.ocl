@@ -24,13 +24,13 @@ context Certificate
 
     -- A Subject is required
     inv Certificate_one_Subject_required
-        ( 'Certificate shall contain a Subject (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Certificate shall contain a Subject (line ' + self.lineNumber.toString() + ')' )
     :
         self.Subject <> null
 
     -- An IssuerName is required
     inv Certificate_one_IssuerName_required
-        ( 'Certificate shall contain an IssuerName (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Certificate shall contain an IssuerName (line ' + self.lineNumber.toString() + ')' )
     :
         self.IssuerName <> null
 

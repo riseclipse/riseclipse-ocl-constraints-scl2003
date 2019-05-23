@@ -27,7 +27,7 @@ context SubNetwork
     
     -- The type attribute shall be valid
     inv SubNetwork_type_valid
-        ( 'type attribute shall be valid in SubNetwork (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in SubNetwork (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

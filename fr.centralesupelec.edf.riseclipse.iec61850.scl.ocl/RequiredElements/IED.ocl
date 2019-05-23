@@ -24,7 +24,7 @@ context IED
 
     -- At least one AccessPoint is required
     inv IED_at_least_one_AccessPoint_required
-        ( 'IED shall contain at least one AccessPoint (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] IED shall contain at least one AccessPoint (line ' + self.lineNumber.toString() + ')' )
     :
         self.AccessPoint->notEmpty()
 

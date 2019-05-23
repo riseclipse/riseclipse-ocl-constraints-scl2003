@@ -24,7 +24,7 @@ context AbstractConductingEquipment
 
    -- At most 2 Terminal
     inv AbstractConductingEquipment_at_most_terminal
-        ( 'AbstractConductingEquipment shall contain at most 2 Terminal (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] AbstractConductingEquipment shall contain at most 2 Terminal (line ' + self.lineNumber.toString() + ')' )
     :
         self.Terminal->size() <= 2
 

@@ -27,13 +27,13 @@ context GeneralEquipment
 
     -- The type attribute shall be present
     inv GeneralEquipment_type_required
-        ( 'type attribute shall be present in GeneralEquipment (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in GeneralEquipment (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be valid
     inv GeneralEquipment_type_valid
-        ( 'type attribute shall be valid in GeneralEquipment (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in GeneralEquipment (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

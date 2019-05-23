@@ -28,13 +28,13 @@ context LogControl
 
     -- The logName attribute shall be present
     inv LogControl_logName_required
-        ( 'logName attribute shall be present in LogControl (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] logName attribute shall be present in LogControl (line ' + self.lineNumber.toString() + ')' )
     :
        self.logName <> null
 
     -- The logName attribute shall be valid
     inv LogControl_logName_valid
-        ( 'logName attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] logName attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.logName.toString()
         )
     :
@@ -42,7 +42,7 @@ context LogControl
 
     -- The ldInst attribute shall be valid
     inv LogControl_ldInst_valid
-        ( 'ldInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] ldInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -50,7 +50,7 @@ context LogControl
 
     -- The prefix attribute shall be valid
     inv LogControl_prefix_valid
-        ( 'prefix attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] prefix attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -58,7 +58,7 @@ context LogControl
 
     -- The lnClass attribute shall be valid
     inv LogControl_lnClass_valid
-        ( 'lnClass attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnClass attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -66,7 +66,7 @@ context LogControl
 
     -- The lnInst attribute shall be valid
     inv LogControl_lnInst_valid
-        ( 'lnInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -77,7 +77,7 @@ context LogControl
     
     -- bufTime is an unsigned int
     inv LogControl_bufTime_valid
-        ( 'bufTime attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] bufTime attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.bufTime.toString()
         )
     :

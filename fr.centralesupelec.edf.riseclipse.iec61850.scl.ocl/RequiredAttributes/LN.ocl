@@ -32,7 +32,7 @@ context LN
     -- The inst attribute shall be valid
     -- Note : it is a String in the model because its value is the empty string for LN0 
     inv LN_inst_valid
-        ( 'inst attribute shall be a number with no more than 7 digits in LN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] inst attribute shall be a number with no more than 7 digits in LN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.inst.toString()
         )
     :
@@ -40,7 +40,7 @@ context LN
 
     -- The prefix attribute must be valid
     inv LN_prefix_valid
-        ( 'prefix attribute shall be valid in LN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] prefix attribute shall be valid in LN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :

@@ -24,7 +24,7 @@ context ControlWithTriggerOpt
 -- extends Control
 
     inv ControlWithTriggerOpt_intgPd_unsigned_int
-        ( 'intgPd attribute shall be valid in ControlWithTriggerOpt (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] intgPd attribute shall be valid in ControlWithTriggerOpt (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.intgPd.toString()
         )
     :

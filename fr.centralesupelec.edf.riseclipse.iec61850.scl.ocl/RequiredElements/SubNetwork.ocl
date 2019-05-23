@@ -24,7 +24,7 @@ context SubNetwork
 
     -- At least one ConnectedAP is required
     inv SubNetwork_at_least_one_ConnectedAP_required
-        ( 'SubNetwork shall contain at least one ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] SubNetwork shall contain at least one ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     :
         self.ConnectedAP->notEmpty()
 

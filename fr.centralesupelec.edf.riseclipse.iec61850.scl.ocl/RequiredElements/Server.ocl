@@ -24,13 +24,13 @@ context Server
 
     -- One Authentication is required
     inv Server_one_Authentication_required
-        ( 'Server shall contain one Authentication (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Server shall contain one Authentication (line ' + self.lineNumber.toString() + ')' )
     :
         self.Authentication <> null
 
     -- At least one LDevice is required
     inv Server_at_least_one_LDevice_required
-        ( 'Server shall contain at least one LDevice (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Server shall contain at least one LDevice (line ' + self.lineNumber.toString() + ')' )
     :
         self.LDevice->notEmpty()
 

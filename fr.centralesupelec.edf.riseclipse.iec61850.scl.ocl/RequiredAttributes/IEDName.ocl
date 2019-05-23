@@ -30,7 +30,7 @@ context IEDName
     
     -- The apRef attribute shall be valid
     inv IEDName_apRef_valid
-        ( 'apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apRef.toString()
         )
     :
@@ -38,7 +38,7 @@ context IEDName
         
     -- The ldInst attribute shall be valid
     inv IEDName_ldInst_valid
-        ( 'ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -46,7 +46,7 @@ context IEDName
         
      -- The prefix attribute shall be valid
     inv IEDName_prefix_valid
-        ( 'prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -54,7 +54,7 @@ context IEDName
         
      -- The lnClass attribute shall be valid
     inv IEDName_lnClass_valid
-        ( 'lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -62,7 +62,7 @@ context IEDName
         
     -- The lnInst attribute shall be valid
     inv IEDName_lnInst_valid
-        ( 'lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -70,7 +70,7 @@ context IEDName
     
     -- The value attribute shall be valid
     inv IEDName_value_valid
-        ( 'value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :

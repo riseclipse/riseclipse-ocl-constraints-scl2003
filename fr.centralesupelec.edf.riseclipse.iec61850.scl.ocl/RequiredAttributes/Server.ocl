@@ -24,7 +24,7 @@ context Server
 -- extends UnNaming
 
     inv Server_timeout_unsigned_int
-        ( 'timeout attribute shall be valid in Server (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] timeout attribute shall be valid in Server (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.timeout.toString()
         )
     :

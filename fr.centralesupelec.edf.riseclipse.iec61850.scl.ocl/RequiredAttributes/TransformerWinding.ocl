@@ -25,13 +25,13 @@ context TransformerWinding
 
     -- The type attribute is required
     inv TransformerWinding_type_required
-        ( 'type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be PTW
     inv TransformerWinding_type_required
-        ( 'type attribute shall be PTW in TransformerWinding (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be PTW in TransformerWinding (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

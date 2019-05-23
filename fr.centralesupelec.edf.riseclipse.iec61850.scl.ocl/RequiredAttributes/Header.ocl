@@ -25,7 +25,7 @@ context Header
 
     -- The id attribute shall be present.
     inv Header_id_required
-        ( 'id attribute shall be present in Header (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] id attribute shall be present in Header (line ' + self.lineNumber.toString() + ')' )
     :
         self.id <> null
 
@@ -36,7 +36,7 @@ context Header
     
     -- If present, the nameStructure attribute shall be IEDName.
     inv Header_nameStructure_value_IEDName
-        ( 'nameStructure attribute shall be equal to IEDName in Header (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] nameStructure attribute shall be equal to IEDName in Header (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.nameStructure.toString() )
     :
         self.nameStructure <> null implies self.nameStructure = 'IEDName'

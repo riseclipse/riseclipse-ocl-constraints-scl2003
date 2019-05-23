@@ -26,7 +26,7 @@ context LN0
     -- lnClass required and valid: in AnyLN
     -- The lnClass attribute shall be LLN0
     inv LN0_lnClass_value
-        ( 'lnClass attribute shall be LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnClass attribute shall be LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -35,7 +35,7 @@ context LN0
     -- inst required: in AnyLN
     -- The inst attribute shall be empty
     inv LN0_inst_empty
-        ( 'inst attribute shall be empty in LN0 (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] inst attribute shall be empty in LN0 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.inst.toString()
         )
     :

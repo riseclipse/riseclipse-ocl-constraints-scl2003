@@ -25,7 +25,7 @@ context Val
 
     -- The sGroup attribute is an unsigned int
     inv Val_sGroup_valid
-        ( 'sGroup attribute shall be valid in Val (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] sGroup attribute shall be valid in Val (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.sGroup.toString()
         )
     :

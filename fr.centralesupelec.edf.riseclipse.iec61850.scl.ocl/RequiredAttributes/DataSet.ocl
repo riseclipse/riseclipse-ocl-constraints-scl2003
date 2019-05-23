@@ -27,11 +27,11 @@ context DataSet
 
     -- The name attribute shall be present
     inv DataSet_name_required
-        ( 'name attribute shall be present in DataSet (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in DataSet (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
     inv DataSet_name_valid
-        ( 'name attribute shall not valid in DataSet (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall not valid in DataSet (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :

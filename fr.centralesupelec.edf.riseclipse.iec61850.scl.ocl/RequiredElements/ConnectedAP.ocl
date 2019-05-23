@@ -27,12 +27,12 @@ context ConnectedAP
     --  Connection is allowed, which belongs to it.
     
     inv ConnectedAP_at_most_one_PhysConnTypeRedConn_required
-        ( 'Only one PhysConn type RedConn is allowed in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Only one PhysConn type RedConn is allowed in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     : 
         self.PhysConn -> select ( p : PhysConn | p.type = 'RedConn' ) -> size()  <= 1
 
     inv ConnectedAP_at_most_one_PhysConnTypeConnection_required
-        ( 'Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     : 
         self.PhysConn -> select ( p : PhysConn | p.type = 'RedConn' ) -> size() = 1
         implies

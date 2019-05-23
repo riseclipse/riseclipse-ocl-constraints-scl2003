@@ -26,26 +26,26 @@ context ValueWithUnit
 
     -- The value shall be present
     inv ValueWithUnit_value_required
-        ( 'value shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] value shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The unit shall be present
     inv ValueWithUnit_unit_required
-        ( 'unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
     :
         self.unit <> null
 
     -- The unit shall be valid
     inv ValueWithUnit_unit_valid
-        ( 'unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :
         -- It is a token in XSD
         -- There is a SIUnitEnum but it is commented out
         -- TODO: why ?
-        self.unit <> null implies self.validSclAnyName(unit)
+        self.unit <> null implies self.validSclAnyName( unit )
         -- There is no Enum with SIUnits, only an example in the 61850-6, also there are no constraints in the xsd indicating it has an enum
         
 

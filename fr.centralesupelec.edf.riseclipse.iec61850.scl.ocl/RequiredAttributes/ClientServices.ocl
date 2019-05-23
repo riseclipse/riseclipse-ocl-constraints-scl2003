@@ -33,7 +33,7 @@ context ClientServices
     
     -- maxAttributes is an unsigned int
     inv ClientServices_maxAttributes_valid
-        ( 'maxAttributes attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] maxAttributes attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxAttributes.toString()
         )
     :
@@ -41,7 +41,7 @@ context ClientServices
 
     -- maxReports is an unsigned int
     inv ClientServices_maxReports_valid
-        ( 'maxReports attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] maxReports attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxReports.toString()
         )
     :
@@ -49,7 +49,7 @@ context ClientServices
 
     -- maxGOOSE is an unsigned int
     inv ClientServices_maxGOOSE_valid
-        ( 'maxGOOSE attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] maxGOOSE attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxGOOSE.toString()
         )
     :
@@ -57,7 +57,7 @@ context ClientServices
 
     -- maxSMV is an unsigned int
     inv ClientServices_maxSMV_valid
-        ( 'maxSMV attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] maxSMV attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxSMV.toString()
         )
     :

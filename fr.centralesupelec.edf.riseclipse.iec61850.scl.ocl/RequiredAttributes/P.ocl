@@ -27,14 +27,14 @@ context P
 
     -- The type attribute shall be present and shall not be the empty string.
     inv P_type_required
-        ( 'type attribute shall be present in P (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in P (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- the type attribute shall be one of the predefined values or shall start with a capital letter,
     -- and contain only alphanumeric characters and dashes(-)
     inv P_type_valid
-        ( 'type attribute shall be valid in P (line ' + self.lineNumber.toString() + ')). '
+        ( '[OCL validation] type attribute shall be valid in P (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.type.toString()
         )
     :
@@ -43,7 +43,7 @@ context P
     -- The content of P shall be valid according to its type.
     -- TODO: tests needed
     inv P_value
-        ( 'content shall be valid according to its type in P (line ' + self.lineNumber.toString() + ')). '
+        ( '[OCL validation] content shall be valid according to its type in P (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.value.toString() + ' for type ' + self.type.toString()
         )
     :

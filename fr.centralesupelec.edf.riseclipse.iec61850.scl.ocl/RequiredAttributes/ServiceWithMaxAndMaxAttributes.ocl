@@ -25,7 +25,7 @@ context ServiceWithMaxAndMaxAttributes
 
     -- The maxAttributes attribute shall be valid
     inv ServiceWithMax_maxAttributes_valid
-        ( 'maxAttributes attribute shall be valid in ServiceWithMaxAndMaxAttributes (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] maxAttributes attribute shall be valid in ServiceWithMaxAndMaxAttributes (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxAttributes.toString()
         )
     :

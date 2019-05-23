@@ -27,13 +27,13 @@ context Terminal
 
     -- The connectivityNode attribute shall be present
     inv Terminal_connectivityNode_required
-        ( 'connectivityNode attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] connectivityNode attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
     :
         self.connectivityNode <> null
 
     -- The connectivityNode attribute shall be valid
     inv Terminal_connectivityNode_valid
-        ( 'connectivityNode attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + ')). '
+        ( '[OCL validation] connectivityNode attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.connectivityNode.toString()
         )
     :
@@ -41,7 +41,7 @@ context Terminal
 
     -- The connectivityNode attribute value shall be the pathName.
     inv Terminal_connectivityNode_value_shall_be_pathname
-        ( 'connectivityNode attribute value shall be the pathName in Terminal (line ' + self.lineNumber.toString() + ')). '
+        ( '[OCL validation] connectivityNode attribute value shall be the pathName in Terminal (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.connectivityNode.toString()
         )
     :
@@ -59,7 +59,7 @@ context Terminal
 
     -- The substationName attribute shall be valid.
     inv Terminal_substationName_valid
-        ( 'substationName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] substationName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.substationName.toString()
         )
     :
@@ -67,7 +67,7 @@ context Terminal
 
     -- The voltageLevelName attribute shall be valid.
     inv Terminal_voltageLevelName_valid
-        ( 'voltageLevelName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] voltageLevelName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.voltageLevelName.toString()
         )
     :
@@ -75,7 +75,7 @@ context Terminal
 
     -- The bayName attribute shall be valid.
     inv Terminal_bayName_valid
-        ( 'bayName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] bayName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.bayName.toString()
         )
     :
@@ -83,13 +83,13 @@ context Terminal
 
     -- The cNodeName attribute shall be present.
     inv Terminal_cNodeName_required
-        ( 'cNodeName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] cNodeName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
     :
         self.cNodeName <> null
 
     -- The cNodeName attribute shall be valid.
     inv Terminal_cNodeName_valid
-        ( 'cNodeName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] cNodeName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.cNodeName.toString()
         )
     :
@@ -97,7 +97,7 @@ context Terminal
 
     -- The processName attribute shall be valid.
     inv Terminal_processName_valid
-        ( 'processName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] processName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.processName.toString()
         )
     :
@@ -105,7 +105,7 @@ context Terminal
 
     -- The name attribute shall be valid.
     inv Terminal_name_valid
-        ( 'name attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :
@@ -113,7 +113,7 @@ context Terminal
         
     -- The lineName attribute shall be valid.
     inv Terminal_lineName_valid
-        ( 'lineName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lineName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lineName.toString()
         )
     :

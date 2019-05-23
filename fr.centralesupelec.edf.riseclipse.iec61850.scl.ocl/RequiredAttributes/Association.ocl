@@ -28,7 +28,7 @@ context Association
 
     -- The kind attribute shall be present
     inv Association_kind_required
-        ( 'kind attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] kind attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.kind <> null
 
@@ -37,7 +37,7 @@ context Association
 
     -- The length of the association ID shall be at least one
     inv Association_associationID_valid
-        ( 'The length of the association ID shall be at least one (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] The length of the association ID shall be at least one (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.associationID.toString()
         )
     :
@@ -45,7 +45,7 @@ context Association
 
         -- The prefix attribute shall be valid 
         inv Association_prefix_valid
-        ( 'The prefix attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] The prefix attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -53,13 +53,13 @@ context Association
             
      --   The lnClass attribute shall be present
       inv Association_lnClass_required
-        ( 'lnClass attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnClass attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
         
         -- The lnClass attribute shall be valid 
         inv Association_lnClass_valid
-        ( 'The lnClass attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] The lnClass attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -67,13 +67,13 @@ context Association
       
       --  The lnInst attribute shall be present
       inv Association_lnInst_required
-        ( 'lnInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnInst <> null
      
       -- The lnInst attribute shall be valid   
      inv Association_lnInst_valid
-        ( 'The lnInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] The lnInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -81,13 +81,13 @@ context Association
 
       --  The iedName attribute shall be present
       inv Association_iedName_required
-        ( 'iedName attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] iedName attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
      
       -- The iedName attribute shall be valid   
      inv Association_iedName_valid
-        ( 'The iedName attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] The iedName attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
@@ -95,13 +95,13 @@ context Association
         
       --  The ldInst attribute shall be present
       inv Association_ldInst_required
-        ( 'ldInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] ldInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.ldInst <> null
      
       -- The ldInst attribute shall be valid   
      inv Association_ldInst_valid
-        ( 'The ldInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] The ldInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :

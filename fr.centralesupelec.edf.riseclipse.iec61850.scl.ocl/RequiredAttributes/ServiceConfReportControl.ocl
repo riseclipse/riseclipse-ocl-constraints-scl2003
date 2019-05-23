@@ -29,7 +29,7 @@ context ServiceConfReportControl
   
     -- The maxBuf attribute is an unsigned int
     inv ServiceConfReportControl_maxBuf_valid
-        ( 'maxBuf attribute shall be valid in ServiceConfReportControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] maxBuf attribute shall be valid in ServiceConfReportControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxBuf.toString()
         )
     :

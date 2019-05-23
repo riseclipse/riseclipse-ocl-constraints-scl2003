@@ -27,26 +27,26 @@ context AbstractDataObject
 
     -- The name attribute shall be present
     inv AbstractDataObject_name_required
-        ( 'name attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv AbstractDataObject_name_valid
-        ( 'name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclDataName( name )
 
     inv AbstractDataObject_type_required
-        ( 'type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be valid
     inv AbstractDataObject_type_valid
-        ( 'type attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

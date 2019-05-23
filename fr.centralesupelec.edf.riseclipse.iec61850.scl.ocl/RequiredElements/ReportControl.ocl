@@ -24,7 +24,7 @@ context ReportControl
 
     -- An OptFields is required
     inv ReportControl_one_OptFields_required
-        ( 'ReportControl shall contain an OptFields (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] ReportControl shall contain an OptFields (line ' + self.lineNumber.toString() + ')' )
     :
         self.OptFields <> null
 

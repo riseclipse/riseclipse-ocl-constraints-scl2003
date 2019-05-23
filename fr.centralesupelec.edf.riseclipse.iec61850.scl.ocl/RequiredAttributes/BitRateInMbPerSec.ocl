@@ -25,14 +25,14 @@ context BitRateInMbPerSec
 
     -- The value shall be present
     inv BitRateInMbPerSec_value_required
-        ( 'value shall be present in BitRateInMbPerSec (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] value shall be present in BitRateInMbPerSec (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The value must be positive
     -- Note: the XSD does not force this (only decimal)
     inv BitRateInMbPerSec_value_valid
-        ( 'value shall be positive in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] value shall be positive in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :
@@ -40,7 +40,7 @@ context BitRateInMbPerSec
 
     -- If present, the unit attribute must be b/s
     inv BitRateInMbPerSec_unit_value
-        ( 'unit attribute if present shall be b/s in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] unit attribute if present shall be b/s in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :
@@ -48,7 +48,7 @@ context BitRateInMbPerSec
 
     -- If present, the multiplier attribute must be M
     inv BitRateInMbPerSec_multiplier_value
-        ( 'multiplier attribute if present shall be M in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] multiplier attribute if present shall be M in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.multiplier.toString()
         )
     :

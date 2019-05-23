@@ -24,7 +24,7 @@ context Substation
 
     -- At least one VoltageLevel is required
     inv Substation_at_least_one_VoltageLevel_required
-        ( 'Substation shall contain at least one VoltageLevel (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Substation shall contain at least one VoltageLevel (line ' + self.lineNumber.toString() + ')' )
     :
         self.VoltageLevel->notEmpty()
 
