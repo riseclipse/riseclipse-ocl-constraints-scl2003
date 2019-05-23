@@ -21,10 +21,11 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Hitem
+-- extends NONE
 
     -- The version attribute shall be present.
     inv Hitem_version_required
-        ( 'version attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] version attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
         :
         self.version <> null
 
@@ -32,7 +33,7 @@ context Hitem
     
     -- The revision attribute shall be present.
     inv Hitem_revision_required
-        ( 'revision attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] revision attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
         :
         self.revision <> null
 
@@ -40,7 +41,7 @@ context Hitem
 
     -- The when attribute shall be present.
     inv Hitem_when_required
-        ( 'when attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] when attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
         :
         self.when <> null
 

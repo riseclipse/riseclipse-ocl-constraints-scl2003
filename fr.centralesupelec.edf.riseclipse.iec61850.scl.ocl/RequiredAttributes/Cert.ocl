@@ -21,16 +21,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Cert
+-- extends NONE
 
     -- commonName must be present
     inv Cert_commonName_required
-        ( 'commonName attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] commonName attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
     :
         self.commonName <> null
 
     -- commonName must be valid
     inv Cert_commonName_valid
-        ( 'commonName attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] commonName attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.commonName.toString()
         )
     :
@@ -39,13 +40,13 @@ context Cert
         ( self.commonName = 'none' or ( self.commonName.matches( '.+' ) and self.commonName.size() >= 4 ))
 
     inv Cert_idHierarchy_required
-        ( 'idHierarchy attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] idHierarchy attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
     :
         self.idHierarchy <> null
 
     -- idHierarchy must be valid
     inv Cert_idHierarchy_valid
-        ( 'idHierarchy attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] idHierarchy attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.idHierarchy.toString()
         )
     :

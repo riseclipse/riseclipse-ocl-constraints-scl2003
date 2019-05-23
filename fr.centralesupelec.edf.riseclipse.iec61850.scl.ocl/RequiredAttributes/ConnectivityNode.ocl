@@ -23,18 +23,19 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ConnectivityNode
+-- extends LNodeContainer
 
     -- The name attribute is verified in Naming.ocl
 
     -- The pathName attribute shall be present
     inv ConnectivityNode_pathName_required
-        ( 'name attribute shall be present in ConnectivityNode (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in ConnectivityNode (line ' + self.lineNumber.toString() + ')' )
     :
         self.pathName <> null
 
     -- The pathName attribute shall be valid
     inv ConnectivityNode_pathName_valid
-        ( 'name attribute shall be valid in ConnectivityNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in ConnectivityNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.pathName.toString()
         )
     :
@@ -45,19 +46,19 @@ context ConnectivityNode
     --  pathname is build by all higher level references down to the connectivity
     --  nodes name, concatenated with the character “/”
     inv ConnectivityNode_pathName_value
-        ( 'pathName of ConnectivityNode shall be its path starting from Substation (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] pathName of ConnectivityNode shall be its path starting from Substation (line ' + self.lineNumber.toString() + '). '
           + 'Current value is '  + self.pathName + ', '
-          + 'expected value is ' + self.Bay.VoltageLevel.Substation.name
-                           + '/' + self.Bay.VoltageLevel.name
-                           + '/' + self.Bay.name
+          + 'expected value is ' + self.ParentBay.ParentVoltageLevel.ParentSubstation.name
+                           + '/' + self.ParentBay.ParentVoltageLevel.name
+                           + '/' + self.ParentBay.name
                            + '/' + self.name
         )
     :
         self.pathName <> null
         implies
-        self.pathName = self.Bay.VoltageLevel.Substation.name
-                + '/' + self.Bay.VoltageLevel.name
-                + '/' + self.Bay.name
+        self.pathName = self.ParentBay.ParentVoltageLevel.ParentSubstation.name
+                + '/' + self.ParentBay.ParentVoltageLevel.name
+                + '/' + self.ParentBay.name
                 + '/' + self.name
 
 endpackage

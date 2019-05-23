@@ -24,14 +24,14 @@ context SampledValueControl
 
     -- A SmvOpts is required
     inv SampledValueControl_one_SmvOpts_required
-        ( 'SampledValueControl shall contain a SmvOpts (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] SampledValueControl shall contain a SmvOpts (line ' + self.lineNumber.toString() + ')' )
     :
         self.SmvOpts <> null
 
     --  If Multicast is FALSE, i.e. this is a Unicast control block, a maximum of
     --  one client IED shall be assigned to the instance :
     inv SampledValueControl_multicast
-        ( 'If Multicast is FALSE, a maximum of one client IED shall be assigned to the SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] If Multicast is FALSE, a maximum of one client IED shall be assigned to the SampledValueControl (line ' + self.lineNumber.toString() + ')' )
     :
         ( not self.multicast ) implies self.IEDName->size() <= 1
 

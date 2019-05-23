@@ -23,26 +23,20 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context DO
+-- extends AbstractDataObject
 
     -- The name attribute shall be present and valid
-    -- In DataObject.ocl
+    -- In AbstractDataObject.ocl
 
-    -- The type attribute shall be present
-    inv DO_type_required
-        ( 'type attribute shall be present in DO (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.type <> null
-
-    -- The type attribute shall be valid
-    inv DO_type_valid
-        ( 'type attribute shall be valid in DO (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
-        )
-    :
-        self.type <> null implies self.validSclName( type )
+    -- The type attribute shall be present and valid
+    -- In AbstractDataObject.ocl
 
     -- accessControl is a normalizedString
     -- transient is a boolean
+
+    inv DO_nothing
+    :
+        true
 
 endpackage
 

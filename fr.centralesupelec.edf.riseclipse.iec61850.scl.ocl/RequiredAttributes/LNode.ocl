@@ -23,39 +23,39 @@ include '../Helpers/Enums.ocl'
 package scl
 
 context LNode
+-- extends UnNaming
 
     -- The lnClass attribute shall be present.
     inv LNode_lnClass_required
-        ( 'lnClass attribute shall be present in LNode (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnClass attribute shall be present in LNode (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
 
     -- The lnClass attribute shall be valid.
     inv LNode_lnClass_value
-        ( 'lnClass attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnClass attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
-    -- The lnInst can only be missing for lnClass=LLN0
-    inv LNode_lnInst_required
-        ( 'lnInst attribute shall be present in LNode (line ' + self.lineNumber.toString() + ')' )
+    -- The lnInst "Can only be missing for lnClass = LLN0, meaning as value here the empty string"
+    inv LNode_lnInst_required_if_lnClass_not_LLN0
+        ( '[OCL validation] lnInst attribute shall be present in LNode when lnClass <> LLN0 (line ' + self.lineNumber.toString() + ')' )
     :
-        if self.lnClass = null then false
-        else self.lnClass <> 'LLN0' implies self.lnInst <> null endif
+        self.lnClass <> 'LLN0' implies self.lnInst <> null and self.lnInst <> ''
 
     -- The iedName attribute shall be valid if present.
     inv LNode_iedName_value
-        ( 'iedName attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] iedName attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
-        self.lnClass <> null implies self.validSclIEDName( lnClass )
+        self.iedName <> null implies self.validSclIEDNameOrNone( iedName )
 
     -- The ldInst attribute shall be valid if present.
     inv LNode_ldInst_value
-        ( 'ldInst attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] ldInst attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -63,7 +63,7 @@ context LNode
 
     -- The prefix attribute shall be valid if present.
     inv LNode_prefix_value
-        ( 'prefix attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] prefix attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -71,7 +71,7 @@ context LNode
 
     -- The lnInst attribute shall be valid if present.
     inv LNode_lnInst_value
-        ( 'lnInst attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnInst attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -79,7 +79,7 @@ context LNode
 
     -- The lnType attribute shall be valid if present.
     inv LNode_lnType_value
-        ( 'lnType attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnType attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnType.toString()
         )
     :

@@ -24,13 +24,13 @@ context DataTypeTemplates
 
     -- At least one LNodeType is required
     inv DataTypeTemplates_at_least_one_LNodeType_required
-        ( 'DataTypeTemplates shall contain at least one LNodeType (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] DataTypeTemplates shall contain at least one LNodeType (line ' + self.lineNumber.toString() + ')' )
     :
         self.LNodeType->notEmpty()
 
     -- At least one DOType is required
     inv DataTypeTemplates_at_least_one_DOType_required
-        ( 'DataTypeTemplates shall contain at least one DOType (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] DataTypeTemplates shall contain at least one DOType (line ' + self.lineNumber.toString() + ')' )
     :
         self.DOType->notEmpty()
 

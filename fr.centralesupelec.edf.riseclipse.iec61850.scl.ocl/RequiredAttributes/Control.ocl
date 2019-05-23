@@ -23,24 +23,25 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Control
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv Control_name_required
-        ( 'name attribute shall be present in Control (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in Control (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv Control_name_valid
-        ( 'name attribute shall be valid in Control (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in Control (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclCBName( name )
 
-    -- The name attribute shall be valid
+    -- The datSet attribute shall be valid
     inv Control_datSet_valid
-        ( 'datSet attribute shall be valid in Control (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] datSet attribute shall be valid in Control (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.datSet.toString()
         )
     :

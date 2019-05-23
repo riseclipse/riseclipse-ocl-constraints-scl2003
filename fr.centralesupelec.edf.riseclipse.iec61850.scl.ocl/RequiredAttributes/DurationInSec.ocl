@@ -21,10 +21,11 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context DurationInSec
+-- extends ValueWithUnit
 
     -- The unit attribute value shall be s
     inv DurationInSec_unit_value_fixed
-        ( 'unit attribute shall be s in DurationInSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] unit attribute shall be s in DurationInSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :

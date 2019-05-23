@@ -24,7 +24,7 @@ context Inputs
 
     -- At least one ExtRef is required
     inv Inputs_at_least_one_ExtRef_required
-        ( 'Inputs shall contain at least one ExtRef (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Inputs shall contain at least one ExtRef (line ' + self.lineNumber.toString() + ')' )
     :
         self.ExtRef->notEmpty()
 

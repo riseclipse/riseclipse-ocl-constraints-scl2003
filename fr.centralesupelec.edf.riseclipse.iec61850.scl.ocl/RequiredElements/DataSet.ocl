@@ -24,7 +24,7 @@ context DataSet
 
     -- At least one FCDA is required
     inv DataSet_at_least_one_FCDA_required
-        ( 'DataSet shall contain at least one FCDA (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] DataSet shall contain at least one FCDA (line ' + self.lineNumber.toString() + ')' )
     :
         self.FCDA->notEmpty()
 

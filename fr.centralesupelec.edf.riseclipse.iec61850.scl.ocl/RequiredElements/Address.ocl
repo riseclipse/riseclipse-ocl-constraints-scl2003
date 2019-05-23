@@ -24,7 +24,7 @@ context Address
 
     -- At least one P is required
     inv Address_at_least_one_P_required
-        ( 'Address shall contain at least one P (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Address shall contain at least one P (line ' + self.lineNumber.toString() + ')' )
     :
         self.P->notEmpty()
 

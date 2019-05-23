@@ -23,10 +23,11 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Log
+-- extends UnNaming
 
     -- The name attribute shall be valid
     inv Log_name_valid
-        ( 'name attribute shall be valid in Log (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in Log (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :

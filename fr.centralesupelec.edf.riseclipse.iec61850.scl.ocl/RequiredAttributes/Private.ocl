@@ -23,22 +23,29 @@ include '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Private
+-- extends AnyContentFromOtherNamespace
 
     -- The type attribute shall be present
     inv Private_type_required
-        ( 'type attribute shall be present in Private (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in Private (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be valid
     inv Private_type_valid
-        ( 'type attribute shall not be empty in Private (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall not be empty in Private (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.type.size() >= 1
 
-    -- source is anyURI: can we check something ?
+    -- source is anyURI
+    inv Private_source_valid
+        ( '[OCL validation] source attribute shall not be empty in Private (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.source.toString()
+        )
+    :
+        self.source <> null implies self.source.size() >= 1
 
 endpackage
 

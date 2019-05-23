@@ -21,16 +21,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context ServiceWithMaxNonZero
+-- extends NONE
 
     -- The max attribute shall be present
     inv ServiceWithMaxNonZero_max_required
-        ( 'max attribute shall be present in ServiceWithMaxNonZero (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] max attribute shall be present in ServiceWithMaxNonZero (line ' + self.lineNumber.toString() + ')' )
     :
         self.max <> null
 
     -- The max attribute shall be valid
     inv ServiceWithMaxNonZero_max_valid
-        ( 'max attribute shall be valid in ServiceWithMaxNonZero (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] max attribute shall be valid in ServiceWithMaxNonZero (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.max.toString()
         )
     :

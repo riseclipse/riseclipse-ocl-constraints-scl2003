@@ -21,10 +21,11 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Services
+-- extends NONE
 
     -- restriction on attribute nameLength
     inv Services_nameLength_valid
-        ( 'nameLength attribute shall be valid in Services (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] nameLength attribute shall be valid in Services (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.nameLength.toString()
         )
     :

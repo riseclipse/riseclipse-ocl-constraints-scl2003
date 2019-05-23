@@ -24,7 +24,7 @@ context Communication
 
     -- At least one SubNetwork is required
     inv Communication_at_least_one_SubNetwork_required
-        ( 'Communication shall contain at least one SubNetwork (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] Communication shall contain at least one SubNetwork (line ' + self.lineNumber.toString() + ')' )
     :
         self.SubNetwork->notEmpty()
 

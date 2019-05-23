@@ -24,7 +24,7 @@ context SCL
 
     -- An Header is required
     inv SCL_one_Header_required
-        ( 'SCL shall contain an Header (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] A SCL file shall contain an Header (line ' + self.lineNumber.toString() + ')' )
     :
         self.Header <> null
 

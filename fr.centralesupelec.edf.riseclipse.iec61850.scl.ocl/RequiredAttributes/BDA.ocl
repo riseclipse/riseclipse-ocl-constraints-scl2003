@@ -21,6 +21,10 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context BDA
+-- extends AbstractDataAttribute
+
+    -- The name attribute shall be present and valid
+    -- In AbstractDataAttribute.ocl
 
     inv BDA_nothing
     :

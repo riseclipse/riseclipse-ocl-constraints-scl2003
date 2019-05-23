@@ -18,23 +18,17 @@
  */
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
-include '../Helpers/Enums.ocl'
-
 package scl
 
-context DataAttribute
+context McSecurity
+-- extends NONE
 
-    -- The name attribute shall be present
-    inv DataAttribute_name_required
-        ( 'name attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+    -- signature is a boolean
+    -- encryption is a boolean
+    
+    inv McSecurity_nothing
     :
-        self.name <> null
-    inv DataAttribute_name_valid
-        ( 'name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.name.toString()
-        )
-    :
-        self.name <> null implies self.validSclAttributeNameEnum( name )
+        true
 
 
 endpackage

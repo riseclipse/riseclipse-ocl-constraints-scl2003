@@ -21,16 +21,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context Protocol
+-- extends NONE
 
     -- The mustUnderstand attribute shall be present
     inv Voltage_mustUnderstand_required
-        ( 'mustUnderstand attribute shall be present in Protocol (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] mustUnderstand attribute shall be present in Protocol (line ' + self.lineNumber.toString() + ')' )
     :
         self.mustUnderstand <> null
 
     -- The mustUnderstand attribute value shall be true
     inv Voltage_mustUnderstand_value_fixed
-        ( 'mustUnderstand attribute shall be V in Protocol (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] mustUnderstand attribute shall be V in Protocol (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.mustUnderstand.toString()
         )
     :

@@ -24,38 +24,17 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context SDO
+-- extends AbstractDataObject
 
-    -- The name attribute shall be present
-    inv SDO_name_required
-        ( 'name attribute shall be present in SDO (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.name <> null
+    -- The name attribute shall be present and valid
+    -- In AbstractDataObject.ocl
 
-    -- The name attribute shall be valid
-    inv SDO_name_valid
-        ( 'name attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.name.toString()
-        )
-    :
-        self.name <> null implies self.validSclSubDataName( name )
-
-    -- The type attribute shall be present
-    inv SDO_type_required
-        ( 'type attribute shall be present in SDO (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.type <> null
-
-    -- The type attribute shall be valid
-    inv SDO_type_valid
-        ( 'type attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.type.toString()
-        )
-    :
-        self.type <> null implies self.validSclName( type )
+    -- The type attribute shall be present and valid
+    -- In AbstractDataObject.ocl
 
     -- The count attribute shall be valid
     inv SDO_count_valid
-        ( 'count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
+        ( '[OCL validation] count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.type.toString()
         )
     :

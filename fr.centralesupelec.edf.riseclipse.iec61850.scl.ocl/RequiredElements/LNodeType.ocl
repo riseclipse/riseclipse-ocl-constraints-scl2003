@@ -24,7 +24,7 @@ context LNodeType
 
     -- At least one DO is required
     inv History_at_least_one_DO_required
-        ( 'LNodeType shall contain at least one DO (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] LNodeType shall contain at least one DO (line ' + self.lineNumber.toString() + ')' )
     :
         self.DO->notEmpty()
 

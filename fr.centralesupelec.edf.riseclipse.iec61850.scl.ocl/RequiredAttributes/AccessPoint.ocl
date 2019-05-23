@@ -23,16 +23,17 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context AccessPoint
+-- extends UnNaming
 
     -- The name attribute shall be present
     inv AccessPoint_name_required
-        ( 'name attribute shall be present in AccessPoint (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] name attribute shall be present in AccessPoint (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv AccessPoint_name_valid
-        ( 'name attribute shall be valid in AccessPoint (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] name attribute shall be valid in AccessPoint (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :

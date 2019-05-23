@@ -23,10 +23,11 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Process
+-- extends GeneralEquipmentContainer
 
     -- The type attribute shall be valid
     inv Process_type_valid
-        ( 'type attribute shall be valid in Process (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in Process (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

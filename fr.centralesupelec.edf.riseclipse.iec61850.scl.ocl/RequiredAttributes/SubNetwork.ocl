@@ -21,10 +21,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context SubNetwork
+-- extends Naming
 
-    inv SubNetwork_nothing
+    -- The type attribute is only required if the file is a SCD
+    
+    -- The type attribute shall be valid
+    inv SubNetwork_type_valid
+        ( '[OCL validation] type attribute shall be valid in SubNetwork (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.type.toString()
+        )
     :
-        true
+        self.type <> null implies self.type.size() >= 1
 
 
 endpackage

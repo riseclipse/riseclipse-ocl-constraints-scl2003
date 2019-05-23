@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context DataTypeTemplates
+-- extends NONE
 
     inv DataTypeTemplates_nothing
     :

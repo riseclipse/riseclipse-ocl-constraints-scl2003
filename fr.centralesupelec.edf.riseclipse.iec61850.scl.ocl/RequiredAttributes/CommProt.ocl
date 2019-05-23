@@ -21,6 +21,7 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context CommProt
+-- extends NONE
 
     -- ipv6 is a boolean
     inv CommProt_nothing

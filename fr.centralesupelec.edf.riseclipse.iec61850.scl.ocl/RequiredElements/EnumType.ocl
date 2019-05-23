@@ -24,7 +24,7 @@ context EnumType
 
     -- At least one EnumVal is required
     inv EnumType_at_least_one_EnumVal_required
-        ( 'EnumType shall contain at least one EnumVal (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] EnumType shall contain at least one EnumVal (line ' + self.lineNumber.toString() + ')' )
     :
         self.EnumVal->notEmpty()
 

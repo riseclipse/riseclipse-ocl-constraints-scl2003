@@ -23,16 +23,17 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ReportControl
+-- extends ControlWithTriggerOpt
 
     -- The confRev attribute shall be present
     inv ReportControl_confRev_required
-        ( 'confRev attribute shall be present in ReportControl (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] confRev attribute shall be present in ReportControl (line ' + self.lineNumber.toString() + ')' )
     :
         self.confRev <> null
 
     -- The confRev attribute is an unsigned int
     inv ReportControl_confRev_unsigned_int
-        ( 'confRev attribute shall be an unsigned int in ReportControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] confRev attribute shall be an unsigned int in ReportControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.confRev.toString()
         )
     :
@@ -43,7 +44,7 @@ context ReportControl
     --  string (however the empty string shall be accepted as input for backward
     --  compatibility).
     inv ReportControl_rptID_valid
-        ( 'rptID attribute shall be valid in ReportControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] rptID attribute shall be valid in ReportControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.rptID.toString()
         )
     :
@@ -53,7 +54,7 @@ context ReportControl
     
     -- bufTime is an unsigned int
     inv ReportControl_bufTime_valid
-        ( 'bufTime attribute shall be valid in ReportControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] bufTime attribute shall be valid in ReportControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.bufTime.toString()
         )
     :

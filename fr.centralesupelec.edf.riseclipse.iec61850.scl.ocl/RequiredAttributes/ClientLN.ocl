@@ -24,10 +24,11 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context ClientLN
+-- extends NONE
 
     -- The apRef attribute shall be valid
     inv ClientLN_apRef_valid
-        ( 'apRef attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] apRef attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apRef.toString()
         )
     :
@@ -38,24 +39,24 @@ context ClientLN
     --  pure client access point, then the value of ldInst can be arbitrary
     --  (recommended: LD0).
     inv ClientLN_iedName_required
-        ( 'iedName attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] iedName attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
 
     inv ClientLN_iedName_valid
-        ( 'iedName attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] iedName attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
         self.iedName <> null implies self.validSclIEDName( iedName )
 
     inv ClientLN_ldInst_required
-        ( 'ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.ldInst <> null
 
     inv ClientLN_ldInst_valid
-        ( 'ldInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] ldInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -63,13 +64,13 @@ context ClientLN
 
     -- lnClass required
     inv ClientLN_lnClass_required
-        ( 'lnClass attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnClass attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
 
     -- lnClass valid
     inv ClientLN_lnClass_valid
-        ( 'lnClass attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnClass attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -78,19 +79,19 @@ context ClientLN
     --  lnInst is required. If the LLN0 is referenced, the value is the empty
     --  string.
     inv ClientLN_lnInst_required
-        ( 'lnInst attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] lnInst attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnInst <> null
         
     inv ClientLN_lnInst_valid
-        ( 'lnInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
         self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     inv ClientLN_lnInst_empty_for_LLN0
-        ( 'lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -99,14 +100,17 @@ context ClientLN
     --  Only the prefix is optional in cases where the referenced LN instance has
     --  no prefix (prefix value = empty string). If it is defined, it must have a
     --  non zero length.
+    -- TODO using OCL navigation
     inv ClientLN_prefix_valid
-        ( 'prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
-        -- TODO: referenced LN instance has no prefix
-
+        
+    -- apRef is optional, not needed if the IED has only one access point.
+    -- TODO using OCL navigation
+        
 
 endpackage
 

@@ -21,12 +21,13 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context VoltageLevel
+-- extends EquipmentContainer
 
     -- The name attribute is verified in Naming.ocl
 
     -- The nomFreq attribute shall be valid if present.
     inv VoltageLevel_nomFreq_value
-        ( 'nomFreq attribute shall a positive decimal in VoltageLevel (line ' + self.lineNumber.toString() + ').'
+        ( '[OCL validation] nomFreq attribute shall a positive decimal in VoltageLevel (line ' + self.lineNumber.toString() + ').'
             + 'Current value is ' + self.nomFreq.toString()
         )
     :
@@ -34,12 +35,12 @@ context VoltageLevel
 
     -- The numPhases attribute shall be valid if present.
     inv VoltageLevel_numPhases_value
-        ( 'numPhases attribute shall be between 1 and 255 in VoltageLevel (line ' + self.lineNumber.toString() + ').'
+        ( '[OCL validation] numPhases attribute shall be between 1 and 255 in VoltageLevel (line ' + self.lineNumber.toString() + ').'
             + 'Current value is ' + self.numPhases.toString()
         )
     :
-        -- test <= 255 is done by XML Handler because it is a byte
-        self.numPhases <> null implies self.numPhases > 0
+        self.numPhases <> null implies
+            (self.numPhases > 0 and self.numPhases <=255)
 
 
 

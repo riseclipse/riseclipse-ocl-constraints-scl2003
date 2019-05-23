@@ -23,16 +23,17 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context ProtNs
+-- extends NONE
 
     -- The value shall be present
     inv ProtNs_value_required
-        ( 'value shall be present in ProtNs (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] value shall be present in ProtNs (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The value shall be valid
     inv ProtNs_value_valid
-        ( 'value shall be valid in ProtNs (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] value shall be valid in ProtNs (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :
@@ -40,7 +41,7 @@ context ProtNs
 
     -- The type attribute shall be valid
     inv ProtNs_type_valid
-        ( 'type attribute shall be valid in ProtNs (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in ProtNs (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

@@ -21,9 +21,12 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context SMVsc
+-- extends ServiceWithMax
 
     -- delivery is a real enum
     -- deliveryConf is a boolean
+    -- sv is a boolean
+    -- rSV is a boolean
     inv SMVsc_nothing
     :
         true

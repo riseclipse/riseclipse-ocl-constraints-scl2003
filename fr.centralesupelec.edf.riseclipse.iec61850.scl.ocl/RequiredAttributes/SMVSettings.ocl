@@ -21,12 +21,16 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context SMVSettings
+-- extends ServiceSettings
 
     -- svID is a real enum
     -- optFields is a real enum
     -- smpRate is a real enum
     -- samplesPerSec is a boolean
     -- pdcTimeStamp is a boolean
+    -- synchSrcId is a boolean
+    -- nofASDU is a real enum
+    -- kdaParticipant is a boolean
     
     inv SMVSettings_nothing
     :

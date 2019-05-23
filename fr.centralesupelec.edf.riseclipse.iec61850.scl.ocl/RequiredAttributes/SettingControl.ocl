@@ -21,16 +21,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context SettingControl
+-- extends UnNaming
 
     -- The numOfSGs attribute shall be present
     inv SettingControl_numOfSGs_required
-        ( 'numOfSGs attribute shall be present in SettingControl (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] numOfSGs attribute shall be present in SettingControl (line ' + self.lineNumber.toString() + ')' )
     :
         self.numOfSGs <> null
 
     -- The numOfSGs attribute shall be greater than 0
     inv SettingControl_numOfSGs_valid
-        ( 'numOfSGs attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] numOfSGs attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.numOfSGs.toString()
         )
     :
@@ -38,7 +39,7 @@ context SettingControl
 
     -- The actSG attribute shall be greater than 0
     inv SettingControl_actSG_valid
-        ( 'actSG attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] actSG attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.actSG.toString()
         )
     :
@@ -46,7 +47,7 @@ context SettingControl
 
     -- resvTms is unsignedShort
     inv SettingControl_resvTms_valid
-        ( 'resvTms attribute shall be valid in SettingControl (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] resvTms attribute shall be valid in SettingControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.resvTms.toString()
         )
     :

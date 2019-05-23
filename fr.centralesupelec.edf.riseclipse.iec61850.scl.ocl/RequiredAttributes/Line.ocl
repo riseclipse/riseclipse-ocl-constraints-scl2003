@@ -23,15 +23,33 @@ import '../Helpers/BaseSimpleTypes.ocl'
 package scl
 
 context Line
+-- extends GeneralEquipmentContainer
 
     -- The type attribute shall be valid
     inv Line_type_valid
-        ( 'type attribute shall be valid in Line (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in Line (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclLineType( type )
 
+    -- The nomFreq attribute shall be valid if present.
+    inv Line_nomFreq_value
+        ( '[OCL validation] nomFreq attribute shall a positive decimal in Line (line ' + self.lineNumber.toString() + ').'
+            + 'Current value is ' + self.nomFreq.toString()
+        )
+    :
+        self.nomFreq <> null implies self.nomFreq >= 0
+
+    -- The numPhases attribute shall be valid if present.
+    inv Line_numPhases_value
+        ( '[OCL validation] numPhases attribute shall be between 1 and 255 in Line (line ' + self.lineNumber.toString() + ').'
+            + 'Current value is ' + self.numPhases.toString()
+        )
+    :
+
+        self.numPhases <> null implies
+            ( self.numPhases > 0 and self.numPhases <= 255 )
 
 endpackage
 

@@ -21,9 +21,10 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context RptEnabled
+-- extends UnNaming
 
     inv RptEnabled_max_unsigned_int
-        ( 'max attribute shall be valid in RptEnabled (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] max attribute shall be valid in RptEnabled (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.max.toString()
         )
     :

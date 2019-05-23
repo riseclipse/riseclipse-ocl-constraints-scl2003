@@ -21,17 +21,18 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context DurationInMilliSec
+-- extends NONE
 
     -- The value shall be present
     inv DurationInMilliSec_value_required
-        ( 'value shall be present in DurationInMilliSec (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] value shall be present in DurationInMilliSec (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The value must be positive
     -- Note: the XSD does not force this (only decimal)
     inv DurationInMilliSec_value_valid
-        ( 'value shall be positive in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] value shall be positive in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :
@@ -39,7 +40,7 @@ context DurationInMilliSec
 
     -- If present, the unit attribute value shall be s
     inv DurationInMilliSec_unit_value_fixed
-        ( 'unit attribute shall be s in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] unit attribute shall be s in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :
@@ -47,7 +48,7 @@ context DurationInMilliSec
 
     -- If present, the multiplier attribute value shall be m
     inv DurationInMilliSec_multiplier_value_fixed
-        ( 'multiplier attribute shall be m in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] multiplier attribute shall be m in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.multiplier.toString()
         )
     :

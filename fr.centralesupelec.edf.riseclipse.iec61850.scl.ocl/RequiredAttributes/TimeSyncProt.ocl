@@ -21,10 +21,12 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context TimeSyncProt
+-- extends NONE
 
     -- sntp is a boolean
     -- c37_238 is a boolean
     -- other is a boolean
+    -- iec61850_9_3 is a boolean
     inv TimeSyncProt_nothing
     :
         true

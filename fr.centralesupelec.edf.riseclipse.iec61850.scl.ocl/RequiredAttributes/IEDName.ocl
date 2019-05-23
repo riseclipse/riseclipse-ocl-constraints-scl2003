@@ -19,16 +19,58 @@
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 include '../Helpers/BaseSimpleTypes.ocl'
+include '../Helpers/Enums.ocl'
 
 package scl
 
 context IEDName
+-- extends NONE
 
-    -- TODO: other attributes
+    
+    
+    -- The apRef attribute shall be valid
+    inv IEDName_apRef_valid
+        ( '[OCL validation] apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.apRef.toString()
+        )
+    :
+        self.apRef <> null implies self.validSclAccessPointName( apRef )
+        
+    -- The ldInst attribute shall be valid
+    inv IEDName_ldInst_valid
+        ( '[OCL validation] ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.ldInst.toString()
+        )
+    :
+        self.ldInst <> null implies self.validSclLDInst( ldInst )
+        
+     -- The prefix attribute shall be valid
+    inv IEDName_prefix_valid
+        ( '[OCL validation] prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.prefix.toString()
+        )
+    :
+        self.prefix <> null implies self.validSclPrefix( prefix )
+        
+     -- The lnClass attribute shall be valid
+    inv IEDName_lnClass_valid
+        ( '[OCL validation] lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnClass.toString()
+        )
+    :
+        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
+        
+    -- The lnInst attribute shall be valid
+    inv IEDName_lnInst_valid
+        ( '[OCL validation] lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lnInst.toString()
+        )
+    :
+        self.lnInst <> null implies self.validSclLNInst( lnInst )                                
     
     -- The value attribute shall be valid
     inv IEDName_value_valid
-        ( 'value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :

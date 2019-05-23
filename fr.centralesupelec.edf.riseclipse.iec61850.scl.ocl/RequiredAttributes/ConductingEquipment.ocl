@@ -23,16 +23,17 @@ import '../Helpers/Enums.ocl'
 package scl
 
 context ConductingEquipment
+-- extends AbstractConductingEquipment
 
     -- The type attribute shall be present.
     inv ConductingEquipment_type_required
-        ( 'type attribute shall be present in ConductingEquipment (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] type attribute shall be present in ConductingEquipment (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be valid.
     inv ConductingEquipment_type_valid
-        ( 'type attribute shall be valid in ConductingEquipment (line ' + self.lineNumber.toString() + '). '
+        ( '[OCL validation] type attribute shall be valid in ConductingEquipment (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

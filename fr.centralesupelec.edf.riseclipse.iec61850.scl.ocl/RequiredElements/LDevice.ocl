@@ -24,7 +24,7 @@ context LDevice
 
     -- One LN0 is required
     inv LDevice_one_LN0_required
-        ( 'LDevice shall contain one LN0 (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] LDevice shall contain one LN0 (line ' + self.lineNumber.toString() + ')' )
     :
         self.LN0 <> null
 

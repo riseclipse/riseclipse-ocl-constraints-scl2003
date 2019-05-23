@@ -21,10 +21,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 package scl
 
 context ServiceConfReportControl
+-- extends ServiceWithMax
 
   -- bufMode is a real enum
   -- bufConf is a boolean
-    inv ServiceConfReportControl_nothing
+  
+  
+    -- The maxBuf attribute is an unsigned int
+    inv ServiceConfReportControl_maxBuf_valid
+        ( '[OCL validation] maxBuf attribute shall be valid in ServiceConfReportControl (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.maxBuf.toString()
+        )
     :
         true
 

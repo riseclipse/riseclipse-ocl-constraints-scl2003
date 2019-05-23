@@ -24,7 +24,7 @@ context History
 
     -- At least one Hitem is required
     inv History_at_least_one_Hitem_required
-        ( 'History shall contain at least one Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( '[OCL validation] History shall contain at least one Hitem (line ' + self.lineNumber.toString() + ')' )
     :
         self.Hitem->notEmpty()
 
