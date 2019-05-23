@@ -71,7 +71,7 @@ context P
         else if self.type = 'OSI-AP-Invoke' or self.type = 'OSI-AE-Qualifier' or self.type = 'OSI-AE-Invoke' then
             self.value.matches( '[0-9]{1,5}' )
         else if self.type = 'MAC-Address' then
-        	--<xs:pattern value="[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}"/>
+            --<xs:pattern value="[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}\-[0-9A-F]{2}"/>
             self.value.matches( '[0-9A-F]{2}\u002D[0-9A-F]{2}\u002D[0-9A-F]{2}\u002D[0-9A-F]{2}\u002D[0-9A-F]{2}\u002D[0-9A-F]{2}' )
         else if self.type = 'APPID' then
             self.value.matches( '[0-9A-F]{4}' )

@@ -244,12 +244,11 @@ def: validSclProcessName( s : String ) : Boolean =
     s.matches( '.+(/.+)*' )
  
 def: validSclEnumStringValue( s : String ) : Boolean =
-   	  if( s.matches( '[\u0020-\u00FF]*' ) )
-   	  then
-   	  	s.size() <= 127
-   	  else
-   	  	false
-   	  endif
+    if( s.matches( '[\u0020-\u00FF]*' )) then
+        s.size() <= 127
+    else
+        false
+    endif
  
 endpackage
 

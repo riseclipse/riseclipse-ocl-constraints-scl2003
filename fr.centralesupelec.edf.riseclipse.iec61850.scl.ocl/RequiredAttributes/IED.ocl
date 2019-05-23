@@ -46,10 +46,10 @@ context IED
     -- An empty string as well as the reserved name None are forbidden.
     -- The empty string is already covered by the IED_name_valid
     inv IED_name_not_None
-    	( 'name attribute cannot be None in IED (line ' + self.lineNumber.toString() + ')'
-    	)
+        ( 'name attribute cannot be None in IED (line ' + self.lineNumber.toString() + ')'
+        )
     :
-    	self.name <> 'None'
+        self.name <> 'None'
     
     -- type is a normalizedString
     -- manufacturer is a normalizedString

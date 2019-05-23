@@ -23,8 +23,8 @@ package scl
 context SubNetwork
 -- extends Naming
 
-	-- The type attribute is only required if the file is a SCD
-	
+    -- The type attribute is only required if the file is a SCD
+    
     -- The type attribute shall be valid
     inv SubNetwork_type_valid
         ( 'type attribute shall be valid in SubNetwork (line ' + self.lineNumber.toString() + '). '

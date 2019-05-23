@@ -31,7 +31,7 @@ context EnumVal
         :
         self.ord <> null
 
-	-- The value attribute shall be valid
+    -- The value attribute shall be valid
     inv EnumVal_value_valid
         ( 'value attribute shall be valid in EnumVal (line ' + self.lineNumber.toString() + ')' )
         :

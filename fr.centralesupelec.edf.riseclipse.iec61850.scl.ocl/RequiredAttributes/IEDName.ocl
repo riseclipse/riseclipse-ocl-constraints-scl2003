@@ -28,7 +28,7 @@ context IEDName
 
     
     
- 	-- The apRef attribute shall be valid
+    -- The apRef attribute shall be valid
     inv IEDName_apRef_valid
         ( 'apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apRef.toString()
@@ -36,7 +36,7 @@ context IEDName
     :
         self.apRef <> null implies self.validSclAccessPointName( apRef )
         
- 	-- The ldInst attribute shall be valid
+    -- The ldInst attribute shall be valid
     inv IEDName_ldInst_valid
         ( 'ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
@@ -44,7 +44,7 @@ context IEDName
     :
         self.ldInst <> null implies self.validSclLDInst( ldInst )
         
-	 -- The prefix attribute shall be valid
+     -- The prefix attribute shall be valid
     inv IEDName_prefix_valid
         ( 'prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
@@ -52,7 +52,7 @@ context IEDName
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
         
-	 -- The lnClass attribute shall be valid
+     -- The lnClass attribute shall be valid
     inv IEDName_lnClass_valid
         ( 'lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
@@ -60,7 +60,7 @@ context IEDName
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
         
- 	-- The lnInst attribute shall be valid
+    -- The lnInst attribute shall be valid
     inv IEDName_lnInst_valid
         ( 'lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()

@@ -43,7 +43,7 @@ context Association
     :
         self.associationID <> null implies self.validSclAssociationID( associationID )
 
-    	-- The prefix attribute shall be valid 
+        -- The prefix attribute shall be valid 
         inv Association_prefix_valid
         ( 'The prefix attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
