@@ -23,6 +23,7 @@ package scl
 context Communication
 -- extends UnNaming
 
+	-- Communication has no required attribute (version 2007B4)
     inv Communication_nothing
     :
         true

@@ -46,6 +46,9 @@ context AnyLN
     :
         self.inst <> null
     
+    -- The inst attribute shall be valid
+    -- In RequiredAttributes/LN.ocl
+    
     -- The lnType attribute shall be present
     inv AnyLN_lnType_required
         ( 'lnType attribute shall be present in AnyLN (line ' + self.lineNumber.toString() + ')' )

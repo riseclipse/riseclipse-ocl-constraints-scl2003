@@ -29,6 +29,7 @@ context Header
     :
         self.id <> null
 
+	-- id is a normalizedString
     -- version is a normalizedString
     -- revision is a normalizedString
     -- toolID is a normalizedString

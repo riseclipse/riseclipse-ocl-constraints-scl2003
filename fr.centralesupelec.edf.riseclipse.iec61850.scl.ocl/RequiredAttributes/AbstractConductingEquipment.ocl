@@ -23,6 +23,7 @@ package scl
 context AbstractConductingEquipment
 -- extends Equipment
 
+    -- No attribute in SCL_Substation.xsd
     inv AbstractConductingEquipment_nothing
     :
         true

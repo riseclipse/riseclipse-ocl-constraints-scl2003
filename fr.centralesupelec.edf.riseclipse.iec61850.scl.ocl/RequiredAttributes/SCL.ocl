@@ -57,12 +57,12 @@ context SCL
     :
         self.revision <> null implies self.revision = 'B'
 
-    -- The release attribute shall be 1
+    -- The release attribute shall be 4
     inv SCL_release_value_1
-        ( 'release attribute shall be equal to 1 in SCL (line ' + self.lineNumber.toString() + '). '
+        ( 'release attribute shall be equal to 4 in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.release.toString() )
     :
-        self.release <> null implies self.release = 1
+        self.release <> null implies self.release = 4
 
 
 endpackage

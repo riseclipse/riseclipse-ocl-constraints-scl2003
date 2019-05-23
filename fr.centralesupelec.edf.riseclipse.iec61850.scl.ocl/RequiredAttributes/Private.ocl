@@ -39,7 +39,13 @@ context Private
     :
         self.type <> null implies self.type.size() >= 1
 
-    -- source is anyURI: can we check something ?
+    -- source is anyURI
+    inv Private_source_valid
+        ( 'source attribute shall not be empty in Private (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.source.toString()
+        )
+    :
+        self.source <> null implies self.source.size() >= 1
 
 endpackage
 

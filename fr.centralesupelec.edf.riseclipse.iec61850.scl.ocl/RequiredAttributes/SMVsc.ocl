@@ -25,6 +25,8 @@ context SMVsc
 
     -- delivery is a real enum
     -- deliveryConf is a boolean
+    -- sv is a boolean
+    -- rSV is a boolean
     inv SMVsc_nothing
     :
         true

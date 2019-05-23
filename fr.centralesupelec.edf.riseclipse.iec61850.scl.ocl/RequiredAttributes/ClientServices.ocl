@@ -63,6 +63,9 @@ context ClientServices
     :
         self.maxSMV <> null implies self.maxSMV >= 0
 
+    -- rGOOSE is a boolean
+    -- rSV is a boolean
+    -- noIctBinding is a boolean
 
 endpackage
 

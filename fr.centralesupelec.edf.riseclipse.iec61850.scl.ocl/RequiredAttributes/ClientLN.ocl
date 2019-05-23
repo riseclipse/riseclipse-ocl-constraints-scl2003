@@ -100,14 +100,17 @@ context ClientLN
     --  Only the prefix is optional in cases where the referenced LN instance has
     --  no prefix (prefix value = empty string). If it is defined, it must have a
     --  non zero length.
+	-- TODO using OCL navigation
     inv ClientLN_prefix_valid
         ( 'prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
-        -- TODO: referenced LN instance has no prefix
-
+        
+	-- apRef is optional, not needed if the IED has only one access point.
+	-- TODO using OCL navigation
+		
 
 endpackage
 

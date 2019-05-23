@@ -26,6 +26,7 @@ context TimeSyncProt
     -- sntp is a boolean
     -- c37_238 is a boolean
     -- other is a boolean
+    -- iec61850_9_3 is a boolean
     inv TimeSyncProt_nothing
     :
         true

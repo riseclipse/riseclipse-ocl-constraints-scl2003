@@ -40,6 +40,17 @@ context IED
     :
         self.name <> null implies self.validSclIEDName( name )
     
+    -- The IED name shall be unique within the SCL file. 
+    -- TODO
+    
+    -- An empty string as well as the reserved name None are forbidden.
+    -- The empty string is already covered by the IED_name_valid
+    inv IED_name_not_None
+    	( 'name attribute cannot be None in IED (line ' + self.lineNumber.toString() + ')'
+    	)
+    :
+    	self.name <> 'None'
+    
     -- type is a normalizedString
     -- manufacturer is a normalizedString
     -- configVersion is a normalizedString
@@ -62,11 +73,11 @@ context IED
     
     -- The originalSclRelease attribute shall be valid
     inv IED_originalSclRelease_valid
-        ( 'originalSclRelease attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
+        ( 'originalSclRelease attribute shall be an between 1 and 255 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.originalSclRelease.toString()
         )
     :
-        self.originalSclRelease <> null implies self.originalSclRelease > 0
+        self.originalSclRelease <> null implies self.validSclRelease( originalSclRelease )
     
     -- The engRight attribute shall be valid
     inv engRight_valid

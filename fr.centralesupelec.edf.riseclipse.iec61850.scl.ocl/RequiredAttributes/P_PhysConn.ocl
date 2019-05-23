@@ -33,7 +33,7 @@ context P_PhysConn
 
     -- The P_PhysConn type value shall be valid
     inv P_PhysConn_type_valid
-        ( 'type attribute shall be valid in P_PhysConn (line ' + self.lineNumber.toString() + '). '
+        ( 'type attribute shall start with a capital letter, and shall contain only alphanumeric characters in P_PhysConn (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

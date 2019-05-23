@@ -39,7 +39,7 @@ context Control
     :
         self.name <> null implies self.validSclCBName( name )
 
-    -- The name attribute shall be valid
+    -- The datSet attribute shall be valid
     inv Control_datSet_valid
         ( 'datSet attribute shall be valid in Control (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.datSet.toString()

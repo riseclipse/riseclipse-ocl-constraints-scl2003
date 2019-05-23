@@ -39,8 +39,8 @@ context VoltageLevel
             + 'Current value is ' + self.numPhases.toString()
         )
     :
-        -- test <= 255 is done by XML Handler because it is a byte
-        self.numPhases <> null implies self.numPhases > 0
+        self.numPhases <> null implies
+            (self.numPhases > 0 and self.numPhases <=255)
 
 
 

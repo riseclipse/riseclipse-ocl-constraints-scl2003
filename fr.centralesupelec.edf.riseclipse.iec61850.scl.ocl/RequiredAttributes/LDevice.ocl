@@ -46,7 +46,7 @@ context LDevice
           + 'Current value is ' + self.ldName.toString()
         )
     :
-        self.validSclLDName( ldName )
+        self.ldName <> null implies self.validSclLDName( ldName )
     
 
 endpackage

@@ -17,6 +17,7 @@
  *      http://wdi.supelec.fr/software/RiseClipse/
  */
 import scl: 'http://www.iec.ch/61850/2003/SCL'
+import '../Helpers/BaseSimpleTypes.ocl'
 
 package scl
 
@@ -38,13 +39,15 @@ context ValueWithUnit
     -- The unit shall be valid
     inv ValueWithUnit_unit_valid
         ( 'unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.value.toString()
+          + 'Current value is ' + self.unit.toString()
         )
     :
         -- It is a token in XSD
         -- There is a SIUnitEnum but it is commented out
         -- TODO: why ?
-        true
+        self.unit <> null implies self.validSclAnyName(unit)
+        -- There is no Enum with SIUnits, only an example in the 61850-6, also there are no constraints in the xsd indicating it has an enum
+        
 
     -- multiplier is a real enum
 

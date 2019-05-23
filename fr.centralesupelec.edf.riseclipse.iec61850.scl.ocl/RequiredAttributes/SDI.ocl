@@ -33,9 +33,9 @@ context SDI
     
     -- Dots (.) are not allowed within names, only alphanumeric characters
     -- The name shall begin with a lower-case letter, except SIUnit and the exceptions defined in IEC 61850-8-1
-    -- TODO: add allowed exceptions
+    -- These exceptions are defined in SCL_Enums.xsd version 2007B4 and are referenced in Helpers/Enums.ocl
     inv SDI_name_valid
-        ( 'name attribute shall be \'SIUnit\' or begin with a lower-case letter in SDI (line ' + self.lineNumber.toString() + '). '
+        ( 'name attribute shall begin with a lower-case letter in SDI or be an exception defined in IEC 61850-8-1 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :

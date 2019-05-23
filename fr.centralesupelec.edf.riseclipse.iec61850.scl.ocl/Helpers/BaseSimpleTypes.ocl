@@ -38,6 +38,16 @@ def: validSclName( s : String ) : Boolean =
         false
     endif
 
+def: validSclID( s : String ) : Boolean =
+    if( self.validSclAnyName( s )) then
+        s.tokenize( ' ' )->size() = 1
+        and s = s.trim()
+        and s.size() >= 1
+        and s.size() <= 255
+    else
+        false
+    endif
+
 def: validSclAcsiName( s : String ) : Boolean =
     if( self.validSclName( s ) ) then
         s.matches( '[A-Za-z][0-9A-Za-z_]*' )
@@ -79,19 +89,43 @@ def: validSclRevision( s : String ) : Boolean =
 -----------------------------------------------------------
 
 def: validSclRelease( i : Integer ) : Boolean =
-    i >= 0 and i <= 255
+    i > 0 and i <= 255
 
 -----------------------------------------------------------
 
 def: validSclEmpty( s : String ) : Boolean =
     s.size() <= 0
 
-def: validSclIEDName( s : String ) : Boolean =
-    if( self.validSclVisibleBasicLatin( s ) ) then
-        s.size() >= 1 and s.size() <= 129
+-- def: validSclIEDName( s : String ) : Boolean =
+--     if( self.validSclVisibleBasicLatin( s ) ) then
+--         s.size() >= 1 and s.size() <= 129
+--     else
+--         false
+--     endif
+-- 
+-- the constraint validSclIEDName was changed to follow the rules in the XSD
+  def: validSclIEDName( s : String ) : Boolean =
+    if( self.validSclVisibleBasicLatin( s )) then
+           s.matches( '[A-Za-z][0-9A-Za-z_]{0,2}' )
+        or s.matches( '[A-Za-z][0-9A-Za-z_]{4,63}' )
+        or s.matches( '[A-MO-Za-z][0-9A-Za-z_]{3}' )
+        or s.matches( 'N[0-9A-Za-np-z_][0-9A-Za-z_]{2}' )
+        or s.matches( 'No[0-9A-Za-mo-z_][0-9A-Za-z_]' )
+        or s.matches( 'Non[0-9A-Za-df-z_]' ) 
+        and s.size() <= 64
     else
         false
     endif
+
+def: validSclIEDNameIsNone( s : String ) : Boolean =
+    if( self.validSclVisibleBasicLatin( s )) then
+        s = 'None'
+    else
+        false
+    endif
+
+def: validSclIEDNameOrNone( s : String ) : Boolean =
+    validSclIEDName( s ) or validSclIEDNameIsNone( s )
  
 def: validSclOnlyRelativeIEDName( s : String ) : Boolean =
     -- XSD: <xs:pattern value="&#x0040;"/>
@@ -125,7 +159,7 @@ def: validSclPrefix( s : String ) : Boolean =
     endif
  
 def: validSclLNInst( s : String ) : Boolean =
-    s.matches( '[0-9]{1,12}' )
+    s.matches( '[0-9]{1,7}' )
  
 def: validSclLNInstOrEmpty( s : String ) : Boolean =
     if( self.validSclEmpty( s ) ) then
@@ -163,7 +197,7 @@ def: validSclLogName( s : String ) : Boolean =
     endif
  
 def: validSclAccessPointName( s : String ) : Boolean =
-    s.matches( '[A-Za-z0-9][0-9A-Za-z_]*' )
+    s.matches( '[A-Za-z0-9][0-9A-Za-z_]*' ) and s.size() <= 32
 
 def: validSclAssociationID( s : String ) : Boolean =
     s.matches( '[0-9A-Za-z]+' )
@@ -175,7 +209,7 @@ def: validSclVisibleBasicLatin( s : String ) : Boolean =
 
 def: validSclMessageID( s : String ) : Boolean =
     if( self.validSclVisibleBasicLatin( s ) ) then
-        s.size() <= 64
+        s.size() >= 1 and s.size() <= 129
     else
         false
     endif
@@ -208,6 +242,14 @@ def: validSclProcessType( s : String ) : Boolean =
 
 def: validSclProcessName( s : String ) : Boolean =
     s.matches( '.+(/.+)*' )
+ 
+def: validSclEnumStringValue( s : String ) : Boolean =
+   	  if( s.matches( '[\u0020-\u00FF]*' ) )
+   	  then
+   	  	s.size() <= 127
+   	  else
+   	  	false
+   	  endif
  
 endpackage
 

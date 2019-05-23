@@ -117,6 +117,27 @@ context ExtRef
     :
         self.srcCBName <> null implies self.validSclCBName( srcCBName )
 
+    inv ExtRef_pLN_valid
+        ( 'pLN attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.pLN.toString()
+        )
+    :
+        self.pLN <> null implies self.validSclLNClassEnum( pLN )
+
+    inv ExtRef_pDA_valid
+        ( 'pDA attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.pDA.toString()
+        )
+    :
+        self.pDA <> null implies self.validSclFullAttributeName( pDA )
+
+    inv pDO
+        ( 'pDO attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.pDO.toString()
+        )
+    :
+        self.pDO <> null implies self.validSclFullDOName( pDO )
+
 
 endpackage
 

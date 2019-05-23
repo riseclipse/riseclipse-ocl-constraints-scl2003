@@ -18,6 +18,8 @@
  */
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+include '../Helpers/BaseSimpleTypes.ocl'
+
 package scl
 
 context EnumVal
@@ -29,6 +31,11 @@ context EnumVal
         :
         self.ord <> null
 
+	-- The value attribute shall be valid
+    inv EnumVal_value_valid
+        ( 'value attribute shall be valid in EnumVal (line ' + self.lineNumber.toString() + ')' )
+        :
+        self.value <> null implies self.validSclEnumStringValue( value )
 
 endpackage
 

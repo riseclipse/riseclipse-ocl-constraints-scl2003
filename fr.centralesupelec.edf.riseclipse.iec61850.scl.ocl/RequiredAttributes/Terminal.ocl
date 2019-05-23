@@ -57,12 +57,6 @@ context Terminal
                             + '/' + self.bayName
                             + '/' + self.cNodeName
 
-    -- The substationName attribute shall be present.
-    inv Terminal_substationName_required
-        ( 'substationName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.substationName <> null
-
     -- The substationName attribute shall be valid.
     inv Terminal_substationName_valid
         ( 'substationName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
@@ -71,12 +65,6 @@ context Terminal
     :
         self.substationName <> null implies self.validSclName( substationName )
 
-    -- The voltageLevelName attribute shall be present.
-    inv Terminal_voltageLevelName_required
-        ( 'voltageLevelName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.voltageLevelName <> null
-
     -- The voltageLevelName attribute shall be valid.
     inv Terminal_voltageLevelName_valid
         ( 'voltageLevelName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
@@ -84,12 +72,6 @@ context Terminal
         )
     :
         self.voltageLevelName <> null implies self.validSclName( voltageLevelName )
-
-    -- The bayName attribute shall be present.
-    inv Terminal_bayName_required
-        ( 'bayName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.bayName <> null
 
     -- The bayName attribute shall be valid.
     inv Terminal_bayName_valid
@@ -121,6 +103,22 @@ context Terminal
     :
         self.processName <> null implies self.validSclProcessName( processName )
 
+    -- The name attribute shall be valid.
+    inv Terminal_name_valid
+        ( 'name attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.name.toString()
+        )
+    :
+        self.name <> null implies self.validSclAnyName( name )
+        
+    -- The lineName attribute shall be valid.
+    inv Terminal_lineName_valid
+        ( 'lineName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.lineName.toString()
+        )
+    :
+        self.lineName <> null implies self.validSclName( lineName )
+        
 
 endpackage
 

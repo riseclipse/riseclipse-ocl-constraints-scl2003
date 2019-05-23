@@ -25,7 +25,7 @@ context GSESettings
 
     -- appID is a real enum
     -- dataLabel is a real enum
-    
+    -- kdaParticipant is a Boolean    
     inv GSESettings_nothing
     :
         true
