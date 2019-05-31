@@ -32,12 +32,13 @@ context AbstractDataObject
         self.name <> null
 
     -- The name attribute shall be valid
-    inv AbstractDataObject_name_valid
-        ( '[OCL validation] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.name.toString()
-        )
-    :
-        self.name <> null implies self.validSclDataName( name )
+    -- must be done in subclasses because the rule is not the same between DO and SDO
+--     inv AbstractDataObject_name_valid
+--         ( '[OCL validation] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+--           + 'Current value is ' + self.name.toString()
+--         )
+--     :
+--         self.name <> null implies self.validSclDataName( name )
 
     inv AbstractDataObject_type_required
         ( '[OCL validation] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )

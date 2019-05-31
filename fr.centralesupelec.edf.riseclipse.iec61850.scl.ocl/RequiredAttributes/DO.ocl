@@ -25,8 +25,17 @@ package scl
 context DO
 -- extends AbstractDataObject
 
-    -- The name attribute shall be present and valid
+    -- The name attribute shall be present
     -- In AbstractDataObject.ocl
+    
+    -- The name attribute shall be valid
+    -- must be done in subclass because the rule is not the same between DO and SDO
+    inv DO_name_valid
+        ( '[OCL validation] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.name.toString()
+        )
+    :
+        self.name <> null implies self.validSclDataName( name )
 
     -- The type attribute shall be present and valid
     -- In AbstractDataObject.ocl
