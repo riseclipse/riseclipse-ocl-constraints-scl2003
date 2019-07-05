@@ -28,13 +28,15 @@ context EnumVal
     -- The ord attribute shall be present
     inv EnumVal_ord_required
         ( '[OCL validation] ord attribute shall be present in EnumVal (line ' + self.lineNumber.toString() + ')' )
-        :
+    :
         self.ord <> null
 
     -- The value attribute shall be valid
     inv EnumVal_value_valid
-        ( '[OCL validation] value attribute shall be valid in EnumVal (line ' + self.lineNumber.toString() + ')' )
-        :
+        ( '[OCL validation] value attribute shall be valid in EnumVal (line ' + self.lineNumber.toString() + ')'
+          + 'Current value is ' + self.value.toString()
+        )
+    :
         self.value <> null implies self.validSclEnumStringValue( value )
 
 endpackage
