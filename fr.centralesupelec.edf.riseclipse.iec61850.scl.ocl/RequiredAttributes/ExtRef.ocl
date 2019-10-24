@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,21 +30,21 @@ context ExtRef
 -- extends BaseElement
 
     inv ExtRef_iedName_valid
-        ( '[OCL validation] iedName attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
         self.iedName <> null implies self.validSclIEDNameOrRelative( iedName )
 
     inv ExtRef_ldInst_valid
-        ( '[OCL validation] ldInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
         self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     inv ExtRef_prefix_valid
-        ( '[OCL validation] prefix attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -51,14 +52,14 @@ context ExtRef
 
     -- lnClass valid
     inv ExtRef_lnClass_valid
-        ( '[OCL validation] lnClass attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     inv ExtRef_lnInst_valid
-        ( '[OCL validation] lnInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -66,7 +67,7 @@ context ExtRef
 
     -- The doName attribute shall be valid
     inv FCDA_doName_valid
-        ( '[OCL validation] doName attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] doName attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.doName.toString()
         )
     :
@@ -74,7 +75,7 @@ context ExtRef
 
     -- The daName attribute shall be valid
     inv FCDA_daName_valid
-        ( '[OCL validation] daName attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] daName attribute shall be valid in FCDA (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.daName.toString()
         )
     :
@@ -84,14 +85,14 @@ context ExtRef
     -- serviceType is a real enum
 
     inv ExtRef_srcLDInst_valid
-        ( '[OCL validation] srcLDInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] srcLDInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcLDInst.toString()
         )
     :
         self.srcLDInst <> null implies self.validSclLDInst( srcLDInst )
 
     inv ExtRef_srcPrefix_valid
-        ( '[OCL validation] srcPrefix attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] srcPrefix attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcPrefix.toString()
         )
     :
@@ -99,42 +100,42 @@ context ExtRef
 
     -- lnClass valid
     inv ExtRef_srcLNClass_valid
-        ( '[OCL validation] srcLNClass attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] srcLNClass attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcLNClass.toString()
         )
     :
         self.srcLNClass <> null implies self.validSclLNClassEnum( srcLNClass )
 
     inv ExtRef_srcLNInst_valid
-        ( '[OCL validation] srcLNInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] srcLNInst attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcLNInst.toString()
         )
     :
         self.srcLNInst <> null implies self.validSclLNInstOrEmpty( srcLNInst )
 
     inv ExtRef_srcCBName_valid
-        ( '[OCL validation] srcCBName attribute shall be valid ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] srcCBName attribute shall be valid ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.srcCBName.toString()
         )
     :
         self.srcCBName <> null implies self.validSclCBName( srcCBName )
-
+        
     inv ExtRef_pLN_valid
-        ( '[OCL validation] pLN attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] pLN attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.pLN.toString()
         )
     :
         self.pLN <> null implies self.validSclLNClassEnum( pLN )
 
     inv ExtRef_pDA_valid
-        ( '[OCL validation] pDA attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] pDA attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.pDA.toString()
         )
     :
         self.pDA <> null implies self.validSclFullAttributeName( pDA )
 
     inv pDO
-        ( '[OCL validation] pDO attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] pDO attribute shall be valid in ExtRef (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.pDO.toString()
         )
     :

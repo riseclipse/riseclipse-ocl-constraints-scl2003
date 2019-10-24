@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -35,7 +36,7 @@ context ClientServices
     
     -- maxAttributes is an unsigned int
     inv ClientServices_maxAttributes_valid
-        ( '[OCL validation] maxAttributes attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxAttributes attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxAttributes.toString()
         )
     :
@@ -43,7 +44,7 @@ context ClientServices
 
     -- maxReports is an unsigned int
     inv ClientServices_maxReports_valid
-        ( '[OCL validation] maxReports attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxReports attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxReports.toString()
         )
     :
@@ -51,7 +52,7 @@ context ClientServices
 
     -- maxGOOSE is an unsigned int
     inv ClientServices_maxGOOSE_valid
-        ( '[OCL validation] maxGOOSE attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxGOOSE attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxGOOSE.toString()
         )
     :
@@ -59,7 +60,7 @@ context ClientServices
 
     -- maxSMV is an unsigned int
     inv ClientServices_maxSMV_valid
-        ( '[OCL validation] maxSMV attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxSMV attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxSMV.toString()
         )
     :

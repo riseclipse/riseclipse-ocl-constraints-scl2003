@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 include '../Helpers/BaseSimpleTypes.ocl'
@@ -30,13 +31,13 @@ context ConnectedAP
 
     -- The iedName attribute shall be present
     inv ConnectedAP_iedName_required
-        ( '[OCL validation] iedName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
 
     -- The iedName attribute shall be valid.
     inv ConnectedAP_iedName_valid
-        ( '[OCL validation] iedName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
@@ -44,13 +45,13 @@ context ConnectedAP
 
     -- The apName attribute shall be present
     inv ConnectedAP_apName_required
-        ( '[OCL validation] apName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] apName attribute shall be present in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     :
         self.apName <> null
 
     -- The apName attribute shall be valid.
     inv ConnectedAP_apName_valid
-        ( '[OCL validation] apName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] apName attribute shall be valid in ConnectedAP (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apName.toString()
         )
     :
@@ -58,7 +59,7 @@ context ConnectedAP
 
     -- If present, the redProt attribute shall be valid.
     inv ConnectedAP_redProt_valid
-        ( '[OCL validation] redProt attribute shall be valid if present in ConnectedAP (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] redProt attribute shall be valid if present in ConnectedAP (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.redProt.toString()
         )
     :

@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 include '../Helpers/BaseSimpleTypes.ocl'
@@ -29,13 +30,13 @@ context IDNaming
 
     -- The id attribute shall be present
     inv IDNaming_id_required
-        ( '[OCL validation] id attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] id attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.id <> null
 
     -- The id attribute shall be valid
     inv IDNaming_id_valid
-        ( '[OCL validation] id attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] id attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.id.toString()
         )
     :

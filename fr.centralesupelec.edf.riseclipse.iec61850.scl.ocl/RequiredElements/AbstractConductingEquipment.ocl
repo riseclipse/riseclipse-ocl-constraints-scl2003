@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,9 +27,10 @@ context AbstractConductingEquipment
 
    -- At most 2 Terminal
     inv AbstractConductingEquipment_at_most_terminal
-        ( '[OCL validation] AbstractConductingEquipment shall contain at most 2 Terminal (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] AbstractConductingEquipment shall contain at most 2 Terminal (line ' + self.lineNumber.toString() + ')' )
     :
         self.Terminal->size() <= 2
 
 
 endpackage
+

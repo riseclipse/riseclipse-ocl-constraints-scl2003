@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,7 +27,7 @@ context ReportControl
 
     -- An OptFields is required
     inv ReportControl_one_OptFields_required
-        ( '[OCL validation] ReportControl shall contain an OptFields (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] ReportControl shall contain an OptFields (line ' + self.lineNumber.toString() + ')' )
     :
         self.OptFields <> null
 

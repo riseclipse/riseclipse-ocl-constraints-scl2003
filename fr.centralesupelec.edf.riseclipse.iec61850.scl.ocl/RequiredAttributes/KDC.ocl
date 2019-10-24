@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -30,13 +31,13 @@ context KDC
 
     -- The iedName attribute shall be present
     inv KDC_iedName_required
-        ( '[OCL validation] iedName attribute shall be present in KDC (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be present in KDC (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
 
     -- The iedName attribute shall be valid
     inv KDC_iedName_valid
-        ( '[OCL validation] iedName attribute shall have between 1 and 64 alphanumeric characters in KDC (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall have between 1 and 64 alphanumeric characters in KDC (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
@@ -44,13 +45,13 @@ context KDC
 
     -- The apName attribute shall be present
     inv KDC_apName_required
-        ( '[OCL validation] apName attribute shall be present in KDC (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] apName attribute shall be present in KDC (line ' + self.lineNumber.toString() + ')' )
     :
         self.apName <> null
 
     -- The apName attribute shall be valid.
     inv KDC_apName_valid
-        ( '[OCL validation] apName attribute shall be valid in KDC (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] apName attribute shall be valid in KDC (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apName.toString()
         )
     :

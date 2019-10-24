@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -30,13 +31,13 @@ context AnyLN
 
     -- The lnClass attribute is required
     inv LN_lnClass_required
-        ( '[OCL validation] lnClass attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
 
     -- The lnClass attribute must be valid
     inv LN_lnClass_valid
-        ( '[OCL validation] lnClass attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -44,22 +45,22 @@ context AnyLN
 
     -- The inst attribute is required
     inv LN_inst_required
-        ( '[OCL validation] inst attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] inst attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.inst <> null
-    
+        
     -- The inst attribute shall be valid
     -- In RequiredAttributes/LN.ocl
     
     -- The lnType attribute shall be present
     inv AnyLN_lnType_required
-        ( '[OCL validation] lnType attribute shall be present in AnyLN (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] lnType attribute shall be present in AnyLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnType <> null
 
     -- The lnType attribute shall be valid
     inv AnyLN_lnType_valid
-        ( '[OCL validation] lnType attribute shall be valid in AnyLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnType attribute shall be valid in AnyLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnType.toString()
         )
     :

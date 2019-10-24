@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,7 +27,7 @@ context ControlWithTriggerOpt
 -- extends Control
 
     inv ControlWithTriggerOpt_intgPd_unsigned_int
-        ( '[OCL validation] intgPd attribute shall be valid in ControlWithTriggerOpt (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] intgPd attribute shall be valid in ControlWithTriggerOpt (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.intgPd.toString()
         )
     :

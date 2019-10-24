@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,13 +28,13 @@ context Cert
 
     -- commonName must be present
     inv Cert_commonName_required
-        ( '[OCL validation] commonName attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] commonName attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
     :
         self.commonName <> null
 
     -- commonName must be valid
     inv Cert_commonName_valid
-        ( '[OCL validation] commonName attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] commonName attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.commonName.toString()
         )
     :
@@ -42,13 +43,13 @@ context Cert
         ( self.commonName = 'none' or ( self.commonName.matches( '.+' ) and self.commonName.size() >= 4 ))
 
     inv Cert_idHierarchy_required
-        ( '[OCL validation] idHierarchy attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] idHierarchy attribute shall be present in Cert (line ' + self.lineNumber.toString() + ')' )
     :
         self.idHierarchy <> null
 
     -- idHierarchy must be valid
     inv Cert_idHierarchy_valid
-        ( '[OCL validation] idHierarchy attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] idHierarchy attribute shall be valid in Cert (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.idHierarchy.toString()
         )
     :

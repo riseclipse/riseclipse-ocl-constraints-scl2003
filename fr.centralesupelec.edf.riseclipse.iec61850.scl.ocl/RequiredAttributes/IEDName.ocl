@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 include '../Helpers/BaseSimpleTypes.ocl'
@@ -27,12 +28,10 @@ package scl
 
 context IEDName
 -- extends NONE
-
-    
     
     -- The apRef attribute shall be valid
     inv IEDName_apRef_valid
-        ( '[OCL validation] apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apRef.toString()
         )
     :
@@ -40,7 +39,7 @@ context IEDName
         
     -- The ldInst attribute shall be valid
     inv IEDName_ldInst_valid
-        ( '[OCL validation] ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -48,7 +47,7 @@ context IEDName
         
      -- The prefix attribute shall be valid
     inv IEDName_prefix_valid
-        ( '[OCL validation] prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -56,7 +55,7 @@ context IEDName
         
      -- The lnClass attribute shall be valid
     inv IEDName_lnClass_valid
-        ( '[OCL validation] lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -64,7 +63,7 @@ context IEDName
         
     -- The lnInst attribute shall be valid
     inv IEDName_lnInst_valid
-        ( '[OCL validation] lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -72,7 +71,7 @@ context IEDName
     
     -- The value attribute shall be valid
     inv IEDName_value_valid
-        ( '[OCL validation] value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :

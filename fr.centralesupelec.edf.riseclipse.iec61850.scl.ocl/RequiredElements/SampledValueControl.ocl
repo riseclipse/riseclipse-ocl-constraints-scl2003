@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,14 +27,14 @@ context SampledValueControl
 
     -- A SmvOpts is required
     inv SampledValueControl_one_SmvOpts_required
-        ( '[OCL validation] SampledValueControl shall contain a SmvOpts (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] SampledValueControl shall contain a SmvOpts (line ' + self.lineNumber.toString() + ')' )
     :
         self.SmvOpts <> null
 
     --  If Multicast is FALSE, i.e. this is a Unicast control block, a maximum of
     --  one client IED shall be assigned to the instance :
     inv SampledValueControl_multicast
-        ( '[OCL validation] If Multicast is FALSE, a maximum of one client IED shall be assigned to the SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] If Multicast is FALSE, a maximum of one client IED shall be assigned to the SampledValueControl (line ' + self.lineNumber.toString() + ')' )
     :
         ( not self.multicast ) implies self.IEDName->size() <= 1
 

@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,14 +28,14 @@ context DurationInMilliSec
 
     -- The value shall be present
     inv DurationInMilliSec_value_required
-        ( '[OCL validation] value shall be present in DurationInMilliSec (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] value shall be present in DurationInMilliSec (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The value must be positive
     -- Note: the XSD does not force this (only decimal)
     inv DurationInMilliSec_value_valid
-        ( '[OCL validation] value shall be positive in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] value shall be positive in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :
@@ -42,7 +43,7 @@ context DurationInMilliSec
 
     -- If present, the unit attribute value shall be s
     inv DurationInMilliSec_unit_value_fixed
-        ( '[OCL validation] unit attribute shall be s in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] unit attribute shall be s in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :
@@ -50,7 +51,7 @@ context DurationInMilliSec
 
     -- If present, the multiplier attribute value shall be m
     inv DurationInMilliSec_multiplier_value_fixed
-        ( '[OCL validation] multiplier attribute shall be m in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] multiplier attribute shall be milli in DurationInMilliSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.multiplier.toString()
         )
     :

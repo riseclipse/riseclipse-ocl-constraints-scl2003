@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,7 +30,7 @@ context Process
 
     -- The type attribute shall be valid
     inv Process_type_valid
-        ( '[OCL validation] type attribute shall be valid in Process (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in Process (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

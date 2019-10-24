@@ -1,0 +1,79 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context Process
+
+    -- Within a Process, there cannot be two Substation elements with the same name
+    -- In SemanticConstraints/SCL.ocl
+    
+    -- Within a Process, there cannot be two direct ConductingEquipment or
+    -- GeneralEquipment elements with the same name
+    -- In SemanticConstraints/EquipmentContainer.ocl
+    
+    -- Within a Process, there cannot be two Function elements with the same name
+    inv Process_unique_Function_name
+        ( 'ERROR:[SemanticConstraints] Function in Process shall have different name (line ' + self.lineNumber.toString() + ')' )
+        :
+            self.Function->isUnique( f : Function | f.name )
+            
+    -- Within a Process, there cannot be two LNode elements with the same
+    -- combination of lnInst, lnClass, iedName, ldInst, and prefix.
+    -- In SemanticConstraints/LNodeContainer.ocl
+
+    inv Process_unique_DirectChild_name
+    ( 'ERROR:[SemanticConstraints] All direct childs in Process shall have different name (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
+        -- Version when oclContents() is not available
+        --   let childs_1 : OrderedSet( Naming ) = self.Function
+        --in let childs_2 : OrderedSet( Naming ) = childs_1->union( self.GeneralEquipment )
+        --in let childs_3 : OrderedSet( Naming ) = childs_2->union( self.PowerTransformer )
+        --in let childs_4 : OrderedSet( Naming ) = childs_3->union( self.VoltageLevel )
+        --in childs_4->isUnique( n : Naming | n.name )
+    
+    -- TODO: Process elements at different levels in a hierarchy branch, 
+    -- which have a type defined, should have different types. 
+    -- Any exceptions shall be explicitly defined for this usage.  
+    
+    -- In general, at each hierarchy level within the Process section all names shall be
+    -- unique, leading to unique object references (path names) of all objects defined by the
+    -- substation naming hierarchy.
+        inv unique_name_same_level_in_Process
+     ( 'ERROR:[SemanticConstraints] All names shall be unique at each hierarchy level within the Process (line ' + self.lineNumber.toString() + ')' )
+    :   
+        self.ParentSCL <> null implies
+        (SclObject.allInstances()->
+        select(s:SclObject|self.ParentSCL.oclContents()->
+            select(s:SclObject|s.lineNumber>self.lineNumber)->
+            forAll(s1:SclObject|s1.lineNumber>s.lineNumber) 
+            and s.lineNumber>self.lineNumber)->
+            select(s:SclObject|s.oclIsKindOf(Naming))->
+            exists(n1:Naming;n2:Naming|n1<>n2 
+                and n1.oclContainer=n2.oclContainer 
+                and n1.name=n2.name) implies false)
+
+
+endpackage
+

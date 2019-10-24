@@ -1,0 +1,39 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context LNode
+
+    -- The LNode element can be used within an SSD for functional specification, without allocation to an IED. 
+    -- In this case the iedName shall be None.
+    -- The name of the IED which contains the LN, none if used for specification (default if attribute is not specified)
+
+    inv LNode_iedName_None_in_SSD
+        ('ERROR:[SSD File] iedName attribute from LNode shall be None in SSD files')
+        :
+        self.RefersToAnyLN <> null implies
+        self.iedName.matches('None')
+
+endpackage
+

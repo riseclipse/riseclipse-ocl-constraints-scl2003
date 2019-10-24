@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,13 +27,13 @@ context Certificate
 
     -- A Subject is required
     inv Certificate_one_Subject_required
-        ( '[OCL validation] Certificate shall contain a Subject (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] Certificate shall contain a Subject (line ' + self.lineNumber.toString() + ')' )
     :
         self.Subject <> null
 
     -- An IssuerName is required
     inv Certificate_one_IssuerName_required
-        ( '[OCL validation] Certificate shall contain an IssuerName (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] Certificate shall contain an IssuerName (line ' + self.lineNumber.toString() + ')' )
     :
         self.IssuerName <> null
 

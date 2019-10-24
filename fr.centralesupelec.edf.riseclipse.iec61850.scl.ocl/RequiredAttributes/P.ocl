@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/Enums.ocl'
@@ -29,23 +30,22 @@ context P
 
     -- The type attribute shall be present and shall not be the empty string.
     inv P_type_required
-        ( '[OCL validation] type attribute shall be present in P (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] type attribute shall be present in P (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- the type attribute shall be one of the predefined values or shall start with a capital letter,
     -- and contain only alphanumeric characters and dashes(-)
     inv P_type_valid
-        ( '[OCL validation] type attribute shall be valid in P (line ' + self.lineNumber.toString() + ')). '
+        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in P (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclPTypeEnum( type )
     
     -- The content of P shall be valid according to its type.
-    -- TODO: tests needed
     inv P_value
-        ( '[OCL validation] content shall be valid according to its type in P (line ' + self.lineNumber.toString() + ')). '
+        ( 'ERROR:[RequiredAttributes] content shall be valid according to its type in P (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.value.toString() + ' for type ' + self.type.toString()
         )
     :
@@ -69,7 +69,7 @@ context P
         else if self.type = 'OSI-SSEL' or self.type = 'OSI-PSEL' then
             self.value.matches( '[0-9A-F]{1,16}' )
         else if self.type = 'OSI-AP-Title' then
-            self.value.matches( '[0-9&#44;]+' )     -- Tests Needed
+            self.value.matches( '[0-9\u002C]+' )     -- Tests Needed 
         else if self.type = 'OSI-AP-Invoke' or self.type = 'OSI-AE-Qualifier' or self.type = 'OSI-AE-Invoke' then
             self.value.matches( '[0-9]{1,5}' )
         else if self.type = 'MAC-Address' then

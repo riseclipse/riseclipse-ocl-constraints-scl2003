@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 include '../Helpers/BaseSimpleTypes.ocl'
@@ -29,39 +30,39 @@ context SCL
 
     -- The version attribute shall be 2007
     inv SCL_version_required
-        ( '[OCL validation] version attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] version attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
     :
         self.version <> null
     inv SCL_version_valid
-        ( '[OCL validation] version attribute shall be a year between 2000 and 2999 in SCL (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] version attribute shall be a year between 2000 and 2999 in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.version.toString() )
     :
         self.version <> null implies self.validSclVersion( version )
     inv SCL_version_value_2007
-        ( '[OCL validation] version attribute shall be equal to 2007 in SCL (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] version attribute shall be equal to 2007 in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.version.toString() )
     :
         self.version <> null implies self.version = '2007'
 
     -- The revision attribute shall be B
     inv SCL_revision_required
-        ( '[OCL validation] revision attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] revision attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
     :
         self.revision <> null
     inv SCL_revision_valid
-        ( '[OCL validation] revision attribute shall be an uppercase letter in SCL (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] revision attribute shall be an uppercase letter in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.revision.toString() )
     :
         self.revision <> null implies self.validSclRevision( revision )
     inv SCL_revision_value_B
-        ( '[OCL validation] revision attribute shall be equal to B in SCL (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] revision attribute shall be equal to B in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.revision.toString() )
     :
         self.revision <> null implies self.revision = 'B'
 
     -- The release attribute shall be 4
     inv SCL_release_value_1
-        ( '[OCL validation] release attribute shall be equal to 4 in SCL (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] release attribute shall be equal to 4 in SCL (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.release.toString() )
     :
         self.release <> null implies self.release = 4

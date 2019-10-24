@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,7 +27,7 @@ context Substation
 
     -- At least one VoltageLevel is required
     inv Substation_at_least_one_VoltageLevel_required
-        ( '[OCL validation] Substation shall contain at least one VoltageLevel (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] Substation shall contain at least one VoltageLevel (line ' + self.lineNumber.toString() + ')' )
     :
         self.VoltageLevel->notEmpty()
 

@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,7 +28,7 @@ context Voltage
 
     -- The unit attribute value shall be V
     inv Voltage_unit_value_fixed
-        ( '[OCL validation] unit attribute shall be V in Voltage (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] unit attribute shall be V in Voltage (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :

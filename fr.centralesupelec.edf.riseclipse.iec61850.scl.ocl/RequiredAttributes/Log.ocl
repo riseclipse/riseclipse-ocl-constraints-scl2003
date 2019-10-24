@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,7 +30,7 @@ context Log
 
     -- The name attribute shall be valid
     inv Log_name_valid
-        ( '[OCL validation] name attribute shall be valid in Log (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in Log (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :

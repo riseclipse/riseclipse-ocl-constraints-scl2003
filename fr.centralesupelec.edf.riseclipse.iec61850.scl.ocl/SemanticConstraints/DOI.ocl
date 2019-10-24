@@ -1,0 +1,53 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context DOI
+        
+    -- The DOI in AnyLN shall have unique DAI and SDI ix and name combination (from SCL_IED.xsd)
+    inv unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
+    ( 'ERROR:[SemanticConstraints] Unique DAI and SDI ix and name combination in DOI from AnyLN (line ' + self.lineNumber.toString() + ')' )
+    :
+       let dai = self.DAI -> collect(d : DAI | Sequence{d.ix, d.name}) -> asOrderedSet() -> asBag()
+       ,
+       sdi = self.SDI -> collect(s : SDI | Sequence{s.ix, s.name}) -> asOrderedSet() -> asBag()
+       in
+       self.oclContainer.oclIsKindOf(AnyLN) implies dai -> union(sdi) -> isUnique(s:SclObject | s)
+       
+    -- The DOI in AnyLN must have a reference to a DO, that is, the AnyLN that contains the DOI must reference a valid LNType
+    -- The consistency of the reference is already established in AnyLNImpl.java
+    inv DOI_AnyLN_LNType_reference
+    ( 'ERROR:[SemanticConstraints] AnyLN with DOI must refer to a LNodeType (line ' + self.lineNumber.toString() + ')')
+    :
+        self.ParentAnyLN.RefersToLNodeType <> null 
+
+    -- a DOI must refer an existing DO in DataTypeTemplate section
+    inv DOI_RefersToDO
+    ( 'ERROR:[SemanticConstraints] DOI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DO in DataTypeTemplates section' )
+    :
+        self.RefersToDO <> null
+
+
+endpackage
+
