@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -29,12 +30,12 @@ context ConnectedAP
     --  Connection is allowed, which belongs to it.
     
     inv ConnectedAP_at_most_one_PhysConnTypeRedConn_required
-        ( '[OCL validation] Only one PhysConn type RedConn is allowed in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] Only one PhysConn type RedConn is allowed in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     : 
         self.PhysConn -> select ( p : PhysConn | p.type = 'RedConn' ) -> size()  <= 1
 
     inv ConnectedAP_at_most_one_PhysConnTypeConnection_required
-        ( '[OCL validation] Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
     : 
         self.PhysConn -> select ( p : PhysConn | p.type = 'RedConn' ) -> size() = 1
         implies

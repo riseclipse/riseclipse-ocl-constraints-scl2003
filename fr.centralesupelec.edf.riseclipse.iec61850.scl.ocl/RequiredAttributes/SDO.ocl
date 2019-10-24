@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -30,22 +31,21 @@ context SDO
 
     -- The name attribute shall be present
     -- In AbstractDataObject.ocl
-    
+
     -- The name attribute shall be valid
-    -- must be done in subclass because the rule is not the same between DO and SDO
-    inv SDO_name_valid
-        ( '[OCL validation] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+    inv DO_name_valid
+        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.name.toString()
         )
     :
-        self.name <> null implies self.validSclSubDataName( name )
+        self.name <> null implies self.validSclRestrName1stL( name )
 
     -- The type attribute shall be present and valid
     -- In AbstractDataObject.ocl
 
     -- The count attribute shall be valid
     inv SDO_count_valid
-        ( '[OCL validation] count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
+        ( 'ERROR:[RequiredAttributes] count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.type.toString()
         )
     :

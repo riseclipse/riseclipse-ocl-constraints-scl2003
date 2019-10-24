@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,13 +30,13 @@ context LDevice
 
     -- The inst attribute shall be present
     inv LDevice_inst_required
-        ( '[OCL validation] inst attribute shall be present in LDevice (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] inst attribute shall be present in LDevice (line ' + self.lineNumber.toString() + ')' )
     :
         self.inst <> null
 
     -- The inst attribute shall be valid
     inv LDevice_inst_valid
-        ( '[OCL validation] inst attribute shall be valid in LDevice (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] inst attribute shall be valid in LDevice (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.inst.toString()
         )
     :
@@ -44,11 +45,11 @@ context LDevice
     -- The ldName attribute shall be valid
     -- Note: default value (IED name concatenated with inst) done by RiseClipse
     inv LDevice_ldName_valid
-        ( '[OCL validation] LdName attribute shall be valid in LDevice (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] LdName attribute shall be valid in LDevice (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldName.toString()
         )
     :
-        self.ldName <> null implies self.validSclLDName( ldName )
+        self.ldName<> null implies self.validSclLDName( ldName )
     
 
 endpackage

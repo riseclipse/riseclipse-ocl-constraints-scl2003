@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -30,7 +31,7 @@ context ClientLN
 
     -- The apRef attribute shall be valid
     inv ClientLN_apRef_valid
-        ( '[OCL validation] apRef attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] apRef attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.apRef.toString()
         )
     :
@@ -41,24 +42,24 @@ context ClientLN
     --  pure client access point, then the value of ldInst can be arbitrary
     --  (recommended: LD0).
     inv ClientLN_iedName_required
-        ( '[OCL validation] iedName attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
 
     inv ClientLN_iedName_valid
-        ( '[OCL validation] iedName attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
         self.iedName <> null implies self.validSclIEDName( iedName )
 
     inv ClientLN_ldInst_required
-        ( '[OCL validation] ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.ldInst <> null
 
     inv ClientLN_ldInst_valid
-        ( '[OCL validation] ldInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -66,13 +67,13 @@ context ClientLN
 
     -- lnClass required
     inv ClientLN_lnClass_required
-        ( '[OCL validation] lnClass attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
 
     -- lnClass valid
     inv ClientLN_lnClass_valid
-        ( '[OCL validation] lnClass attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -81,19 +82,19 @@ context ClientLN
     --  lnInst is required. If the LLN0 is referenced, the value is the empty
     --  string.
     inv ClientLN_lnInst_required
-        ( '[OCL validation] lnInst attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnInst <> null
         
     inv ClientLN_lnInst_valid
-        ( '[OCL validation] lnInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
         self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     inv ClientLN_lnInst_empty_for_LLN0
-        ( '[OCL validation] lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -102,17 +103,39 @@ context ClientLN
     --  Only the prefix is optional in cases where the referenced LN instance has
     --  no prefix (prefix value = empty string). If it is defined, it must have a
     --  non zero length.
-    -- TODO using OCL navigation
     inv ClientLN_prefix_valid
-        ( '[OCL validation] prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
         
-    -- apRef is optional, not needed if the IED has only one access point.
-    -- TODO using OCL navigation
+    --apRef attribute cannot be null for empty LN.prefix
+    inv ClientLN_apRef_check
+        ( 'ERROR:[RequiredAttributes] apRef attribute cannot be null for empty LN.prefix (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.apRef.toString()
+        )
+    :
+        self.RefersToAnyLN <> null implies
+        if self.RefersToAnyLN->collect(m:LN|m.prefix).matches('')->any(m:Boolean|m=true or m=false)
+        then self.apRef <> null  
+        else true 
+        endif
         
+    --prefix attribute cannot be empty for empty LN.prefix      
+    inv ClientLN_prefix_check
+        ( 'ERROR:[RequiredAttributes] prefix attribute cannot be empty for empty LN.prefix (line ' + self.lineNumber.toString() + '). '
+          + 'Current value is ' + self.prefix.toString()
+        )
+    :
+        self.RefersToAnyLN <> null implies
+        if self.RefersToAnyLN->collect(m:LN|m.prefix).matches('')->any(m:Boolean|m=true or m=false)
+        then self.prefix <> ''  
+        else true 
+        endif       
+        
+
+
 
 endpackage
 

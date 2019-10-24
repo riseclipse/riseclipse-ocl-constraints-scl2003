@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -30,7 +31,7 @@ context Association
 
     -- The kind attribute shall be present
     inv Association_kind_required
-        ( '[OCL validation] kind attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] kind attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.kind <> null
 
@@ -39,15 +40,15 @@ context Association
 
     -- The length of the association ID shall be at least one
     inv Association_associationID_valid
-        ( '[OCL validation] The length of the association ID shall be at least one (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] The length of the association ID shall be at least one (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.associationID.toString()
         )
     :
         self.associationID <> null implies self.validSclAssociationID( associationID )
-
+        
         -- The prefix attribute shall be valid 
         inv Association_prefix_valid
-        ( '[OCL validation] The prefix attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] The prefix attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -55,13 +56,13 @@ context Association
             
      --   The lnClass attribute shall be present
       inv Association_lnClass_required
-        ( '[OCL validation] lnClass attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnClass <> null
         
         -- The lnClass attribute shall be valid 
         inv Association_lnClass_valid
-        ( '[OCL validation] The lnClass attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] The lnClass attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -69,13 +70,13 @@ context Association
       
       --  The lnInst attribute shall be present
       inv Association_lnInst_required
-        ( '[OCL validation] lnInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.lnInst <> null
      
       -- The lnInst attribute shall be valid   
      inv Association_lnInst_valid
-        ( '[OCL validation] The lnInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] The lnInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -83,13 +84,13 @@ context Association
 
       --  The iedName attribute shall be present
       inv Association_iedName_required
-        ( '[OCL validation] iedName attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] iedName attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.iedName <> null
      
       -- The iedName attribute shall be valid   
      inv Association_iedName_valid
-        ( '[OCL validation] The iedName attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] The iedName attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.iedName.toString()
         )
     :
@@ -97,13 +98,13 @@ context Association
         
       --  The ldInst attribute shall be present
       inv Association_ldInst_required
-        ( '[OCL validation] ldInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be present in Association (line ' + self.lineNumber.toString() + ')' )
     :
         self.ldInst <> null
      
       -- The ldInst attribute shall be valid   
      inv Association_ldInst_valid
-        ( '[OCL validation] The ldInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] The ldInst attribute shall be valid (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :

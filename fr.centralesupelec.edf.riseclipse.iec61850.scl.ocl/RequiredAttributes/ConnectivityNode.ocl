@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -31,13 +32,13 @@ context ConnectivityNode
 
     -- The pathName attribute shall be present
     inv ConnectivityNode_pathName_required
-        ( '[OCL validation] name attribute shall be present in ConnectivityNode (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] name attribute shall be present in ConnectivityNode (line ' + self.lineNumber.toString() + ')' )
     :
         self.pathName <> null
 
     -- The pathName attribute shall be valid
     inv ConnectivityNode_pathName_valid
-        ( '[OCL validation] name attribute shall be valid in ConnectivityNode (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in ConnectivityNode (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.pathName.toString()
         )
     :
@@ -48,7 +49,7 @@ context ConnectivityNode
     --  pathname is build by all higher level references down to the connectivity
     --  nodes name, concatenated with the character “/”
     inv ConnectivityNode_pathName_value
-        ( '[OCL validation] pathName of ConnectivityNode shall be its path starting from Substation (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] pathName of ConnectivityNode shall be its path starting from Substation (line ' + self.lineNumber.toString() + '). '
           + 'Current value is '  + self.pathName + ', '
           + 'expected value is ' + self.ParentBay.ParentVoltageLevel.ParentSubstation.name
                            + '/' + self.ParentBay.ParentVoltageLevel.name

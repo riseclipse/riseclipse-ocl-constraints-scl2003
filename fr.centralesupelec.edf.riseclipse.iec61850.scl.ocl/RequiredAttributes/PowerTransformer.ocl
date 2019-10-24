@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,13 +28,13 @@ context PowerTransformer
 
     -- The type attribute is required
     inv PowerTransformer_type_required
-        ( '[OCL validation] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be PTR
     inv PowerTransformer_type_value
-        ( '[OCL validation] type attribute shall be PTR in PowerTransformer (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] type attribute shall be PTR in PowerTransformer (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :

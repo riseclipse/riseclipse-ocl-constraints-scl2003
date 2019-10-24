@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,13 +30,13 @@ context SampledValueControl
 
     -- The smvID attribute shall be present
     inv SampledValueControl_smvID_required
-        ( '[OCL validation] smvID attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] smvID attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
     :
         self.smvID <> null
 
      -- The smvID attribute shall be valid
     inv SampledValueControl_smvID_valid
-        ( '[OCL validation] smvID attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] smvID attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.smvID.toString()
         )
     :
@@ -43,14 +44,14 @@ context SampledValueControl
 
     -- The smpRate attribute shall be present
     inv SampledValueControl_smpRate_required
-        ( '[OCL validation] smpRate attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] smpRate attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
     :
         self.smpRate <> null
 
     -- The smpRate attribute shall be an unsignedInt
     -- Note: unsignedInt are EInt in the metaModel
     inv SampledValueControl_smpRate_valid
-        ( '[OCL validation] smpRate attribute shall be valid in SampledValueControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] smpRate attribute shall be valid in SampledValueControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.smpRate.toString()
         )
     :
@@ -58,14 +59,14 @@ context SampledValueControl
 
     -- The nofASDU attribute shall be present
     inv SampledValueControl_nofASDU_required
-        ( '[OCL validation] ofASDU attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] nofASDU attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
     :
         self.nofASDU <> null
 
     -- The nofASDU attribute shall be an unsignedInt
     -- Note: unsignedInt are EInt in the metaModel
     inv SampledValueControl_nofASDU_valid
-        ( '[OCL validation] nofASDU attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] nofASDU attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.nofASDU.toString()
         )
     :
@@ -77,14 +78,14 @@ context SampledValueControl
     
     --  The confRev attribute is mandatory for the SV control block
     inv SampledValueControl_confRev_required
-        ( '[OCL validation] confRev attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] confRev attribute shall be present in SampledValueControl (line ' + self.lineNumber.toString() + ')' )
     :
         self.confRev <> null
     
     -- The confRev attribute is an unsigned int
     --  Note: it is an Integer in the metamodel
     inv SampledValueControl_confRev_unsignedInt
-        ( '[OCL validation] confRev attribute shall be valid in SampledValueControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] confRev attribute shall be valid in SampledValueControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.confRev.toString()
         )
     :

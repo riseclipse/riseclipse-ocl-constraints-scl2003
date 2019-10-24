@@ -1,0 +1,34 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context AbstractDataObject
+
+    -- a AbstractDataObject must refer an existing DOType
+    inv Control_RefersToDataSet
+    ( 'ERROR:[SemanticConstraints] DO or SDO (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DOType in DataTypeTemplates section' )
+    :
+        self.RefersToDOType <> null
+endpackage
+

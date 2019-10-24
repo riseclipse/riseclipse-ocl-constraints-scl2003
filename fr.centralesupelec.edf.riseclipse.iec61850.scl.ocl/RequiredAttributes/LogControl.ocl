@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -30,13 +31,13 @@ context LogControl
 
     -- The logName attribute shall be present
     inv LogControl_logName_required
-        ( '[OCL validation] logName attribute shall be present in LogControl (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] logName attribute shall be present in LogControl (line ' + self.lineNumber.toString() + ')' )
     :
        self.logName <> null
 
     -- The logName attribute shall be valid
     inv LogControl_logName_valid
-        ( '[OCL validation] logName attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] logName attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.logName.toString()
         )
     :
@@ -44,7 +45,7 @@ context LogControl
 
     -- The ldInst attribute shall be valid
     inv LogControl_ldInst_valid
-        ( '[OCL validation] ldInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.ldInst.toString()
         )
     :
@@ -52,7 +53,7 @@ context LogControl
 
     -- The prefix attribute shall be valid
     inv LogControl_prefix_valid
-        ( '[OCL validation] prefix attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.prefix.toString()
         )
     :
@@ -60,7 +61,7 @@ context LogControl
 
     -- The lnClass attribute shall be valid
     inv LogControl_lnClass_valid
-        ( '[OCL validation] lnClass attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -68,7 +69,7 @@ context LogControl
 
     -- The lnInst attribute shall be valid
     inv LogControl_lnInst_valid
-        ( '[OCL validation] lnInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnInst.toString()
         )
     :
@@ -79,7 +80,7 @@ context LogControl
     
     -- bufTime is an unsigned int
     inv LogControl_bufTime_valid
-        ( '[OCL validation] bufTime attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] bufTime attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.bufTime.toString()
         )
     :

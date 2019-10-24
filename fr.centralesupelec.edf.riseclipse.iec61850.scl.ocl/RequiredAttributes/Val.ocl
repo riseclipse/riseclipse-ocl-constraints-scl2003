@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,7 +28,7 @@ context Val
 
     -- The sGroup attribute is an unsigned int
     inv Val_sGroup_valid
-        ( '[OCL validation] sGroup attribute shall be valid in Val (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] sGroup attribute shall be valid in Val (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.sGroup.toString()
         )
     :

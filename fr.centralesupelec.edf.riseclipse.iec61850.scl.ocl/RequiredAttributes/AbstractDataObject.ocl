@@ -15,12 +15,13 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
-include '../Helpers/BaseSimpleTypes.ocl'
+import '../Helpers/BaseSimpleTypes.ocl'
 
 package scl
 
@@ -29,31 +30,27 @@ context AbstractDataObject
 
     -- The name attribute shall be present
     inv AbstractDataObject_name_required
-        ( '[OCL validation] name attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] name attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
 
     -- The name attribute shall be valid
-    -- must be done in subclasses because the rule is not the same between DO and SDO
---     inv AbstractDataObject_name_valid
---         ( '[OCL validation] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
---           + 'Current value is ' + self.name.toString()
---         )
---     :
---         self.name <> null implies self.validSclDataName( name )
+    -- name validity differs between DO and SDO
 
+    -- The type attribute shall be present
     inv AbstractDataObject_type_required
-        ( '[OCL validation] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
     :
         self.type <> null
 
     -- The type attribute shall be valid
     inv AbstractDataObject_type_valid
-        ( '[OCL validation] type attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclName( type )
+
 
 endpackage
 

@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -26,7 +27,7 @@ context VoltageLevel
 
     -- At least one Bay is required
     inv VoltageLevel_at_least_one_Bay_required
-        ( '[OCL validation] VoltageLevel shall contain at least one Bay (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredElements] VoltageLevel shall contain at least one Bay (line ' + self.lineNumber.toString() + ')' )
     :
         self.Bay->notEmpty()
 

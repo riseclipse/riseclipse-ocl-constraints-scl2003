@@ -1,0 +1,107 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context LNode
+
+/*
+    -- The iedName identifies the IED on which the LN resides, the ldInst the LD within this IED to which the LN belongs.
+    
+    inv iedName_consistency
+    ( 'iedName in LNode shall be the name of the IED that contains the referenced LN (line ' + self.lineNumber.toString() + ')' )
+    :
+        if self.LN <> null 
+        then
+            if self.LN.LDevice <> null then self.LN.LDevice.Server.AccessPoint.IED.name = self.iedName
+        elseif
+            self.LN <> null and self.LN.AccessPoint <> null then self.LN.AccessPoint.IED.name = self.iedName
+            else false
+            endif
+        else true
+        endif
+        
+     inv ldInst_consistency
+    ( 'ldInst in LNode shall be the inst of the LDevice that contains the referenced LN (line ' + self.lineNumber.toString() + ')' )
+    :
+        if self.LN <> null 
+        then 
+            if self.LN.LDevice <> null then self.LN.LDevice.inst = self.ldInst
+            else true
+            endif
+        else true
+        endif
+
+    --lnClass The LN class as defined in IEC 61850-7-x or other domain standards
+
+     inv lnClass_consistency
+    ( 'lnClass in LNode shall be the class of the referenced LN (line ' + self.lineNumber.toString() + ')' )
+    :
+       self.LN <> null implies self.LN.lnClass = self.lnClass
+       
+        
+    --prefix The LN prefix used in the IED (if needed; default, if not specified, is the empty string). 
+    --Can be used for more detailed function specification than possible by LN class alone, if the LN is not allocated to an IED
+     inv prefix_consistency
+    ( 'prefix in LNode shall be the prefix of the referenced LN (line ' + self.lineNumber.toString() + ')')
+    :
+        self.LN <> null implies self.LN.prefix = self.prefix
+        
+        
+    --lnInst The LN instance identification. Can only be missing for lnClass=LLN0, meaning as value here the empty string
+     inv lnInst_consistency
+    ( 'lnInst in LNode shall be the inst of the referenced LN (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.LN <> null implies self.LN.inst = self.lnInst       
+ */       
+     -- The constraints above are also implemented in LNodeImpl.java
+        
+     
+     --For more detailed specification lnType may refer to a logical node type definition (9.5.2), 
+     -- which then also defines the optional data objects required to exist in this special case, 
+     -- or defines certain values, which some (configuration) parameters shall have. 
+     -- If the logical node is later allocated to an IED within an SCD, 
+     -- then the value of this lnType attribute can be ignored, or may be used to check if 
+     -- the logical node type used on the IED fulfills the requirements.
+     inv lnType_consistencyDO
+    ( 'ERROR:[SemanticConstraints] lnType in LNode (line ' + self.lineNumber.toString() +') specifies something different from what is implemented in the IED : missing DO or SDO' )
+    :
+        if self.RefersToAnyLN <> null and self.lnType <> null then  
+            self.RefersToAnyLN.RefersToLNodeType.DO.name->includesAll(self.RefersToLNodeType.DO.name)
+            and if self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.SDO <> null then
+                self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.SDO.name->includesAll(self.RefersToLNodeType.DO.RefersToDOType.SDO.name)
+                else true endif
+        else true endif
+
+     inv lnType_consistencyDA
+    ( 'ERROR:[SemanticConstraints] lnType in LNode (line ' + self.lineNumber.toString() +') specifies something different from what is implemented in the IED : different parameters' )
+    :
+        if self.RefersToAnyLN <> null and self.lnType <> null then  
+            --if (self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null or self.RefersToLNodeType.DO.RefersToDOType.SDO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null) then
+            if self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null then
+            (self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value->union(self.RefersToAnyLN.DOI.DAI.Val.value))->includesAll(self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value)
+            else true endif
+        else true endif
+        
+endpackage
+

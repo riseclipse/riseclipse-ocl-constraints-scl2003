@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 import '../Helpers/BaseSimpleTypes.ocl'
 
@@ -28,26 +29,26 @@ context ValueWithUnit
 
     -- The value shall be present
     inv ValueWithUnit_value_required
-        ( '[OCL validation] value shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] value shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The unit shall be present
     inv ValueWithUnit_unit_required
-        ( '[OCL validation] unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + ')' )
     :
         self.unit <> null
 
     -- The unit shall be valid
     inv ValueWithUnit_unit_valid
-        ( '[OCL validation] unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] unit shall be present in ValueWithUnit (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :
         -- It is a token in XSD
         -- There is a SIUnitEnum but it is commented out
         -- TODO: why ?
-        self.unit <> null implies self.validSclAnyName( unit )
+        self.unit <> null implies self.validSclAnyName(unit)
         -- There is no Enum with SIUnits, only an example in the 61850-6, also there are no constraints in the xsd indicating it has an enum
         
 

@@ -1,0 +1,134 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context IED
+
+    --  Within an IED, there cannot be two AccessPoint elements with the same
+    --  name.
+    inv IED_AccessPoint_name_unique
+    ( 'ERROR:[SemanticConstraints] AccessPoint in IED shall have different name (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.AccessPoint->isUnique( a : AccessPoint | a.name )
+
+    --  Within an IED, there cannot be two LDevice elements with the same inst.
+    --  Moreover, the inst attribute of an LDevice acts as a key within the IED for
+    --  all references within SCL.
+    inv IED_LDevice_inst_unique
+    ( 'ERROR:[SemanticConstraints] LDevice in IED shall have different inst (line ' + self.lineNumber.toString() + ')' )
+    :
+        let servers : Bag( Server ) =
+            self.AccessPoint
+                ->select( a : AccessPoint | a.Server <> null )
+                ->collect( a : AccessPoint | a.Server )
+        -- collect() returns null instead of an empty bag ?
+        --in if( servers->isEmpty() ) then true
+        -- In Console:
+        --   servers.oclIsUndefined() => true
+        --   if servers.oclIsUndefined() then 1 else 2 endif => 'Boolean' rather than 'Bag<$0:Boolean>' value required ??
+        -- Bug in OCL ?
+        -- Workaround:
+        in if servers.oclAsSet()->isEmpty() then true
+        else servers
+            ->select( s : Server | s.LDevice <> null )
+            ->collect( s : Server | s.LDevice )
+            ->flatten()
+            ->isUnique( l : LDevice | l.inst )
+        endif
+ 
+    -- The FCDA shall refer to LDevice in the same IED (from SCL_IED.ocl)       
+    inv FCDA_in_LN_refers_LDevice_in_same_IED
+    ( 'ERROR:[SemanticConstraints] FCDA in IED shall reference LDevice in the same IED via ldInst (line ' + self.lineNumber.toString() + ')' )
+    :
+        if self.AccessPoint -> notEmpty() then
+            if self.AccessPoint.Server -> excludes(null) then
+                if self.AccessPoint.Server.LDevice -> notEmpty() then
+                    if self.AccessPoint.Server.LDevice.LN -> notEmpty() then
+                        if self.AccessPoint.Server.LDevice.LN.DataSet -> notEmpty() then
+                            if self.AccessPoint.Server.LDevice.LN.DataSet.FCDA -> notEmpty() then
+                                self.AccessPoint.Server.LDevice -> collect(l:LDevice|l.inst) 
+                                    -> includesAll(self.AccessPoint.Server.LDevice.LN.DataSet.FCDA -> collect(f:FCDA|f.ldInst))
+                            else true endif
+                        else true endif
+                    else true endif
+                else true endif
+            else true endif
+        else true endif
+
+    inv FCDA_in_LN0_refers_LDevice_in_same_IED
+    ( 'ERROR:[SemanticConstraints] FCDA in IED shall reference LDevice in the same IED via ldInst (line ' + self.lineNumber.toString() + ')' )
+    :
+        if self.AccessPoint -> notEmpty() then
+            if self.AccessPoint.Server -> excludes(null) then
+                if self.AccessPoint.Server.LDevice -> notEmpty() then
+                    if self.AccessPoint.Server.LDevice.LN0 -> excludes(null) then
+                        if self.AccessPoint.Server.LDevice.LN0.DataSet -> notEmpty() then
+                            if self.AccessPoint.Server.LDevice.LN0.DataSet.FCDA -> notEmpty() then
+                                self.AccessPoint.Server.LDevice -> collect(l:LDevice|l.inst) 
+                                    -> includesAll(self.AccessPoint.Server.LDevice.LN0.DataSet.FCDA -> collect(f:FCDA|f.ldInst))
+                            else true endif
+                        else true endif
+                    else true endif
+                else true endif
+            else true endif
+        else true endif
+        
+    -- The ServerAt shall refer to AccessPoint in the same IED (from SCL_IED.ocl)
+    inv ServerAt_refers_AccessPoint_in_same_IED
+    ( 'ERROR:[SemanticConstraints] ServerAt in IED shall reference AccessPoint in the same IED via ldInst (line ' + self.lineNumber.toString() + ')' )
+    :
+        if self.AccessPoint -> notEmpty() then
+            if self.AccessPoint.ServerAt -> excludes(null) then
+                self.AccessPoint -> collect(a:AccessPoint|a.name) 
+                    -> includesAll(self.AccessPoint.ServerAt -> collect(s:ServerAt|s.apName))
+            else true endif
+        else true endif
+            
+    --  The LN Name consisting of prefix, lnClass and inst shall be unique within
+    --  the scope of the logical device, if a server is defined, or else within the
+    --  scope of the IED.
+    inv IED_LNName_Unique
+    ( 'ERROR:[SemanticConstraints] LN Name consisting of prefix, lnClass and inst in IED shall be unique (line ' + self.lineNumber.toString() + ')' )
+    :
+        let
+        servers : Bag( Server ) =
+            self.AccessPoint
+                ->select( a : AccessPoint | a.Server <> null )
+                ->collect( a : AccessPoint | a.Server )
+        ,
+        LNs : Bag ( LN ) =
+             self.AccessPoint
+                ->select( a : AccessPoint | a.LN <> null)
+                ->collect( a : AccessPoint | a.LN )
+        in
+        if servers.oclAsSet()->isEmpty() 
+        then
+            LNs -> isUnique( n : LN | Sequence{ n.prefix, n.lnClass, n.inst } )
+        else
+            true
+        endif
+
+
+endpackage
+

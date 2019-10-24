@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -28,15 +29,13 @@ context ServiceConfReportControl
   -- bufMode is a real enum
   -- bufConf is a boolean
   
-  
     -- The maxBuf attribute is an unsigned int
     inv ServiceConfReportControl_maxBuf_valid
-        ( '[OCL validation] maxBuf attribute shall be valid in ServiceConfReportControl (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxBuf attribute shall be valid in ServiceConfReportControl (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxBuf.toString()
         )
     :
-        true
-
+        self.maxBuf <> null implies self.maxBuf >= 0
 
 endpackage
 

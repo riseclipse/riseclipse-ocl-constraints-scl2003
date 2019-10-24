@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -33,7 +34,7 @@ context SMVSettings
     -- synchSrcId is a boolean
     -- nofASDU is a real enum
     -- kdaParticipant is a boolean
-    
+        
     inv SMVSettings_nothing
     :
         true

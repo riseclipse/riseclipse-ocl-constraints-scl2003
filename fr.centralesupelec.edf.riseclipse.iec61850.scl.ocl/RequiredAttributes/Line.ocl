@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,7 +30,7 @@ context Line
 
     -- The type attribute shall be valid
     inv Line_type_valid
-        ( '[OCL validation] type attribute shall be valid in Line (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in Line (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
     :
@@ -37,7 +38,7 @@ context Line
 
     -- The nomFreq attribute shall be valid if present.
     inv Line_nomFreq_value
-        ( '[OCL validation] nomFreq attribute shall a positive decimal in Line (line ' + self.lineNumber.toString() + ').'
+        ( 'ERROR:[RequiredAttributes] nomFreq attribute shall a positive decimal in Line (line ' + self.lineNumber.toString() + ').'
             + 'Current value is ' + self.nomFreq.toString()
         )
     :
@@ -45,13 +46,11 @@ context Line
 
     -- The numPhases attribute shall be valid if present.
     inv Line_numPhases_value
-        ( '[OCL validation] numPhases attribute shall be between 1 and 255 in Line (line ' + self.lineNumber.toString() + ').'
+        ( 'ERROR:[RequiredAttributes] numPhases attribute shall be between 1 and 255 in Line (line ' + self.lineNumber.toString() + ').'
             + 'Current value is ' + self.numPhases.toString()
         )
     :
-
-        self.numPhases <> null implies
-            ( self.numPhases > 0 and self.numPhases <= 255 )
-
+        -- test <= 255 is done by XML Handler because it is a byte
+        self.numPhases <> null implies self.numPhases > 0
 endpackage
 

@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,39 +30,27 @@ context Terminal
 
     -- The connectivityNode attribute shall be present
     inv Terminal_connectivityNode_required
-        ( '[OCL validation] connectivityNode attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] connectivityNode attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
     :
         self.connectivityNode <> null
 
     -- The connectivityNode attribute shall be valid
     inv Terminal_connectivityNode_valid
-        ( '[OCL validation] connectivityNode attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + ')). '
+        ( 'ERROR:[RequiredAttributes] connectivityNode attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + ')). '
           + 'Current value is ' + self.connectivityNode.toString()
         )
     :
         self.connectivityNode <> null implies self.validSclRef( connectivityNode )
 
     -- The connectivityNode attribute value shall be the pathName.
+    -- It is checked by the Semantic Constraints by comparing it with it's referenced cNode
     inv Terminal_connectivityNode_value_shall_be_pathname
-        ( '[OCL validation] connectivityNode attribute value shall be the pathName in Terminal (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.connectivityNode.toString()
-        )
     :
-        (  self.connectivityNode <> null
-        and self.substationName <> null
-        and self.voltageLevelName <> null
-        and self.bayName <> null
-        and self.cNodeName <> null
-        ) 
-        implies
-            self.connectivityNode = self.substationName
-                            + '/' + self.voltageLevelName
-                            + '/' + self.bayName
-                            + '/' + self.cNodeName
+      true
 
     -- The substationName attribute shall be valid.
     inv Terminal_substationName_valid
-        ( '[OCL validation] substationName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] substationName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.substationName.toString()
         )
     :
@@ -69,7 +58,7 @@ context Terminal
 
     -- The voltageLevelName attribute shall be valid.
     inv Terminal_voltageLevelName_valid
-        ( '[OCL validation] voltageLevelName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] voltageLevelName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.voltageLevelName.toString()
         )
     :
@@ -77,7 +66,7 @@ context Terminal
 
     -- The bayName attribute shall be valid.
     inv Terminal_bayName_valid
-        ( '[OCL validation] bayName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] bayName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.bayName.toString()
         )
     :
@@ -85,13 +74,13 @@ context Terminal
 
     -- The cNodeName attribute shall be present.
     inv Terminal_cNodeName_required
-        ( '[OCL validation] cNodeName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] cNodeName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
     :
         self.cNodeName <> null
 
     -- The cNodeName attribute shall be valid.
     inv Terminal_cNodeName_valid
-        ( '[OCL validation] cNodeName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] cNodeName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.cNodeName.toString()
         )
     :
@@ -99,7 +88,7 @@ context Terminal
 
     -- The processName attribute shall be valid.
     inv Terminal_processName_valid
-        ( '[OCL validation] processName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] processName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.processName.toString()
         )
     :
@@ -107,7 +96,7 @@ context Terminal
 
     -- The name attribute shall be valid.
     inv Terminal_name_valid
-        ( '[OCL validation] name attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :
@@ -115,12 +104,12 @@ context Terminal
         
     -- The lineName attribute shall be valid.
     inv Terminal_lineName_valid
-        ( '[OCL validation] lineName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lineName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lineName.toString()
         )
     :
         self.lineName <> null implies self.validSclName( lineName )
         
-
+                
 endpackage
 

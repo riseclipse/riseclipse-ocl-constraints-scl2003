@@ -15,7 +15,7 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
 
@@ -34,7 +34,7 @@ def: validSclAnyName( s : String ) : Boolean =
     true
  
 def: validSclName( s : String ) : Boolean =
-    if( self.validSclAnyName( s ) ) then
+    if( self.validSclAnyName( s )) then
         s.size() >= 1
     else
         false
@@ -42,30 +42,29 @@ def: validSclName( s : String ) : Boolean =
 
 def: validSclID( s : String ) : Boolean =
     if( self.validSclAnyName( s )) then
-        s.tokenize( ' ' )->size() = 1
+        s.tokenize(' ')->size() = 1
         and s = s.trim()
-        and s.size() >= 1
-        and s.size() <= 255
+        and s.size() >= 1 and s.size() <= 255
     else
         false
     endif
 
 def: validSclAcsiName( s : String ) : Boolean =
-    if( self.validSclName( s ) ) then
+    if( self.validSclName( s )) then
         s.matches( '[A-Za-z][0-9A-Za-z_]*' )
     else
         false
     endif
 
 def: validSclRestrName1stU( s : String ) : Boolean =
-    if( self.validSclName( s ) ) then
+    if( self.validSclName( s )) then
         s.matches( '[A-Z][0-9A-Za-z]*' )
     else
         false
     endif
 
 def: validSclRestrName1stL( s : String ) : Boolean =
-    if( self.validSclName( s ) ) then
+    if( self.validSclName( s )) then
         s.matches( '[a-z][0-9A-Za-z]*' )
     else
         false
@@ -75,14 +74,14 @@ def: validSclPAddr( s : String ) : Boolean =
     s.size() >= 1
 
 def: validSclVersion( s : String ) : Boolean =
-    if( self.validSclName( s ) ) then
+    if( self.validSclName( s )) then
         s.matches( '2[0-2][0-9]{2}' )
     else
         false
     endif
  
 def: validSclRevision( s : String ) : Boolean =
-    if( self.validSclName( s ) ) then
+    if( self.validSclName( s )) then
         s.matches( '[A-Z]' )
     else
         false
@@ -91,7 +90,7 @@ def: validSclRevision( s : String ) : Boolean =
 -----------------------------------------------------------
 
 def: validSclRelease( i : Integer ) : Boolean =
-    i > 0 and i <= 255
+    i >= 0 and i <= 255
 
 -----------------------------------------------------------
 
@@ -99,7 +98,7 @@ def: validSclEmpty( s : String ) : Boolean =
     s.size() <= 0
 
 -- def: validSclIEDName( s : String ) : Boolean =
---     if( self.validSclVisibleBasicLatin( s ) ) then
+--     if( self.validSclVisibleBasicLatin( s )) then
 --         s.size() >= 1 and s.size() <= 129
 --     else
 --         false
@@ -121,20 +120,24 @@ def: validSclEmpty( s : String ) : Boolean =
 
 def: validSclIEDNameIsNone( s : String ) : Boolean =
     if( self.validSclVisibleBasicLatin( s )) then
-        s = 'None'
+        s.matches( 'None' )
     else
         false
     endif
 
 def: validSclIEDNameOrNone( s : String ) : Boolean =
-    validSclIEDName( s ) or validSclIEDNameIsNone( s )
- 
+    if( validSclIEDName( s )) then
+        true
+    else
+        validSclIEDNameIsNone( s )
+    endif
+     
 def: validSclOnlyRelativeIEDName( s : String ) : Boolean =
     -- XSD: <xs:pattern value="&#x0040;"/>
     s.matches( '\u0040' )
 
 def: validSclIEDNameOrRelative( s : String ) : Boolean =
-    if( self.validSclIEDName( s ) ) then
+    if( self.validSclIEDName( s )) then
         true
     else
         self.validSclOnlyRelativeIEDName( s )
@@ -147,7 +150,7 @@ def: validSclLDInst( s : String ) : Boolean =
     s.matches( '[A-Za-z0-9][0-9A-Za-z_]{0,63}' )
  
 def: validSclLDInstOrEmpty( s : String ) : Boolean =
-    if( self.validSclEmpty( s ) ) then
+    if( self.validSclEmpty( s )) then
         true
     else
         self.validSclLDInst( s )
@@ -164,35 +167,35 @@ def: validSclLNInst( s : String ) : Boolean =
     s.matches( '[0-9]{1,7}' )
  
 def: validSclLNInstOrEmpty( s : String ) : Boolean =
-    if( self.validSclEmpty( s ) ) then
+    if( self.validSclEmpty( s )) then
         true
     else
         self.validSclLNInst( s )
     endif
 
 def: validSclDataName( s : String ) : Boolean =
-    if( self.validSclRestrName1stU( s ) ) then
+    if( self.validSclRestrName1stU( s )) then
         s.size() <= 12
     else
         false
     endif
  
 def: validSclDataSetName( s : String ) : Boolean =
-    if( self.validSclAcsiName( s ) ) then
+    if( self.validSclAcsiName( s )) then
         s.size() <= 32
     else
         false
     endif
  
 def: validSclCBName( s : String ) : Boolean =
-    if( self.validSclAcsiName( s ) ) then
+    if( self.validSclAcsiName( s )) then
         s.size() <= 32
     else
         false
     endif
  
 def: validSclLogName( s : String ) : Boolean =
-    if( self.validSclAcsiName( s ) ) then
+    if( self.validSclAcsiName( s )) then
         s.size() <= 32
     else
         false
@@ -210,7 +213,7 @@ def: validSclVisibleBasicLatin( s : String ) : Boolean =
     s.matches( '[\u0020-\u007E]*' )
 
 def: validSclMessageID( s : String ) : Boolean =
-    if( self.validSclVisibleBasicLatin( s ) ) then
+    if( self.validSclVisibleBasicLatin( s )) then
         s.size() >= 1 and s.size() <= 129
     else
         false
@@ -225,7 +228,7 @@ def: validSclFullDOName( s : String ) : Boolean =
     s.matches( '[A-Z][0-9A-Za-z]{0,11}(\u002E[a-z][0-9A-Za-z]*(\u0028[0-9]+\u0029)?)?' )
  
 def: validSclSubDataName( s : String ) : Boolean =
-    if( self.validSclRestrName1stL( s ) ) then
+    if( self.validSclRestrName1stL( s )) then
         s.size() >= 1 and s.size() <= 60
     else
         false
@@ -244,7 +247,7 @@ def: validSclProcessType( s : String ) : Boolean =
 
 def: validSclProcessName( s : String ) : Boolean =
     s.matches( '.+(/.+)*' )
- 
+
 def: validSclEnumStringValue( s : String ) : Boolean =
     if( s.matches( '[\u0020-\u00FF]*' )) then
         s.size() <= 127

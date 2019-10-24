@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,7 +28,7 @@ context Hitem
 
     -- The version attribute shall be present.
     inv Hitem_version_required
-        ( '[OCL validation] version attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] version attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
         :
         self.version <> null
 
@@ -35,7 +36,7 @@ context Hitem
     
     -- The revision attribute shall be present.
     inv Hitem_revision_required
-        ( '[OCL validation] revision attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] revision attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
         :
         self.revision <> null
 
@@ -43,7 +44,7 @@ context Hitem
 
     -- The when attribute shall be present.
     inv Hitem_when_required
-        ( '[OCL validation] when attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] when attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
         :
         self.when <> null
 

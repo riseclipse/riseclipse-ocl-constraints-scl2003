@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -28,7 +29,7 @@ context LN0
     -- lnClass required and valid: in AnyLN
     -- The lnClass attribute shall be LLN0
     inv LN0_lnClass_value
-        ( '[OCL validation] lnClass attribute shall be LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.lnClass.toString()
         )
     :
@@ -37,7 +38,7 @@ context LN0
     -- inst required: in AnyLN
     -- The inst attribute shall be empty
     inv LN0_inst_empty
-        ( '[OCL validation] inst attribute shall be empty in LN0 (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] inst attribute shall be empty in LN0 (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.inst.toString()
         )
     :

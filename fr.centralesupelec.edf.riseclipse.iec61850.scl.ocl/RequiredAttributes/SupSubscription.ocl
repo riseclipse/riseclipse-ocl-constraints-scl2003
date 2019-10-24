@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,13 +28,13 @@ context SupSubscription
 
     -- The maxGo attribute shall be present
     inv SupSubscription_maxGo_required
-        ( '[OCL validation] maxGo attribute shall be present in SupSubscription (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] maxGo attribute shall be present in SupSubscription (line ' + self.lineNumber.toString() + ')' )
     :
         self.maxGo <> null
 
     -- The maxGo attribute shall be valid.
     inv SupSubscription_maxGo_valid
-        ( '[OCL validation] maxGo attribute shall be valid in SupSubscription (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxGo attribute shall be valid in SupSubscription (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxGo.toString()
         )
     :
@@ -41,13 +42,13 @@ context SupSubscription
 
     -- The maxSv attribute shall be present
     inv SupSubscription_maxSv_required
-        ( '[OCL validation] maxSv attribute shall be present in SupSubscription (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] maxSv attribute shall be present in SupSubscription (line ' + self.lineNumber.toString() + ')' )
     :
         self.maxSv <> null
 
     -- The maxSv attribute shall be valid.
     inv SupSubscription_maxSv_valid
-        ( '[OCL validation] maxSv attribute shall be valid in SupSubscription (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] maxSv attribute shall be valid in SupSubscription (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.maxSv.toString()
         )
     :

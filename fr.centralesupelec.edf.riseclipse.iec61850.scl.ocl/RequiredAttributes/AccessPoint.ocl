@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 import '../Helpers/BaseSimpleTypes.ocl'
@@ -29,13 +30,13 @@ context AccessPoint
 
     -- The name attribute shall be present
     inv AccessPoint_name_required
-        ( '[OCL validation] name attribute shall be present in AccessPoint (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] name attribute shall be present in AccessPoint (line ' + self.lineNumber.toString() + ')' )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv AccessPoint_name_valid
-        ( '[OCL validation] name attribute shall be valid in AccessPoint (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in AccessPoint (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.name.toString()
         )
     :

@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 include '../Helpers/BaseSimpleTypes.ocl'
@@ -29,16 +30,14 @@ context EnumVal
 
     -- The ord attribute shall be present
     inv EnumVal_ord_required
-        ( '[OCL validation] ord attribute shall be present in EnumVal (line ' + self.lineNumber.toString() + ')' )
-    :
+        ( 'ERROR:[RequiredAttributes] ord attribute shall be present in EnumVal (line ' + self.lineNumber.toString() + ')' )
+        :
         self.ord <> null
-
+        
     -- The value attribute shall be valid
     inv EnumVal_value_valid
-        ( '[OCL validation] value attribute shall be valid in EnumVal (line ' + self.lineNumber.toString() + ')'
-          + 'Current value is ' + self.value.toString()
-        )
-    :
+        ( 'ERROR:[RequiredAttributes] value attribute shall be valid in EnumVal (line ' + self.lineNumber.toString() + ')' )
+        :
         self.value <> null implies self.validSclEnumStringValue( value )
 
 endpackage

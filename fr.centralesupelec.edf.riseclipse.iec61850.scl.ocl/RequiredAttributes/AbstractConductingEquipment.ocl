@@ -15,17 +15,18 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
 
+--There are no attributes defined in SCL_Substation.xsd
 context AbstractConductingEquipment
 -- extends Equipment
 
-    -- No attribute in SCL_Substation.xsd
     inv AbstractConductingEquipment_nothing
     :
         true

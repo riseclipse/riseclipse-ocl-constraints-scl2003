@@ -15,9 +15,10 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
 *************************************************************************
 */
+
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
@@ -27,14 +28,14 @@ context BitRateInMbPerSec
 
     -- The value shall be present
     inv BitRateInMbPerSec_value_required
-        ( '[OCL validation] value shall be present in BitRateInMbPerSec (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[RequiredAttributes] value shall be present in BitRateInMbPerSec (line ' + self.lineNumber.toString() + ')' )
     :
         self.value <> null
 
     -- The value must be positive
     -- Note: the XSD does not force this (only decimal)
     inv BitRateInMbPerSec_value_valid
-        ( '[OCL validation] value shall be positive in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] value shall be positive in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.value.toString()
         )
     :
@@ -42,7 +43,7 @@ context BitRateInMbPerSec
 
     -- If present, the unit attribute must be b/s
     inv BitRateInMbPerSec_unit_value
-        ( '[OCL validation] unit attribute if present shall be b/s in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] unit attribute if present shall be b/s in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.unit.toString()
         )
     :
@@ -50,7 +51,7 @@ context BitRateInMbPerSec
 
     -- If present, the multiplier attribute must be M
     inv BitRateInMbPerSec_multiplier_value
-        ( '[OCL validation] multiplier attribute if present shall be M in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
+        ( 'ERROR:[RequiredAttributes] multiplier attribute if present shall be M in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.multiplier.toString()
         )
     :

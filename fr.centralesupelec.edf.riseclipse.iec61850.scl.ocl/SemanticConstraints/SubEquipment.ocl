@@ -1,0 +1,68 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SubEquipment
+
+    -- phase attribute: the following additional values are only allowed, if the ConductingEquipment above has type VTR: AB, BC, CA
+    inv SubEquipment_phase_value
+        ( 'ERROR:[SemanticConstraints] SubEquipment phase attribute value AB, BC CA are allowed only if ConductingEquipment above has type VTR (line ' + self.lineNumber.toString() + ')' )
+        :
+      
+        if self.phase = null then true else
+            if self.phase.toString().tokenize('::')->includes('AB') 
+                or self.phase.toString().tokenize('::')->includes('BC') 
+                or self.phase.toString().tokenize('::')->includes('CA') 
+                then
+                if 
+                self.ParentAbstractConductingEquipment <> null 
+                    and
+                    self.ParentAbstractConductingEquipment.oclIsKindOf( scl::ConductingEquipment ) 
+                    then
+                    self.ParentAbstractConductingEquipment.oclAsType( scl::ConductingEquipment ).type = 'VTR'
+                else false endif
+            else true endif
+        endif
+        
+    -- The SubEquipment in AbstractConductingEquipment shall have unique child name (from SCL_Substation.xsd)
+    inv unique_name_in_SubEquipment_from_AbstractConductingEquipment
+    ( 'ERROR:[SemanticConstraints] Unique child name in SubEquipment from AbstractConductingEquipment (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.oclContainer.oclIsKindOf(AbstractConductingEquipment) implies self.oclContents -> isUnique(n:Naming|n.name)
+        
+    -- The SubEquipment in PowerTransformer shall have unique child name (from SCL_Substation.xsd)
+    inv unique_name_in_SubEquipment_from_PowerTransformer
+    ( 'ERROR:[SemanticConstraints] Unique child name in SubEquipment from PowerTransformer (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.oclContainer.oclIsTypeOf(PowerTransformer) implies self.oclContents -> isUnique(n:Naming|n.name)
+        
+    -- The SubEquipment in TapChanger shall have unique child name (from SCL_Substation.xsd)
+    inv unique_name_in_SubEquipment_from_TapChanger
+    ( 'ERROR:[SemanticConstraints] Unique child name in SubEquipment from TapChanger (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.oclContainer.oclIsTypeOf(TapChanger) implies self.oclContents -> isUnique(n:Naming|n.name)
+
+
+endpackage
+

@@ -1,0 +1,38 @@
+/*
+*************************************************************************
+**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      http://wdi.centralesupelec.fr/software/RiseClipse/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SubNetwork
+
+    -- Within a SubNetwork, there cannot be two ConnectedAP elements with the same
+    -- combination of iedName and apName.
+    -- may be modified after TISSUExxx - IOP2019
+    inv SubNetwork_unique_ConnectedAP_combination
+    ( 'ERROR:[SemanticConstraints] ConnectedAP in SubNetwork shall have different combination of { iedName, apName } (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.ConnectedAP->isUnique( c : ConnectedAP | Sequence{ c.iedName, c.apName } )
+
+
+endpackage
+
