@@ -140,6 +140,13 @@ context ExtRef
         )
     :
         self.pDO <> null implies self.validSclFullDOName( pDO )
+  
+  	-- In an "ExtRef", if a LN is mapped and "lnClass" is different from "LLN0", the attribute "lnInst" should be present   
+      inv ExtRef_lnInst_notNull_whenNotLLN0
+        ( 'ERROR:[RequiredAttributes] lnInst attribute is mandatory when lnClass is different from LLNO (line ' + self.lineNumber.toString() + '). '
+        )
+    :
+        self.lnClass <> null implies (self.lnClass <> 'LLN0' implies self.lnInst <> null)
 
 
 endpackage
