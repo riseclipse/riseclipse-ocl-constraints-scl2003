@@ -129,6 +129,16 @@ context IED
             true
         endif
 
-
+    -- The number of report control blocks instantiated in an IED cannot exceed the value of ConfReportControl.max
+    -- issue 3
+    -- from IEC 61850-6
+    
+    inv IED_ReportControlNumb
+    ( 'ERROR:[SemanticConstraints] The number of ReportControls in IED (' + self.name.toString() + ') exceeds the maximum possible (' + self.Services.ConfReportControl.max.toString() + ') (line ' + self.lineNumber.toString() + ') : there are (' + (self.AccessPoint.Server.LDevice.LN0.ReportControl->size() + self.AccessPoint.Server.LDevice.LN.ReportControl->size()).toString() + ')' )
+    :
+        (self.AccessPoint.Server.LDevice.LN0.ReportControl->size() + self.AccessPoint.Server.LDevice.LN.ReportControl->size()) <=  self.Services.ConfReportControl.max
+        
+        
+        
 endpackage
 
