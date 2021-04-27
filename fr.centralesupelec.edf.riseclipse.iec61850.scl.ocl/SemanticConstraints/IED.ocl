@@ -136,8 +136,10 @@ context IED
     inv IED_ReportControlNumb
     ( 'ERROR:[SemanticConstraints] The number of ReportControls in IED (' + self.name.toString() + ') exceeds the maximum possible (' + self.Services.ConfReportControl.max.toString() + ') (line ' + self.lineNumber.toString() + ') : there are (' + (self.AccessPoint.Server.LDevice.LN0.ReportControl->size() + self.AccessPoint.Server.LDevice.LN.ReportControl->size()).toString() + ')' )
     :
-        (self.AccessPoint.Server.LDevice.LN0.ReportControl->size() + self.AccessPoint.Server.LDevice.LN.ReportControl->size()) <=  self.Services.ConfReportControl.max
-        
+        self.AccessPoint->forAll(a: AccessPoint|a.Server->notEmpty() implies
+         (
+         (a.Server.LDevice.LN0.ReportControl->size() + a.Server.LDevice.LN.ReportControl->size()) <=  a.IED.Services.ConfReportControl.max 
+         ))
         
         
 endpackage
