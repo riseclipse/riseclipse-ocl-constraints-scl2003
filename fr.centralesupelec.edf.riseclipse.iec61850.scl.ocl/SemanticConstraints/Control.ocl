@@ -29,6 +29,6 @@ context Control
     inv Control_RefersToDataSet
     ( 'ERROR:[SemanticConstraints] Control (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DataSet' )
     :
-        self.RefersToDataSet <> null
+        self.datSet <> null implies self.RefersToDataSet <> null
 endpackage
 
