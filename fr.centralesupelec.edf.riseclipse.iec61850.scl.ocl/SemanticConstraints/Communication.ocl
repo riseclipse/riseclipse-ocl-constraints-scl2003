@@ -32,6 +32,14 @@ context Communication
     :
         self.SubNetwork->isUnique( s : SubNetwork | s.name )
 
+    --  MAC-adresses shall be unique in the project - SCL File, 
+    --  for GSE and SMV
+    
+    inv Communication_GSE_SMV_MACAddress_unique
+        ( 'ERROR:[SemanticConstraints] GSE and SMV MAC-Addresses shall be unique in the file (line ' + self.lineNumber.toString() + ')' )
+    :
+        self.SubNetwork.ConnectedAP.SMV.Address.P->select(mac: P|mac.type->includes('MAC-Address')) ->union(self.SubNetwork.ConnectedAP.GSE.Address.P->select(mac: P|mac.type->includes('MAC-Address'))) ->isUnique(ma: P|ma.value)      
+
 
 endpackage
 
