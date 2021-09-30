@@ -38,7 +38,12 @@ context SubNetwork
     inv SubNetwork_IP_unique
         ( 'ERROR:[SemanticConstraints] IP Addresses shall be unique in a Subnetwork (line ' + self.lineNumber.toString() + ')' )
     :
-        self.ConnectedAP.Address.P->select(mac: P|mac.type->includes('IP')) ->isUnique(ip: P|ip.value) 
+        -- self.ConnectedAP.Address means self.ConnectedAP->collect( c : ConnectedAP | c.Address ))
+        -- If Address is missing in ConnectedAP (it should not, but it may happen), null is added in result collection
+        -- and applying after .P (which means ->collect( a : Address | a.P )) will trigger an execution error
+        self.ConnectedAP.Address->select( a : Address | a <> null )
+                            .P->select  ( ip : P | ip.type = 'IP' )
+                              ->isUnique( ip : P | ip.value ) 
         
 endpackage
 
