@@ -38,7 +38,7 @@ context Communication
     inv Communication_GSE_SMV_MACAddress_unique
         ( 'ERROR:[SemanticConstraints] GSE and SMV MAC-Addresses shall be unique in the file (line ' + self.lineNumber.toString() + ')' )
     :
-        P.allInstances()->select  ( mac : P | mac.type->includes( 'MAC-Address' ))
+        P.allInstances()->select  ( mac : P | mac.type = 'MAC-Address' )
                         ->isUnique( mac : P | mac.value )      
 
 endpackage
