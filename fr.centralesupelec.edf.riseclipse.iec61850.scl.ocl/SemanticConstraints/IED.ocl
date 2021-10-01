@@ -138,7 +138,7 @@ context IED
     :
         self.AccessPoint->forAll(a: AccessPoint|a.Server->notEmpty() implies
          (
-         (a.Server.LDevice.LN0.ReportControl->size() + a.Server.LDevice.LN.ReportControl->size()) <=  a.IED.Services.ConfReportControl.max 
+         (a.Server.LDevice.LN0.ReportControl->size() + a.Server.LDevice.LN.ReportControl->size()) <=  a.ParentIED.Services.ConfReportControl.max 
          ))
         
         
