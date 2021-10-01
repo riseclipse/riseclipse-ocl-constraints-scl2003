@@ -40,7 +40,7 @@ context IED
     :
         let servers : Bag( Server ) =
             self.AccessPoint
-                ->select( a : AccessPoint | a.Server <> null )
+                ->excluding( null )
                 ->collect( a : AccessPoint | a.Server )
         -- collect() returns null instead of an empty bag ?
         --in if( servers->isEmpty() ) then true
@@ -51,7 +51,7 @@ context IED
         -- Workaround:
         in if servers.oclAsSet()->isEmpty() then true
         else servers
-            ->select( s : Server | s.LDevice <> null )
+            ->excluding( null )
             ->collect( s : Server | s.LDevice )
             ->flatten()
             ->isUnique( l : LDevice | l.inst )
@@ -114,12 +114,12 @@ context IED
         let
         servers : Bag( Server ) =
             self.AccessPoint
-                ->select( a : AccessPoint | a.Server <> null )
+                ->excluding( null )
                 ->collect( a : AccessPoint | a.Server )
         ,
         LNs : Bag ( LN ) =
              self.AccessPoint
-                ->select( a : AccessPoint | a.LN <> null)
+                ->excluding( null)
                 ->collect( a : AccessPoint | a.LN )
         in
         if servers.oclAsSet()->isEmpty() 
@@ -136,10 +136,12 @@ context IED
     inv IED_ReportControlNumb
     ( 'ERROR:[SemanticConstraints] The number of ReportControls in IED (' + self.name.toString() + ') exceeds the maximum possible (' + self.Services.ConfReportControl.max.toString() + ') (line ' + self.lineNumber.toString() + ') : there are (' + (self.AccessPoint.Server.LDevice.LN0.ReportControl->size() + self.AccessPoint.Server.LDevice.LN.ReportControl->size()).toString() + ')' )
     :
-        self.AccessPoint->forAll(a: AccessPoint|a.Server->notEmpty() implies
-         (
-         (a.Server.LDevice.LN0.ReportControl->size() + a.Server.LDevice.LN.ReportControl->size()) <=  a.ParentIED.Services.ConfReportControl.max 
-         ))
+        self.AccessPoint->forAll( a : AccessPoint | a.Server->notEmpty()
+             implies (
+                 (a.Server.LDevice.LN0.ReportControl->size() + a.Server.LDevice.LN.ReportControl->size())
+                 <=  a.ParentIED.Services.ConfReportControl.max 
+             )
+        )
         
         
 endpackage
