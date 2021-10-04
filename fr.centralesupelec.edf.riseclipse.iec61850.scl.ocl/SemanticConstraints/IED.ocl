@@ -40,7 +40,7 @@ context IED
     :
         let servers : Bag( Server ) =
             self.AccessPoint
-                ->select( a : AccessPoint | a.Server <> null )
+                ->excluding( null )
                 ->collect( a : AccessPoint | a.Server )
         -- collect() returns null instead of an empty bag ?
         --in if( servers->isEmpty() ) then true
@@ -51,7 +51,7 @@ context IED
         -- Workaround:
         in if servers.oclAsSet()->isEmpty() then true
         else servers
-            ->select( s : Server | s.LDevice <> null )
+            ->excluding( null )
             ->collect( s : Server | s.LDevice )
             ->flatten()
             ->isUnique( l : LDevice | l.inst )
@@ -114,15 +114,15 @@ context IED
         let
         servers : Bag( Server ) =
             self.AccessPoint
-                ->select( a : AccessPoint | a.Server <> null )
+                ->excluding( null )
                 ->collect( a : AccessPoint | a.Server )
         ,
         LNs : Bag ( LN ) =
              self.AccessPoint
-                ->select( a : AccessPoint | a.LN <> null)
+                ->excluding( null)
                 ->collect( a : AccessPoint | a.LN )
         in
-        if servers.oclAsSet()->isEmpty() 
+        if servers.oclAsSet() -> isEmpty() 
         then
             LNs -> isUnique( n : LN | Sequence{ n.prefix, n.lnClass, n.inst } )
         else
@@ -132,14 +132,45 @@ context IED
     -- The number of report control blocks instantiated in an IED cannot exceed the value of ConfReportControl.max
     -- issue 3
     -- from IEC 61850-6
-    
-    inv IED_ReportControlNumb
-    ( 'ERROR:[SemanticConstraints] The number of ReportControls in IED (' + self.name.toString() + ') exceeds the maximum possible (' + self.Services.ConfReportControl.max.toString() + ') (line ' + self.lineNumber.toString() + ') : there are (' + (self.AccessPoint.Server.LDevice.LN0.ReportControl->size() + self.AccessPoint.Server.LDevice.LN.ReportControl->size()).toString() + ')' )
+    def: maxConfReportControl( ied : IED ) : Integer =
+        if( ied.Services <> null )
+        then
+            if( ied.Services.ConfReportControl <> null )
+            then
+                if( ied.Services.ConfReportControl.max <> null )
+                then
+                    ied.Services.ConfReportControl.max
+                else
+                    0
+                endif
+            else
+                0
+            endif
+        else
+            0
+        endif
+
+    def: numberOfReportControlBlocks( ied : IED ) : Integer =
+        ied.AccessPoint -> iterate( ap : AccessPoint; count : Integer = 0 |
+            if( ap.Server <> null )
+            then
+                count + ap.Server.LDevice.LN0.ReportControl->size() + ap.Server.LDevice.LN.ReportControl->size()
+            else
+                count
+            endif
+        )
+
+    inv IED_ReportControlNumber
+    ( 'ERROR:[SemanticConstraints] The number of ReportControls in IED ('
+        + self.name.toString() 
+        + ') exceeds the maximum possible ('
+        + maxConfReportControl( self ).toString()
+        + ') (line ' + self.lineNumber.toString() + ') : there are (' 
+        + numberOfReportControlBlocks( self ).toString()
+        + ')'
+    )
     :
-        self.AccessPoint->forAll(a: AccessPoint|a.Server->notEmpty() implies
-         (
-         (a.Server.LDevice.LN0.ReportControl->size() + a.Server.LDevice.LN.ReportControl->size()) <=  a.IED.Services.ConfReportControl.max 
-         ))
+        numberOfReportControlBlocks( self ) <= maxConfReportControl( self )
         
         
 endpackage
