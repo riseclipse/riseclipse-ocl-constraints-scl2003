@@ -19,18 +19,5 @@
 *************************************************************************
 */
 
-import scl: 'http://www.iec.ch/61850/2003/SCL'
-
-package scl
-
-context ReportControl
-        
-    -- "In case of buffered control blocks indexed may only be set to false, 
-    -- if only one instance of this type is possible, i.e. max=1."(in RptEnabled)
-    inv buffered_true_indexed_false
-        ( 'ERROR:[SemanticConstraints] buffered = true and indexed = false in ReportControl only if RptEnabled.max = 1 (line ' + self.lineNumber.toString() + ')' )
-        :
-        self.buffered = true and self.indexed = false implies self.RptEnabled.max = 1
-
-endpackage
+import '../Common/ReportControl.ocl'
 
