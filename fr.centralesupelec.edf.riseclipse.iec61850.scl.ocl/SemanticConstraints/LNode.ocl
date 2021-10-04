@@ -86,11 +86,15 @@ context LNode
      inv lnType_consistencyDO
     ( 'ERROR:[SemanticConstraints] lnType in LNode (line ' + self.lineNumber.toString() +') specifies something different from what is implemented in the IED : missing DO or SDO' )
     :
-        if self.RefersToAnyLN <> null and self.lnType <> null then  
-            self.RefersToAnyLN.RefersToLNodeType.DO.name->includesAll(self.RefersToLNodeType.DO.name)
-            and if self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.SDO <> null then
-                self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.SDO.name->includesAll(self.RefersToLNodeType.DO.RefersToDOType.SDO.name)
-                else true endif
+        if self.RefersToAnyLN <> null and self.lnType <> null then
+            if( self.RefersToAnyLN.RefersToLNodeType <> null and self.RefersToLNodeType <> null ) then
+                let doSet : Set( DO ) = self.RefersToAnyLN.RefersToLNodeType.DO in
+                    doSet.name -> includesAll( self.RefersToLNodeType.DO.name )
+                    and if doSet.RefersToDOType.SDO -> notEmpty() then
+                        doSet.RefersToDOType.SDO.name
+                            ->includesAll( self.RefersToLNodeType.DO.RefersToDOType.SDO.name )
+                        else true endif
+            else true endif
         else true endif
 
      inv lnType_consistencyDA
@@ -98,8 +102,18 @@ context LNode
     :
         if self.RefersToAnyLN <> null and self.lnType <> null then  
             --if (self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null or self.RefersToLNodeType.DO.RefersToDOType.SDO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null) then
-            if self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null then
-            (self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value->union(self.RefersToAnyLN.DOI.DAI.Val.value))->includesAll(self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value)
+            if( self.RefersToAnyLN.RefersToLNodeType <> null and self.RefersToLNodeType <> null ) then
+                let bdaBag : Bag( BDA ) = self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType->excluding( null ).BDA->excluding( null ) in
+                if bdaBag -> notEmpty() then
+                    let bdaBag2 : Bag( BDA ) = self.RefersToAnyLN.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType->excluding( null ).BDA->excluding( null ) in
+                    if bdaBag2 -> notEmpty() then
+                        bdaBag2.Val.value
+                    else
+                        Bag{}
+                    endif
+                        ->union( self.RefersToAnyLN.DOI.DAI.Val.value )
+                        ->includesAll( bdaBag.Val.value )
+                else true endif
             else true endif
         else true endif
         
