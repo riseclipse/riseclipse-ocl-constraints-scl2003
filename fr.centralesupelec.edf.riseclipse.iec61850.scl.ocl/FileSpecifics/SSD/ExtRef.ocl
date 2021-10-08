@@ -29,26 +29,33 @@ context ExtRef
 
     -- The iedName attribute shall be present
     inv iedName_required
-        ( 'ERROR:[SSD File] iedName attribute shall be present in ExtRef (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[SSD File] iedName attribute shall be present in ExtRef, if intAddr and desc are not present (line ' + self.lineNumber.toString() + ')' )
     :
-        self.iedName <> null
+        ((self.intAddr = null) or (self.desc = null)) 
+        implies self.iedName <> null
     
     -- The ldInst attribute shall be present
     inv ldInst_required
-        ( 'ERROR:[SSD File] ldInst attribute shall be present in ExtRef (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[SSD File] ldInst attribute shall be present in ExtRef, if intAddr and desc are not present (line ' + self.lineNumber.toString() + ')' )
     :
+        ((self.intAddr = null) or (self.desc = null)) 
+        implies
         self.ldInst <> null
 
     -- The lnClass attribute shall be present
     inv lnClass_required
-        ( 'ERROR:[SSD File] lnClass attribute shall be present in ExtRef (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[SSD File] lnClass attribute shall be present in ExtRef, if intAddr and desc are not present (line ' + self.lineNumber.toString() + ')' )
     :
+        ((self.intAddr = null) or (self.desc = null)) 
+        implies
         self.lnClass <> null 
     
     -- The doName attribute shall be present
     inv doName_required
-        ( 'ERROR:[SSD File] doName attribute shall be present in ExtRef (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[SSD File] doName attribute shall be present in ExtRef, if intAddr and desc are not present (line ' + self.lineNumber.toString() + ')' )
     :
+        ((self.intAddr = null) or (self.desc = null)) 
+        implies
         self.doName <> null    
 
 endpackage
