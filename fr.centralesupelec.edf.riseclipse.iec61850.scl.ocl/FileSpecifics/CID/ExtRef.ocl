@@ -29,16 +29,12 @@ context ExtRef
     inv ExtRef_RefersToAbstractDataAttribute
     ( 'ERROR:[SCD File] ExtRef (line ' + self.lineNumber.toString() + ') does not refer an existing Data Object or Data Attribute' )
     :
-        ((self.intAddr = null) or (self.desc = null)) 
-        implies
-        (self.doName ->notEmpty() implies (self.RefersToAbstractDataAttribute <> null or self.RefersToAbstractDataObject <> null))
+       (self.doName ->notEmpty() implies (self.RefersToAbstractDataAttribute <> null or self.RefersToAbstractDataObject <> null))
         
     -- a ExtRef must refer an existing Control
     inv ExtRef_RefersToControl
     ( 'ERROR:[SCD File] ExtRef (line ' + self.lineNumber.toString() + ') does not refer an existing Control' )
     :
-        ((self.intAddr = null) or (self.desc = null)) 
-        implies
         (self.srcCBName ->notEmpty() implies self.RefersToControl <> null)
 
     -- a ExtRef must be correctly mapped - CDC specified by  pDO and, if given, the attribute (base) type specified by pDA are met
