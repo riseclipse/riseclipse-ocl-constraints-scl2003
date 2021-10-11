@@ -29,7 +29,7 @@ context ExtRef
     inv ExtRef_RefersToAbstractDataAttribute
     ( 'ERROR:[SCD File] ExtRef (line ' + self.lineNumber.toString() + ') does not refer an existing Data Object or Data Attribute' )
     :
-        (self.doName ->notEmpty() implies (self.RefersToAbstractDataAttribute <> null or self.RefersToAbstractDataObject <> null))
+       (self.doName ->notEmpty() implies (self.RefersToAbstractDataAttribute <> null or self.RefersToAbstractDataObject <> null))
         
     -- a ExtRef must refer an existing Control
     inv ExtRef_RefersToControl
@@ -41,6 +41,8 @@ context ExtRef
     inv ExtRef_ServIncorrectlyMapped
     ( 'ERROR:[SCD File] ExtRef service (line ' + self.lineNumber.toString() + ') is not correctly binded' )
     :
+        ((self.intAddr = null) or (self.desc = null)) 
+        implies
         (self.pServT -> notEmpty() implies self.pServT = self.serviceType)
  
     

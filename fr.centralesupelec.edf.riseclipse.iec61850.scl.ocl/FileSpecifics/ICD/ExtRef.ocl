@@ -35,7 +35,7 @@ context ExtRef
     
     -- The desc attribute shall be present
     inv desc_required
-        ( 'ERROR:[ICD File] pDO attribute shall be present in ExtRef (line ' + self.lineNumber.toString() + ')' )
+        ( 'ERROR:[ICD File] desc attribute shall be present in ExtRef (line ' + self.lineNumber.toString() + ')' )
     :
         self.desc <> null
    
