@@ -1,0 +1,49 @@
+/*
+*************************************************************************
+**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      https://riseclipse.github.io/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context GSE
+
+    -- If a GSE refers to a GSEControl that does not contain a Protocol element, 
+    -- then check that there is one and only one P element with type = APPID, VLAN_ID, VLAN-PRIORITY, MAC-Address
+    inv GSEControl_datSet_valid_reference
+        ( 'ERROR:[SemanticConstraints] GSE for L2 GOOSE should have APPID VLAN_ID VLAN-PRIORITY and MAC-Address (line ' + self.lineNumber.toString() + ')' )
+    :
+        if( self.RefersToControlWithIEDName <> null )
+        then
+            if( self.RefersToControlWithIEDName.Protocol = null )
+            then -- L2 GOOSE
+                self.Address.P.type->includesAll( Set{ 'VLAN-ID', 'APPID','VLAN-PRIORITY','MAC-Address' })
+                and
+                self.Address.P->isUnique( p : P | p.type )
+            else   -- R-GOOSE
+                true
+            endif            	
+        else
+            true
+        endif
+    
+
+endpackage
+
