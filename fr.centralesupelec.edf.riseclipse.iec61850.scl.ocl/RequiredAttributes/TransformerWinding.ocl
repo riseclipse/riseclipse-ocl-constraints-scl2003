@@ -33,7 +33,7 @@ context TransformerWinding
         self.type <> null
 
     -- The type attribute shall be PTW
-    inv TransformerWinding_type_required
+    inv TransformerWinding_type_value_PTW
         ( 'ERROR:[RequiredAttributes] type attribute shall be PTW in TransformerWinding (line ' + self.lineNumber.toString() + '). '
           + 'Current value is ' + self.type.toString()
         )
