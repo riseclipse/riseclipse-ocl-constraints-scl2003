@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,22 +30,30 @@ context ProtNs
 
     -- The value shall be present
     inv ProtNs_value_required
-        ( 'ERROR:[RequiredAttributes] value shall be present in ProtNs (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ProtNs_value_required;'
+          + self.lineNumber.toString() + ';'
+          + 'value shall be present in ProtNs'
+        )
     :
         self.value <> null
 
     -- The value shall be valid
     inv ProtNs_value_valid
-        ( 'ERROR:[RequiredAttributes] value shall be valid in ProtNs (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.value.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ProtNs_value_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'value shall be valid in ProtNs. ' + 'Current value is ' + self.value.toString()
         )
     :
         self.value <> null implies self.validSclNamespaceName( value )
 
     -- The type attribute shall be valid
     inv ProtNs_type_valid
-        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in ProtNs (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ProtNs_type_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be valid in ProtNs. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.type.size() > 0

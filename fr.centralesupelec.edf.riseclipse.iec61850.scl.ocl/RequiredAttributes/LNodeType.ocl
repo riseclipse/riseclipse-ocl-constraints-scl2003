@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,14 +30,20 @@ context LNodeType
 
     -- The lnClass attribute shall be present
     inv LNodeType_lnClass_required
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be present in LNodeType (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNodeType_lnClass_required;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be present in LNodeType'
+        )
     :
         self.lnClass <> null
 
     -- The lnClass attribute shall be valid
     inv LNodeType_lnClass_valid
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in LNodeType (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNodeType_lnClass_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be valid in LNodeType. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,14 +31,20 @@ context IED
 
     -- The name attribute shall be present
     inv IED_name_required
-        ( 'ERROR:[RequiredAttributes] name attribute shall be present in IED (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IED_name_required;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be present in IED'
+        )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv IED_name_valid
-        ( 'ERROR:[RequiredAttributes] name attribute shall have between 1 and 64 alphanumeric characters in IED (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.name.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IED_name_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall have between 1 and 64 alphanumeric characters in IED. ' + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclIEDName( name )
@@ -49,7 +55,10 @@ context IED
     -- An empty string as well as the reserved name None are forbidden.
     -- The empty string is already covered by the IED_name_valid
     inv IED_name_not_None
-        ('ERROR:[RequiredAttributes] name attribute cannot be None in IED(line ' + self.lineNumber.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IED_name_not_None;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute cannot be None in IED'
         )
         :
         self.name <> 'None'
@@ -60,32 +69,40 @@ context IED
 
     -- The originalSclVersion attribute shall be valid
     inv IED_originalSclVersion_valid
-        ( 'ERROR:[RequiredAttributes] originalSclVersion attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.originalSclVersion.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IED_originalSclVersion_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'originalSclVersion attribute shall be valid in IED. ' + 'Current value is ' + self.originalSclVersion.toString()
         )
     :
         self.originalSclVersion <> null implies self.validSclVersion( originalSclVersion )
     
     -- The originalSclRevision attribute shall be valid
     inv IED_originalSclRevision_valid
-        ( 'ERROR:[RequiredAttributes] originalSclRevision attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.originalSclRevision.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IED_originalSclRevision_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'originalSclRevision attribute shall be an uppercase letter in IED. ' + 'Current value is ' + self.originalSclRevision.toString()
         )
     :
         self.originalSclRevision <> null implies self.validSclRevision( originalSclRevision )
     
     -- The originalSclRelease attribute shall be valid
     inv IED_originalSclRelease_valid
-        ( 'ERROR:[RequiredAttributes] originalSclRelease attribute shall be an uppercase letter in IED (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.originalSclRelease.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IED_originalSclRelease_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'originalSclRelease attribute shall be an uppercase letter in IED. ' + 'Current value is ' + self.originalSclRelease.toString()
         )
     :
         self.originalSclRelease <> null implies self.originalSclRelease > 0
     
     -- The engRight attribute shall be valid
     inv engRight_valid
-        ( 'ERROR:[RequiredAttributes] engRight attribute shall be valid in IED (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.engRight.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/engRight_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'engRight attribute shall be valid in IED. ' + 'Current value is ' + self.engRight.toString()
         )
     :
         self.engRight <> null implies self.validSclRightEnum( engRight )

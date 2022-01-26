@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,43 +31,71 @@ context LN
     
     -- The ReportControl in LN shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_ReportControl_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique name in ReportControl from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_ReportControl_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in ReportControl from LN'
+        )
     :
         self.ReportControl -> isUnique(c:ReportControl|c.name)
         
     -- The ReportControl in LN shall have unique datSet (from SCL_IED.xsd)
     inv unique_datSet_in_ReportControl_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique datSet in ReportControl from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_datSet_in_ReportControl_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique datSet in ReportControl from LN'
+        )
     :
         self.ReportControl -> isUnique(c:ReportControl|c.datSet)
         
     -- The LogControl in LN shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_LogControl_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique name in LogControl from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_LogControl_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in LogControl from LN'
+        )
     :
         self.LogControl -> isUnique(c:LogControl|c.name)
 
     -- The LogControl in LN shall have unique datSet (from SCL_IED.xsd)
     inv unique_datSet_in_LogControl_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique datSet in LogControl from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_datSet_in_LogControl_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique datSet in LogControl from LN'
+        )
     :
         self.LogControl -> isUnique(c:LogControl|c.datSet)
         
     -- The DataSet in LN shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_DataSet_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique name in DataSet from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_DataSet_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in DataSet from LN'
+        )
     :
         self.DataSet -> isUnique(d:DataSet|d.name)
         
     -- The DOI in LN shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_DOI_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique name in DOI from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_DOI_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in DOI from LN'
+        )
     :
         self.DOI -> isUnique(d:DOI|d.name)
         
     -- The Log in LN shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_Log_from_LN
-    ( 'ERROR:[SemanticConstraints] Unique name in Log from LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_Log_from_LN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in Log from LN'
+        )
     :
         self.Log -> isUnique(l:Log|l.name)
 

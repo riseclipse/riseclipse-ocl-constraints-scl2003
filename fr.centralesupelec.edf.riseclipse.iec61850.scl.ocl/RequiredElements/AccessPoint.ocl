@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,8 +27,11 @@ context AccessPoint
 
     -- 1 Server xor 1 ServerAt xor 1..* LN xor none of them
     inv AccessPoint_restriction_on_content
-        ( 'ERROR:[RequiredElements] AccessPoint shall contain one Server xor one ServerAt xor at least one LN xor none ' +
-          'of them (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/AccessPoint_restriction_on_content;'
+          + self.lineNumber.toString() + ';'
+          + 'AccessPoint shall contain one Server xor one ServerAt xor at least one LN xor none of them'
+        )
     :
         let serverPresent   : Integer = if self.Server   = null then 0 else 1 endif in
         let serverAtPresent : Integer = if self.ServerAt = null then 0 else 1 endif in
@@ -38,15 +41,22 @@ context AccessPoint
 
     -- At most 7 GOOSESecurity and 7 SMVSecurity
     inv AccessPoint_at_most_securities
-        ( 'ERROR:[RequiredElements] AccessPoint shall contain at most 7 GOOSESecurity and at most 7 SMVSecurity (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/AccessPoint_at_most_securities;'
+          + self.lineNumber.toString() + ';'
+          + 'AccessPoint shall contain at most 7 GOOSESecurity and at most 7 SMVSecurity'
+        )
     :
         self.GOOSESecurity->size() <= 7 and self.SMVSecurity->size() <= 7
     
     -- The GOOSESecurity element and the SMVSecurity element are only allowed, if the attribute certificate
     -- of the server’s Authentication element is true
     inv AccessPoint_securities_allowed
-        ( 'ERROR:[RequiredElements] AccessPoint shall contain GOOSESecurity or SMVSecurity only if if the attribute certificate ' +
-          'of the server’s Authentication element is true (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/AccessPoint_securities_allowed;'
+          + self.lineNumber.toString() + ';'
+          + 'AccessPoint shall contain GOOSESecurity or SMVSecurity only if if the attribute certificate of the server’s Authentication element is true'
+        )
     :
         if self.GOOSESecurity->isEmpty() and self.SMVSecurity->isEmpty() then true
         else if self.Server = null then false

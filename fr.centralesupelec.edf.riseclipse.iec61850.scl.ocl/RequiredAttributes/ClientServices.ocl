@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -36,32 +36,40 @@ context ClientServices
     
     -- maxAttributes is an unsigned int
     inv ClientServices_maxAttributes_valid
-        ( 'ERROR:[RequiredAttributes] maxAttributes attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.maxAttributes.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientServices_maxAttributes_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'maxAttributes attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxAttributes.toString()
         )
     :
         self.maxAttributes <> null implies self.maxAttributes >= 0
 
     -- maxReports is an unsigned int
     inv ClientServices_maxReports_valid
-        ( 'ERROR:[RequiredAttributes] maxReports attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.maxReports.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientServices_maxReports_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'maxReports attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxReports.toString()
         )
     :
         self.maxReports <> null implies self.maxReports >= 0
 
     -- maxGOOSE is an unsigned int
     inv ClientServices_maxGOOSE_valid
-        ( 'ERROR:[RequiredAttributes] maxGOOSE attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.maxGOOSE.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientServices_maxGOOSE_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'maxGOOSE attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxGOOSE.toString()
         )
     :
         self.maxGOOSE <> null implies self.maxGOOSE >= 0
 
     -- maxSMV is an unsigned int
     inv ClientServices_maxSMV_valid
-        ( 'ERROR:[RequiredAttributes] maxSMV attribute shall be valid in ClientServices (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.maxSMV.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientServices_maxSMV_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'maxSMV attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxSMV.toString()
         )
     :
         self.maxSMV <> null implies self.maxSMV >= 0

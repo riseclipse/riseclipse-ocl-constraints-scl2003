@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,22 +30,30 @@ context TapChanger
 
     -- The type attribute shall be present
     inv TapChanger_type_required
-        ( 'ERROR:[RequiredAttributes] type attribute shall be present in TapChanger (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/TapChanger_type_required;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be present in TapChanger'
+        )
     :
         self.type <> null
 
     -- The type attribute shall be valid
     inv TapChanger_type_valid
-        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in TapChanger (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/TapChanger_type_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be valid in TapChanger. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclName( type )
 
     -- The type attribute shall be LTC
     inv TapChanger_type_value
-        ( 'ERROR:[RequiredAttributes] type attribute shall be LTC in TapChanger (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/TapChanger_type_value;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be LTC in TapChanger. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.type = 'LTC'

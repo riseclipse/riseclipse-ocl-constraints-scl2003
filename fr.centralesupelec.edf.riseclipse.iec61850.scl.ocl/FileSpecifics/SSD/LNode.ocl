@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,10 +30,13 @@ context LNode
     -- The name of the IED which contains the LN, none if used for specification (default if attribute is not specified)
 
     inv LNode_iedName_None_in_SSD
-        ('ERROR:[SSD File] iedName attribute from LNode shall be None in SSD files')
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SSD/LNode_iedName_None_in_SSD;'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute from LNode shall be None in SSD files'
+        )
         :
-        self.RefersToAnyLN <> null implies
-        self.iedName.matches('None')
+        self.RefersToAnyLN <> null implies self.iedName.matches( 'None' )
 
 endpackage
 

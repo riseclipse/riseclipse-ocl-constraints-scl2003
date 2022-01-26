@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -29,14 +29,22 @@ context SubNetwork
     -- combination of iedName and apName.
     -- may be modified after TISSUExxx - IOP2019
     inv SubNetwork_unique_ConnectedAP_combination
-    ( 'ERROR:[SemanticConstraints] ConnectedAP in SubNetwork shall have different combination of { iedName, apName } (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SubNetwork_unique_ConnectedAP_combination;'
+          + self.lineNumber.toString() + ';'
+          + 'ConnectedAP in SubNetwork shall have different combination of { iedName, apName }'
+        )
     :
         self.ConnectedAP->isUnique( c : ConnectedAP | Sequence{ c.iedName, c.apName } )
 
      --  IP adresses shall be unique in a Subnetwork
     
     inv SubNetwork_IP_unique
-        ( 'ERROR:[SemanticConstraints] IP Addresses shall be unique in a Subnetwork (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SubNetwork_IP_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'IP Addresses shall be unique in a Subnetwork'
+        )
     :
         -- self.ConnectedAP.Address means self.ConnectedAP->collect( c : ConnectedAP | c.Address ))
         -- If Address is missing in ConnectedAP (it should not, but it may happen), null is added in result collection

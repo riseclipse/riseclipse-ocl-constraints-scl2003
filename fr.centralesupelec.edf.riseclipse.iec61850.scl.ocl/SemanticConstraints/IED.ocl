@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,7 +28,11 @@ context IED
     --  Within an IED, there cannot be two AccessPoint elements with the same
     --  name.
     inv IED_AccessPoint_name_unique
-    ( 'ERROR:[SemanticConstraints] AccessPoint in IED shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/IED_AccessPoint_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'AccessPoint in IED shall have different name'
+        )
     :
         self.AccessPoint->isUnique( a : AccessPoint | a.name )
 
@@ -36,7 +40,11 @@ context IED
     --  Moreover, the inst attribute of an LDevice acts as a key within the IED for
     --  all references within SCL.
     inv IED_LDevice_inst_unique
-    ( 'ERROR:[SemanticConstraints] LDevice in IED shall have different inst (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/IED_LDevice_inst_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'LDevice in IED shall have different inst'
+        )
     :
         let servers : Bag( Server ) =
             self.AccessPoint
@@ -59,7 +67,11 @@ context IED
  
     -- The FCDA shall refer to LDevice in the same IED (from SCL_IED.ocl)       
     inv FCDA_in_LN_refers_LDevice_in_same_IED
-    ( 'ERROR:[SemanticConstraints] FCDA in IED shall reference LDevice in the same IED via ldInst (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/FCDA_in_LN_refers_LDevice_in_same_IED;'
+          + self.lineNumber.toString() + ';'
+          + 'FCDA in IED shall reference LDevice in the same IED via ldInst'
+        )
     :
         if self.AccessPoint -> notEmpty() then
             if self.AccessPoint.Server -> excludes(null) then
@@ -77,7 +89,11 @@ context IED
         else true endif
 
     inv FCDA_in_LN0_refers_LDevice_in_same_IED
-    ( 'ERROR:[SemanticConstraints] FCDA in IED shall reference LDevice in the same IED via ldInst (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/FCDA_in_LN0_refers_LDevice_in_same_IED;'
+          + self.lineNumber.toString() + ';'
+          + 'FCDA in IED shall reference LDevice in the same IED via ldInst'
+        )
     :
         if self.AccessPoint -> notEmpty() then
             if self.AccessPoint.Server -> excludes(null) then
@@ -96,7 +112,11 @@ context IED
         
     -- The ServerAt shall refer to AccessPoint in the same IED (from SCL_IED.ocl)
     inv ServerAt_refers_AccessPoint_in_same_IED
-    ( 'ERROR:[SemanticConstraints] ServerAt in IED shall reference AccessPoint in the same IED via ldInst (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ServerAt_refers_AccessPoint_in_same_IED;'
+          + self.lineNumber.toString() + ';'
+          + 'ServerAt in IED shall reference AccessPoint in the same IED via ldInst'
+        )
     :
         if self.AccessPoint -> notEmpty() then
             if self.AccessPoint.ServerAt -> excludes(null) then
@@ -109,7 +129,11 @@ context IED
     --  the scope of the logical device, if a server is defined, or else within the
     --  scope of the IED.
     inv IED_LNName_Unique
-    ( 'ERROR:[SemanticConstraints] LN Name consisting of prefix, lnClass and inst in IED shall be unique (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/IED_LNName_Unique;'
+          + self.lineNumber.toString() + ';'
+          + 'LN Name consisting of prefix, lnClass and inst in IED shall be unique'
+        )
     :
         let
         servers : Bag( Server ) =
@@ -161,14 +185,12 @@ context IED
         )
 
     inv IED_ReportControlNumber
-    ( 'ERROR:[SemanticConstraints] The number of ReportControls in IED ('
-        + self.name.toString() 
-        + ') exceeds the maximum possible ('
-        + maxConfReportControl( self ).toString()
-        + ') (line ' + self.lineNumber.toString() + ') : there are (' 
-        + numberOfReportControlBlocks( self ).toString()
-        + ')'
-    )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/IED_ReportControlNumber;'
+          + self.lineNumber.toString() + ';'
+          + 'The number of ReportControls in IED "' + self.name.toString() + '" exceeds the maximum possible ('
+          + maxConfReportControl( self ).toString() + ') : there are ' + numberOfReportControlBlocks( self ).toString()
+        )
     :
         numberOfReportControlBlocks( self ) <= maxConfReportControl( self )
         

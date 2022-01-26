@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -34,8 +34,10 @@ context SDO
 
     -- The name attribute shall be valid
     inv DO_name_valid
-        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.name.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/DO_name_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be valid in SDO. ' + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclRestrName1stL( name )
@@ -45,8 +47,10 @@ context SDO
 
     -- The count attribute shall be valid
     inv SDO_count_valid
-        ( 'ERROR:[RequiredAttributes] count attribute shall be valid in SDO (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SDO_count_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'count attribute shall be valid in SDO. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.count <> null implies self.validSclSDOCount( count )

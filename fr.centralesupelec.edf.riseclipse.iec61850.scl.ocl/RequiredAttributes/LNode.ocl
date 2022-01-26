@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,60 +30,80 @@ context LNode
 
     -- The lnClass attribute shall be present.
     inv LNode_lnClass_required
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be present in LNode (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_lnClass_required;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be present in LNode'
+        )
     :
         self.lnClass <> null
 
     -- The lnClass attribute shall be valid.
     inv LNode_lnClass_value
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_lnClass_value;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall have a valid value in LNode. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- The lnInst "Can only be missing for lnClass=LLN0, meaning as value here the empty string"
     inv LNode_lnInst_required_lnClass_LLN0
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be present in LNode when lnClass <> LLN0 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_lnInst_required_lnClass_LLN0;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall be present in LNode when lnClass <> LLN0'
+        )
     :
         self.lnClass <> 'LLN0' implies self.lnInst <> null and self.lnInst <> ''
 
     -- The iedName attribute shall be valid if present.
     inv LNode_iedName_value
-        ( 'ERROR:[RequiredAttributes] iedName attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.iedName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_iedName_value;'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute shall have a valid value in LNode. ' + 'Current value is ' + self.iedName.toString()
         )
     :
         self.iedName <> null implies self.validSclIEDNameOrNone( iedName )
 
     -- The ldInst attribute shall be valid if present.
     inv LNode_ldInst_value
-        ( 'ERROR:[RequiredAttributes] ldInst attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.ldInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_ldInst_value;'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst attribute shall have a valid value in LNode. ' + 'Current value is ' + self.ldInst.toString()
         )
     :
         self.ldInst <> null implies self.validSclLDInstOrEmpty( ldInst )
 
     -- The prefix attribute shall be valid if present.
     inv LNode_prefix_value
-        ( 'ERROR:[RequiredAttributes] prefix attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.prefix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_prefix_value;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix attribute shall have a valid value in LNode. ' + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
 
     -- The lnInst attribute shall be valid if present.
     inv LNode_lnInst_value
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_lnInst_value;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall have a valid value in LNode. ' + 'Current value is ' + self.lnInst.toString()
         )
     :
         self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     -- The lnType attribute shall be valid if present.
     inv LNode_lnType_value
-        ( 'ERROR:[RequiredAttributes] lnType attribute shall have a valid value in LNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnType.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LNode_lnType_value;'
+          + self.lineNumber.toString() + ';'
+          + 'lnType attribute shall have a valid value in LNode. ' + 'Current value is ' + self.lnType.toString()
         )
     :
         self.lnType <> null implies self.validSclName( lnType )

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,28 +31,40 @@ context AbstractDataAttribute
 
     -- The name attribute shall be present
     inv AbstractDataAttribute_name_required
-        ( 'ERROR:[RequiredAttributes] name attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AbstractDataAttribute_name_required;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be present in ' + self.oclType().toString()
+        )
     :
         self.name <> null
 
     -- The name attribute shall be valid
     inv AbstractDataAttribute_name_valid
-        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.name.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AbstractDataAttribute_name_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be valid in ' + self.oclType().toString() + '. ' + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclAttributeNameEnum( name )
 
     -- The bType attribute shall be present
     inv AbstractDataAttribute_bType_required
-        ( 'ERROR:[RequiredAttributes] bType attribute shall be present in AbstractDataAttribute (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AbstractDataAttribute_bType_required;'
+          + self.lineNumber.toString() + ';'
+          + 'bType attribute shall be present in AbstractDataAttribute'
+        )
     :
         self.bType <> null
 
     -- The bType attribute shall be valid
     inv AbstractDataAttribute_bType_valid
-        ( 'ERROR:[RequiredAttributes] bType attribute shall be valid in AbstractDataAttribute (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.bType.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AbstractDataAttribute_bType_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'bType attribute shall be valid in AbstractDataAttribute. ' + 'Current value is ' + self.bType.toString()
         )
     :
         self.bType <> null implies self.validSclBasicTypeEnum( bType )
@@ -62,16 +74,20 @@ context AbstractDataAttribute
     
     -- The type attribute shall be valid
     inv AbstractDataAttribute_type_valid
-        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in AbstractDataAttribute (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AbstractDataAttribute_type_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be valid in AbstractDataAttribute. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclAnyName( bType )
 
     -- The count attribute shall be valid
     inv AbstractDataAttribute_count_valid
-        ( 'ERROR:[RequiredAttributes] count attribute shall be valid in AbstractDataAttribute (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.count.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AbstractDataAttribute_count_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'count attribute shall be valid in AbstractDataAttribute. ' + 'Current value is ' + self.count.toString()
         )
     :
         self.count <> null implies self.validSclDACount( count )

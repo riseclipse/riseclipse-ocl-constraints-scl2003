@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,38 +27,62 @@ context AnyLN
 
     --  The name of the log control block shall be unique within the LN.
     inv LN_LogControl_name_unique
-        ( 'ERROR:[SemanticConstraints] name of the log control block shall be unique within the AnyLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LN_LogControl_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'name of the log control block shall be unique within the AnyLN'
+        )
     : 
         self.LogControl -> isUnique( l : LogControl | l.name )
 
     -- The name of the report control block shall be unique within the LN.
     inv LN_ReportControl_name_unique
-        ( 'ERROR:[SemanticConstraints] name of the report control block shall be unique within the AnyLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LN_ReportControl_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'name of the report control block shall be unique within the AnyLN'
+        )
     : 
         self.ReportControl -> isUnique( r: ReportControl | r.name )
 
     -- The Log element has as its only attribute its name, which shall be unique within the LN.
     inv LN_Log_name_unique
-    ( 'ERROR:[SemanticConstraints] name of the Log shall be unique within the AnyLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LN_Log_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'name of the Log shall be unique within the AnyLN'
+        )
     : 
         self.Log -> isUnique( l : Log | l.name ) 
 
     -- In DOI.name: "Its value must be unique at this level, i.e. there shall be at maximum one DOI element for the same data object."
     inv LN_DOI_name_unique
-    ( 'ERROR:[SemanticConstraints] name of the DOI shall be unique within the AnyLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LN_DOI_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'name of the DOI shall be unique within the AnyLN'
+        )
     : 
         self.DOI <> null implies self.DOI -> isUnique( d : DOI | d.name )
     
 
     -- The lnClass in LN or LN must be the same as the referenced LNodeType lnClass
     inv LNodeType_lnClass_consistent
-    ( 'ERROR:[SemanticConstraints] lnClass shall be the same as the referenced LNodeType lnClass (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LNodeType_lnClass_consistent;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass shall be the same as the referenced LNodeType lnClass'
+        )
     : 
         self.RefersToLNodeType <> null implies self.RefersToLNodeType.lnClass = self.lnClass
     
     -- anyLN must refer an existing LNodeType in DataTypeTemplate section
     inv AnyLN_RefersToLNodeType
-    ( 'ERROR:[SemanticConstraints] AnyLN (lnType=' + self.lnType.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing LNodeType in DataTypeTemplates section' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/AnyLN_RefersToLNodeType;'
+          + self.lineNumber.toString() + ';'
+          + 'AnyLN (lnType=' + self.lnType.toString() + ')  does not refer an existing LNodeType in DataTypeTemplates section'
+        )
     :
         self.RefersToLNodeType <> null
         

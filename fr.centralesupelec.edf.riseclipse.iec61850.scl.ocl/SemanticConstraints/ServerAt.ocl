@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context ServerAt
 
     -- a ServerAt must refer an existing DataSet
     inv ServerAt_RefersToAccessPoint
-    ( 'ERROR:[SemanticConstraints] ServerAt (line ' + self.lineNumber.toString() + ') does not refer an existing AccessPoint' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ServerAt_RefersToAccessPoint;'
+          + self.lineNumber.toString() + ';'
+          + 'ServerAt does not refer an existing AccessPoint'
+        )
     :
         self.RefersToAccessPoint <> null
 endpackage
