@@ -83,6 +83,11 @@ context FCDA
     --  corresponds to an empty string in a GSSE DataLabel definition (fc value
     --  should be ST) – in all other data sets, this is not allowed.
     inv FCDA_empty_attributes_only_if_GSSE
+       (   'ERROR;'
+          + 'OCL/RequiredAttributes/FCDA_empty_attributes_only_if_GSSE;'
+          + self.lineNumber.toString() + ';'
+          + 'fc attribute shall be ST in a GSSE FCDA'
+        )
     :
         (       ( self.doName  = null or self.doName.size()  = 0 )
             and ( self.daName  = null or self.daName.size()  = 0 )
