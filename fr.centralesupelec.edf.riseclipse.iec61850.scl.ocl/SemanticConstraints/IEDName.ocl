@@ -1,0 +1,45 @@
+/*
+*************************************************************************
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      https://riseclipse.github.io/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context IEDName
+
+    --  an IEDName in a GSEControl or a SV should be declared in the corresponding Input/ExtRef
+    -- check that for a GSEControl/IEDName -> the correct Input/ExtRef are created (ERROR because SICS S381 is mandatory see 61850-6 ed2.1)
+    -- check that for a SampledValueControl/IEDName -> the correct Input/ExtRef are created (ERROR because SICS S381 is mandatory see 61850-6 ed2.1)
+
+    inv IEDName_not_declared_as_ExtRef
+		(   'ERROR;'
+          + 'OCL/SemanticConstraints/IEDName_not_declared_as_ExtRef;'
+          + self.lineNumber.toString() + ';'
+          + 'IEDName has no corresponding ExtRef in the receiver IED'
+        )
+    :
+   		self.RefersToAnyLN <> null
+	
+   
+
+
+endpackage
+
