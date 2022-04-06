@@ -38,7 +38,31 @@ context IEDName
     :
    		self.RefersToAnyLN <> null
 	
-   
+   -- Checks that the IED sending the GOOSE or the SV is connected to the same subNetwork that the receiver IED
+     inv IEDName_Sender_and_receiver_not_in_same_subnetwork
+		(   'ERROR;'
+          + 'OCL/SemanticConstraints/IEDName_Sender_and_receiver_not_in_same_subnetwork;'
+          + self.lineNumber.toString() + ';'
+          + 'Sender and receiver are not in the same Subnetwork'
+        )
+    :
+  		if (self.ParentControlWithIEDName.oclIsTypeOf(SampledValueControl) )
+  			then
+			( self.ParentControlWithIEDName.oclAsType(SampledValueControl).ParentLN0.ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+  				  				-> select (c : ConnectedAP | c.iedName = self.value and c.apName = self.apRef) 
+  				  				-> size() = 1
+  			)
+  		else (
+  			if (self.ParentControlWithIEDName.oclIsTypeOf(GSEControl))
+  			then
+  			( self.ParentControlWithIEDName.oclAsType(GSEControl).ParentLN0.ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+  				  				-> select (c : ConnectedAP | c.iedName = self.value and c.apName = self.apRef) 
+  				  				-> size() = 1
+  			)
+  			else true
+  			endif			
+  		)
+  		endif
 
 
 endpackage
