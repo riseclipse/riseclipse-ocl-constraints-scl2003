@@ -1,0 +1,69 @@
+/*
+*************************************************************************
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      https://riseclipse.github.io/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context IEDName
+
+    --  an IEDName in a GSEControl or a SV should be declared in the corresponding Input/ExtRef
+    -- check that for a GSEControl/IEDName -> the correct Input/ExtRef are created (ERROR because SICS S381 is mandatory see 61850-6 ed2.1)
+    -- check that for a SampledValueControl/IEDName -> the correct Input/ExtRef are created (ERROR because SICS S381 is mandatory see 61850-6 ed2.1)
+
+    inv IEDName_not_declared_as_ExtRef
+		(   'ERROR;'
+          + 'OCL/SemanticConstraints/IEDName_not_declared_as_ExtRef;'
+          + self.lineNumber.toString() + ';'
+          + 'IEDName has no corresponding ExtRef in the receiver IED'
+        )
+    :
+   		self.RefersToAnyLN <> null
+	
+   -- Checks that the IED sending the GOOSE or the SV is connected to the same subNetwork that the receiver IED
+     inv IEDName_Sender_and_receiver_not_in_same_subnetwork
+		(   'ERROR;'
+          + 'OCL/SemanticConstraints/IEDName_Sender_and_receiver_not_in_same_subnetwork;'
+          + self.lineNumber.toString() + ';'
+          + 'Sender and receiver are not in the same Subnetwork'
+        )
+    :
+  		if (self.ParentControlWithIEDName.oclIsTypeOf(SampledValueControl) )
+  			then
+			( self.ParentControlWithIEDName.oclAsType(SampledValueControl).ParentLN0.ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+  				  				-> select (c : ConnectedAP | c.iedName = self.value and c.apName = self.apRef) 
+  				  				-> size() = 1
+  			)
+  		else (
+  			if (self.ParentControlWithIEDName.oclIsTypeOf(GSEControl))
+  			then
+  			( self.ParentControlWithIEDName.oclAsType(GSEControl).ParentLN0.ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+  				  				-> select (c : ConnectedAP | c.iedName = self.value and c.apName = self.apRef) 
+  				  				-> size() = 1
+  			)
+  			else true
+  			endif			
+  		)
+  		endif
+
+
+endpackage
+
