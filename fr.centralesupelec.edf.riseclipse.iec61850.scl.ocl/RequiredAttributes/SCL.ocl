@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,40 +30,63 @@ context SCL
 
     -- The version attribute shall be 2007
     inv SCL_version_required
-        ( 'ERROR:[RequiredAttributes] version attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_version_required;'
+          + self.lineNumber.toString() + ';'
+          + 'version attribute shall be present in SCL'
+        )
     :
         self.version <> null
     inv SCL_version_valid
-        ( 'ERROR:[RequiredAttributes] version attribute shall be a year between 2000 and 2999 in SCL (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.version.toString() )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_version_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'version attribute shall be a year between 2000 and 2999 in SCL. ' + 'Current value is ' + self.version.toString()
+        )
     :
         self.version <> null implies self.validSclVersion( version )
     inv SCL_version_value_2007
-        ( 'ERROR:[RequiredAttributes] version attribute shall be equal to 2007 in SCL (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.version.toString() )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_version_value_2007;'
+          + self.lineNumber.toString() + ';'
+          + 'version attribute shall be equal to 2007 in SCL. ' + 'Current value is ' + self.version.toString()
+        )
     :
         self.version <> null implies self.version = '2007'
 
     -- The revision attribute shall be B
     inv SCL_revision_required
-        ( 'ERROR:[RequiredAttributes] revision attribute shall be present in SCL (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_revision_required;'
+          + self.lineNumber.toString() + ';'
+          + 'revision attribute shall be present in SCL'
+        )
     :
         self.revision <> null
     inv SCL_revision_valid
-        ( 'ERROR:[RequiredAttributes] revision attribute shall be an uppercase letter in SCL (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.revision.toString() )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_revision_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'revision attribute shall be an uppercase letter in SCL. ' + 'Current value is ' + self.revision.toString()
+        )
     :
         self.revision <> null implies self.validSclRevision( revision )
     inv SCL_revision_value_B
-        ( 'ERROR:[RequiredAttributes] revision attribute shall be equal to B in SCL (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.revision.toString() )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_revision_value_B;'
+          + self.lineNumber.toString() + ';'
+          + 'revision attribute shall be equal to B in SCL. ' + 'Current value is ' + self.revision.toString()
+        )
     :
         self.revision <> null implies self.revision = 'B'
 
     -- The release attribute shall be 4
     inv SCL_release_value_4
-        ( 'ERROR:[RequiredAttributes] release attribute shall be equal to 4 in SCL (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.release.toString() )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SCL_release_value_1;'
+          + self.lineNumber.toString() + ';'
+          + 'release attribute shall be equal to 4 in SCL. ' + 'Current value is ' + self.release.toString()
+        )
     :
         self.release <> null implies self.release = 4
 

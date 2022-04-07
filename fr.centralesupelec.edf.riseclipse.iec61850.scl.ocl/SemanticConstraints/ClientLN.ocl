@@ -27,7 +27,11 @@ context ClientLN
 
     -- iedName definition: "The name of the IED where the LN resides"
     inv iedName_consistency
-    ( 'ERROR:[SemanticConstraints] iedName from ClientLN shall be the name of the IED containing the referred LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/iedName_consistency;'
+          + self.lineNumber.toString() + ';'
+          + 'iedName from ClientLN shall be the name of the IED containing the referred LN'
+        )
     :
         if self.iedName <> null and self.RefersToAnyLN <> null then 
         if self.RefersToAnyLN.oclContainer.oclIsTypeOf(LDevice) then 
@@ -38,7 +42,11 @@ context ClientLN
         
     -- ldInst definition: "The instance identification of the LD where the LN resides"
     inv ldInst_consistency
-    ( 'ERROR:[SemanticConstraints] ldInst from ClientLN shall be the inst of the LDevice containing the referred LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ldInst_consistency;'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst from ClientLN shall be the inst of the LDevice containing the referred LN'
+        )
     :
         if self.ldInst <> null and self.RefersToAnyLN <> null then 
         if self.RefersToAnyLN.oclContainer.oclIsTypeOf(LDevice) then 
@@ -49,7 +57,11 @@ context ClientLN
 
     -- prefix definition: "The LN prefix"
     inv perfix_consistency
-    ( 'ERROR:[SemanticConstraints] prefix from ClientLN shall be the prefix of the referred LN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/perfix_consistency;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix from ClientLN shall be the prefix of the referred LN'
+        )
     :
         if self.prefix <> null and self.RefersToAnyLN <> null then 
             self.RefersToAnyLN -> collect(l:LN|l.prefix).matches(self.prefix)
@@ -58,7 +70,11 @@ context ClientLN
         
     -- a ClientLN must refer an existing LN
     inv ClientLN_RefersToLNodeType
-    ( 'ERROR:[SemanticConstraints] ClientLN (line ' + self.lineNumber.toString() + ') does not refer an existing LN' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ClientLN_RefersToLNodeType;'
+          + self.lineNumber.toString() + ';'
+          + 'ClientLN does not refer an existing LN'
+        )
     :
         self.RefersToAnyLN <> null    
    

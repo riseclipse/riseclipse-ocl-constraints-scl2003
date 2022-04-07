@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -40,21 +40,33 @@ context Substation
     -- Within a Substation, there cannot be two VoltageLevel elements with the
     -- same name.
     inv Substation_unique_VoltageLevel_name
-    ( 'ERROR:[SemanticConstraints] VoltageLevel in Substation shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Substation_unique_VoltageLevel_name;'
+          + self.lineNumber.toString() + ';'
+          + 'VoltageLevel in Substation shall have different name'
+        )
     :
         self.VoltageLevel->isUnique( v : VoltageLevel | v.name )
 
     -- Within a Substation, there cannot be two Function elements with the same
     -- name.
     inv Substation_unique_Function_name
-    ( 'ERROR:[SemanticConstraints] Function in Substation shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Substation_unique_Function_name;'
+          + self.lineNumber.toString() + ';'
+          + 'Function in Substation shall have different name'
+        )
     :
         self.Function->isUnique( f : Function | f.name )
 
     -- In order to avoid any ambiguities, within a Substation there cannot be two
     -- direct child elements with the same name.
     inv Substation_unique_DirectChild_name
-    ( 'ERROR:[SemanticConstraints] All direct childs in Substation shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Substation_unique_DirectChild_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All direct childs in Substation shall have different name'
+        )
     :
         self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
         -- Version when oclContents() is not available
@@ -67,7 +79,11 @@ context Substation
     -- In general, at each hierarchy level within the substation section all
     -- names shall be unique, leading to unique object
     inv unique_name_same_level_in_Substation
-     ( 'ERROR:[SemanticConstraints] All names shall be unique at each hierarchy level within the Substation (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_same_level_in_Substation;'
+          + self.lineNumber.toString() + ';'
+          + 'All names shall be unique at each hierarchy level within the Substation'
+        )
     :   
         if self.ParentSCL <> null then
         SclObject.allInstances()->
@@ -114,9 +130,12 @@ context Substation
     
     -- Substation terminals shall not reference connectivity nodes inside Line elements
     
-    inv Terminal_CNode_not_refererences_Line_CNode 
-        ('ERROR:[SemanticConstraints] ConnectivityNode from Terminal shall not reference a ConnectivityNode from Line
-        (line ' + self.lineNumber.toString() + ')' )
+    inv Terminal_CNode_not_refererences_Line_CNode
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Terminal_CNode_not_refererences_Line_CNode;'
+          + self.lineNumber.toString() + ';'
+          + 'ConnectivityNode from Terminal shall not reference a ConnectivityNode from Line'
+        )
         :
         Line.allInstances()->collect(l:Line|l.ConnectivityNode)->
             exists(c:ConnectivityNode|self.VoltageLevel.Bay.ConductingEquipment.Terminal
@@ -126,8 +145,11 @@ context Substation
     -- A logical node instance within an IED can only be referenced once within all substation sections.
     
     inv unique_LN_reference_in_Substation_LNode
-        ('ERROR:[SemanticConstraints] LN reference from LNode element in Substation shall be unique in the Substation
-        (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_LN_reference_in_Substation_LNode;'
+          + self.lineNumber.toString() + ';'
+          + 'LN reference from LNode element in Substation shall be unique in the Substation'
+        )
         :
         (if SCL.allInstances().Substation -> notEmpty() then SclObject.allInstances()->
         select(s:SclObject|SCL.allInstances().oclContents()->

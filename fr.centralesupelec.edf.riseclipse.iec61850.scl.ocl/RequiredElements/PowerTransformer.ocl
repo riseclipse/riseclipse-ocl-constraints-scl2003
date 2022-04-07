@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context PowerTransformer
 
     -- At least one TransformerWinding is required
     inv PowerTransformer_at_least_one_TransformerWinding_required
-        ( 'ERROR:[RequiredElements] PowerTransformer shall contain at least one TransformerWinding (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/PowerTransformer_at_least_one_TransformerWinding_required;'
+          + self.lineNumber.toString() + ';'
+          + 'PowerTransformer shall contain at least one TransformerWinding'
+        )
     :
         self.TransformerWinding->notEmpty()
 

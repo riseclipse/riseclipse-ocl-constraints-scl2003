@@ -28,7 +28,11 @@ context ReportControl
     -- "In case of buffered control blocks indexed may only be set to false, 
     -- if only one instance of this type is possible, i.e. max=1."(in RptEnabled)
     inv buffered_true_indexed_false
-        ( 'ERROR:[SemanticConstraints] buffered = true and indexed = false in ReportControl only if RptEnabled.max = 1 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/buffered_true_indexed_false;'
+          + self.lineNumber.toString() + ';'
+          + 'buffered = true and indexed = false in ReportControl only if RptEnabled.max = 1'
+        )
         :
     if( self.RptEnabled <> null ) then
         if( self.RptEnabled.max <> null ) then

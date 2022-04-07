@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -19,18 +19,5 @@
 *************************************************************************
 */
 
-import scl: 'http://www.iec.ch/61850/2003/SCL'
-
-package scl
-
-context SCL
-
-    -- DataTypeTemplates section is mandatory in a SED file
-    inv DataTypeTemplates_required
-        ( 'ERROR:[SED File] DataTypeTemplates section is mandatory (line ' + self.lineNumber.toString() + ')' )
-    :
-        self.DataTypeTemplates->notEmpty()
-
-
-endpackage
-
+-- DataTypeTemplates section is mandatory in a SED file
+import '../Common/DataTypeTemplates.ocl'

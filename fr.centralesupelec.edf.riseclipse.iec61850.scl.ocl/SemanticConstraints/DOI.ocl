@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context DOI
         
     -- The DOI in AnyLN shall have unique DAI and SDI ix and name combination (from SCL_IED.xsd)
     inv unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
-    ( 'ERROR:[SemanticConstraints] Unique DAI and SDI ix and name combination in DOI from AnyLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_DAI_SDI_ix_name_in_DOI_from_AnyLN;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique DAI and SDI ix and name combination in DOI from AnyLN'
+        )
     :
        let dai = self.DAI -> collect(d : DAI | Sequence{d.ix, d.name}) -> asOrderedSet() -> asBag()
        ,
@@ -44,7 +48,11 @@ context DOI
 
     -- a DOI must refer an existing DO in DataTypeTemplate section
     inv DOI_RefersToDO
-    ( 'ERROR:[SemanticConstraints] DOI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DO in DataTypeTemplates section' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/DOI_RefersToDO;'
+          + self.lineNumber.toString() + ';'
+          + 'DOI (name=' + self.name.toString() + ')  does not refer an existing DO in DataTypeTemplates section'
+        )
     :
         self.RefersToDO <> null
 

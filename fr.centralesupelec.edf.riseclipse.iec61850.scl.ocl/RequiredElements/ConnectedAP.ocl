@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,12 +30,20 @@ context ConnectedAP
     --  Connection is allowed, which belongs to it.
     
     inv ConnectedAP_at_most_one_PhysConnTypeRedConn_required
-        ( 'ERROR:[RequiredElements] Only one PhysConn type RedConn is allowed in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/ConnectedAP_at_most_one_PhysConnTypeRedConn_required;'
+          + self.lineNumber.toString() + ';'
+          + 'Only one PhysConn type RedConn is allowed in ConnectedAP'
+        )
     : 
         self.PhysConn -> select ( p : PhysConn | p.type = 'RedConn' ) -> size()  <= 1
 
     inv ConnectedAP_at_most_one_PhysConnTypeConnection_required
-        ( 'ERROR:[RequiredElements] Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/ConnectedAP_at_most_one_PhysConnTypeConnection_required;'
+          + self.lineNumber.toString() + ';'
+          + 'Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP'
+        )
     : 
         self.PhysConn -> select ( p : PhysConn | p.type = 'RedConn' ) -> size() = 1
         implies

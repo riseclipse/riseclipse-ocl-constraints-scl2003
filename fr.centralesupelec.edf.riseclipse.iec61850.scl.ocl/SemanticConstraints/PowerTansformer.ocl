@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context PowerTransformer
         
     -- The PowerTransformer in EquipmentContainer shall have unique child name (from SCL_Substation.xsd)
     inv unique_name_in_PowerTransformer_from_EquipmentContainer
-    ( 'ERROR:[SemanticConstraints] Unique child name in PowerTransformer from EquipmentContainer (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_PowerTransformer_from_EquipmentContainer;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child name in PowerTransformer from EquipmentContainer'
+        )
     :
         self.oclContainer.oclIsKindOf(EquipmentContainer) implies self.oclContents -> isUnique(n:Naming|n.name)
 

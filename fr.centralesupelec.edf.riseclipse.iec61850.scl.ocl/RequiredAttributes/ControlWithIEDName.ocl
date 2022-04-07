@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -29,8 +29,10 @@ context ControlWithIEDName
     -- The confRev attribute is an unsigned int
     -- Note: it is an Integer in the metamodel
     inv ControlWithIEDName_confRev_unsignedInt
-        ( 'ERROR:[RequiredAttributes] confRev attribute shall be valid in ControlWithIEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.confRev.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ControlWithIEDName_confRev_unsignedInt;'
+          + self.lineNumber.toString() + ';'
+          + 'confRev attribute shall be valid in ControlWithIEDName. ' + 'Current value is ' + self.confRev.toString()
         )
     :
         self.confRev <> null implies self.confRev >= 0

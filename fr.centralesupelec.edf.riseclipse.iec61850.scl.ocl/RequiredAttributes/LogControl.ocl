@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,46 +31,60 @@ context LogControl
 
     -- The logName attribute shall be present
     inv LogControl_logName_required
-        ( 'ERROR:[RequiredAttributes] logName attribute shall be present in LogControl (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_logName_required;'
+          + self.lineNumber.toString() + ';'
+          + 'logName attribute shall be present in LogControl'
+        )
     :
        self.logName <> null
 
     -- The logName attribute shall be valid
     inv LogControl_logName_valid
-        ( 'ERROR:[RequiredAttributes] logName attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.logName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_logName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'logName attribute shall be valid in LogControl. ' + 'Current value is ' + self.logName.toString()
         )
     :
        self.logName <> null implies self.validSclLogName( logName )
 
     -- The ldInst attribute shall be valid
     inv LogControl_ldInst_valid
-        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.ldInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_ldInst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst attribute shall be valid in LogControl. ' + 'Current value is ' + self.ldInst.toString()
         )
     :
        self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     -- The prefix attribute shall be valid
     inv LogControl_prefix_valid
-        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.prefix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_prefix_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix attribute shall be valid in LogControl. ' + 'Current value is ' + self.prefix.toString()
         )
     :
        self.prefix <> null implies self.validSclPrefix( prefix )
 
     -- The lnClass attribute shall be valid
     inv LogControl_lnClass_valid
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_lnClass_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be valid in LogControl. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
        self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- The lnInst attribute shall be valid
     inv LogControl_lnInst_valid
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_lnInst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall be valid in LogControl. ' + 'Current value is ' + self.lnInst.toString()
         )
     :
        self.lnInst <> null implies self.validSclLNInst( lnInst )
@@ -80,8 +94,10 @@ context LogControl
     
     -- bufTime is an unsigned int
     inv LogControl_bufTime_valid
-        ( 'ERROR:[RequiredAttributes] bufTime attribute shall be valid in LogControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.bufTime.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LogControl_bufTime_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'bufTime attribute shall be valid in LogControl. ' + 'Current value is ' + self.bufTime.toString()
         )
     :
         self.bufTime <> null implies self.bufTime >= 0

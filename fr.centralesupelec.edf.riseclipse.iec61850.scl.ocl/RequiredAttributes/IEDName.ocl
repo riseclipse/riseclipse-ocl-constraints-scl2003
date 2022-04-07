@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,48 +31,60 @@ context IEDName
     
     -- The apRef attribute shall be valid
     inv IEDName_apRef_valid
-        ( 'ERROR:[RequiredAttributes] apRef attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.apRef.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IEDName_apRef_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'apRef attribute shall be valid in IEDName. ' + 'Current value is ' + self.apRef.toString()
         )
     :
         self.apRef <> null implies self.validSclAccessPointName( apRef )
         
     -- The ldInst attribute shall be valid
     inv IEDName_ldInst_valid
-        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.ldInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IEDName_ldInst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst attribute shall be valid in IEDName. ' + 'Current value is ' + self.ldInst.toString()
         )
     :
         self.ldInst <> null implies self.validSclLDInst( ldInst )
         
      -- The prefix attribute shall be valid
     inv IEDName_prefix_valid
-        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.prefix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IEDName_prefix_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix attribute shall be valid in IEDName. ' + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
         
      -- The lnClass attribute shall be valid
     inv IEDName_lnClass_valid
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IEDName_lnClass_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be valid in IEDName. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
         
     -- The lnInst attribute shall be valid
     inv IEDName_lnInst_valid
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IEDName_lnInst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall be valid in IEDName. ' + 'Current value is ' + self.lnInst.toString()
         )
     :
         self.lnInst <> null implies self.validSclLNInst( lnInst )                                
     
     -- The value attribute shall be valid
     inv IEDName_value_valid
-        ( 'ERROR:[RequiredAttributes] value attribute shall be valid in IEDName (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.value.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IEDName_value_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'value attribute shall be valid in IEDName. ' + 'Current value is ' + self.value.toString()
         )
     :
         self.value <> null implies self.validSclIEDName( value )

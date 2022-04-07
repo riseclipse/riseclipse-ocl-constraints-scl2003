@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,7 +30,11 @@ context SDI
 
     -- The name attribute shall be present
     inv SDI_name_required
-        ( 'ERROR:[RequiredAttributes] name attribute shall be present in SDI (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SDI_name_required;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be present in SDI'
+        )
     :
         self.name <> null
     
@@ -38,16 +42,20 @@ context SDI
     -- The name shall begin with a lower-case letter, except SIUnit and the exceptions defined in IEC 61850-8-1
     -- These exceptions are defined in SCL_Enums.xsd version 2007B4 and are referenced in Helpers/Enums.ocl
     inv SDI_name_valid
-        ( 'ERROR:[RequiredAttributes] name attribute shall begin with a lower-case letter in SDI or be an exception defined in IEC 61850-8-1 (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.name.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SDI_name_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall begin with a lower-case letter in SDI or be an exception defined in IEC 61850-8-1. ' + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclAttributeNameEnum( name )
 
     -- ix is unsigned int
     inv SDI_ix_valid
-        ( 'ERROR:[RequiredAttributes] ix attribute shall be valid in SDI (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.ix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SDI_ix_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'ix attribute shall be valid in SDI. ' + 'Current value is ' + self.ix.toString()
         )
     :
         self.ix <> null implies self.ix >= 0

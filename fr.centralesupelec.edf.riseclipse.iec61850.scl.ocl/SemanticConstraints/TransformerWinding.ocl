@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context TransformerWinding
 
     -- The TransformerWinding in PowerTransformer shall have unique name in SubEquipment, TapChanger, EqFunction (from SCL_Substation.xsd)
     inv unique_name_in_SubEquipment
-    ( 'ERROR:[SemanticConstraints] Unique SubEquipment, TapChanger, EqFunction name in SubEquipment from AbstractConductingEquipment (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique SubEquipment, TapChanger, EqFunction name in SubEquipment from AbstractConductingEquipment'
+        )
     :
         self.oclContainer.oclIsTypeOf(PowerTransformer) implies 
         self.SubEquipment -> union(self.TapChanger -> union(self.EqFunction)) -> isUnique(n:Naming|n.name)

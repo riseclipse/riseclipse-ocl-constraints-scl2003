@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,7 +28,11 @@ context Hitem
 
     -- The version attribute shall be present.
     inv Hitem_version_required
-        ( 'ERROR:[RequiredAttributes] version attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Hitem_version_required;'
+          + self.lineNumber.toString() + ';'
+          + 'version attribute shall be present in Hitem'
+        )
         :
         self.version <> null
 
@@ -36,7 +40,11 @@ context Hitem
     
     -- The revision attribute shall be present.
     inv Hitem_revision_required
-        ( 'ERROR:[RequiredAttributes] revision attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Hitem_revision_required;'
+          + self.lineNumber.toString() + ';'
+          + 'revision attribute shall be present in Hitem'
+        )
         :
         self.revision <> null
 
@@ -44,7 +52,11 @@ context Hitem
 
     -- The when attribute shall be present.
     inv Hitem_when_required
-        ( 'ERROR:[RequiredAttributes] when attribute shall be present in Hitem (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Hitem_when_required;'
+          + self.lineNumber.toString() + ';'
+          + 'when attribute shall be present in Hitem'
+        )
         :
         self.when <> null
 

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,14 +28,20 @@ context PowerTransformer
 
     -- The type attribute is required
     inv PowerTransformer_type_required
-        ( 'ERROR:[RequiredAttributes] type attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/PowerTransformer_type_required;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be present in ' + self.oclType().toString()
+        )
     :
         self.type <> null
 
     -- The type attribute shall be PTR
-    inv PowerTransformer_type_value
-        ( 'ERROR:[RequiredAttributes] type attribute shall be PTR in PowerTransformer (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
+    inv PowerTransformer_type_value_PTR
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/PowerTransformer_type_value_PTR;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be PTR in PowerTransformer. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.type = 'PTR'

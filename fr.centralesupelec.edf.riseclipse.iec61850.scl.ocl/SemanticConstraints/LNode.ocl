@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -83,8 +83,12 @@ context LNode
      -- If the logical node is later allocated to an IED within an SCD, 
      -- then the value of this lnType attribute can be ignored, or may be used to check if 
      -- the logical node type used on the IED fulfills the requirements.
-     inv lnType_consistencyDO
-    ( 'ERROR:[SemanticConstraints] lnType in LNode (line ' + self.lineNumber.toString() +') specifies something different from what is implemented in the IED : missing DO or SDO' )
+    inv lnType_consistencyDO
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/lnType_consistencyDO;'
+          + self.lineNumber.toString() + ';'
+          + 'lnType in LNode specifies something different from what is implemented in the IED : missing DO or SDO'
+        )
     :
         if self.RefersToAnyLN <> null and self.lnType <> null then
             if( self.RefersToAnyLN.RefersToLNodeType <> null and self.RefersToLNodeType <> null ) then
@@ -97,8 +101,12 @@ context LNode
             else true endif
         else true endif
 
-     inv lnType_consistencyDA
-    ( 'ERROR:[SemanticConstraints] lnType in LNode (line ' + self.lineNumber.toString() +') specifies something different from what is implemented in the IED : different parameters' )
+    inv lnType_consistencyDA
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/lnType_consistencyDA;'
+          + self.lineNumber.toString() + ';'
+          + 'lnType in LNode specifies something different from what is implemented in the IED : different parameters'
+        )
     :
         if self.RefersToAnyLN <> null and self.lnType <> null then  
             --if (self.RefersToLNodeType.DO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null or self.RefersToLNodeType.DO.RefersToDOType.SDO.RefersToDOType.DA.RefersToDAType.BDA.Val.value <> null) then
