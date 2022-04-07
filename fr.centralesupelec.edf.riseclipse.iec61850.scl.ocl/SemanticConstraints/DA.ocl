@@ -57,7 +57,7 @@ context DA
         
       -- The attributes valKind and valImport make no sense for DA elements with bType = “Struct” and shall then be ignored by the tools. see IEC 61850-6 ed2.1
     inv DA_Struct_no_valKind_or_valImport
-   		(   'WARNING;'
+        (   'WARNING;'
           + 'OCL/SemanticConstraints/DA_Struct_no_valKind_or_valImport;'
           + self.lineNumber.toString() + ';'
           + 'The attributes valKind and valImport make no sense for DA elements with bType = Struct'
