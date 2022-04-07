@@ -54,5 +54,19 @@ context DA
         )
     :
         (self.bType = 'Struct' implies self.RefersToDAType <> null) and (self.bType = 'Enum' implies self.RefersToEnumType <> null)
+        
+      -- The attributes valKind and valImport make no sense for DA elements with bType = “Struct” and shall then be ignored by the tools. see IEC 61850-6 ed2.1
+    inv DA_Struct_no_valKind_or_valImport
+        (   'WARNING;'
+          + 'OCL/SemanticConstraints/DA_Struct_no_valKind_or_valImport;'
+          + self.lineNumber.toString() + ';'
+          + 'The attributes valKind and valImport make no sense for DA elements with bType = Struct'
+        )
+    :
+           (self.bType = 'Struct' implies not self.valImport)
+           and
+           (self.bType = 'Struct' implies self.valKind = ValKindEnum::Set)
+        
+        
 endpackage
 
