@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context SubNetwork
 
     -- At least one ConnectedAP is required
     inv SubNetwork_at_least_one_ConnectedAP_required
-        ( 'ERROR:[RequiredElements] SubNetwork shall contain at least one ConnectedAP (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/SubNetwork_at_least_one_ConnectedAP_required;'
+          + self.lineNumber.toString() + ';'
+          + 'SubNetwork shall contain at least one ConnectedAP'
+        )
     :
         self.ConnectedAP->notEmpty()
 

@@ -28,7 +28,7 @@ context ExtRef
     -- a ExtRef must refer an existing Data Object or data Attribute
     inv ExtRef_RefersToAbstractDataAttribute
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SCD/FunctionalConstraints/ExtRef_RefersToAbstractDataAttribute;'
+          + 'OCL/FileSpecifics/CID-IID/ExtRef_RefersToAbstractDataAttribute;'
           + self.lineNumber.toString() + ';'
           + 'ExtRef does not refer an existing Data Object or Data Attribute'
         )
@@ -38,7 +38,7 @@ context ExtRef
     -- a ExtRef must refer an existing Control
     inv ExtRef_RefersToControl
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SCD/FunctionalConstraints/ExtRef_RefersToControl;'
+          + 'OCL/FileSpecifics/CID-IID/ExtRef_RefersToControl;'
           + self.lineNumber.toString() + ';'
           + 'ExtRef does not refer an existing Control'
         )
@@ -48,7 +48,7 @@ context ExtRef
     -- a ExtRef must be correctly mapped - CDC specified by  pDO and, if given, the attribute (base) type specified by pDA are met
     inv ExtRef_ServIncorrectlyMapped
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SCD/FunctionalConstraints/ExtRef_ServIncorrectlyMapped;'
+          + 'OCL/FileSpecifics/CID-IID/ExtRef_ServIncorrectlyMapped;'
           + self.lineNumber.toString() + ';'
           + 'ExtRef service is not correctly binded'
         )

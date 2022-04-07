@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -32,14 +32,20 @@ context ConnectivityNode
 
     -- The pathName attribute shall be present
     inv ConnectivityNode_pathName_required
-        ( 'ERROR:[RequiredAttributes] name attribute shall be present in ConnectivityNode (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ConnectivityNode_pathName_required;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be present in ConnectivityNode'
+        )
     :
         self.pathName <> null
 
     -- The pathName attribute shall be valid
     inv ConnectivityNode_pathName_valid
-        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in ConnectivityNode (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.pathName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ConnectivityNode_pathName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be valid in ConnectivityNode. ' + 'Current value is ' + self.pathName.toString()
         )
     :
         self.pathName <> null implies self.validSclRef( pathName )
@@ -49,8 +55,10 @@ context ConnectivityNode
     --  pathname is build by all higher level references down to the connectivity
     --  nodes name, concatenated with the character “/”
     inv ConnectivityNode_pathName_value
-        ( 'ERROR:[RequiredAttributes] pathName of ConnectivityNode shall be its path starting from Substation (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is '  + self.pathName + ', '
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ConnectivityNode_pathName_value;'
+          + self.lineNumber.toString() + ';'
+          + 'pathName of ConnectivityNode shall be its path starting from Substation. ' + 'Current value is ' + self.pathName.toString() + ', '
           + 'expected value is ' + self.ParentBay.ParentVoltageLevel.ParentSubstation.name
                            + '/' + self.ParentBay.ParentVoltageLevel.name
                            + '/' + self.ParentBay.name

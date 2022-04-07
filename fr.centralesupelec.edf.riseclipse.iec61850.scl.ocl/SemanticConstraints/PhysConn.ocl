@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context PhysConn
 
     --  The P parameter type values shall be unique within each PhysConn element.
     inv PhysConn_P_type_unique
-    ( 'ERROR:[SemanticConstraints] The P parameter type values shall be unique within each PhysConn element (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/PhysConn_P_type_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'The P parameter type values shall be unique within each PhysConn element'
+        )
     : 
         self.P -> isUnique( p : P_PhysConn | p.type )
 

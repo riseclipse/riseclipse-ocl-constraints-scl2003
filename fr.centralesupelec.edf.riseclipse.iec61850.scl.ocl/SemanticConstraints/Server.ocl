@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context Server
 
 --   The association ID shall be unique within the Server.
     inv Server_Association_AssoiationID_unique
-    ( 'ERROR:[SemanticConstraints] Association in Server shall have different AssociationID (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Server_Association_AssoiationID_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'Association in Server shall have different AssociationID'
+        )
     :
         self.Association -> isUnique( a: Association | a.associationID )
 

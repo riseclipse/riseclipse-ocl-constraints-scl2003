@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,14 +30,20 @@ context ReportControl
 
     -- The confRev attribute shall be present
     inv ReportControl_confRev_required
-        ( 'ERROR:[RequiredAttributes] confRev attribute shall be present in ReportControl (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ReportControl_confRev_required;'
+          + self.lineNumber.toString() + ';'
+          + 'confRev attribute shall be present in ReportControl'
+        )
     :
         self.confRev <> null
 
     -- The confRev attribute is an unsigned int
     inv ReportControl_confRev_unsigned_int
-        ( 'ERROR:[RequiredAttributes] confRev attribute shall be an unsigned int in ReportControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.confRev.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ReportControl_confRev_unsigned_int;'
+          + self.lineNumber.toString() + ';'
+          + 'confRev attribute shall be an unsigned int in ReportControl. ' + 'Current value is ' + self.confRev.toString()
         )
     :
         self.confRev <> null implies self.confRev >= 0
@@ -47,8 +53,10 @@ context ReportControl
     --  string (however the empty string shall be accepted as input for backward
     --  compatibility).
     inv ReportControl_rptID_valid
-        ( 'ERROR:[RequiredAttributes] rptID attribute shall be valid in ReportControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.rptID.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ReportControl_rptID_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'rptID attribute shall be valid in ReportControl. ' + 'Current value is ' + self.rptID.toString()
         )
     :
         self.rptID <> null implies self.validSclMessageID( rptID )
@@ -57,8 +65,10 @@ context ReportControl
     
     -- bufTime is an unsigned int
     inv ReportControl_bufTime_valid
-        ( 'ERROR:[RequiredAttributes] bufTime attribute shall be valid in ReportControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.bufTime.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ReportControl_bufTime_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'bufTime attribute shall be valid in ReportControl. ' + 'Current value is ' + self.bufTime.toString()
         )
     :
         self.bufTime <> null implies self.bufTime >= 0

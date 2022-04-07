@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context SCL
 
     -- An Header is required
     inv SCL_one_Header_required
-        ( 'ERROR:[RequiredElements] SCL shall contain an Header (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredElements/SCL_one_Header_required;'
+          + self.lineNumber.toString() + ';'
+          + 'SCL shall contain an Header'
+        )
     :
         self.Header <> null
 

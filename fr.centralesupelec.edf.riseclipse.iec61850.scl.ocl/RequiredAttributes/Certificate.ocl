@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,22 +28,30 @@ context Certificate
 
     -- serialNumber must be present
     inv Certificate_serialNumber_required
-        ( 'ERROR:[RequiredAttributes] serialNumber attribute shall be present in Certificate (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Certificate_serialNumber_required;'
+          + self.lineNumber.toString() + ';'
+          + 'serialNumber attribute shall be present in Certificate'
+        )
     :
         self.serialNumber <> null
 
     -- serialNumber must be valid
     inv Certificate_serialNumber_valid
-        ( 'ERROR:[RequiredAttributes] serialNumber attribute shall be valid in Certificate (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.serialNumber.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Certificate_serialNumber_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'serialNumber attribute shall be valid in Certificate. ' + 'Current value is ' + self.serialNumber.toString()
         )
     :
         self.serialNumber <> null implies self.serialNumber.matches( '[0-9]+' )
 
     -- xferNumber is an unsigned int
     inv Certificate_xferNumber_valid
-        ( 'ERROR:[RequiredAttributes] xferNumber attribute shall be valid in Certificate (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.xferNumber.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Certificate_xferNumber_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'xferNumber attribute shall be valid in Certificate. ' + 'Current value is ' + self.xferNumber.toString()
         )
     :
         self.xferNumber <> null implies self.xferNumber >= 0
