@@ -31,6 +31,7 @@ context ExtRef
     inv intAddr_required
         (   'ERROR;'
           + 'OCL/ICD File/intAddr_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'intAddr attribute shall be present in ExtRef'
         )
@@ -41,6 +42,7 @@ context ExtRef
     inv desc_required
         (   'ERROR;'
           + 'OCL/ICD File/desc_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'desc attribute shall be present in ExtRef'
         )

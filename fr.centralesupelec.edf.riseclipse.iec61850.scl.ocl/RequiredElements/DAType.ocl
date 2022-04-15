@@ -29,6 +29,7 @@ context DAType
     inv DAType_at_least_one_BDA_required
         (   'ERROR;'
           + 'OCL/RequiredElements/DAType_at_least_one_BDA_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DAType shall contain at least one BDA'
         )

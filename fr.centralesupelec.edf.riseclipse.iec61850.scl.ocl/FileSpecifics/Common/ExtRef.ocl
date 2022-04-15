@@ -29,6 +29,7 @@ context ExtRef
     inv ExtRef_RefersToAbstractDataAttribute
         (   'ERROR;'
           + 'OCL/FileSpecifics/CID-IID/ExtRef_RefersToAbstractDataAttribute;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ExtRef does not refer an existing Data Object or Data Attribute'
         )
@@ -39,6 +40,7 @@ context ExtRef
     inv ExtRef_RefersToControl
         (   'ERROR;'
           + 'OCL/FileSpecifics/CID-IID/ExtRef_RefersToControl;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ExtRef does not refer an existing Control'
         )
@@ -49,6 +51,7 @@ context ExtRef
     inv ExtRef_ServIncorrectlyMapped
         (   'ERROR;'
           + 'OCL/FileSpecifics/CID-IID/ExtRef_ServIncorrectlyMapped;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ExtRef service is not correctly binded'
         )

@@ -32,6 +32,7 @@ context LDevice
     inv LDevice_inst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LDevice_inst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'inst attribute shall be present in LDevice'
         )
@@ -42,6 +43,7 @@ context LDevice
     inv LDevice_inst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LDevice_inst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'inst attribute shall be valid in LDevice. ' + 'Current value is ' + self.inst.toString()
         )
@@ -53,6 +55,7 @@ context LDevice
     inv LDevice_ldName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LDevice_ldName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LdName attribute shall be valid in LDevice. ' + 'Current value is ' + self.ldName.toString()
         )

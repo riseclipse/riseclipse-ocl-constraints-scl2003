@@ -30,6 +30,7 @@ context SubNetwork
     inv SubNetwork_type_required
         (   'ERROR;'
           + 'OCL/SCD File/SubNetwork_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in SubNetwork'
         )

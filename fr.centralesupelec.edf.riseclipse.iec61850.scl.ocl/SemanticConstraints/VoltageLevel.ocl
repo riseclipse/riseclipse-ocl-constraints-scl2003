@@ -42,6 +42,7 @@ context VoltageLevel
     inv VoltageLevel_unique_Bay_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/VoltageLevel_unique_Bay_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Bay in VoltageLevel shall have different name'
         )
@@ -53,6 +54,7 @@ context VoltageLevel
     inv VoltageLevel_unique_Function_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/VoltageLevel_unique_Function_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Function in VoltageLevel shall have different name'
         )
@@ -64,6 +66,7 @@ context VoltageLevel
     inv VoltageLevel_unique_DirectChild_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/VoltageLevel_unique_DirectChild_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All direct childs in VoltageLevel shall have different name'
         )

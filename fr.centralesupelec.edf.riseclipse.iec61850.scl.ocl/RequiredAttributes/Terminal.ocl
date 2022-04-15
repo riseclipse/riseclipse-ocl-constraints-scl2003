@@ -32,6 +32,7 @@ context Terminal
     inv Terminal_connectivityNode_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_connectivityNode_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'connectivityNode attribute shall be present in Terminal'
         )
@@ -42,6 +43,7 @@ context Terminal
     inv Terminal_connectivityNode_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_connectivityNode_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'connectivityNode attribute shall be valid in Terminal. ' + 'Current value is ' + self.connectivityNode.toString()
         )
@@ -58,6 +60,7 @@ context Terminal
     inv Terminal_substationName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_substationName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'substationName attribute shall be valid in Terminal. ' + 'Current value is ' + self.substationName.toString()
         )
@@ -68,6 +71,7 @@ context Terminal
     inv Terminal_voltageLevelName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_voltageLevelName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'voltageLevelName attribute shall be valid in Terminal. ' + 'Current value is ' + self.voltageLevelName.toString()
         )
@@ -78,6 +82,7 @@ context Terminal
     inv Terminal_bayName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_bayName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'bayName attribute shall be valid in Terminal. ' + 'Current value is ' + self.bayName.toString()
         )
@@ -88,6 +93,7 @@ context Terminal
     inv Terminal_cNodeName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_cNodeName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'cNodeName attribute shall be present in Terminal'
         )
@@ -98,6 +104,7 @@ context Terminal
     inv Terminal_cNodeName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_cNodeName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'cNodeName attribute shall be valid in Terminal. ' + 'Current value is ' + self.cNodeName.toString()
         )
@@ -108,6 +115,7 @@ context Terminal
     inv Terminal_processName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_processName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'processName attribute shall be valid in Terminal. ' + 'Current value is ' + self.processName.toString()
         )
@@ -118,6 +126,7 @@ context Terminal
     inv Terminal_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be valid in Terminal. ' + 'Current value is ' + self.name.toString()
         )
@@ -128,6 +137,7 @@ context Terminal
     inv Terminal_lineName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Terminal_lineName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lineName attribute shall be valid in Terminal. ' + 'Current value is ' + self.lineName.toString()
         )

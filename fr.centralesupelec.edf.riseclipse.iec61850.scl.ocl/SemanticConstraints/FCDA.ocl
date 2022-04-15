@@ -29,6 +29,7 @@ context FCDA
     inv FCDA_RefersToAbstractDataAttribute
         (   'ERROR;'
           + 'OCL/SemanticConstraints/FCDA_RefersToAbstractDataAttribute;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'FCDA does not refer any existing DA or BDA in DataTypeTemplates section'
         )

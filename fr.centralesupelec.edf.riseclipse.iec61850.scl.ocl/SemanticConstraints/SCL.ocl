@@ -30,6 +30,7 @@ context SCL
     inv SCL_unique_Substation_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_Substation_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All Substation within an SCL file shall have different name'
         )
@@ -40,6 +41,7 @@ context SCL
     inv SCL_unique_Process_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_Process_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All Process within an SCL file shall have different name'
         )
@@ -50,6 +52,7 @@ context SCL
     inv SCL_unique_Line_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_Line_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All Line within an SCL file shall have different name'
         )
@@ -60,6 +63,7 @@ context SCL
     inv SCL_unique_IED_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_IED_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All IED within an SCL file shall have different name'
         )
@@ -69,6 +73,7 @@ context SCL
     inv SCL_unique_ConnectivityNode_pathName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_ConnectivityNode_pathName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All ConnectivityNode within an SCL file shall have different pathName'
         )
@@ -80,6 +85,7 @@ context SCL
     inv SCL_unique_LDevice_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_LDevice_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All LDevice within an SCL file shall have different LD name built from inst and other parts'
         )
@@ -90,6 +96,7 @@ context SCL
     inv SCL_unique_SubNetwork_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_SubNetwork_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All SubNetwork within an SCL file shall have different name'
         )
@@ -100,6 +107,7 @@ context SCL
     inv SCL_unique_DOType_id
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_DOType_id;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All DOType within an SCL file shall have different id'
         )
@@ -110,6 +118,7 @@ context SCL
     inv SCL_unique_LNodeType_id_lnClass_combination
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SCL_unique_LNodeType_id_lnClass_combination;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All LNodeType within an SCL file shall have different id and lnClass combination'
         )

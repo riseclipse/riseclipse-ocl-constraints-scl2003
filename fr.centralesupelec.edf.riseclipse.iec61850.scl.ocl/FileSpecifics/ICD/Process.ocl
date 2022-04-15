@@ -32,6 +32,7 @@ context Process
     inv Unique_Process_name_TEMPLATE
         (   'ERROR;'
           + 'OCL/FileSpecifics/ICD/Unique_Process_name_TEMPLATE;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Must have only one Process.name = TEMPLATE'
         )

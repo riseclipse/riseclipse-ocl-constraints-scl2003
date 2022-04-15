@@ -29,6 +29,7 @@ context Server
     inv Server_one_Authentication_required
         (   'ERROR;'
           + 'OCL/RequiredElements/Server_one_Authentication_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Server shall contain one Authentication'
         )
@@ -39,6 +40,7 @@ context Server
     inv Server_at_least_one_LDevice_required
         (   'ERROR;'
           + 'OCL/RequiredElements/Server_at_least_one_LDevice_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Server shall contain at least one LDevice'
         )

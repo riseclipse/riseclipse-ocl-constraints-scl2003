@@ -32,6 +32,7 @@ context LogControl
     inv LogControl_datSet_valid_reference
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LogControl_datSet_valid_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'datSet attribute shall reference a valid DataSet in LLN0 in GSEControl'
         )
@@ -42,6 +43,7 @@ context LogControl
     inv LogControl_ldInst_valid_reference
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LogControl_ldInst_valid_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall reference a valid defined LDevice'
         )
@@ -57,6 +59,7 @@ context LogControl
     inv LogControl_prefix_valid_reference
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LogControl_prefix_valid_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'prefix attribute shall reference a valid prefix in LN'
         )
@@ -80,6 +83,7 @@ context LogControl
     inv LogControl_RefersToAnyLN
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LogControl_RefersToAnyLN;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LogControl does not refer an existing Logical Node'
         )
@@ -90,6 +94,7 @@ context LogControl
     inv LogControl_RefersToLog
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LogControl_RefersToLog;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LogControl does not refer an existing Log'
         )

@@ -30,6 +30,7 @@ context DurationInMilliSec
     inv DurationInMilliSec_value_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DurationInMilliSec_value_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be present in DurationInMilliSec'
         )
@@ -41,6 +42,7 @@ context DurationInMilliSec
     inv DurationInMilliSec_value_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DurationInMilliSec_value_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be positive in DurationInMilliSec. ' + 'Current value is ' + self.value.toString()
         )
@@ -51,6 +53,7 @@ context DurationInMilliSec
     inv DurationInMilliSec_unit_value_fixed
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DurationInMilliSec_unit_value_fixed;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'unit attribute shall be s in DurationInMilliSec. ' + 'Current value is ' + self.unit.toString()
         )
@@ -61,6 +64,7 @@ context DurationInMilliSec
     inv DurationInMilliSec_multiplier_value_fixed
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DurationInMilliSec_multiplier_value_fixed;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'multiplier attribute shall be milli in DurationInMilliSec. ' + 'Current value is ' + self.multiplier.toString()
         )

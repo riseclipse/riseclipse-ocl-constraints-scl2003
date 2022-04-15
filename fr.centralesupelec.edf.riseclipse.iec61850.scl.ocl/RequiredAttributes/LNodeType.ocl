@@ -32,6 +32,7 @@ context LNodeType
     inv LNodeType_lnClass_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LNodeType_lnClass_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be present in LNodeType'
         )
@@ -42,6 +43,7 @@ context LNodeType
     inv LNodeType_lnClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LNodeType_lnClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be valid in LNodeType. ' + 'Current value is ' + self.lnClass.toString()
         )

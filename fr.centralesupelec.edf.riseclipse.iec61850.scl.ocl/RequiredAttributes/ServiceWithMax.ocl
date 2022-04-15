@@ -30,6 +30,7 @@ context ServiceWithMax
     inv ServiceWithMax_max_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ServiceWithMax_max_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'max attribute shall be present in ServiceWithMax'
         )
@@ -40,6 +41,7 @@ context ServiceWithMax
     inv ServiceWithMax_max_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ServiceWithMax_max_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'max attribute shall be valid in ServiceWithMax. ' + 'Current value is ' + self.max.toString()
         )

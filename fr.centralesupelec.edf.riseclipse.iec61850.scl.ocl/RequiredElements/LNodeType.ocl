@@ -29,6 +29,7 @@ context LNodeType
     inv History_at_least_one_DO_required
         (   'ERROR;'
           + 'OCL/RequiredElements/History_at_least_one_DO_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNodeType shall contain at least one DO'
         )

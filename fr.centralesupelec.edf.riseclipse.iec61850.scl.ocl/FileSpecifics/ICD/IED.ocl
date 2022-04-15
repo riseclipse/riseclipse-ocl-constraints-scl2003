@@ -30,6 +30,7 @@ context IED
     inv Unique_IED_name_TEMPLATE
         (   'ERROR;'
           + 'OCL/FileSpecifics/ICD/Unique_IED_name_TEMPLATE;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Must have only one IED.name = TEMPLATE'
         )

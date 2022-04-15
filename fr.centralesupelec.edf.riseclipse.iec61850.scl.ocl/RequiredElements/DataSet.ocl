@@ -29,6 +29,7 @@ context DataSet
     inv DataSet_at_least_one_FCDA_required
         (   'ERROR;'
           + 'OCL/RequiredElements/DataSet_at_least_one_FCDA_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DataSet shall contain at least one FCDA'
         )

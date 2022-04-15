@@ -32,6 +32,7 @@ context Naming
     inv Naming_name_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Naming_name_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be present in ' + self.oclType().toString()
         )
@@ -42,6 +43,7 @@ context Naming
     inv Naming_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Naming_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be valid in ' + self.oclType().toString() + '. ' + 'Current value is ' + self.name.toString()
         )

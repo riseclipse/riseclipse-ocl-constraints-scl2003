@@ -86,6 +86,7 @@ context LNode
     inv lnType_consistencyDO
         (   'ERROR;'
           + 'OCL/SemanticConstraints/lnType_consistencyDO;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnType in LNode specifies something different from what is implemented in the IED : missing DO or SDO'
         )
@@ -104,6 +105,7 @@ context LNode
     inv lnType_consistencyDA
         (   'ERROR;'
           + 'OCL/SemanticConstraints/lnType_consistencyDA;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnType in LNode specifies something different from what is implemented in the IED : different parameters'
         )

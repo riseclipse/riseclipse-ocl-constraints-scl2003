@@ -29,6 +29,7 @@ context PhysConn
     inv PhysConn_P_type_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/PhysConn_P_type_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The P parameter type values shall be unique within each PhysConn element'
         )

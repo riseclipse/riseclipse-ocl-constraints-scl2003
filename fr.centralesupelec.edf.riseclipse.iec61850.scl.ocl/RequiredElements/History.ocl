@@ -29,6 +29,7 @@ context History
     inv History_at_least_one_Hitem_required
         (   'ERROR;'
           + 'OCL/RequiredElements/History_at_least_one_Hitem_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'History shall contain at least one Hitem'
         )

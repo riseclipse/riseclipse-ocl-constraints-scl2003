@@ -30,6 +30,7 @@ context Val
     inv Val_sGroup_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Val_sGroup_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'sGroup attribute shall be valid in Val. ' + 'Current value is ' + self.sGroup.toString()
         )

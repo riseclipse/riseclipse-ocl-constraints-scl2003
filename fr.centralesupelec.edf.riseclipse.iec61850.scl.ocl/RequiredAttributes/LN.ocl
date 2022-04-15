@@ -37,6 +37,7 @@ context LN
     inv LN_inst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN_inst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'inst attribute shall be a number with no more than 7 digits in LN. ' + 'Current value is ' + self.inst.toString()
         )
@@ -47,6 +48,7 @@ context LN
     inv LN_prefix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN_prefix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'prefix attribute shall be valid in LN. ' + 'Current value is ' + self.prefix.toString()
         )

@@ -29,6 +29,7 @@ context VoltageLevel
     inv VoltageLevel_at_least_one_Bay_required
         (   'ERROR;'
           + 'OCL/RequiredElements/VoltageLevel_at_least_one_Bay_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'VoltageLevel shall contain at least one Bay'
         )

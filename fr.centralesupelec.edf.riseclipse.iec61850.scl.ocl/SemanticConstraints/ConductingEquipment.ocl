@@ -63,6 +63,7 @@ context ConductingEquipment
     inv ConductingEquipment_number_of_Terminals
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ConductingEquipment_number_of_Terminals;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'the number of Terminals in ConductingEquipment of type ' + self.type + ') is wrong, it is '
           + self.Terminal->size().toString() + ', it should be ' + self.expectedNumberOfTerminals()
@@ -78,6 +79,7 @@ context ConductingEquipment
     inv unique_name_in_ConductingEquipment_from_Bay
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_ConductingEquipment_from_Bay;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment, EqFunction name in ConductingEquipment from Bay'
         )
@@ -89,6 +91,7 @@ context ConductingEquipment
     inv unique_name_in_ConductingEquipment_from_Function
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_ConductingEquipment_from_Function;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment, EqFunction name in ConductingEquipment from Function'
         )
@@ -100,6 +103,7 @@ context ConductingEquipment
     inv unique_name_in_ConductingEquipment_from_SubFunction
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_ConductingEquipment_from_SubFunction;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment name in ConductingEquipment from SubFunction'
         )

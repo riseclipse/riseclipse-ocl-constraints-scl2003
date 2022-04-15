@@ -30,6 +30,7 @@ context Services
     inv Services_nameLength_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Services_nameLength_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'nameLength attribute shall be valid in Services. ' + 'Current value is ' + self.nameLength.toString()
         )

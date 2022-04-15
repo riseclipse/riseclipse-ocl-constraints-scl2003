@@ -29,6 +29,7 @@ context DOI
     inv unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_DAI_SDI_ix_name_in_DOI_from_AnyLN;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique DAI and SDI ix and name combination in DOI from AnyLN'
         )
@@ -50,6 +51,7 @@ context DOI
     inv DOI_RefersToDO
         (   'ERROR;'
           + 'OCL/SemanticConstraints/DOI_RefersToDO;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DOI (name=' + self.name.toString() + ')  does not refer an existing DO in DataTypeTemplates section'
         )

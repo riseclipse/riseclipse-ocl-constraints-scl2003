@@ -31,6 +31,7 @@ context DAI
     inv Unique_DAI_SDI_name_ix_combination
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Unique_DAI_SDI_name_ix_combination;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name and ix combination must be unique in DAI and SDI under the same DOI'
         )

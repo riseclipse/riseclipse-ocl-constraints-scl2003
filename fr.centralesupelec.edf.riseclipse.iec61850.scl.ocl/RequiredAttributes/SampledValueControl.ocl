@@ -32,6 +32,7 @@ context SampledValueControl
     inv SampledValueControl_smvID_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_smvID_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'smvID attribute shall be present in SampledValueControl'
         )
@@ -42,6 +43,7 @@ context SampledValueControl
     inv SampledValueControl_smvID_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_smvID_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'smvID attribute shall be present in SampledValueControl. ' + 'Current value is ' + self.smvID.toString()
         )
@@ -52,6 +54,7 @@ context SampledValueControl
     inv SampledValueControl_smpRate_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_smpRate_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'smpRate attribute shall be present in SampledValueControl'
         )
@@ -63,6 +66,7 @@ context SampledValueControl
     inv SampledValueControl_smpRate_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_smpRate_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'smpRate attribute shall be valid in SampledValueControl. ' + 'Current value is ' + self.smpRate.toString()
         )
@@ -73,6 +77,7 @@ context SampledValueControl
     inv SampledValueControl_nofASDU_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_nofASDU_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'nofASDU attribute shall be present in SampledValueControl'
         )
@@ -84,6 +89,7 @@ context SampledValueControl
     inv SampledValueControl_nofASDU_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_nofASDU_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'nofASDU attribute shall be present in SampledValueControl. ' + 'Current value is ' + self.nofASDU.toString()
         )
@@ -98,6 +104,7 @@ context SampledValueControl
     inv SampledValueControl_confRev_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_confRev_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute shall be present in SampledValueControl'
         )
@@ -109,6 +116,7 @@ context SampledValueControl
     inv SampledValueControl_confRev_unsignedInt
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SampledValueControl_confRev_unsignedInt;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute shall be valid in SampledValueControl. ' + 'Current value is ' + self.confRev.toString()
         )

@@ -29,6 +29,7 @@ context SampledValueControl
     inv SampledValueControl_one_SmvOpts_required
         (   'ERROR;'
           + 'OCL/RequiredElements/SampledValueControl_one_SmvOpts_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SampledValueControl shall contain a SmvOpts'
         )
@@ -40,6 +41,7 @@ context SampledValueControl
     inv SampledValueControl_multicast
         (   'ERROR;'
           + 'OCL/RequiredElements/SampledValueControl_multicast;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'If Multicast is FALSE, a maximum of one client IED shall be assigned to the SampledValueControl'
         )

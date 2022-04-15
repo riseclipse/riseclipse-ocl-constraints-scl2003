@@ -29,6 +29,7 @@ context LNodeType
     inv unique_DO_name_in_LNodeType_from_DataTypeTemplates
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_DO_name_in_LNodeType_from_DataTypeTemplates;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique DO name in LNodeTYpe from DataTypeTemplates'
         )

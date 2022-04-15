@@ -32,6 +32,7 @@ context Log
     inv Log_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Log_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be valid in Log. ' + 'Current value is ' + self.name.toString()
         )

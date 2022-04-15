@@ -30,6 +30,7 @@ context SupSubscription
     inv SupSubscription_maxGo_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SupSubscription_maxGo_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxGo attribute shall be present in SupSubscription'
         )
@@ -40,6 +41,7 @@ context SupSubscription
     inv SupSubscription_maxGo_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SupSubscription_maxGo_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxGo attribute shall be valid in SupSubscription. ' + 'Current value is ' + self.maxGo.toString()
         )
@@ -50,6 +52,7 @@ context SupSubscription
     inv SupSubscription_maxSv_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SupSubscription_maxSv_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxSv attribute shall be present in SupSubscription'
         )
@@ -60,6 +63,7 @@ context SupSubscription
     inv SupSubscription_maxSv_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SupSubscription_maxSv_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxSv attribute shall be valid in SupSubscription. ' + 'Current value is ' + self.maxSv.toString()
         )

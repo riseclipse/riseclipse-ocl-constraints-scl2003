@@ -29,6 +29,7 @@ context DOType
     inv DOType_at_least_one_SDO_or_DA_required
         (   'ERROR;'
           + 'OCL/FileSpecifics/SCD/RequiredElements/DOType_at_least_one_SDO_or_DA_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DOType shall contain at least one SDO or DA'
         )

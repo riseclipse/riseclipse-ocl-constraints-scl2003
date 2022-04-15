@@ -29,6 +29,7 @@ context Server
     inv Server_timeout_unsigned_int
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Server_timeout_unsigned_int;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'timeout attribute shall be valid in Server. ' + 'Current value is ' + self.timeout.toString()
         )

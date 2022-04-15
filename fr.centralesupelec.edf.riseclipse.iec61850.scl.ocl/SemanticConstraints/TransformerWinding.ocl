@@ -29,6 +29,7 @@ context TransformerWinding
     inv unique_name_in_SubEquipment
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_SubEquipment;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment, TapChanger, EqFunction name in SubEquipment from AbstractConductingEquipment'
         )

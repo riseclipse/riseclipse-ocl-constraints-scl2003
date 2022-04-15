@@ -29,6 +29,7 @@ context DataTypeTemplates
     inv unique_child_id_from_DataTypeTemplates
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_child_id_from_DataTypeTemplates;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child id from DataTypeTemplates'
         )

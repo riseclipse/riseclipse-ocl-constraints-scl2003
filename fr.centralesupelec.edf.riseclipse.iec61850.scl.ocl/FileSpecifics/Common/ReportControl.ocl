@@ -30,6 +30,7 @@ context ReportControl
     inv buffered_true_indexed_false
         (   'ERROR;'
           + 'OCL/FileSpecifics/CID-IID-SCD/buffered_true_indexed_false;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'buffered = true and indexed = false in ReportControl only if RptEnabled.max = 1'
         )

@@ -29,6 +29,7 @@ context AbstractConductingEquipment
     inv AbstractConductingEquipment_at_most_terminal
         (   'ERROR;'
           + 'OCL/RequiredElements/AbstractConductingEquipment_at_most_terminal;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'AbstractConductingEquipment shall contain at most 2 Terminal'
         )

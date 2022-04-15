@@ -29,6 +29,7 @@ context AbstractDataObject
     inv Control_RefersToDataSet
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Control_RefersToDataSet;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DO or SDO (name=' + self.name.toString() + ')  does not refer an existing DOType in DataTypeTemplates section'
         )

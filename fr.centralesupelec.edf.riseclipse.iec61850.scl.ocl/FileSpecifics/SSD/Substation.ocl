@@ -29,6 +29,7 @@ context SCL
     inv Substation_required
         (   'ERROR;'
           + 'OCL/FileSpecifics/SSD/Substation_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Substation section is mandatory'
         )

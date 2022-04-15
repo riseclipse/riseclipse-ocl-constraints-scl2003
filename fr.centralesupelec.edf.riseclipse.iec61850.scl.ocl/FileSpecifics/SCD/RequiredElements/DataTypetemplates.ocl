@@ -29,6 +29,7 @@ context SCL
     inv DataTypeTemplates_required
         (   'ERROR;'
           + 'OCL/FileSpecifics/SCD/RequiredElements/DataTypeTemplates_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DataTypeTemplates section is mandatory'
         )

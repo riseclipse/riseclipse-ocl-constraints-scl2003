@@ -32,6 +32,7 @@ context EnumVal
     inv EnumVal_ord_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/EnumVal_ord_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ord attribute shall be present in EnumVal'
         )
@@ -42,6 +43,7 @@ context EnumVal
     inv EnumVal_value_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/EnumVal_value_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value attribute shall be valid in EnumVal'
         )

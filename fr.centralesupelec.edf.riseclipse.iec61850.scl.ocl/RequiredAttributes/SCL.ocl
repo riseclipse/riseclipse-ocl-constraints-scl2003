@@ -32,6 +32,7 @@ context SCL
     inv SCL_version_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_version_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'version attribute shall be present in SCL'
         )
@@ -40,6 +41,7 @@ context SCL
     inv SCL_version_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_version_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'version attribute shall be a year between 2000 and 2999 in SCL. ' + 'Current value is ' + self.version.toString()
         )
@@ -48,6 +50,7 @@ context SCL
     inv SCL_version_value_2007
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_version_value_2007;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'version attribute shall be equal to 2007 in SCL. ' + 'Current value is ' + self.version.toString()
         )
@@ -58,6 +61,7 @@ context SCL
     inv SCL_revision_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_revision_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'revision attribute shall be present in SCL'
         )
@@ -66,6 +70,7 @@ context SCL
     inv SCL_revision_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_revision_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'revision attribute shall be an uppercase letter in SCL. ' + 'Current value is ' + self.revision.toString()
         )
@@ -74,6 +79,7 @@ context SCL
     inv SCL_revision_value_B
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_revision_value_B;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'revision attribute shall be equal to B in SCL. ' + 'Current value is ' + self.revision.toString()
         )
@@ -84,6 +90,7 @@ context SCL
     inv SCL_release_value_4
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SCL_release_value_1;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'release attribute shall be equal to 4 in SCL. ' + 'Current value is ' + self.release.toString()
         )

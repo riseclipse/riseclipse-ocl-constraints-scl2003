@@ -32,6 +32,7 @@ context ControlBlock
     inv ControlBlock_ldInst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ControlBlock_ldInst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall be present in ControlBlock'
         )
@@ -42,6 +43,7 @@ context ControlBlock
     inv ControlBlock_ldInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ControlBlock_ldInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall be valid in ControlBlock. ' + 'Current value is ' + self.ldInst.toString()
         )
@@ -52,6 +54,7 @@ context ControlBlock
     inv ControlBlock_cbName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ControlBlock_cbName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'cbName attribute shall be present ControlBlock'
         )
@@ -62,6 +65,7 @@ context ControlBlock
     inv ControlBlock_cbName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ControlBlock_cbName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'cbName attribute shall be valid ControlBlock. ' + 'Current value is ' + self.cbName.toString()
         )

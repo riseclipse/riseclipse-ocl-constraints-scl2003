@@ -32,6 +32,7 @@ context LNode
     inv LNode_iedName_None_in_SSD
         (   'ERROR;'
           + 'OCL/FileSpecifics/SSD/LNode_iedName_None_in_SSD;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute from LNode shall be None in SSD files'
         )

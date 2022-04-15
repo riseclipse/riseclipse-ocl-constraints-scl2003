@@ -29,6 +29,7 @@ context Server
     inv Server_Association_AssoiationID_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Server_Association_AssoiationID_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Association in Server shall have different AssociationID'
         )

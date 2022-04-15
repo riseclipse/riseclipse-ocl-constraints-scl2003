@@ -29,6 +29,7 @@ context SubEquipment
     inv SubEquipment_phase_value
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SubEquipment_phase_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SubEquipment phase attribute value AB, BC CA are allowed only if ConductingEquipment above has type VTR'
         )
@@ -53,6 +54,7 @@ context SubEquipment
     inv unique_name_in_SubEquipment_from_AbstractConductingEquipment
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_AbstractConductingEquipment;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in SubEquipment from AbstractConductingEquipment'
         )
@@ -63,6 +65,7 @@ context SubEquipment
     inv unique_name_in_SubEquipment_from_PowerTransformer
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_PowerTransformer;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in SubEquipment from PowerTransformer'
         )
@@ -73,6 +76,7 @@ context SubEquipment
     inv unique_name_in_SubEquipment_from_TapChanger
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_TapChanger;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in SubEquipment from TapChanger'
         )

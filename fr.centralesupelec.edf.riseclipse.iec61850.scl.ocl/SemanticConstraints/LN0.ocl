@@ -31,6 +31,7 @@ context LN0
     inv LN0_GSEControl_name_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN0_GSEControl_name_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in GSEControl from LN0'
         )
@@ -43,6 +44,7 @@ context LN0
     inv LN0_SampledValueControl_name_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN0_SampledValueControl_name_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in SampledValueControl from LN0'
         )
@@ -53,6 +55,7 @@ context LN0
     inv unique_name_in_ReportControl_from_LN0
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_ReportControl_from_LN0;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in ReportControl from LN0'
         )
@@ -64,6 +67,7 @@ context LN0
     inv unique_name_in_LogControl_from_LN0
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_LogControl_from_LN0;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in LogControl from LN0'
         )
@@ -75,6 +79,7 @@ context LN0
     inv unique_name_in_DataSet_from_LN0
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_DataSet_from_LN0;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DataSet from LN0'
         )
@@ -85,6 +90,7 @@ context LN0
     inv unique_name_in_DOI_from_LN0
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_DOI_from_LN0;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DOI from LN0'
         )
@@ -95,6 +101,7 @@ context LN0
     inv unique_name_in_Log_from_LN0
         (   'ERROR;'
           + 'OCL/SemanticConstraints/unique_name_in_Log_from_LN0;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in Log from LN0'
         )

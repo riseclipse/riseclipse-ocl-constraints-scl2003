@@ -30,6 +30,7 @@ context ConnectedAP
     inv ConnectedAP_address_required
         (   'ERROR;'
           + 'OCL/FileSpecifics/SCD/RequiredElements/ConnectedAP_address_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'address attribute shall be present in ConnectedAP'
         )
@@ -40,6 +41,7 @@ context ConnectedAP
     inv ConnectedAP_AccessPoint_reference
         (   'ERROR;'
           + 'OCL/FileSpecifics/SCD/RequiredElements/ConnectedAP_AccessPoint_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ConnectedAP must refer to an AccessPoint defined in an IED'
         )

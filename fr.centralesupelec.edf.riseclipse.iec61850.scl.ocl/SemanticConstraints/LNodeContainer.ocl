@@ -30,6 +30,7 @@ context LNodeContainer
     inv LNodeContainer_unique_LNode_combination
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LNodeContainer_unique_LNode_combination;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNode in LNodeContainer shall have different combination of { lnInst, lnClass, iedName, ldInst, prefix }'
         )

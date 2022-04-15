@@ -29,6 +29,7 @@ context ControlWithTriggerOpt
     inv ControlWithTriggerOpt_intgPd_unsigned_int
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ControlWithTriggerOpt_intgPd_unsigned_int;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'intgPd attribute shall be valid in ControlWithTriggerOpt. ' + 'Current value is ' + self.intgPd.toString()
         )

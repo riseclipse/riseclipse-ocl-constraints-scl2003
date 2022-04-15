@@ -30,6 +30,7 @@ context IED
     inv IED_AccessPoint_name_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/IED_AccessPoint_name_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'AccessPoint in IED shall have different name'
         )
@@ -42,6 +43,7 @@ context IED
     inv IED_LDevice_inst_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/IED_LDevice_inst_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LDevice in IED shall have different inst'
         )
@@ -69,6 +71,7 @@ context IED
     inv FCDA_in_LN_refers_LDevice_in_same_IED
         (   'ERROR;'
           + 'OCL/SemanticConstraints/FCDA_in_LN_refers_LDevice_in_same_IED;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'FCDA in IED shall reference LDevice in the same IED via ldInst'
         )
@@ -91,6 +94,7 @@ context IED
     inv FCDA_in_LN0_refers_LDevice_in_same_IED
         (   'ERROR;'
           + 'OCL/SemanticConstraints/FCDA_in_LN0_refers_LDevice_in_same_IED;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'FCDA in IED shall reference LDevice in the same IED via ldInst'
         )
@@ -114,6 +118,7 @@ context IED
     inv ServerAt_refers_AccessPoint_in_same_IED
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ServerAt_refers_AccessPoint_in_same_IED;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ServerAt in IED shall reference AccessPoint in the same IED via ldInst'
         )
@@ -131,6 +136,7 @@ context IED
     inv IED_LNName_Unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/IED_LNName_Unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LN Name consisting of prefix, lnClass and inst in IED shall be unique'
         )
@@ -187,6 +193,7 @@ context IED
     inv IED_ReportControlNumber
         (   'ERROR;'
           + 'OCL/SemanticConstraints/IED_ReportControlNumber;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The number of ReportControls in IED "' + self.name.toString() + '" exceeds the maximum possible ('
           + maxConfReportControl( self ).toString() + ') : there are ' + numberOfReportControlBlocks( self ).toString()

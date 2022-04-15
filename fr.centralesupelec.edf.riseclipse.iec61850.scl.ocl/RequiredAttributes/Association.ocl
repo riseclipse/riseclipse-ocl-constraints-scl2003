@@ -33,6 +33,7 @@ context Association
     inv Association_kind_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_kind_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'kind attribute shall be present in Association'
         )
@@ -46,6 +47,7 @@ context Association
     inv Association_associationID_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_associationID_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The length of the association ID shall be at least one. ' + 'Current value is ' + self.associationID.toString()
         )
@@ -56,6 +58,7 @@ context Association
     inv Association_prefix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_prefix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The prefix attribute shall be valid. ' + 'Current value is ' + self.prefix.toString()
         )
@@ -66,6 +69,7 @@ context Association
     inv Association_lnClass_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_lnClass_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be present in Association'
         )
@@ -76,6 +80,7 @@ context Association
     inv Association_lnClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_lnClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The lnClass attribute shall be valid. ' + 'Current value is ' + self.lnClass.toString()
         )
@@ -86,6 +91,7 @@ context Association
     inv Association_lnInst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_lnInst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnInst attribute shall be present in Association'
         )
@@ -96,6 +102,7 @@ context Association
     inv Association_lnInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_lnInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The lnInst attribute shall be valid. ' + 'Current value is ' + self.lnInst.toString()
         )
@@ -106,6 +113,7 @@ context Association
     inv Association_iedName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_iedName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall be present in Association'
         )
@@ -116,6 +124,7 @@ context Association
     inv Association_iedName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_iedName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The iedName attribute shall be valid. ' + 'Current value is ' + self.iedName.toString()
         )
@@ -126,6 +135,7 @@ context Association
     inv Association_ldInst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_ldInst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall be present in Association'
         )
@@ -136,6 +146,7 @@ context Association
     inv Association_ldInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_ldInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The ldInst attribute shall be valid. ' + 'Current value is ' + self.ldInst.toString()
         )

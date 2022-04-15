@@ -29,6 +29,7 @@ context Association
     inv Association_RefersToAnyLN
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Association_RefersToAnyLN;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Association (ID=' + self.associationID.toString() + ')  does not refer an existing LN'
         )

@@ -32,6 +32,7 @@ context VoltageLevel
     inv VoltageLevel_nomFreq_value
         (   'ERROR;'
           + 'OCL/RequiredAttributes/VoltageLevel_nomFreq_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'nomFreq attribute shall a positive decimal in VoltageLevel. ' + 'Current value is ' + self.nomFreq.toString()
         )
@@ -42,6 +43,7 @@ context VoltageLevel
     inv VoltageLevel_numPhases_value
         (   'ERROR;'
           + 'OCL/RequiredAttributes/VoltageLevel_numPhases_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'numPhases attribute shall be between 1 and 255 in VoltageLevel. ' + 'Current value is ' + self.numPhases.toString()
         )

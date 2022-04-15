@@ -29,6 +29,7 @@ context Substation
     inv Substation_at_least_one_VoltageLevel_required
         (   'ERROR;'
           + 'OCL/RequiredElements/Substation_at_least_one_VoltageLevel_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Substation shall contain at least one VoltageLevel'
         )

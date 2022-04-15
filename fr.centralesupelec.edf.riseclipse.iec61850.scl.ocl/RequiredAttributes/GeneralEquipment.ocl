@@ -32,6 +32,7 @@ context GeneralEquipment
     inv GeneralEquipment_type_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/GeneralEquipment_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in GeneralEquipment'
         )
@@ -42,6 +43,7 @@ context GeneralEquipment
     inv GeneralEquipment_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/GeneralEquipment_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be valid in GeneralEquipment. ' + 'Current value is ' + self.type.toString()
         )

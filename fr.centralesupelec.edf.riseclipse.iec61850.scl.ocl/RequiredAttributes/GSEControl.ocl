@@ -32,6 +32,7 @@ context GSEControl
     inv GSEControl_appID_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/GSEControl_appID_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'appID attribute shall be present in GSEControl'
         )
@@ -42,6 +43,7 @@ context GSEControl
     inv GSEControl_appID_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/GSEControl_appID_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'appID attribute shall be valid in GSEControl. ' + 'Current value is ' + self.appID.toString()
         )
@@ -58,6 +60,7 @@ context GSEControl
     inv GSEControl_confRev_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/GSEControl_confRev_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute shall be present when type is GOOSE in GSEControl'
         )

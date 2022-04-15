@@ -32,6 +32,7 @@ context SDI
     inv SDI_name_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SDI_name_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be present in SDI'
         )
@@ -44,6 +45,7 @@ context SDI
     inv SDI_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SDI_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall begin with a lower-case letter in SDI or be an exception defined in IEC 61850-8-1. ' + 'Current value is ' + self.name.toString()
         )
@@ -54,6 +56,7 @@ context SDI
     inv SDI_ix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SDI_ix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ix attribute shall be valid in SDI. ' + 'Current value is ' + self.ix.toString()
         )

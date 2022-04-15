@@ -31,6 +31,7 @@ context ControlWithIEDName
     inv ControlWithIEDName_confRev_unsignedInt
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ControlWithIEDName_confRev_unsignedInt;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute shall be valid in ControlWithIEDName. ' + 'Current value is ' + self.confRev.toString()
         )

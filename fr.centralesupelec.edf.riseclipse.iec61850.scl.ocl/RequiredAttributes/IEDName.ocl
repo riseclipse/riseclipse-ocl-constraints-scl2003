@@ -33,6 +33,7 @@ context IEDName
     inv IEDName_apRef_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IEDName_apRef_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apRef attribute shall be valid in IEDName. ' + 'Current value is ' + self.apRef.toString()
         )
@@ -43,6 +44,7 @@ context IEDName
     inv IEDName_ldInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IEDName_ldInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall be valid in IEDName. ' + 'Current value is ' + self.ldInst.toString()
         )
@@ -53,6 +55,7 @@ context IEDName
     inv IEDName_prefix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IEDName_prefix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'prefix attribute shall be valid in IEDName. ' + 'Current value is ' + self.prefix.toString()
         )
@@ -63,6 +66,7 @@ context IEDName
     inv IEDName_lnClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IEDName_lnClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be valid in IEDName. ' + 'Current value is ' + self.lnClass.toString()
         )
@@ -73,6 +77,7 @@ context IEDName
     inv IEDName_lnInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IEDName_lnInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnInst attribute shall be valid in IEDName. ' + 'Current value is ' + self.lnInst.toString()
         )
@@ -83,6 +88,7 @@ context IEDName
     inv IEDName_value_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IEDName_value_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value attribute shall be valid in IEDName. ' + 'Current value is ' + self.value.toString()
         )

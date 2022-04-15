@@ -33,6 +33,7 @@ context ServiceConfReportControl
     inv ServiceConfReportControl_maxBuf_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ServiceConfReportControl_maxBuf_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxBuf attribute shall be valid in ServiceConfReportControl. ' + 'Current value is ' + self.maxBuf.toString()
         )

@@ -29,6 +29,7 @@ context ClientLN
     inv iedName_consistency
         (   'ERROR;'
           + 'OCL/SemanticConstraints/iedName_consistency;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName from ClientLN shall be the name of the IED containing the referred LN'
         )
@@ -44,6 +45,7 @@ context ClientLN
     inv ldInst_consistency
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ldInst_consistency;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst from ClientLN shall be the inst of the LDevice containing the referred LN'
         )
@@ -59,6 +61,7 @@ context ClientLN
     inv perfix_consistency
         (   'ERROR;'
           + 'OCL/SemanticConstraints/perfix_consistency;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'prefix from ClientLN shall be the prefix of the referred LN'
         )
@@ -72,6 +75,7 @@ context ClientLN
     inv ClientLN_RefersToLNodeType
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ClientLN_RefersToLNodeType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ClientLN does not refer an existing LN'
         )
@@ -83,6 +87,7 @@ context ClientLN
      inv ClientLN_Sender_and_receiver_not_in_same_subnetwork
 		(   'ERROR;'
           + 'OCL/SemanticConstraints/ClientLN_Sender_and_receiver_not_in_same_subnetwork;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Sender and receiver of the Report are not in the same Subnetwork'
         )

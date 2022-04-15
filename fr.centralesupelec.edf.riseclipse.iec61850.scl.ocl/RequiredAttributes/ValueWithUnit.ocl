@@ -31,6 +31,7 @@ context ValueWithUnit
     inv ValueWithUnit_value_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ValueWithUnit_value_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be present in ValueWithUnit'
         )
@@ -41,6 +42,7 @@ context ValueWithUnit
     inv ValueWithUnit_unit_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ValueWithUnit_unit_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'unit shall be present in ValueWithUnit'
         )
@@ -51,6 +53,7 @@ context ValueWithUnit
     inv ValueWithUnit_unit_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ValueWithUnit_unit_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'unit shall be present in ValueWithUnit. ' + 'Current value is ' + self.unit.toString()
         )

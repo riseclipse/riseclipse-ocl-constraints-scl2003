@@ -29,6 +29,7 @@ context SCL
     inv SCL_one_Header_required
         (   'ERROR;'
           + 'OCL/RequiredElements/SCL_one_Header_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SCL shall contain an Header'
         )

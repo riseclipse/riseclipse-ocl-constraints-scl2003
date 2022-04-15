@@ -29,6 +29,7 @@ context ServerAt
     inv ServerAt_RefersToAccessPoint
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ServerAt_RefersToAccessPoint;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ServerAt does not refer an existing AccessPoint'
         )

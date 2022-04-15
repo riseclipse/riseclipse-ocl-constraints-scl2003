@@ -29,6 +29,7 @@ context AccessPoint
     inv AccessPoint_restriction_on_content
         (   'ERROR;'
           + 'OCL/RequiredElements/AccessPoint_restriction_on_content;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'AccessPoint shall contain one Server xor one ServerAt xor at least one LN xor none of them'
         )
@@ -43,6 +44,7 @@ context AccessPoint
     inv AccessPoint_at_most_securities
         (   'ERROR;'
           + 'OCL/RequiredElements/AccessPoint_at_most_securities;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'AccessPoint shall contain at most 7 GOOSESecurity and at most 7 SMVSecurity'
         )
@@ -54,6 +56,7 @@ context AccessPoint
     inv AccessPoint_securities_allowed
         (   'ERROR;'
           + 'OCL/RequiredElements/AccessPoint_securities_allowed;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'AccessPoint shall contain GOOSESecurity or SMVSecurity only if if the attribute certificate of the server’s Authentication element is true'
         )

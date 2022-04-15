@@ -30,6 +30,7 @@ context SettingControl
     inv SettingControl_numOfSGs_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SettingControl_numOfSGs_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'numOfSGs attribute shall be present in SettingControl'
         )
@@ -40,6 +41,7 @@ context SettingControl
     inv SettingControl_numOfSGs_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SettingControl_numOfSGs_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'numOfSGs attribute shall be greater than 0 in SettingControl. ' + 'Current value is ' + self.numOfSGs.toString()
         )
@@ -50,6 +52,7 @@ context SettingControl
     inv SettingControl_actSG_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SettingControl_actSG_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'actSG attribute shall be greater than 0 in SettingControl. ' + 'Current value is ' + self.actSG.toString()
         )
@@ -60,6 +63,7 @@ context SettingControl
     inv SettingControl_resvTms_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SettingControl_resvTms_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'resvTms attribute shall be valid in SettingControl. ' + 'Current value is ' + self.resvTms.toString()
         )

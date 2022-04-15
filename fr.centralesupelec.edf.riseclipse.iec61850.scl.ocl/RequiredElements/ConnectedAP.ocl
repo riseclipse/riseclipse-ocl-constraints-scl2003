@@ -32,6 +32,7 @@ context ConnectedAP
     inv ConnectedAP_at_most_one_PhysConnTypeRedConn_required
         (   'ERROR;'
           + 'OCL/RequiredElements/ConnectedAP_at_most_one_PhysConnTypeRedConn_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Only one PhysConn type RedConn is allowed in ConnectedAP'
         )
@@ -41,6 +42,7 @@ context ConnectedAP
     inv ConnectedAP_at_most_one_PhysConnTypeConnection_required
         (   'ERROR;'
           + 'OCL/RequiredElements/ConnectedAP_at_most_one_PhysConnTypeConnection_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Only one PhysConn type Connection is allowed when there is one PhysConn type RedConn in ConnectedAP'
         )

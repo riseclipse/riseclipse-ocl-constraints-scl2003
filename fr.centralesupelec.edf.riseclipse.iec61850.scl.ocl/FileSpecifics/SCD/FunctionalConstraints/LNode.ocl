@@ -29,6 +29,7 @@ context LNode
     inv LNode_RefersToAnyLN
         (   'ERROR;'
           + 'OCL/FileSpecifics/SCD/FunctionalConstraints/LNode_RefersToAnyLN;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNode does not refer an existing Logical Node in IED section'
         )
@@ -39,6 +40,7 @@ context LNode
     inv LNode_RefersToLNodeType
         (   'ERROR;'
           + 'OCL/FileSpecifics/SCD/FunctionalConstraints/LNode_RefersToLNodeType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNode does not refer an existing LNodeType in DataTypeTemplates section'
         )

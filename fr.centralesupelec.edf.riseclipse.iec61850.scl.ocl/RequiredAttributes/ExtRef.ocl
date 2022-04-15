@@ -32,6 +32,7 @@ context ExtRef
     inv ExtRef_iedName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_iedName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall be valid in ExtRef. ' + 'Current value is ' + self.iedName.toString()
         )
@@ -41,6 +42,7 @@ context ExtRef
     inv ExtRef_ldInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_ldInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall be valid in ExtRef. ' + 'Current value is ' + self.ldInst.toString()
         )
@@ -50,6 +52,7 @@ context ExtRef
     inv ExtRef_prefix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_prefix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'prefix attribute shall be valid in ExtRef. ' + 'Current value is ' + self.prefix.toString()
         )
@@ -60,6 +63,7 @@ context ExtRef
     inv ExtRef_lnClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_lnClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be valid in ExtRef. ' + 'Current value is ' + self.lnClass.toString()
         )
@@ -69,6 +73,7 @@ context ExtRef
     inv ExtRef_lnInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_lnInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnInst attribute shall be valid in ExtRef. ' + 'Current value is ' + self.lnInst.toString()
         )
@@ -79,6 +84,7 @@ context ExtRef
     inv FCDA_doName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_doName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'doName attribute shall be valid in FCDA. ' + 'Current value is ' + self.doName.toString()
         )
@@ -89,6 +95,7 @@ context ExtRef
     inv FCDA_daName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_daName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'daName attribute shall be valid in FCDA. ' + 'Current value is ' + self.daName.toString()
         )
@@ -101,6 +108,7 @@ context ExtRef
     inv ExtRef_srcLDInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_srcLDInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'srcLDInst attribute shall be valid in ExtRef. ' + 'Current value is ' + self.srcLDInst.toString()
         )
@@ -110,6 +118,7 @@ context ExtRef
     inv ExtRef_srcPrefix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_srcPrefix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'srcPrefix attribute shall be valid in ExtRef. ' + 'Current value is ' + self.srcPrefix.toString()
         )
@@ -120,6 +129,7 @@ context ExtRef
     inv ExtRef_srcLNClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_srcLNClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'srcLNClass attribute shall be valid in ExtRef. ' + 'Current value is ' + self.srcLNClass.toString()
         )
@@ -129,6 +139,7 @@ context ExtRef
     inv ExtRef_srcLNInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_srcLNInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'srcLNInst attribute shall be valid in ExtRef. ' + 'Current value is ' + self.srcLNInst.toString()
         )
@@ -138,6 +149,7 @@ context ExtRef
     inv ExtRef_srcCBName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_srcCBName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'srcCBName attribute shall be valid ExtRef. ' + 'Current value is ' + self.srcCBName.toString()
         )
@@ -147,6 +159,7 @@ context ExtRef
     inv ExtRef_pLN_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_pLN_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'pLN attribute shall be valid in ExtRef. ' + 'Current value is ' + self.pLN.toString()
         )
@@ -156,6 +169,7 @@ context ExtRef
     inv ExtRef_pDA_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_pDA_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'pDA attribute shall be valid in ExtRef. ' + 'Current value is ' + self.pDA.toString()
         )
@@ -165,6 +179,7 @@ context ExtRef
     inv pDO
         (   'ERROR;'
           + 'OCL/RequiredAttributes/pDO;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'pDO attribute shall be valid in ExtRef. ' + 'Current value is ' + self.pDO.toString()
         )
@@ -175,6 +190,7 @@ context ExtRef
     inv ExtRef_lnInst_notNull_whenNotLLN0
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ExtRef_lnInst_notNull_whenNotLLN0;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnInst attribute is mandatory when lnClass is different from LLNO'
         )
