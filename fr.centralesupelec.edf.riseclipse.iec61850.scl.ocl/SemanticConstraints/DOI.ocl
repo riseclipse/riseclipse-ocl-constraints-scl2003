@@ -43,7 +43,12 @@ context DOI
     -- The DOI in AnyLN must have a reference to a DO, that is, the AnyLN that contains the DOI must reference a valid LNType
     -- The consistency of the reference is already established in AnyLNImpl.java
     inv DOI_AnyLN_LNType_reference
-    ( 'ERROR:[SemanticConstraints] AnyLN with DOI must refer to a LNodeType (line ' + self.lineNumber.toString() + ')')
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/DOI_AnyLN_LNType_reference;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'AnyLN with DOI must refer to a LNodeType'
+        )
     :
         self.ParentAnyLN.RefersToLNodeType <> null 
 
