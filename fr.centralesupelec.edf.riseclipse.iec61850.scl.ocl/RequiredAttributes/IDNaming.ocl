@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,14 +30,20 @@ context IDNaming
 
     -- The id attribute shall be present
     inv IDNaming_id_required
-        ( 'ERROR:[RequiredAttributes] id attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IDNaming_id_required;'
+          + self.lineNumber.toString() + ';'
+          + 'id attribute shall be present in ' + self.oclType().toString()
+        )
     :
         self.id <> null
 
     -- The id attribute shall be valid
     inv IDNaming_id_valid
-        ( 'ERROR:[RequiredAttributes] id attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.id.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/IDNaming_id_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'id attribute shall be valid in ' + self.oclType().toString() + '. ' + 'Current value is ' + self.id.toString()
         )
     :
         self.id <> null implies self.validSclID( id )

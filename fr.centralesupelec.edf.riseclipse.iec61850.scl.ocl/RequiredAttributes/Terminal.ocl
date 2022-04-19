@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,14 +30,20 @@ context Terminal
 
     -- The connectivityNode attribute shall be present
     inv Terminal_connectivityNode_required
-        ( 'ERROR:[RequiredAttributes] connectivityNode attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_connectivityNode_required;'
+          + self.lineNumber.toString() + ';'
+          + 'connectivityNode attribute shall be present in Terminal'
+        )
     :
         self.connectivityNode <> null
 
     -- The connectivityNode attribute shall be valid
     inv Terminal_connectivityNode_valid
-        ( 'ERROR:[RequiredAttributes] connectivityNode attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.connectivityNode.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_connectivityNode_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'connectivityNode attribute shall be valid in Terminal. ' + 'Current value is ' + self.connectivityNode.toString()
         )
     :
         self.connectivityNode <> null implies self.validSclRef( connectivityNode )
@@ -50,62 +56,80 @@ context Terminal
 
     -- The substationName attribute shall be valid.
     inv Terminal_substationName_valid
-        ( 'ERROR:[RequiredAttributes] substationName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.substationName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_substationName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'substationName attribute shall be valid in Terminal. ' + 'Current value is ' + self.substationName.toString()
         )
     :
         self.substationName <> null implies self.validSclName( substationName )
 
     -- The voltageLevelName attribute shall be valid.
     inv Terminal_voltageLevelName_valid
-        ( 'ERROR:[RequiredAttributes] voltageLevelName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.voltageLevelName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_voltageLevelName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'voltageLevelName attribute shall be valid in Terminal. ' + 'Current value is ' + self.voltageLevelName.toString()
         )
     :
         self.voltageLevelName <> null implies self.validSclName( voltageLevelName )
 
     -- The bayName attribute shall be valid.
     inv Terminal_bayName_valid
-        ( 'ERROR:[RequiredAttributes] bayName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.bayName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_bayName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'bayName attribute shall be valid in Terminal. ' + 'Current value is ' + self.bayName.toString()
         )
     :
         self.bayName <> null implies self.validSclName( bayName )
 
     -- The cNodeName attribute shall be present.
     inv Terminal_cNodeName_required
-        ( 'ERROR:[RequiredAttributes] cNodeName attribute shall be present in Terminal (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_cNodeName_required;'
+          + self.lineNumber.toString() + ';'
+          + 'cNodeName attribute shall be present in Terminal'
+        )
     :
         self.cNodeName <> null
 
     -- The cNodeName attribute shall be valid.
     inv Terminal_cNodeName_valid
-        ( 'ERROR:[RequiredAttributes] cNodeName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.cNodeName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_cNodeName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'cNodeName attribute shall be valid in Terminal. ' + 'Current value is ' + self.cNodeName.toString()
         )
     :
         self.cNodeName <> null implies self.validSclName( cNodeName )
 
     -- The processName attribute shall be valid.
     inv Terminal_processName_valid
-        ( 'ERROR:[RequiredAttributes] processName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.processName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_processName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'processName attribute shall be valid in Terminal. ' + 'Current value is ' + self.processName.toString()
         )
     :
         self.processName <> null implies self.validSclProcessName( processName )
 
     -- The name attribute shall be valid.
     inv Terminal_name_valid
-        ( 'ERROR:[RequiredAttributes] name attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.name.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_name_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'name attribute shall be valid in Terminal. ' + 'Current value is ' + self.name.toString()
         )
     :
         self.name <> null implies self.validSclAnyName( name )
         
     -- The lineName attribute shall be valid.
     inv Terminal_lineName_valid
-        ( 'ERROR:[RequiredAttributes] lineName attribute shall be valid in Terminal (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lineName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Terminal_lineName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lineName attribute shall be valid in Terminal. ' + 'Current value is ' + self.lineName.toString()
         )
     :
         self.lineName <> null implies self.validSclName( lineName )

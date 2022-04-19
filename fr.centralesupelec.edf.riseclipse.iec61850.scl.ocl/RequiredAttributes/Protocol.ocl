@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,14 +28,20 @@ context Protocol
 
     -- The mustUnderstand attribute shall be present
     inv Protocol_mustUnderstand_required
-        ( 'ERROR:[RequiredAttributes] mustUnderstand attribute shall be present in Protocol (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Protocol_mustUnderstand_required;'
+          + self.lineNumber.toString() + ';'
+          + 'mustUnderstand attribute shall be present in Protocol'
+        )
     :
         self.mustUnderstand <> null
 
     -- The mustUnderstand attribute value shall be true
     inv Protocol_mustUnderstand_value_fixed
-        ( 'ERROR:[RequiredAttributes] mustUnderstand attribute shall be V in Protocol (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.mustUnderstand.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Protocol_mustUnderstand_value_fixed;'
+          + self.lineNumber.toString() + ';'
+          + 'mustUnderstand attribute shall be V in Protocol. ' + 'Current value is ' + self.mustUnderstand.toString()
         )
     :
         self.mustUnderstand <> null implies self.mustUnderstand = true

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,31 +28,41 @@ context BitRateInMbPerSec
 
     -- The value shall be present
     inv BitRateInMbPerSec_value_required
-        ( 'ERROR:[RequiredAttributes] value shall be present in BitRateInMbPerSec (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/BitRateInMbPerSec_value_required;'
+          + self.lineNumber.toString() + ';'
+          + 'value shall be present in BitRateInMbPerSec'
+        )
     :
         self.value <> null
 
     -- The value must be positive
     -- Note: the XSD does not force this (only decimal)
     inv BitRateInMbPerSec_value_valid
-        ( 'ERROR:[RequiredAttributes] value shall be positive in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.value.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/BitRateInMbPerSec_value_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'value shall be positive in BitRateInMbPerSec. ' + 'Current value is ' + self.value.toString()
         )
     :
         self.value <> null implies self.value > 0
 
     -- If present, the unit attribute must be b/s
     inv BitRateInMbPerSec_unit_value
-        ( 'ERROR:[RequiredAttributes] unit attribute if present shall be b/s in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.unit.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/BitRateInMbPerSec_unit_value;'
+          + self.lineNumber.toString() + ';'
+          + 'unit attribute if present shall be b/s in BitRateInMbPerSec. ' + 'Current value is ' + self.unit.toString()
         )
     :
         self.unit <> null implies self.unit = 'b/s'
 
     -- If present, the multiplier attribute must be M
     inv BitRateInMbPerSec_multiplier_value
-        ( 'ERROR:[RequiredAttributes] multiplier attribute if present shall be M in BitRateInMbPerSec (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.multiplier.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/BitRateInMbPerSec_multiplier_value;'
+          + self.lineNumber.toString() + ';'
+          + 'multiplier attribute if present shall be M in BitRateInMbPerSec. ' + 'Current value is ' + self.multiplier.toString()
         )
     :
         self.multiplier <> null implies self.multiplier = UnitMultiplierEnum::M

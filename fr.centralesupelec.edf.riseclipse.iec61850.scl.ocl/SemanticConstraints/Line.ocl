@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,7 +28,11 @@ context Line
     -- In order to avoid any ambiguities, within a Line there cannot be two
     -- direct child elements with the same name.    
     inv Line_unique_DirectChild_name
-    ( 'ERROR:[SemanticConstraints] All direct childs in Line shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Line_unique_DirectChild_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All direct childs in Line shall have different name'
+        )
     :
         self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
         -- Version when oclContents() is not available
@@ -41,7 +45,11 @@ context Line
         
     -- each contained element shall have a unique name        
     inv unique_name_same_level_in_Line
-     ( 'ERROR:[SemanticConstraints] All names shall be unique at each hierarchy level within the Line (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_same_level_in_Line;'
+          + self.lineNumber.toString() + ';'
+          + 'All names shall be unique at each hierarchy level within the Line'
+        )
     :   
         if self.ParentSCL <> null then
         SclObject.allInstances()->

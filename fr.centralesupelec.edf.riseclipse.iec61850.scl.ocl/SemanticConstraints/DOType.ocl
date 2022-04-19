@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -61,13 +61,21 @@ context DOType
         endif endif
     
     inv DOType_recursive_references_are_not_allowed
-    ( 'ERROR:[SemanticConstraints] DOType (id=' + self.id.toString() + ') has a recursive reference to itself (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/DOType_recursive_references_are_not_allowed;'
+          + self.lineNumber.toString() + ';'
+          + 'DOType (id=' + self.id.toString() + ') has a recursive reference to itself'
+        )
     :
         self.checkRecursiveReferenced( Set{ self.id } ).ok
         
     -- The DOType in DataTypeTemplates shall have unique child name (from SCL_DataTypeTemplates.xsd)
     inv unique_child_name_in_DOType_from_DataTypeTemplates
-    ( 'ERROR:[SemanticConstraints] Unique child name in DOType from DataTypeTemplates (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_child_name_in_DOType_from_DataTypeTemplates;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child name in DOType from DataTypeTemplates'
+        )
     :
         self.oclContainer.oclIsTypeOf(DataTypeTemplates) implies
         self.DA.name -> union(self.SDO.name) -> isUnique(s:SclObject|s)

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -34,7 +34,11 @@ context Process
     
     -- Within a Process, there cannot be two Function elements with the same name
     inv Process_unique_Function_name
-        ( 'ERROR:[SemanticConstraints] Function in Process shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Process_unique_Function_name;'
+          + self.lineNumber.toString() + ';'
+          + 'Function in Process shall have different name'
+        )
         :
             self.Function->isUnique( f : Function | f.name )
             
@@ -43,7 +47,11 @@ context Process
     -- In SemanticConstraints/LNodeContainer.ocl
 
     inv Process_unique_DirectChild_name
-    ( 'ERROR:[SemanticConstraints] All direct childs in Process shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Process_unique_DirectChild_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All direct childs in Process shall have different name'
+        )
     :
         self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
         -- Version when oclContents() is not available
@@ -60,8 +68,12 @@ context Process
     -- In general, at each hierarchy level within the Process section all names shall be
     -- unique, leading to unique object references (path names) of all objects defined by the
     -- substation naming hierarchy.
-        inv unique_name_same_level_in_Process
-     ( 'ERROR:[SemanticConstraints] All names shall be unique at each hierarchy level within the Process (line ' + self.lineNumber.toString() + ')' )
+    inv unique_name_same_level_in_Process
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_same_level_in_Process;'
+          + self.lineNumber.toString() + ';'
+          + 'All names shall be unique at each hierarchy level within the Process'
+        )
     :   
         self.ParentSCL <> null implies
         (SclObject.allInstances()->

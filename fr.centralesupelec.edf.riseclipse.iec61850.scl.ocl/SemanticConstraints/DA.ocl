@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,20 +27,46 @@ context DA
 
     -- The DA in DOType shall have unique ProtNs type (from SCL_DataTypeTemplates.xsd)
     inv unique_ProtNs_type_in_DA_from_DOType
-    ( 'ERROR:[SemanticConstraints] Unique ProtNs type in DA from DOType (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_ProtNs_type_in_DA_from_DOType;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique ProtNs type in DA from DOType'
+        )
     :
         self.oclContainer.oclIsTypeOf(DOType) implies self.ProtNs -> isUnique( p : ProtNs | p.type )
         
     -- DA.type is allowed only if bType = Struct or Enum
     inv DAType_allowedWhen_Enum
-    ( 'ERROR:[SemanticConstraints] DA.type is allowed only if bType = Struct or Enum (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/DAType_allowedWhen_Enum;'
+          + self.lineNumber.toString() + ';'
+          + 'DA.type is allowed only if bType = Struct or Enum'
+        )
     :
         (self.bType <> 'Struct' and self.bType <>'Enum') implies self.type = null
     
     -- a DA must refer an existing DAType or EnumType
     inv DA_RefersToDATypeorEnumType
-    ( 'ERROR:[SemanticConstraints] DA (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DAType or EnumType in DataTypeTemplates section' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/DA_RefersToDATypeorEnumType;'
+          + self.lineNumber.toString() + ';'
+          + 'DA (name=' + self.name.toString() + ')  does not refer an existing DAType or EnumType in DataTypeTemplates section'
+        )
     :
         (self.bType = 'Struct' implies self.RefersToDAType <> null) and (self.bType = 'Enum' implies self.RefersToEnumType <> null)
+        
+      -- The attributes valKind and valImport make no sense for DA elements with bType = “Struct” and shall then be ignored by the tools. see IEC 61850-6 ed2.1
+    inv DA_Struct_no_valKind_or_valImport
+        (   'WARNING;'
+          + 'OCL/SemanticConstraints/DA_Struct_no_valKind_or_valImport;'
+          + self.lineNumber.toString() + ';'
+          + 'The attributes valKind and valImport make no sense for DA elements with bType = Struct'
+        )
+    :
+           (self.bType = 'Struct' implies not self.valImport)
+           and
+           (self.bType = 'Struct' implies self.valKind = ValKindEnum::Set)
+        
+        
 endpackage
 

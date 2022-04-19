@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -40,21 +40,33 @@ context VoltageLevel
     -- Within a VoltageLevel, there cannot be two Bay elements with the
     -- same name.
     inv VoltageLevel_unique_Bay_name
-    ( 'ERROR:[SemanticConstraints] Bay in VoltageLevel shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/VoltageLevel_unique_Bay_name;'
+          + self.lineNumber.toString() + ';'
+          + 'Bay in VoltageLevel shall have different name'
+        )
     :
         self.Bay->isUnique( v : Bay | v.name )
 
     -- Within a VoltageLevel, there cannot be two Function elements with the same
     -- name.
     inv VoltageLevel_unique_Function_name
-    ( 'ERROR:[SemanticConstraints] Function in VoltageLevel shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/VoltageLevel_unique_Function_name;'
+          + self.lineNumber.toString() + ';'
+          + 'Function in VoltageLevel shall have different name'
+        )
     :
         self.Function->isUnique( f : Function | f.name )
 
     -- In order to avoid any ambiguities, within a VoltageLevel there cannot be two
     -- direct child elements with the same name.
     inv VoltageLevel_unique_DirectChild_name
-    ( 'ERROR:[SemanticConstraints] All direct childs in VoltageLevel shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/VoltageLevel_unique_DirectChild_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All direct childs in VoltageLevel shall have different name'
+        )
     :
         self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
         -- Version when oclContents() is not available

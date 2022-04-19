@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,14 +31,22 @@ context ReportControl
     --  it shall reside in the same LN as the control block.
     -- Note: an explicit link to DataSet has been set up by RiseClipse
     inv ReportControl_datSet_valid_reference
-        ( 'ERROR:[SemanticConstraints] datSet attribute shall reference a valid DataSet in ReportControl (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ReportControl_datSet_valid_reference;'
+          + self.lineNumber.toString() + ';'
+          + 'datSet attribute shall reference a valid DataSet in ReportControl'
+        )
     :
         self.datSet <> null implies self.ParentAnyLN.DataSet -> exists( d : DataSet | self.datSet = d.name )
         
     -- confRev is "The configuration revision number of this report control block. 
     -- The value 0 is only allowed for a control block without data set reference."
     inv conRef_zero_no_DataSet_reference
-        ( 'ERROR:[SemanticConstraints] confRev attribute in ReportControl equals zero only for no DataSet reference (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/conRef_zero_no_DataSet_reference;'
+          + self.lineNumber.toString() + ';'
+          + 'confRev attribute in ReportControl equals zero only for no DataSet reference'
+        )
         :
         confRev = 0 implies self.RefersToDataSet = null
         

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,7 +28,11 @@ context Communication
     -- Within a Communication, there cannot be two SubNetwork elements with the
     -- same name.
     inv Communication_unique_SubNetwork_name
-    ( 'ERROR:[SemanticConstraints] SubNetwork in Communication shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Communication_unique_SubNetwork_name;'
+          + self.lineNumber.toString() + ';'
+          + 'SubNetwork in Communication shall have different name'
+        )
     :
         self.SubNetwork->isUnique( s : SubNetwork | s.name )
 
@@ -36,7 +40,11 @@ context Communication
     --  for GSE and SMV
     
     inv Communication_GSE_SMV_MACAddress_unique
-        ( 'ERROR:[SemanticConstraints] GSE and SMV MAC-Addresses shall be unique in the file (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Communication_GSE_SMV_MACAddress_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'GSE and SMV MAC-Addresses shall be unique in the file'
+        )
     :
         P.allInstances()->select  ( mac : P | mac.type = 'MAC-Address' )
                         ->isUnique( mac : P | mac.value )      

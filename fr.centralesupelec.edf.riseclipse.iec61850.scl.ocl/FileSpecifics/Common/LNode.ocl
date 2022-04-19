@@ -23,29 +23,26 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
 
-context ServiceWithMaxNonZero
--- extends NONE
+context LNode
 
-    -- The max attribute shall be present
-    inv ServiceWithMaxNonZero_max_required
+    -- a LNode must refer an existing LN
+    inv LNode_RefersToAnyLN
         (   'ERROR;'
-          + 'OCL/RequiredAttributes/ServiceWithMaxNonZero_max_required;'
+          + 'OCL/FileSpecifics/CID-IID/LNode_RefersToAnyLN;'
           + self.lineNumber.toString() + ';'
-          + 'max attribute shall be present in ServiceWithMaxNonZero'
+          + 'LNode does not refer an existing Logical Node in IED section'
         )
     :
-        self.max <> null
-
-    -- The max attribute shall be valid
-    inv ServiceWithMaxNonZero_max_valid
+        self.RefersToAnyLN <> null 
+        
+    -- a LNode must refer an existing LNodeType
+    inv LNode_RefersToLNodeType
         (   'ERROR;'
-          + 'OCL/RequiredAttributes/ServiceWithMaxNonZero_max_valid;'
+          + 'OCL/FileSpecifics/CID-IID/LNode_RefersToLNodeType;'
           + self.lineNumber.toString() + ';'
-          + 'max attribute shall be valid in ServiceWithMaxNonZero. ' + 'Current value is ' + self.max.toString()
+          + 'LNode does not refer an existing LNodeType in DataTypeTemplates section'
         )
     :
-        self.max <> null implies self.max > 0
-
-
+        self.RefersToLNodeType <> null 
 endpackage
 

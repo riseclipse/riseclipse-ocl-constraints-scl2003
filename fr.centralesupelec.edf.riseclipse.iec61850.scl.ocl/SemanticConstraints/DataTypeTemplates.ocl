@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context DataTypeTemplates
 
     -- The children of DataTypeTemplates shall have unique id (from SCL_DataTypeTemplates.xsd)
     inv unique_child_id_from_DataTypeTemplates
-    ( 'ERROR:[SemanticConstraints] Unique child id from DataTypeTemplates (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_child_id_from_DataTypeTemplates;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child id from DataTypeTemplates'
+        )
     :
         self.oclContents -> isUnique(i : IDNaming | i.id)
         

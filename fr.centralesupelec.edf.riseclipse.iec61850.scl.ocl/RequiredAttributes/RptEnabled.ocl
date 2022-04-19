@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,8 +27,10 @@ context RptEnabled
 -- extends UnNaming
 
     inv RptEnabled_max_unsigned_int
-        ( 'ERROR:[RequiredAttributes] max attribute shall be valid in RptEnabled (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.max.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/RptEnabled_max_unsigned_int;'
+          + self.lineNumber.toString() + ';'
+          + 'max attribute shall be valid in RptEnabled. ' + 'Current value is ' + self.max.toString()
         )
     :
         self.max <> null implies self.max >= 0

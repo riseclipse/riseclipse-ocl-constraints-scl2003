@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,22 +31,30 @@ context DOType
 
     -- The cdc attribute shall be present
     inv DOType_cdc_required
-        ( 'ERROR:[RequiredAttributes] cdc attribute shall be present in DOType (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/DOType_cdc_required;'
+          + self.lineNumber.toString() + ';'
+          + 'cdc attribute shall be present in DOType'
+        )
     :
         self.cdc <> null
 
     -- The cdc attribute shall be valid
     inv DOType_cdc_valid
-        ( 'ERROR:[RequiredAttributes] cdc attribute shall be valid in DOType (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.cdc.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/DOType_cdc_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'cdc attribute shall be valid in DOType. ' + 'Current value is ' + self.cdc.toString()
         )
     :
         self.cdc <> null implies self.validSclCDCEnum( cdc )
 
     -- The iedType attribute shall be valid
     inv DOType_iedType_valid
-        ( 'ERROR:[RequiredAttributes] iedType attribute shall be valid in DOType (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.iedType.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/DOType_iedType_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'iedType attribute shall be valid in DOType. ' + 'Current value is ' + self.iedType.toString()
         )
     :
         self.iedType <> null implies self.validSclAnyName( iedType )

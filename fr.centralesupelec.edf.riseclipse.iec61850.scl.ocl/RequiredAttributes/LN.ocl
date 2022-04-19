@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -35,16 +35,20 @@ context LN
     -- The inst attribute shall be valid
     -- Note : it is a String in the model because its value is the empty string for LN0 
     inv LN_inst_valid
-        ( 'ERROR:[RequiredAttributes] inst attribute shall be a number with no more than 7 digits in LN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.inst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN_inst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'inst attribute shall be a number with no more than 7 digits in LN. ' + 'Current value is ' + self.inst.toString()
         )
     :
         self.inst <> null implies self.validSclLNInst( inst )
 
     -- The prefix attribute must be valid
     inv LN_prefix_valid
-        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in LN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.prefix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN_prefix_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix attribute shall be valid in LN. ' + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )

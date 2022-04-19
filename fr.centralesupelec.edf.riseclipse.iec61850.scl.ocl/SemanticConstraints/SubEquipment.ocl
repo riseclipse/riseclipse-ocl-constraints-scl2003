@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context SubEquipment
 
     -- phase attribute: the following additional values are only allowed, if the ConductingEquipment above has type VTR: AB, BC, CA
     inv SubEquipment_phase_value
-        ( 'ERROR:[SemanticConstraints] SubEquipment phase attribute value AB, BC CA are allowed only if ConductingEquipment above has type VTR (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SubEquipment_phase_value;'
+          + self.lineNumber.toString() + ';'
+          + 'SubEquipment phase attribute value AB, BC CA are allowed only if ConductingEquipment above has type VTR'
+        )
         :
       
         if self.phase = null then true else
@@ -47,19 +51,31 @@ context SubEquipment
         
     -- The SubEquipment in AbstractConductingEquipment shall have unique child name (from SCL_Substation.xsd)
     inv unique_name_in_SubEquipment_from_AbstractConductingEquipment
-    ( 'ERROR:[SemanticConstraints] Unique child name in SubEquipment from AbstractConductingEquipment (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_AbstractConductingEquipment;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child name in SubEquipment from AbstractConductingEquipment'
+        )
     :
         self.oclContainer.oclIsKindOf(AbstractConductingEquipment) implies self.oclContents -> isUnique(n:Naming|n.name)
         
     -- The SubEquipment in PowerTransformer shall have unique child name (from SCL_Substation.xsd)
     inv unique_name_in_SubEquipment_from_PowerTransformer
-    ( 'ERROR:[SemanticConstraints] Unique child name in SubEquipment from PowerTransformer (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_PowerTransformer;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child name in SubEquipment from PowerTransformer'
+        )
     :
         self.oclContainer.oclIsTypeOf(PowerTransformer) implies self.oclContents -> isUnique(n:Naming|n.name)
         
     -- The SubEquipment in TapChanger shall have unique child name (from SCL_Substation.xsd)
     inv unique_name_in_SubEquipment_from_TapChanger
-    ( 'ERROR:[SemanticConstraints] Unique child name in SubEquipment from TapChanger (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_TapChanger;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child name in SubEquipment from TapChanger'
+        )
     :
         self.oclContainer.oclIsTypeOf(TapChanger) implies self.oclContents -> isUnique(n:Naming|n.name)
 

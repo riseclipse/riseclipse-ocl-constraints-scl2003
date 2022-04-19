@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,48 +28,76 @@ context LN0
     --  The GSE control block name shall be unique within the LLN0, i.e. the
     --  logical device. 
     -- The GSEControl in LN0 shall have unique name (from SCL_IED.xsd)
-    inv LN0_GSEControl_name_unique 
-        ( 'ERROR:[SemanticConstraints] Unique name in GSEControl from LN0 (line ' + self.lineNumber.toString() + ')' )
+    inv LN0_GSEControl_name_unique
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LN0_GSEControl_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in GSEControl from LN0'
+        )
     :
         self.GSEControl -> isUnique ( c : GSEControl | c.name )
              
     --  The SV control block name shall be unique within the LLN0, i.e. within the
     --  LDevice.
     -- The SampledValueControl in LN0 shall have unique name (from SCL_IED.xsd)
-    inv LN0_SampledValueControl_name_unique 
-    ( 'ERROR:[SemanticConstraints] Unique name in SampledValueControl from LN0 (line ' + self.lineNumber.toString() + ')' )    
+    inv LN0_SampledValueControl_name_unique
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/LN0_SampledValueControl_name_unique;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in SampledValueControl from LN0'
+        )
     : 
         self.SampledValueControl -> isUnique( c : SampledValueControl | c.name )
         
     -- The ReportControl in LN0 shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_ReportControl_from_LN0
-    ( 'ERROR:[SemanticConstraints] Unique name in ReportControl from LN0 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_ReportControl_from_LN0;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in ReportControl from LN0'
+        )
     :
         self.ReportControl -> isUnique(c:ReportControl|c.name)
         
         
     -- The LogControl in LN0 shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_LogControl_from_LN0
-    ( 'ERROR:[SemanticConstraints] Unique name in LogControl from LN0 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_LogControl_from_LN0;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in LogControl from LN0'
+        )
     :
         self.LogControl -> isUnique(c:LogControl|c.name)
         
 
     -- The DataSet in LN0 shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_DataSet_from_LN0
-    ( 'ERROR:[SemanticConstraints] Unique name in DataSet from LN0 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_DataSet_from_LN0;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in DataSet from LN0'
+        )
     :
         self.DataSet -> isUnique(d:DataSet|d.name)
         
     -- The DOI in LN0 shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_DOI_from_LN0
-    ( 'ERROR:[SemanticConstraints] Unique name in DOI from LN0 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_DOI_from_LN0;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in DOI from LN0'
+        )
     :
         self.DOI -> isUnique(d:DOI|d.name)
         
     -- The Log in LN0 shall have unique name (from SCL_IED.xsd)
     inv unique_name_in_Log_from_LN0
-    ( 'ERROR:[SemanticConstraints] Unique name in Log from LN0 (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_name_in_Log_from_LN0;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique name in Log from LN0'
+        )
     :
         self.Log -> isUnique(l:Log|l.name)
 

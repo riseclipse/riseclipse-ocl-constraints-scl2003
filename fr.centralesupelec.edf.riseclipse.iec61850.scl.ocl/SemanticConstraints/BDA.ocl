@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -33,13 +33,21 @@ context BDA
         
     -- BDA.type is allowed only if bType = Struct or Enum
     inv BDAType_allowedWhen_Enum
-    ( 'ERROR:[SemanticConstraints] BDA.type is allowed only if bType = Struct or Enum (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/BDAType_allowedWhen_Enum;'
+          + self.lineNumber.toString() + ';'
+          + 'BDA.type is allowed only if bType = Struct or Enum'
+        )
     :
         (self.bType <> 'Struct' and self.bType <>'Enum') implies self.type = null
     
     -- a BDA must refer an existing DAType or EnumType
     inv BDA_RefersToDATypeorEnumType
-    ( 'ERROR:[SemanticConstraints] BDA (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DAType or EnumType in DataTypeTemplates section' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/BDA_RefersToDATypeorEnumType;'
+          + self.lineNumber.toString() + ';'
+          + 'BDA (name=' + self.name.toString() + ')  does not refer an existing DAType or EnumType in DataTypeTemplates section'
+        )
     :
         (self.bType = 'Struct' implies self.RefersToDAType <> null) and (self.bType = 'Enum' implies self.RefersToEnumType <> null)
 endpackage

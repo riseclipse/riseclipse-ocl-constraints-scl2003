@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -29,7 +29,11 @@ context DAI
     -- the combination of name value and ix value shall be unique at each level (e.g. inside a DOI element)
     
     inv Unique_DAI_SDI_name_ix_combination
-        ( 'ERROR:[SemanticConstraints] name and ix combination must be unique in DAI and SDI under the same DOI (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Unique_DAI_SDI_name_ix_combination;'
+          + self.lineNumber.toString() + ';'
+          + 'name and ix combination must be unique in DAI and SDI under the same DOI'
+        )
         :
         self.ParentDOI -> size() > 0
         implies

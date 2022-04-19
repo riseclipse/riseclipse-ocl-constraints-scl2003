@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,8 +27,10 @@ context ConnectedAP
 
     -- The iedName attribute shall refer to an existing IED.
     inv ConnectedAP_ied_exists
-        ( 'ERROR:[SemanticConstraints] iedName attribute shall refer to an existing IED in ConnectedAP (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.iedName.toString()
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ConnectedAP_ied_exists;'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute shall refer to an existing IED in ConnectedAP. ' + 'Current value is ' + self.iedName.toString()
         )
     :
         let scl : SCL = self.ParentSubNetwork.ParentCommunication.ParentSCL in
@@ -36,19 +38,31 @@ context ConnectedAP
         
     -- The ConnectedAP in SubNetwork shall have unique GSE cbName and ldInst (from SCL_Communication.xsd)
     inv unique_attributes_combination_GSE_in_ConnectedAP_from_SubNetwork
-    ( 'ERROR:[SemanticConstraints] Unique GSE cbName and ldInst combination in ConnectedAP from SubNetwork (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_attributes_combination_GSE_in_ConnectedAP_from_SubNetwork;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique GSE cbName and ldInst combination in ConnectedAP from SubNetwork'
+        )
     :
         self.oclContainer.oclIsTypeOf(SubNetwork) implies self.GSE -> isUnique( g : GSE | Sequence{ g.cbName , g.ldInst } )
 
     -- The ConnectedAP in SubNetwork shall have unique SMV cbName and ldInst (from SCL_Communication.xsd)
     inv unique_attributes_combination_SMV_in_ConnectedAP_from_SubNetwork
-    ( 'ERROR:[SemanticConstraints] Unique SMV cbName and ldInst combination in ConnectedAP from SubNetwork (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/unique_attributes_combination_SMV_in_ConnectedAP_from_SubNetwork;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique SMV cbName and ldInst combination in ConnectedAP from SubNetwork'
+        )
     :
         self.oclContainer.oclIsTypeOf(SubNetwork) implies self.SMV -> isUnique( s : SMV | Sequence{ s.cbName , s.ldInst } )
     
     -- a ConnectedAP must refer an existing AccessPoint
     inv ConnectedAP_RefersToAccessPoint
-    ( 'ERROR:[SemanticConstraints] ConnectedAP (apName=' + self.apName.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing AccessPoint in IED section' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/ConnectedAP_RefersToAccessPoint;'
+          + self.lineNumber.toString() + ';'
+          + 'ConnectedAP (apName=' + self.apName.toString() + ')  does not refer an existing AccessPoint in IED section'
+        )
     :
         self.RefersToAccessPoint <> null
 endpackage
