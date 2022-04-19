@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,8 +31,10 @@ context ClientLN
 
     -- The apRef attribute shall be valid
     inv ClientLN_apRef_valid
-        ( 'ERROR:[RequiredAttributes] apRef attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.apRef.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_apRef_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'apRef attribute shall be valid in ClientLN. ' + 'Current value is ' + self.apRef.toString()
         )
     :
         self.apRef <> null implies self.validSclAccessPointName( apRef )
@@ -42,39 +44,57 @@ context ClientLN
     --  pure client access point, then the value of ldInst can be arbitrary
     --  (recommended: LD0).
     inv ClientLN_iedName_required
-        ( 'ERROR:[RequiredAttributes] iedName attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_iedName_required;'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute shall be present in ClientLN'
+        )
     :
         self.iedName <> null
 
     inv ClientLN_iedName_valid
-        ( 'ERROR:[RequiredAttributes] iedName attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.iedName.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_iedName_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute shall be valid in ClientLN. ' + 'Current value is ' + self.iedName.toString()
         )
     :
         self.iedName <> null implies self.validSclIEDName( iedName )
 
     inv ClientLN_ldInst_required
-        ( 'ERROR:[RequiredAttributes] ldInst attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_ldInst_required;'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst attribute shall present in ClientLN'
+        )
     :
         self.ldInst <> null
 
     inv ClientLN_ldInst_valid
-        ( 'ERROR:[RequiredAttributes] ldInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.ldInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_ldInst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst attribute shall be valid in ClientLN. ' + 'Current value is ' + self.ldInst.toString()
         )
     :
         self.ldInst <> null implies self.validSclLDInst( ldInst )
 
     -- lnClass required
     inv ClientLN_lnClass_required
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_lnClass_required;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall present in ClientLN'
+        )
     :
         self.lnClass <> null
 
     -- lnClass valid
     inv ClientLN_lnClass_valid
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_lnClass_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be valid in ClientLN. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
@@ -82,20 +102,28 @@ context ClientLN
     --  lnInst is required. If the LLN0 is referenced, the value is the empty
     --  string.
     inv ClientLN_lnInst_required
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be present in ClientLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_lnInst_required;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall be present in ClientLN'
+        )
     :
         self.lnInst <> null
         
     inv ClientLN_lnInst_valid
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_lnInst_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall be valid in ClientLN. ' + 'Current value is ' + self.lnInst.toString()
         )
     :
         self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
 
     inv ClientLN_lnInst_empty_for_LLN0
-        ( 'ERROR:[RequiredAttributes] lnInst attribute shall be empty for LLN0 in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnInst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_lnInst_empty_for_LLN0;'
+          + self.lineNumber.toString() + ';'
+          + 'lnInst attribute shall be empty for LLN0 in ClientLN. ' + 'Current value is ' + self.lnInst.toString()
         )
     :
         self.lnInst <> null implies if( self.lnClass = 'LLN0' ) then self.lnInst.size() = 0 else self.lnInst.size() > 0 endif
@@ -104,16 +132,20 @@ context ClientLN
     --  no prefix (prefix value = empty string). If it is defined, it must have a
     --  non zero length.
     inv ClientLN_prefix_valid
-        ( 'ERROR:[RequiredAttributes] prefix attribute shall be valid in ClientLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.prefix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_prefix_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix attribute shall be valid in ClientLN. ' + 'Current value is ' + self.prefix.toString()
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
         
     --apRef attribute cannot be null for empty LN.prefix
     inv ClientLN_apRef_check
-        ( 'ERROR:[RequiredAttributes] apRef attribute cannot be null for empty LN.prefix (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.apRef.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_apRef_check;'
+          + self.lineNumber.toString() + ';'
+          + 'apRef attribute cannot be null for empty LN.prefix. ' + 'Current value is ' + self.apRef.toString()
         )
     :
         self.RefersToAnyLN <> null implies
@@ -124,8 +156,10 @@ context ClientLN
         
     --prefix attribute cannot be empty for empty LN.prefix      
     inv ClientLN_prefix_check
-        ( 'ERROR:[RequiredAttributes] prefix attribute cannot be empty for empty LN.prefix (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.prefix.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/ClientLN_prefix_check;'
+          + self.lineNumber.toString() + ';'
+          + 'prefix attribute cannot be empty for empty LN.prefix. ' + 'Current value is ' + self.prefix.toString()
         )
     :
         self.RefersToAnyLN <> null implies

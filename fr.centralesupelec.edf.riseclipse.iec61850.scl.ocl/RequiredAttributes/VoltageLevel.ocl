@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,16 +30,20 @@ context VoltageLevel
 
     -- The nomFreq attribute shall be valid if present.
     inv VoltageLevel_nomFreq_value
-        ( 'ERROR:[RequiredAttributes] nomFreq attribute shall a positive decimal in VoltageLevel (line ' + self.lineNumber.toString() + ').'
-            + 'Current value is ' + self.nomFreq.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/VoltageLevel_nomFreq_value;'
+          + self.lineNumber.toString() + ';'
+          + 'nomFreq attribute shall a positive decimal in VoltageLevel. ' + 'Current value is ' + self.nomFreq.toString()
         )
     :
         self.nomFreq <> null implies self.nomFreq >= 0
 
     -- The numPhases attribute shall be valid if present.
     inv VoltageLevel_numPhases_value
-        ( 'ERROR:[RequiredAttributes] numPhases attribute shall be between 1 and 255 in VoltageLevel (line ' + self.lineNumber.toString() + ').'
-            + 'Current value is ' + self.numPhases.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/VoltageLevel_numPhases_value;'
+          + self.lineNumber.toString() + ';'
+          + 'numPhases attribute shall be between 1 and 255 in VoltageLevel. ' + 'Current value is ' + self.numPhases.toString()
         )
     :
         -- test <= 255 is done by XML Handler because it is a byte

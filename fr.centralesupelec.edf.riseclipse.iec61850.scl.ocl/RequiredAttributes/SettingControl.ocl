@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,30 +28,40 @@ context SettingControl
 
     -- The numOfSGs attribute shall be present
     inv SettingControl_numOfSGs_required
-        ( 'ERROR:[RequiredAttributes] numOfSGs attribute shall be present in SettingControl (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SettingControl_numOfSGs_required;'
+          + self.lineNumber.toString() + ';'
+          + 'numOfSGs attribute shall be present in SettingControl'
+        )
     :
         self.numOfSGs <> null
 
     -- The numOfSGs attribute shall be greater than 0
     inv SettingControl_numOfSGs_valid
-        ( 'ERROR:[RequiredAttributes] numOfSGs attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.numOfSGs.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SettingControl_numOfSGs_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'numOfSGs attribute shall be greater than 0 in SettingControl. ' + 'Current value is ' + self.numOfSGs.toString()
         )
     :
         self.numOfSGs <> null implies self.numOfSGs > 0
 
     -- The actSG attribute shall be greater than 0
     inv SettingControl_actSG_valid
-        ( 'ERROR:[RequiredAttributes] actSG attribute shall be greater than 0 in SettingControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.actSG.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SettingControl_actSG_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'actSG attribute shall be greater than 0 in SettingControl. ' + 'Current value is ' + self.actSG.toString()
         )
     :
         self.actSG <> null implies self.actSG > 0
 
     -- resvTms is unsignedShort
     inv SettingControl_resvTms_valid
-        ( 'ERROR:[RequiredAttributes] resvTms attribute shall be valid in SettingControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.resvTms.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/SettingControl_resvTms_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'resvTms attribute shall be valid in SettingControl. ' + 'Current value is ' + self.resvTms.toString()
         )
     :
         self.resvTms <> null implies self.resvTms >= 0

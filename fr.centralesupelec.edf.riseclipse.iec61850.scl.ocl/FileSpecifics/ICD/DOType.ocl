@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -27,7 +27,11 @@ context DOType
 
     -- At least one SDO or DA is required for SCD and ICD files
     inv DOType_at_least_one_SDO_or_DA_required
-        ( 'ERROR:[ICD File] DOType shall contain at least one SDO or DA (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/ICD File/DOType_at_least_one_SDO_or_DA_required;'
+          + self.lineNumber.toString() + ';'
+          + 'DOType shall contain at least one SDO or DA'
+        )
     :
         self.SDO->notEmpty() or self.DA->notEmpty()
 

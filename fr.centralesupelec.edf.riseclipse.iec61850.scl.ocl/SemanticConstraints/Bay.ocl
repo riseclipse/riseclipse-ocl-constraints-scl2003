@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -32,7 +32,11 @@ context Bay
     -- Within a Bay, there cannot be two direct ConductingEquipment elements
     -- with the same name.
     inv Bay_unique_ConductingEquipment_name
-    ( 'ERROR:[SemanticConstraints] ConductingEquipment in Bay shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Bay_unique_ConductingEquipment_name;'
+          + self.lineNumber.toString() + ';'
+          + 'ConductingEquipment in Bay shall have different name'
+        )
     :
         self.ConductingEquipment->isUnique( c : ConductingEquipment | c.name )
 
@@ -43,7 +47,11 @@ context Bay
     --  In order to avoid any ambiguities, within a Bay, there cannot be two
     --  direct child elements with the same name.
     inv Bay_unique_DirectChild_name
-    ( 'ERROR:[SemanticConstraints] All direct childs in Bay shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/Bay_unique_DirectChild_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All direct childs in Bay shall have different name'
+        )
     :
         self.oclContents()->selectByKind( scl::Naming )->isUnique( n : Naming | n.name )
         -- Version when oclContents() is not available

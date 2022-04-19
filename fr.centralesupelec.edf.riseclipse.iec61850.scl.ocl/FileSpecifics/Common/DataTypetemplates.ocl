@@ -23,28 +23,17 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
 
-context ServiceWithMaxNonZero
--- extends NONE
+context SCL
 
-    -- The max attribute shall be present
-    inv ServiceWithMaxNonZero_max_required
+    -- DataTypeTemplates section is mandatory in a ICD/IID/SED files
+    inv DataTypeTemplates_required
         (   'ERROR;'
-          + 'OCL/RequiredAttributes/ServiceWithMaxNonZero_max_required;'
+          + 'OCL/FileSpecifics/ICD-IID-SED/DataTypeTemplates_required;'
           + self.lineNumber.toString() + ';'
-          + 'max attribute shall be present in ServiceWithMaxNonZero'
+          + 'DataTypeTemplates section is mandatory'
         )
     :
-        self.max <> null
-
-    -- The max attribute shall be valid
-    inv ServiceWithMaxNonZero_max_valid
-        (   'ERROR;'
-          + 'OCL/RequiredAttributes/ServiceWithMaxNonZero_max_valid;'
-          + self.lineNumber.toString() + ';'
-          + 'max attribute shall be valid in ServiceWithMaxNonZero. ' + 'Current value is ' + self.max.toString()
-        )
-    :
-        self.max <> null implies self.max > 0
+        self.DataTypeTemplates->notEmpty()
 
 
 endpackage

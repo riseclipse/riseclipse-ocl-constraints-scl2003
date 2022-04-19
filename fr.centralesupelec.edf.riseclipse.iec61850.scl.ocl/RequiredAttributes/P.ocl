@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,23 +30,31 @@ context P
 
     -- The type attribute shall be present and shall not be the empty string.
     inv P_type_required
-        ( 'ERROR:[RequiredAttributes] type attribute shall be present in P (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/P_type_required;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be present in P'
+        )
     :
         self.type <> null
 
     -- the type attribute shall be one of the predefined values or shall start with a capital letter,
     -- and contain only alphanumeric characters and dashes(-)
     inv P_type_valid
-        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in P (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/P_type_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be valid in P. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclPTypeEnum( type )
     
     -- The content of P shall be valid according to its type.
     inv P_value
-        ( 'ERROR:[RequiredAttributes] content shall be valid according to its type in P (line ' + self.lineNumber.toString() + ')). '
-          + 'Current value is ' + self.value.toString() + ' for type ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/P_value;'
+          + self.lineNumber.toString() + ';'
+          + 'content shall be valid according to its type in P. ' + 'Current value is ' + self.value.toString() + ' for type ' + self.type.toString()
         )
     :
         if self.type = 'IP' or self.type = 'IP-SUBNET' or self.type = 'IP-GATEWAY' then

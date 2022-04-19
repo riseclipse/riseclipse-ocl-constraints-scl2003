@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -28,55 +28,91 @@ context SCL
     -- The Substation name shall be unique within an SCL file.
     -- Note: Substation are contained in SCL or in Process
     inv SCL_unique_Substation_name
-    ( 'ERROR:[SemanticConstraints] All Substation within an SCL file shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_Substation_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All Substation within an SCL file shall have different name'
+        )
     :
         scl::Substation.allInstances()->isUnique( s : Substation | s.name )
         
     -- The Process name shall be unique within an SCL file (from SCL.xsd)
     inv SCL_unique_Process_name
-    ( 'ERROR:[SemanticConstraints] All Process within an SCL file shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_Process_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All Process within an SCL file shall have different name'
+        )
     :
         scl::Process.allInstances()->isUnique( p : Process | p.name )
         
     -- The Line name shall be unique within an SCL file (from SCL.xsd)
     inv SCL_unique_Line_name
-    ( 'ERROR:[SemanticConstraints] All Line within an SCL file shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_Line_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All Line within an SCL file shall have different name'
+        )
     :
         scl::Line.allInstances()->isUnique( l : Line | l.name )
 
     -- The IED name shall be unique within the SCL file.
     inv SCL_unique_IED_name
-    ( 'ERROR:[SemanticConstraints] All IED within an SCL file shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_IED_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All IED within an SCL file shall have different name'
+        )
     :
         scl::IED.allInstances()->isUnique( i : IED | i.name )
 
     inv SCL_unique_ConnectivityNode_pathName
-    ( 'ERROR:[SemanticConstraints] All ConnectivityNode within an SCL file shall have different pathName (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_ConnectivityNode_pathName;'
+          + self.lineNumber.toString() + ';'
+          + 'All ConnectivityNode within an SCL file shall have different pathName'
+        )
     :
         scl::ConnectivityNode.allInstances()->isUnique( c : ConnectivityNode | c.pathName )
     
     -- The LD name built from inst and other parts as described in 28H8.5 shall be unique within each
     -- SCL file.
     inv SCL_unique_LDevice_name
-    ( 'ERROR:[SemanticConstraints] All LDevice within an SCL file shall have different LD name built from inst and other parts (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_LDevice_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All LDevice within an SCL file shall have different LD name built from inst and other parts'
+        )
     :
         scl::LDevice.allInstances() -> isUnique( l : LDevice | l.ParentServer.ParentAccessPoint.ParentIED.name.concat( l.inst ))
         
     -- SubNetwork.name is "A name identifying this bus; unique within this SCL file"
     inv SCL_unique_SubNetwork_name
-    ( 'ERROR:[SemanticConstraints] All SubNetwork within an SCL file shall have different name (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_SubNetwork_name;'
+          + self.lineNumber.toString() + ';'
+          + 'All SubNetwork within an SCL file shall have different name'
+        )
     :
         scl::SubNetwork.allInstances() -> isUnique( s : SubNetwork | s.name )
         
     -- DOType.id is "The (SCL file global) identification of this DOType. Used to reference this type."
     inv SCL_unique_DOType_id
-    ( 'ERROR:[SemanticConstraints] All DOType within an SCL file shall have different id (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_DOType_id;'
+          + self.lineNumber.toString() + ';'
+          + 'All DOType within an SCL file shall have different id'
+        )
     :
         scl::DOType.allInstances() -> isUnique( d : DOType | d.id )
     
     -- The LNodeType id and lnClass combination shall be unique within an SCL file (from SCL.xsd) 
     inv SCL_unique_LNodeType_id_lnClass_combination
-    ( 'ERROR:[SemanticConstraints] All LNodeType within an SCL file shall have different id and lnClass combination (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/SCL_unique_LNodeType_id_lnClass_combination;'
+          + self.lineNumber.toString() + ';'
+          + 'All LNodeType within an SCL file shall have different id and lnClass combination'
+        )
     :
         scl::LNodeType.allInstances() -> isUnique( l : LNodeType | Sequence{l.id,l.lnClass} )
         

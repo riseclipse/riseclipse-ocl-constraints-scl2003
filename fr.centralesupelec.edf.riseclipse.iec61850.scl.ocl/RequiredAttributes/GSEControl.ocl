@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,14 +30,20 @@ context GSEControl
 
     -- The appID attribute shall be present
     inv GSEControl_appID_required
-        ( 'ERROR:[RequiredAttributes] appID attribute shall be present in GSEControl (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/GSEControl_appID_required;'
+          + self.lineNumber.toString() + ';'
+          + 'appID attribute shall be present in GSEControl'
+        )
     :
         self.appID <> null
 
     -- The appID attribute shall be present and shall not be the empty string.
     inv GSEControl_appID_valid
-        ( 'ERROR:[RequiredAttributes] appID attribute shall be valid in GSEControl (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.appID.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/GSEControl_appID_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'appID attribute shall be valid in GSEControl. ' + 'Current value is ' + self.appID.toString()
         )
     :
         self.appID <> null implies self.validSclMessageID( appID )
@@ -50,7 +56,11 @@ context GSEControl
     -- type attribute is not specified).
     -- Note: default value is GOOSE
     inv GSEControl_confRev_required
-        ( 'ERROR:[RequiredAttributes] confRev attribute shall be present when type is GOOSE in GSEControl (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/GSEControl_confRev_required;'
+          + self.lineNumber.toString() + ';'
+          + 'confRev attribute shall be present when type is GOOSE in GSEControl'
+        )
     :
         ( self.type = null or self.type = GSEControlTypeEnum::GOOSE )
         implies self.confRev <> null

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -31,21 +31,31 @@ context AnyLN
 
     -- The lnClass attribute is required
     inv LN_lnClass_required
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN_lnClass_required;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be present in ' + self.oclType().toString()
+        )
     :
         self.lnClass <> null
 
     -- The lnClass attribute must be valid
     inv LN_lnClass_valid
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be valid in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN_lnClass_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be valid in ' + self.oclType().toString() + '. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
 
     -- The inst attribute is required
     inv LN_inst_required
-        ( 'ERROR:[RequiredAttributes] inst attribute shall be present in ' + self.oclType().toString() + ' (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN_inst_required;'
+          + self.lineNumber.toString() + ';'
+          + 'inst attribute shall be present in ' + self.oclType().toString()
+        )
     :
         self.inst <> null
         
@@ -54,14 +64,20 @@ context AnyLN
     
     -- The lnType attribute shall be present
     inv AnyLN_lnType_required
-        ( 'ERROR:[RequiredAttributes] lnType attribute shall be present in AnyLN (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AnyLN_lnType_required;'
+          + self.lineNumber.toString() + ';'
+          + 'lnType attribute shall be present in AnyLN'
+        )
     :
         self.lnType <> null
 
     -- The lnType attribute shall be valid
     inv AnyLN_lnType_valid
-        ( 'ERROR:[RequiredAttributes] lnType attribute shall be valid in AnyLN (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnType.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/AnyLN_lnType_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'lnType attribute shall be valid in AnyLN. ' + 'Current value is ' + self.lnType.toString()
         )
     :
         self.lnType <> null implies self.validSclName( lnType )

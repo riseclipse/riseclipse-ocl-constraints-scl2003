@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,24 +30,30 @@ context Line
 
     -- The type attribute shall be valid
     inv Line_type_valid
-        ( 'ERROR:[RequiredAttributes] type attribute shall be valid in Line (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.type.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Line_type_valid;'
+          + self.lineNumber.toString() + ';'
+          + 'type attribute shall be valid in Line. ' + 'Current value is ' + self.type.toString()
         )
     :
         self.type <> null implies self.validSclLineType( type )
 
     -- The nomFreq attribute shall be valid if present.
     inv Line_nomFreq_value
-        ( 'ERROR:[RequiredAttributes] nomFreq attribute shall a positive decimal in Line (line ' + self.lineNumber.toString() + ').'
-            + 'Current value is ' + self.nomFreq.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Line_nomFreq_value;'
+          + self.lineNumber.toString() + ';'
+          + 'nomFreq attribute shall a positive decimal in Line. ' + 'Current value is ' + self.nomFreq.toString()
         )
     :
         self.nomFreq <> null implies self.nomFreq >= 0
 
     -- The numPhases attribute shall be valid if present.
     inv Line_numPhases_value
-        ( 'ERROR:[RequiredAttributes] numPhases attribute shall be between 1 and 255 in Line (line ' + self.lineNumber.toString() + ').'
-            + 'Current value is ' + self.numPhases.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/Line_numPhases_value;'
+          + self.lineNumber.toString() + ';'
+          + 'numPhases attribute shall be between 1 and 255 in Line. ' + 'Current value is ' + self.numPhases.toString()
         )
     :
         -- test <= 255 is done by XML Handler because it is a byte

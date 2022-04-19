@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -29,8 +29,10 @@ context LN0
     -- lnClass required and valid: in AnyLN
     -- The lnClass attribute shall be LLN0
     inv LN0_lnClass_value
-        ( 'ERROR:[RequiredAttributes] lnClass attribute shall be LLN0 in LN0 (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.lnClass.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN0_lnClass_value;'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be LLN0 in LN0. ' + 'Current value is ' + self.lnClass.toString()
         )
     :
         self.lnClass <> null implies self.lnClass = 'LLN0'
@@ -38,8 +40,10 @@ context LN0
     -- inst required: in AnyLN
     -- The inst attribute shall be empty
     inv LN0_inst_empty
-        ( 'ERROR:[RequiredAttributes] inst attribute shall be empty in LN0 (line ' + self.lineNumber.toString() + '). '
-          + 'Current value is ' + self.inst.toString()
+        (   'ERROR;'
+          + 'OCL/RequiredAttributes/LN0_inst_empty;'
+          + self.lineNumber.toString() + ';'
+          + 'inst attribute shall be empty in LN0. ' + 'Current value is ' + self.inst.toString()
         )
     :
         self.inst <> null implies self.inst = ''

@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -30,7 +30,11 @@ context Substation
     -- SCL file.
 
     inv Unique_Substation_name_TEMPLATE
-        ( 'ERROR:[ICD File] Must have only one Substation.name = TEMPLATE (line ' + self.lineNumber.toString() + ')' )
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/ICD/Unique_Substation_name_TEMPLATE;'
+          + self.lineNumber.toString() + ';'
+          + 'Must have only one Substation.name = TEMPLATE'
+        )
         :
         self.ParentSCL.Substation->size() > 0
         implies self.ParentSCL.Substation -> exists(s : Substation|s.name = 'TEMPLATE')
