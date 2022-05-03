@@ -37,55 +37,7 @@ context LogControl
         )
     :
         self.datSet <> null implies self.ParentAnyLN.DataSet -> exists( d : DataSet | self.datSet = d.name )
-        
-    -- The LD reference shall point to a valid, defined LD
-    inv LogControl_ldInst_valid_reference
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/LogControl_ldInst_valid_reference;'
-          + self.lineNumber.toString() + ';'
-          + 'ldInst attribute shall reference a valid defined LDevice'
-        )
-    :
-        self.ldInst <> null implies
-            if (self.RefersToAnyLN <> null) then
-                self.RefersToAnyLN.oclContainer -> exists(l:LDevice | l.inst= self.ldInst)
-            else
-                true
-            endif   
-
-    -- The prefix of the referenced LN shall be valid
-    inv LogControl_prefix_valid_reference
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/LogControl_prefix_valid_reference;'
-          + self.lineNumber.toString() + ';'
-          + 'prefix attribute shall reference a valid prefix in LN'
-        )
-    :
-        self.prefix <> null implies
-            if (self.RefersToAnyLN <> null) then
-                if (self.RefersToAnyLN.oclIsTypeOf(LN)) then
-                    self.RefersToAnyLN -> exists(l:LN | l.prefix= self.prefix)
-                else
-                    true
-                endif
-            else
-                true
-            endif  
             
-            
-    -- The lnCLass of the referenced LN is validated in LogControlImpl.java
-    -- The lnInst of the referenced LN is validated in LogControlImpl.java
-            
-    -- a LogControl must refer an existing LN
-    inv LogControl_RefersToAnyLN
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/LogControl_RefersToAnyLN;'
-          + self.lineNumber.toString() + ';'
-          + 'LogControl does not refer an existing Logical Node'
-        )
-    :
-        self.RefersToAnyLN <> null  
-    
     -- a LogControl must refer an existing Log
     inv LogControl_RefersToLog
         (   'ERROR;'
