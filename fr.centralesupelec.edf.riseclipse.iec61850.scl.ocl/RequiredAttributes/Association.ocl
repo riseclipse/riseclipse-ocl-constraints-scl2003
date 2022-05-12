@@ -34,7 +34,8 @@ context Association
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_kind_required;'
           + self.lineNumber.toString() + ';'
-          + 'kind attribute shall be present in Association'
+          + 'kind attribute shall be present in Association;IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.kind <> null
@@ -48,6 +49,8 @@ context Association
           + 'OCL/RequiredAttributes/Association_associationID_valid;'
           + self.lineNumber.toString() + ';'
           + 'The length of the association ID shall be at least one. ' + 'Current value is ' + self.associationID.toString()
+          + ';IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.associationID <> null implies self.validSclAssociationID( associationID )
@@ -58,6 +61,8 @@ context Association
           + 'OCL/RequiredAttributes/Association_prefix_valid;'
           + self.lineNumber.toString() + ';'
           + 'The prefix attribute shall be valid. ' + 'Current value is ' + self.prefix.toString()
+          + ';IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
@@ -67,7 +72,8 @@ context Association
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_lnClass_required;'
           + self.lineNumber.toString() + ';'
-          + 'lnClass attribute shall be present in Association'
+          + 'lnClass attribute shall be present in Association;IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.lnClass <> null
@@ -78,6 +84,8 @@ context Association
           + 'OCL/RequiredAttributes/Association_lnClass_valid;'
           + self.lineNumber.toString() + ';'
           + 'The lnClass attribute shall be valid. ' + 'Current value is ' + self.lnClass.toString()
+          + ';IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.lnClass <> null implies self.validSclLNClassEnum( lnClass )
@@ -87,7 +95,8 @@ context Association
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_lnInst_required;'
           + self.lineNumber.toString() + ';'
-          + 'lnInst attribute shall be present in Association'
+          + 'lnInst attribute shall be present in Association;IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.lnInst <> null
@@ -98,6 +107,8 @@ context Association
           + 'OCL/RequiredAttributes/Association_lnInst_valid;'
           + self.lineNumber.toString() + ';'
           + 'The lnInst attribute shall be valid. ' + 'Current value is ' + self.lnInst.toString()
+          + ';IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.lnInst <> null implies self.validSclLNInstOrEmpty( lnInst )
@@ -107,7 +118,8 @@ context Association
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_iedName_required;'
           + self.lineNumber.toString() + ';'
-          + 'iedName attribute shall be present in Association'
+          + 'iedName attribute shall be present in Association;IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.iedName <> null
@@ -118,6 +130,8 @@ context Association
           + 'OCL/RequiredAttributes/Association_iedName_valid;'
           + self.lineNumber.toString() + ';'
           + 'The iedName attribute shall be valid. ' + 'Current value is ' + self.iedName.toString()
+          + ';IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.iedName <> null implies self.validSclIEDName( iedName )
@@ -127,7 +141,8 @@ context Association
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Association_ldInst_required;'
           + self.lineNumber.toString() + ';'
-          + 'ldInst attribute shall be present in Association'
+          + 'ldInst attribute shall be present in Association;IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.ldInst <> null
@@ -138,6 +153,8 @@ context Association
           + 'OCL/RequiredAttributes/Association_ldInst_valid;'
           + self.lineNumber.toString() + ';'
           + 'The ldInst attribute shall be valid. ' + 'Current value is ' + self.ldInst.toString()
+          + ';IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.ldInst <> null implies self.validSclLDInst( ldInst )        
