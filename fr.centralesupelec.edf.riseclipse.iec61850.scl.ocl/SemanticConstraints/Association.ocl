@@ -30,7 +30,8 @@ context Association
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Association_RefersToAnyLN;'
           + self.lineNumber.toString() + ';'
-          + 'Association (ID=' + self.associationID.toString() + ')  does not refer an existing LN'
+          + 'Association (ID=' + self.associationID.toString() + ')  does not refer an existing LN;IED "'
+          + self.ParentServer.ParentAccessPoint.ParentIED.name.toString() + '"'
         )
     :
         self.RefersToAnyLN <> null
