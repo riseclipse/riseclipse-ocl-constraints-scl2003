@@ -36,31 +36,31 @@ context ClientLN
         self.RefersToAnyLN <> null    
    
      
-   	-- Checks that the IED sending the Report is connected to the same subNetwork that the receiver IED
+    -- Checks that the IED sending the Report is connected to the same subNetwork that the receiver IED
      inv ClientLN_Sender_and_receiver_not_in_same_subnetwork
-		(   'ERROR;'
+        (   'ERROR;'
           + 'OCL/SemanticConstraints/ClientLN_Sender_and_receiver_not_in_same_subnetwork;'
           + self.lineNumber.toString() + ';'
           + 'Sender and receiver of the Report are not in the same Subnetwork'
         )
     :
- 			if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN0))
-  			then (
-			self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN0).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
-  				  				-> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
-  				  				-> size() = 1
-  			)
-  			else(
-  				if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN))
-  				then (
-				self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
-  				  				-> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
-  				  				-> size() = 1
-  				)
-  				else true			
-  				endif
-  			)
-  			endif
+            if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN0))
+            then (
+            self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN0).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+                                -> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
+                                -> size() = 1
+            )
+            else(
+                if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN))
+                then (
+                self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+                                -> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
+                                -> size() = 1
+                )
+                else true           
+                endif
+            )
+            endif
 
 endpackage
 
