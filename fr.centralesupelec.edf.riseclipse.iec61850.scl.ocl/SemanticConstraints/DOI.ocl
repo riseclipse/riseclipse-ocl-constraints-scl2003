@@ -34,15 +34,9 @@ context DOI
         )
     :
        let dai = self.DAI -> collect( d : DAI | Tuple{ ix:Integer=d.ix, name:String=d.name } ),
-           sdi = self.SDI -> collect( s : SDI | Tuple{ ix:Integer=s.ix, name:String=s.name } ),
-           all = dai -> includingAll( sdi )
+           sdi = self.SDI -> collect( s : SDI | Tuple{ ix:Integer=s.ix, name:String=s.name } )
        in
-       -- Does not work: the double iterators version will pick the same element for s1 and s2
-       --all -> forAll( s1, s2 | s1 <> s2 )
-       -- Does not work: s1 <> s2 compares tuple values, not tuple identity
-       --all -> forAll( s1, s2 | s1 <> s2 implies s1.ix <> s2.ix or s1.name <> s2.name )
-       -- So let's compare the size of the bag and the size of the set
-       all->size() = all->asSet()->size()
+       dai -> includingAll( sdi ) -> isUnique( ix_name_tuple | ix_name_tuple )
        
     -- The DOI in AnyLN must have a reference to a DO, that is, the AnyLN that contains the DOI must reference a valid LNType
     -- The consistency of the reference is already established in AnyLNImpl.java
