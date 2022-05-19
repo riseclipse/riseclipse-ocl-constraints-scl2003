@@ -50,9 +50,9 @@ context SubEquipment
         endif
         
     -- The SubEquipment in AbstractConductingEquipment shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment_from_AbstractConductingEquipment
+    inv SubEquipment_unique_name_in_SubEquipment_from_AbstractConductingEquipment
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_AbstractConductingEquipment;'
+          + 'OCL/SemanticConstraints/SubEquipment_unique_name_from_AbstractConductingEquipment;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in SubEquipment from AbstractConductingEquipment'
         )
@@ -60,9 +60,9 @@ context SubEquipment
         self.oclContainer.oclIsKindOf(AbstractConductingEquipment) implies self.oclContents -> isUnique(n:Naming|n.name)
         
     -- The SubEquipment in PowerTransformer shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment_from_PowerTransformer
+    inv SubEquipment_unique_name_in_SubEquipment_from_PowerTransformer
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_PowerTransformer;'
+          + 'OCL/SemanticConstraints/SubEquipment_unique_name_from_PowerTransformer;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in SubEquipment from PowerTransformer'
         )
@@ -70,9 +70,9 @@ context SubEquipment
         self.oclContainer.oclIsTypeOf(PowerTransformer) implies self.oclContents -> isUnique(n:Naming|n.name)
         
     -- The SubEquipment in TapChanger shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment_from_TapChanger
+    inv SubEquipment_unique_name_in_SubEquipment_from_TapChanger
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_TapChanger;'
+          + 'OCL/SemanticConstraints/SubEquipment_unique_name_from_TapChanger;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in SubEquipment from TapChanger'
         )

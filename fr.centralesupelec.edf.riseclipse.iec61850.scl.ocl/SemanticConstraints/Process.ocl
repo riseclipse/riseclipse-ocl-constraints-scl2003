@@ -68,9 +68,9 @@ context Process
     -- In general, at each hierarchy level within the Process section all names shall be
     -- unique, leading to unique object references (path names) of all objects defined by the
     -- substation naming hierarchy.
-    inv unique_name_same_level_in_Process
+    inv Process_unique_name_same_level
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_same_level_in_Process;'
+          + 'OCL/SemanticConstraints/Process_unique_name_same_level;'
           + self.lineNumber.toString() + ';'
           + 'All names shall be unique at each hierarchy level within the Process'
         )

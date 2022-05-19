@@ -26,9 +26,9 @@ package scl
 context PowerTransformer
         
     -- The PowerTransformer in EquipmentContainer shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_PowerTransformer_from_EquipmentContainer
+    inv PowerTransformer_unique_name_from_EquipmentContainer
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_PowerTransformer_from_EquipmentContainer;'
+          + 'OCL/SemanticConstraints/PowerTransformer_unique_name_from_EquipmentContainer;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in PowerTransformer from EquipmentContainer'
         )

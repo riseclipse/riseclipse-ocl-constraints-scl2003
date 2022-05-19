@@ -26,9 +26,9 @@ package scl
 context LNodeType
 
     -- The LNodeType in DataTypeTemplates shall have unique DO name (from SCL_DataTypeTemplates.xsd)
-    inv unique_DO_name_in_LNodeType_from_DataTypeTemplates
+    inv LNodeType_unique_DO_name_from_DataTypeTemplates
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_DO_name_in_LNodeType_from_DataTypeTemplates;'
+          + 'OCL/SemanticConstraints/LNodeType_unique_DO_name_from_DataTypeTemplates;'
           + self.lineNumber.toString() + ';'
           + 'Unique DO name in LNodeTYpe from DataTypeTemplates'
         )

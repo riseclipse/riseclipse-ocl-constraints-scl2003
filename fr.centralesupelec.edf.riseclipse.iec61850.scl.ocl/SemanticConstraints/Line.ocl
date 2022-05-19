@@ -44,9 +44,9 @@ context Line
         
         
     -- each contained element shall have a unique name        
-    inv unique_name_same_level_in_Line
+    inv Line_unique_name_same_level
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_same_level_in_Line;'
+          + 'OCL/SemanticConstraints/Line_unique_name_same_level;'
           + self.lineNumber.toString() + ';'
           + 'All names shall be unique at each hierarchy level within the Line'
         )

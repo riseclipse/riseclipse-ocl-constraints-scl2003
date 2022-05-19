@@ -50,9 +50,9 @@ context LN0
         self.SampledValueControl -> isUnique( c : SampledValueControl | c.name )
         
     -- The ReportControl in LN0 shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_ReportControl_from_LN0
+    inv LN0_name_in_ReportControl
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_ReportControl_from_LN0;'
+          + 'OCL/SemanticConstraints/LN0_name_in_ReportControl;'
           + self.lineNumber.toString() + ';'
           + 'Unique name in ReportControl from LN0'
         )
@@ -61,9 +61,9 @@ context LN0
         
         
     -- The LogControl in LN0 shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_LogControl_from_LN0
+    inv LN0_name_in_LogControl
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_LogControl_from_LN0;'
+          + 'OCL/SemanticConstraints/LN0_name_in_LogControl;'
           + self.lineNumber.toString() + ';'
           + 'Unique name in LogControl from LN0'
         )
@@ -72,9 +72,9 @@ context LN0
         
 
     -- The DataSet in LN0 shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_DataSet_from_LN0
+    inv LN0_name_in_DataSet
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_DataSet_from_LN0;'
+          + 'OCL/SemanticConstraints/LN0_name_in_DataSet;'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DataSet from LN0'
         )
@@ -82,9 +82,9 @@ context LN0
         self.DataSet -> isUnique(d:DataSet|d.name)
         
     -- The DOI in LN0 shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_DOI_from_LN0
+    inv LN0_name_in_DOI
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_DOI_from_LN0;'
+          + 'OCL/SemanticConstraints/LN0_name_in_DOI;'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DOI from LN0'
         )
@@ -92,9 +92,9 @@ context LN0
         self.DOI -> isUnique(d:DOI|d.name)
         
     -- The Log in LN0 shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_Log_from_LN0
+    inv LN0_name_in_Log
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_Log_from_LN0;'
+          + 'OCL/SemanticConstraints/LN0_name_in_Log;'
           + self.lineNumber.toString() + ';'
           + 'Unique name in Log from LN0'
         )

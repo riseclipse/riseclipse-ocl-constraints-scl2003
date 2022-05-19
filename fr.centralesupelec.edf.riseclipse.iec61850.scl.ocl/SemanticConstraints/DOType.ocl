@@ -70,9 +70,9 @@ context DOType
         self.checkRecursiveReferenced( Set{ self.id } ).ok
         
     -- The DOType in DataTypeTemplates shall have unique child name (from SCL_DataTypeTemplates.xsd)
-    inv unique_child_name_in_DOType_from_DataTypeTemplates
+    inv DOType_unique_child_name_from_DataTypeTemplates
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_child_name_in_DOType_from_DataTypeTemplates;'
+          + 'OCL/SemanticConstraints/DOType_unique_child_name_from_DataTypeTemplates;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in DOType from DataTypeTemplates'
         )

@@ -78,9 +78,9 @@ context Substation
 
     -- In general, at each hierarchy level within the substation section all
     -- names shall be unique, leading to unique object
-    inv unique_name_same_level_in_Substation
+    inv Substation_unique_name_same_level
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_same_level_in_Substation;'
+          + 'OCL/SemanticConstraints/Substation_unique_name_same_level;'
           + self.lineNumber.toString() + ';'
           + 'All names shall be unique at each hierarchy level within the Substation'
         )
@@ -130,9 +130,9 @@ context Substation
     
     -- Substation terminals shall not reference connectivity nodes inside Line elements
     
-    inv Terminal_CNode_not_refererences_Line_CNode
+    inv Substation_Terminal_CNode_not_refererences_Line_CNode
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/Terminal_CNode_not_refererences_Line_CNode;'
+          + 'OCL/SemanticConstraints/Substation_Terminal_CNode_not_refererences_Line_CNode;'
           + self.lineNumber.toString() + ';'
           + 'ConnectivityNode from Terminal shall not reference a ConnectivityNode from Line'
         )
@@ -144,9 +144,9 @@ context Substation
 
     -- A logical node instance within an IED can only be referenced once within all substation sections.
     
-    inv unique_LN_reference_in_Substation_LNode
+    inv Substation_unique_LN_reference_LNode
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_LN_reference_in_Substation_LNode;'
+          + 'OCL/SemanticConstraints/Substation_unique_LN_reference_LNode;'
           + self.lineNumber.toString() + ';'
           + 'LN reference from LNode element in Substation shall be unique in the Substation'
         )

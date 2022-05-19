@@ -75,9 +75,9 @@ context ConductingEquipment
         endif
         
     -- The ConductingEquipment in Bay shall have unique name in SubEquipment, EqFunction (from SCL_Substation.xsd)
-    inv unique_name_in_ConductingEquipment_from_Bay
+    inv ConductingEquipment_unique_name_from_Bay
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_ConductingEquipment_from_Bay;'
+          + 'OCL/SemanticConstraints/ConductingEquipment_unique_name_from_Bay;'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment, EqFunction name in ConductingEquipment from Bay'
         )
@@ -86,9 +86,9 @@ context ConductingEquipment
         self.SubEquipment -> union(self.EqFunction) -> isUnique(n:Naming|n.name)
         
     -- The ConductingEquipment in Function shall have unique name in SubEquipment, EqFunction (from SCL_Substation.xsd)
-    inv unique_name_in_ConductingEquipment_from_Function
+    inv ConductingEquipment_unique_name_from_Function
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_ConductingEquipment_from_Function;'
+          + 'OCL/SemanticConstraints/ConductingEquipment_unique_name_from_Function;'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment, EqFunction name in ConductingEquipment from Function'
         )
@@ -97,9 +97,9 @@ context ConductingEquipment
         self.SubEquipment -> union(self.EqFunction) -> isUnique(n:Naming|n.name)
         
     -- The ConductingEquipment in SubFunction shall have unique name in SubEquipment (from SCL_Substation.xsd)
-    inv unique_name_in_ConductingEquipment_from_SubFunction
+    inv ConductingEquipment_unique_name_from_SubFunction
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_ConductingEquipment_from_SubFunction;'
+          + 'OCL/SemanticConstraints/ConductingEquipment_unique_name_from_SubFunction;'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment name in ConductingEquipment from SubFunction'
         )

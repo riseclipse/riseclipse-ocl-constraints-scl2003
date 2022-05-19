@@ -26,9 +26,9 @@ package scl
 context TransformerWinding
 
     -- The TransformerWinding in PowerTransformer shall have unique name in SubEquipment, TapChanger, EqFunction (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment
+    inv TransformerWinding_unique_name_in_SubEquipment
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment;'
+          + 'OCL/SemanticConstraints/TransformerWinding_unique_name_in_SubEquipment;'
           + self.lineNumber.toString() + ';'
           + 'Unique SubEquipment, TapChanger, EqFunction name in SubEquipment from AbstractConductingEquipment'
         )
