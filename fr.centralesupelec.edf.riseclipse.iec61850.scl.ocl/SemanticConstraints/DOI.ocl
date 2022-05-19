@@ -26,18 +26,23 @@ package scl
 context DOI
         
     -- The DOI in AnyLN shall have unique DAI and SDI ix and name combination (from SCL_IED.xsd)
-    inv unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
+    inv DOI_unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_DAI_SDI_ix_name_in_DOI_from_AnyLN;'
+          + 'OCL/SemanticConstraints/DOI_unique_DAI_SDI_ix_name_in_DOI_from_AnyLN;'
           + self.lineNumber.toString() + ';'
           + 'Unique DAI and SDI ix and name combination in DOI from AnyLN'
         )
     :
-       let dai = self.DAI -> collect(d : DAI | Sequence{d.ix, d.name}) -> asOrderedSet() -> asBag()
-       ,
-       sdi = self.SDI -> collect(s : SDI | Sequence{s.ix, s.name}) -> asOrderedSet() -> asBag()
+       let dai = self.DAI -> collect( d : DAI | Tuple{ ix:Integer=d.ix, name:String=d.name } ),
+           sdi = self.SDI -> collect( s : SDI | Tuple{ ix:Integer=s.ix, name:String=s.name } ),
+           all = dai -> includingAll( sdi )
        in
-       self.oclContainer.oclIsKindOf(AnyLN) implies dai -> union(sdi) -> isUnique(s:SclObject | s)
+       -- Does not work: the double iterators version will pick the same element for s1 and s2
+       --all -> forAll( s1, s2 | s1 <> s2 )
+       -- Does not work: s1 <> s2 compares tuple values, not tuple identity
+       --all -> forAll( s1, s2 | s1 <> s2 implies s1.ix <> s2.ix or s1.name <> s2.name )
+       -- So let's compare the size of the bag and the size of the set
+       all->size() = all->asSet()->size()
        
     -- The DOI in AnyLN must have a reference to a DO, that is, the AnyLN that contains the DOI must reference a valid LNType
     -- The consistency of the reference is already established in AnyLNImpl.java
