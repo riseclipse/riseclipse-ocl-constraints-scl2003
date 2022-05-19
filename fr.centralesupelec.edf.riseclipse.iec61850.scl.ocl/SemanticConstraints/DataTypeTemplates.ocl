@@ -33,7 +33,11 @@ context DataTypeTemplates
           + 'Unique child id from DataTypeTemplates'
         )
     :
-        self.oclContents -> isUnique(i : IDNaming | i.id)
+                  self.LNodeType-> collect( i : IDNaming | i.id )
+         ->union( self.DOType   -> collect( i : IDNaming | i.id ))
+         ->union( self.DAType   -> collect( i : IDNaming | i.id ))
+         ->union( self.EnumType -> collect( i : IDNaming | i.id ))
+         -> isUnique( id | id )
         
     
 
