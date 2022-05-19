@@ -145,28 +145,26 @@ context ClientLN
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ClientLN_apRef_check;'
           + self.lineNumber.toString() + ';'
-          + 'apRef attribute cannot be null for empty LN.prefix. ' + 'Current value is ' + self.apRef.toString()
+          + 'apRef attribute cannot be null for empty LN.prefix. ' + 'Current value is null or empty'
         )
     :
         self.RefersToAnyLN <> null implies
-        if self.RefersToAnyLN->collect(m:LN|m.prefix).matches('')->any(m:Boolean|m=true or m=false)
-        then self.apRef <> null  
-        else true 
-        endif
+            self.RefersToAnyLN.oclIsKindOf( LN ) implies
+                self.RefersToAnyLN.oclAsType( LN ).prefix = '' implies
+                    self.apRef <> null and self.apRef <> ''
         
     --prefix attribute cannot be empty for empty LN.prefix      
     inv ClientLN_prefix_check
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ClientLN_prefix_check;'
           + self.lineNumber.toString() + ';'
-          + 'prefix attribute cannot be empty for empty LN.prefix. ' + 'Current value is ' + self.prefix.toString()
+          + 'prefix attribute cannot be empty for empty LN.prefix. ' + 'Current value is empty'
         )
     :
         self.RefersToAnyLN <> null implies
-        if self.RefersToAnyLN->collect(m:LN|m.prefix).matches('')->any(m:Boolean|m=true or m=false)
-        then self.prefix <> ''  
-        else true 
-        endif       
+            self.RefersToAnyLN.oclIsKindOf(LN) implies
+                self.RefersToAnyLN.oclAsType(LN).prefix = '' implies
+                    self.prefix <> ''  
         
 
 
