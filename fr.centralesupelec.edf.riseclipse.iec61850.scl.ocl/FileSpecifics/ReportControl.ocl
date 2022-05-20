@@ -37,10 +37,15 @@ context ReportControl
           + 'buffered = true and indexed = false in ReportControl only if RptEnabled.max = 1'
         )
     :
-        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies
-            self.RptEnabled <> null implies
-                self.RptEnabled.max <> null implies
-                    self.buffered = true and self.indexed = false implies
+        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies (
+            self.RptEnabled <> null implies (
+                self.RptEnabled.max <> null implies (
+                    self.buffered = true and self.indexed = false implies (
                         self.RptEnabled.max = 1
+                    )
+                )
+            )
+        )
+
 
 endpackage

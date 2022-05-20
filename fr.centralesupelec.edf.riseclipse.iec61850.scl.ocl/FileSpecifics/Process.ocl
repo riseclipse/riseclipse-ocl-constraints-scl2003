@@ -39,11 +39,12 @@ context Process
           + 'Must have only one Process.name = TEMPLATE'
         )
     :
-        self.isInICDFile() implies
+        self.isInICDFile() implies (
                 self.ParentSCL.Process -> size() > 0
-            implies
+            implies (
                 self.ParentSCL.Process -> exists  ( p : Process | p.name = 'TEMPLATE' )
-            and self.ParentSCL.Process -> isUnique( p : Process | p.name = 'TEMPLATE' )
+            and self.ParentSCL.Process -> isUnique( p : Process | p.name = 'TEMPLATE' ))
+        )
 
 endpackage
 

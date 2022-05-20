@@ -50,7 +50,7 @@ context LNode
           + 'LNode does not refer an existing Logical Node in IED section'
         )
     :
-        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies self.RefersToAnyLN <> null 
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies self.RefersToAnyLN <> null 
         
     -- a LNode must refer an existing LNodeType
     inv LNode_RefersToLNodeType
@@ -61,7 +61,7 @@ context LNode
           + 'LNode does not refer an existing LNodeType in DataTypeTemplates section'
         )
     :
-        self.isInCIDFile() or self.isInIIDFile()  or self.isInSCDFile()implies self.RefersToLNodeType <> null 
+        ( self.isInCIDFile() or self.isInIIDFile()  or self.isInSCDFile() ) implies self.RefersToLNodeType <> null 
 
 endpackage
 

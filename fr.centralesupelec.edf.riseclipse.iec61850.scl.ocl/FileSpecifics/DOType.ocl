@@ -36,7 +36,7 @@ context DOType
           + 'DOType shall contain at least one SDO or DA'
         )
     :
-        self.isInICDFile() or self.isInSCDFile() implies ( self.SDO->notEmpty() or self.DA->notEmpty() )
+        ( self.isInICDFile() or self.isInSCDFile() ) implies ( self.SDO->notEmpty() or self.DA->notEmpty() )
 
 
 endpackage

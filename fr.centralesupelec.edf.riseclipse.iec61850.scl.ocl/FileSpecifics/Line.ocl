@@ -39,11 +39,12 @@ context Line
           + 'Must have only one Line.name = TEMPLATE'
         )
     :
-        self.isInICDFile() implies
+        self.isInICDFile() implies (
                 self.ParentSCL.Line -> size() > 0
-            implies
+            implies (
                 self.ParentSCL.Line -> exists  ( l : Line | l.name = 'TEMPLATE' )
-            and self.ParentSCL.Line -> isUnique( l : Line | l.name = 'TEMPLATE' )
+            and self.ParentSCL.Line -> isUnique( l : Line | l.name = 'TEMPLATE' ))
+        )
 
 endpackage
 

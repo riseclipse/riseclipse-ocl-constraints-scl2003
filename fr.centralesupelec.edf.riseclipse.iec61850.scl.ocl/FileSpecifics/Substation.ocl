@@ -39,11 +39,12 @@ context Substation
           + 'Must have only one Substation.name = TEMPLATE'
         )
     :
-         self.isInICDFile() implies
+         self.isInICDFile() implies (
                 self.ParentSCL.Substation -> size() > 0
-            implies
+            implies (
                 self.ParentSCL.Substation -> exists  ( s : Substation | s.name = 'TEMPLATE' )
-            and self.ParentSCL.Substation -> isUnique( s : Substation | s.name = 'TEMPLATE' )
+            and self.ParentSCL.Substation -> isUnique( s : Substation | s.name = 'TEMPLATE' ))
+        )
 
 
 endpackage

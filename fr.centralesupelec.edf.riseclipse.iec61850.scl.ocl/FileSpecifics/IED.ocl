@@ -37,11 +37,12 @@ context IED
           + 'Must have only one IED.name = TEMPLATE'
         )
     :
-        self.isInICDFile() implies
+        self.isInICDFile() implies (
                 self.ParentSCL.IED -> size() > 0
-            implies
+            implies (
                 self.ParentSCL.IED -> exists  ( i : IED | i.name = 'TEMPLATE' )
-            and self.ParentSCL.IED -> isUnique( i : IED | i.name = 'TEMPLATE' )
+            and self.ParentSCL.IED -> isUnique( i : IED | i.name = 'TEMPLATE' ))
+        )
 
 endpackage
 

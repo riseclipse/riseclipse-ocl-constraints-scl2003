@@ -47,7 +47,8 @@ context SCL
           + 'DataTypeTemplates section is mandatory'
         )
     :
-        self.isInICDFile() or self.isInIIDFile() or self.isInSEDFile() or self.isInSCDFile() implies self.DataTypeTemplates <> null
+        ( self.isInICDFile() or self.isInIIDFile() or self.isInSEDFile() or self.isInSCDFile() ) implies
+            self.DataTypeTemplates <> null
 
 
 endpackage

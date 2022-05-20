@@ -38,14 +38,14 @@ context ExtRef
           + 'iedName attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
         )
     :
-        self.isInSCDFile() implies (
+        ( self.isInSCDFile() implies (
             self.iedName <> null
-        )
+        ))
         and
-        self.isInSSDFile() implies (
+        ( self.isInSSDFile() implies (
             (( self.intAddr = null ) or ( self.desc = null )) implies
                 self.iedName <> null
-        )
+        ))
     
     -- The ldInst attribute shall be present
     inv ExtRef_ldInst_required
@@ -56,14 +56,14 @@ context ExtRef
           + 'ldInst attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
         )
     :
-        self.isInSCDFile() implies (
+        ( self.isInSCDFile() implies (
             self.ldInst <> null
-        )
+        ))
         and
-        self.isInSSDFile() implies (
+        ( self.isInSSDFile() implies (
             (( self.intAddr = null ) or ( self.desc = null )) implies
                 self.ldInst <> null
-        )
+        ))
 
     -- The lnClass attribute shall be present
     inv ExtRef_lnClass_required
@@ -74,14 +74,14 @@ context ExtRef
           + 'lnClass attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
         )
     :
-        self.isInSCDFile() implies (
+        ( self.isInSCDFile() implies (
             self.lnClass <> null
-        )
+        ))
         and
-        self.isInSSDFile() implies (
+        ( self.isInSSDFile() implies (
             (( self.intAddr = null ) or ( self.desc = null )) implies
                 self.lnClass <> null
-        )
+        ))
     
     -- The doName attribute shall be present
     inv ExtRef_doName_required
@@ -92,14 +92,14 @@ context ExtRef
           + 'doName attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
         )
     :
-        self.isInSCDFile() implies (
+        ( self.isInSCDFile() implies (
             self.doName <> null
-        )
+        ))
         and
-        self.isInSSDFile() implies (
+        ( self.isInSSDFile() implies (
             (( self.intAddr = null ) or ( self.desc = null )) implies
                 self.doName <> null
-        )
+        ))
 
     -- a ExtRef must refer an existing Data Object or data Attribute
     inv ExtRef_RefersToAbstractDataAttribute
@@ -110,9 +110,10 @@ context ExtRef
           + 'ExtRef does not refer an existing Data Object or Data Attribute'
         )
     :
-        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies (
-            self.doName ->notEmpty() implies
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            self.doName ->notEmpty() implies (
                 self.RefersToAbstractDataAttribute <> null or self.RefersToAbstractDataObject <> null
+            )
         )
         
     -- a ExtRef must refer an existing Control
@@ -124,8 +125,8 @@ context ExtRef
           + 'ExtRef does not refer an existing Control'
         )
     :
-        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies (
-            self.srcCBName <> null implies self.RefersToControl <> null
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            ( self.srcCBName <> null implies self.RefersToControl <> null )
         )
 
     -- a ExtRef must be correctly mapped - CDC specified by  pDO and, if given, the attribute (base) type specified by pDA are met
@@ -137,9 +138,10 @@ context ExtRef
           + 'ExtRef service is not correctly binded'
         )
     :
-        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies (
-            self.intAddr = null or self.desc = null implies
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            ( self.intAddr = null or self.desc = null ) implies (
                 self.pServT <> null implies self.pServT = self.serviceType
+            )
         )
 
     -- Relations found in the Table 35 from 61850-6-Ed2 (line 3651)
