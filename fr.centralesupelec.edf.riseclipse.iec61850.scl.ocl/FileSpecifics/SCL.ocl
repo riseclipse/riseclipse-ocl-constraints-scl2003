@@ -41,13 +41,13 @@ context SCL
     -- DataTypeTemplates section is mandatory in a ICD/IID/SED files
     inv SCL_DataTypeTemplates_required
         (   'ERROR;'
-          + 'OCL/FileSpecifics/ICD-IID-SED/SCL_DataTypeTemplates_required;'
+          + 'OCL/FileSpecifics/ICD-IID-SED-SCD/SCL_DataTypeTemplates_required;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DataTypeTemplates section is mandatory'
         )
     :
-        self.isInICDFile() or self.isInIIDFile() or self.isInSEDFile() implies self.DataTypeTemplates->notEmpty()
+        self.isInICDFile() or self.isInIIDFile() or self.isInSEDFile() or self.isInSCDFile() implies self.DataTypeTemplates <> null
 
 
 endpackage
