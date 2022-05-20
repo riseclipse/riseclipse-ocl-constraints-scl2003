@@ -76,37 +76,6 @@ context Substation
         --in let childs_4 : OrderedSet( Naming ) = childs_3->union( self.VoltageLevel )
         --in childs_4->isUnique( n : Naming | n.name )
 
-    -- In general, at each hierarchy level within the substation section all
-    -- names shall be unique, leading to unique object
-    inv Substation_unique_name_same_level
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/Substation_unique_name_same_level;'
-          + self.lineNumber.toString() + ';'
-          + 'All names shall be unique at each hierarchy level within the Substation'
-        )
-    :   
-        if self.ParentSCL <> null then
-        SclObject.allInstances()->
-        select(s:SclObject|self.ParentSCL.oclContents()->
-            select(s:SclObject|s.lineNumber>self.lineNumber)->
-            forAll(s1:SclObject|s1.lineNumber>s.lineNumber) 
-            and s.lineNumber>self.lineNumber)->
-            select(s:SclObject|s.oclIsKindOf(Naming))->
-            exists(n1:Naming;n2:Naming|n1<>n2 
-                and n1.oclContainer=n2.oclContainer 
-                and n1.name=n2.name) implies false
-        else
-        SclObject.allInstances()->
-        select(s:SclObject|self.ParentProcess.oclContents()->
-            select(s:SclObject|s.lineNumber>self.lineNumber)->
-            forAll(s1:SclObject|s1.lineNumber>s.lineNumber) 
-            and s.lineNumber>self.lineNumber)->
-            select(s:SclObject|s.oclIsKindOf(Naming))->
-            exists(n1:Naming;n2:Naming|n1<>n2 
-                and n1.oclContainer=n2.oclContainer 
-                and n1.name=n2.name) implies false
-        endif
-        
     -- For a primary system template within an ICD file, the substation name
     -- shall be TEMPLATE. There can be a maximum of one substation template in one
     -- SCL file.
@@ -144,34 +113,6 @@ context Substation
 
     -- A logical node instance within an IED can only be referenced once within all substation sections.
     
-    inv Substation_unique_LN_reference_LNode
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/Substation_unique_LN_reference_LNode;'
-          + self.lineNumber.toString() + ';'
-          + 'LN reference from LNode element in Substation shall be unique in the Substation'
-        )
-        :
-        (if SCL.allInstances().Substation -> notEmpty() then SclObject.allInstances()->
-        select(s:SclObject|SCL.allInstances().oclContents()->
-            select(s:SclObject|s.lineNumber>(SCL.allInstances().Substation->
-                collect(s:Substation|s.lineNumber)->
-                max()))->
-                forAll(s1:SclObject|s1.lineNumber>s.lineNumber) and s.lineNumber>(SCL.allInstances().Substation->
-                    collect(s:Substation|s.lineNumber)->max()))->
-                    select(s:SclObject|s.oclIsKindOf(LNode))->
-                    select(l:LNode|l.RefersToAnyLN<>null)else null.oclAsSet() endif)->
-             union(if Process.allInstances() -> notEmpty() and Process.allInstances().Substation-> notEmpty() then SclObject.allInstances()->
-        select(s:SclObject|Process.allInstances().oclContents()->
-            select(s:SclObject|s.lineNumber>(Process.allInstances().Substation->
-                collect(s:Substation|s.lineNumber)->
-                max()))->
-                forAll(s1:SclObject|s1.lineNumber>s.lineNumber) and s.lineNumber>(Process.allInstances().Substation->
-                    collect(s:Substation|s.lineNumber)->max()))->
-                    select(s:SclObject|s.oclIsKindOf(LNode))->
-                    select(l:LNode|l.RefersToAnyLN<>null)else null.oclAsSet() endif) ->
-                        isUnique(l:LNode|l.RefersToAnyLN)
-        
-
     
 
 endpackage
