@@ -21,25 +21,34 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context Line
+context ConnectedAP
 
-    -- For a primary system template within an ICD file, the line name
-    -- shall be TEMPLATE. There can be a maximum of one line template in one
-    -- SCL file.
-
-    inv Unique_Line_name_TEMPLATE
+    -- For a complete SCD file, either the server address or at least
+    -- one control block address shall be specified.
+    inv ConnectedAP_address_required
         (   'ERROR;'
-          + 'OCL/FileSpecifics/ICD/Unique_Line_name_TEMPLATE;'
+          + 'OCL/FileSpecifics/SCD/ConnectedAP_address_required;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'Must have only one Line.name = TEMPLATE'
+          + 'address attribute shall be present in ConnectedAP'
         )
-        :
-        self.ParentSCL.Line->size() > 0
-        implies self.ParentSCL.Line -> exists(l : Line|l.name = 'TEMPLATE')
-        and self.ParentSCL.Line -> isUnique(l : Line|l.name = 'TEMPLATE')
+    :
+        self.isInSCDFile() implies self.Address -> notEmpty()
+
+    -- Further each ConnectedAP element shall reference an IED access point existing in the IED section.
+    inv ConnectedAP_AccessPoint_reference
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SCD/ConnectedAP_AccessPoint_reference;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'ConnectedAP must refer to an AccessPoint defined in an IED'
+        )
+    :
+        self.isInSCDFile() implies self.RefersToAccessPoint <> null
 
 endpackage
 

@@ -21,21 +21,22 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context SCL
+context SubNetwork
 
-    -- Substation section is mandatory in a SSD file
-    inv Substation_required
+    -- If the file is an SCD the Type attribute is not optional
+    inv SubNetwork_type_required
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SSD/Substation_required;'
+          + 'OCL/FileSpecifics/SCD/SubNetwork_type_required;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'Substation section is mandatory'
+          + 'type attribute shall be present in SubNetwork'
         )
     :
-        self.Substation->notEmpty()
-
+        self.isInSCDFile() implies self.type <> null
 
 endpackage
 

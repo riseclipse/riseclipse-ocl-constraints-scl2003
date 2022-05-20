@@ -21,7 +21,7 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
-import '../../Helpers/GetFileType.ocl'
+import '../Helpers/GetFileType.ocl'
 
 package scl
 
@@ -38,8 +38,30 @@ context LNode
           + self.lineNumber.toString() + ';'
           + 'iedName attribute from LNode shall be None in SSD files'
         )
-        :
+    :
         self.isInSSDFile() implies ( self.RefersToAnyLN <> null implies self.iedName.matches( 'None' ))
+
+    -- a LNode must refer an existing LN
+    inv LNode_RefersToAnyLN
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/LNode_RefersToAnyLN;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'LNode does not refer an existing Logical Node in IED section'
+        )
+    :
+        self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() implies self.RefersToAnyLN <> null 
+        
+    -- a LNode must refer an existing LNodeType
+    inv LNode_RefersToLNodeType
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/LNode_RefersToLNodeType;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'LNode does not refer an existing LNodeType in DataTypeTemplates section'
+        )
+    :
+        self.isInCIDFile() or self.isInIIDFile()  or self.isInSCDFile()implies self.RefersToLNodeType <> null 
 
 endpackage
 

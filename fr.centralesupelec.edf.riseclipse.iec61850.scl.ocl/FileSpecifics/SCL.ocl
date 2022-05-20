@@ -21,23 +21,34 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context IED
+context SCL
 
-    -- Within an ICD file describing a device type, the name shall be TEMPLATE
-
-    inv Unique_IED_name_TEMPLATE
+    -- Substation section is mandatory in a SSD file
+    inv SCL_Substation_required
         (   'ERROR;'
-          + 'OCL/FileSpecifics/ICD/Unique_IED_name_TEMPLATE;'
+          + 'OCL/FileSpecifics/SSD/SCL_Substation_required;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'Must have only one IED.name = TEMPLATE'
+          + 'Substation section is mandatory'
         )
-        :
-        self.ParentSCL.IED->size() > 0
-        implies self.ParentSCL.IED -> exists(i : IED|i.name = 'TEMPLATE')
-        and self.ParentSCL.IED -> isUnique(i : IED|i.name = 'TEMPLATE')
+    :
+        self.isInSSDFile() implies self.Substation->notEmpty()
+
+    -- DataTypeTemplates section is mandatory in a ICD/IID/SED files
+    inv SCL_DataTypeTemplates_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/ICD-IID-SED/SCL_DataTypeTemplates_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'DataTypeTemplates section is mandatory'
+        )
+    :
+        self.isInICDFile() or self.isInIIDFile() or self.isInSEDFile() implies self.DataTypeTemplates->notEmpty()
+
 
 endpackage
 
