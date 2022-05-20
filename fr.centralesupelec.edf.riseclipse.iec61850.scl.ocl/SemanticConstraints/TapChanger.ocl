@@ -25,16 +25,6 @@ package scl
 
 context TapChanger
         
-    -- The TapChanger in TransformerWinding shall have unique child name (from SCL_Substation.xsd)
-    inv TapChanger_unique_name_from_TransformerWinding
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/TapChanger_unique_name_from_TransformerWinding;'
-          + self.lineNumber.toString() + ';'
-          + 'Unique child name in TapChanger from TransformerWinding'
-        )
-    :
-        self.oclContainer.oclIsTypeOf(TransformerWinding) implies self.oclContents -> isUnique(n:Naming|n.name)
-
     -- The SubEquipment in TapChanger shall have unique child name (from SCL_Substation.xsd)
     inv TapChanger_unique_name_of_SubEquipment
         (   'ERROR;'

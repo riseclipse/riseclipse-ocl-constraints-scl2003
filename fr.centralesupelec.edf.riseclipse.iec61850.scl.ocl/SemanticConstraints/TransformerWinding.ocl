@@ -36,5 +36,15 @@ context TransformerWinding
         self.oclContainer.oclIsTypeOf(PowerTransformer) implies 
         self.SubEquipment -> union(self.TapChanger -> union(self.EqFunction)) -> isUnique(n:Naming|n.name)
 
+    -- The TapChanger in TransformerWinding shall have unique child name (from SCL_Substation.xsd)
+    inv TransformerWinding_unique_name_of_TapChanger
+        (   'ERROR;'
+          + 'OCL/SemanticConstraints/TransformerWinding_unique_name_of_TapChanger;'
+          + self.lineNumber.toString() + ';'
+          + 'Unique child name of TapChanger in TransformerWinding'
+        )
+    :
+        self.TapChanger -> isUnique( n : Naming | n.name )
+
 endpackage
 
