@@ -99,7 +99,5 @@ context LN
     :
         self.Log -> isUnique(l:Log|l.name)
 
-inv:true
-
 endpackage
 
