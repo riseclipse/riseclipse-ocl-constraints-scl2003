@@ -151,38 +151,6 @@ context ClientLN
     :
         self.prefix <> null implies self.validSclPrefix( prefix )
         
-    --apRef attribute cannot be null for empty LN.prefix
-    inv ClientLN_apRef_check
-        (   'ERROR;'
-          + 'OCL/RequiredAttributes/ClientLN_apRef_check;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'apRef attribute cannot be null for empty LN.prefix. ' + 'Current value is ' + self.apRef.toString()
-        )
-    :
-        self.RefersToAnyLN <> null implies
-        if self.RefersToAnyLN->collect(m:LN|m.prefix).matches('')->any(m:Boolean|m=true or m=false)
-        then self.apRef <> null  
-        else true 
-        endif
-        
-    --prefix attribute cannot be empty for empty LN.prefix      
-    inv ClientLN_prefix_check
-        (   'ERROR;'
-          + 'OCL/RequiredAttributes/ClientLN_prefix_check;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'prefix attribute cannot be empty for empty LN.prefix. ' + 'Current value is ' + self.prefix.toString()
-        )
-    :
-        self.RefersToAnyLN <> null implies
-        if self.RefersToAnyLN->collect(m:LN|m.prefix).matches('')->any(m:Boolean|m=true or m=false)
-        then self.prefix <> ''  
-        else true 
-        endif       
-        
-
-
 
 endpackage
 
