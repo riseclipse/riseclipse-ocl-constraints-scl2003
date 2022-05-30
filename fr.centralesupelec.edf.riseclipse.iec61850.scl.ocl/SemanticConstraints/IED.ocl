@@ -66,9 +66,9 @@ context IED
         endif
  
     -- The FCDA shall refer to LDevice in the same IED (from SCL_IED.ocl)       
-    inv FCDA_in_LN_refers_LDevice_in_same_IED
+    inv IED_FCDA_in_LN_refers_LDevice_in_same_IED
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/FCDA_in_LN_refers_LDevice_in_same_IED;'
+          + 'OCL/SemanticConstraints/IED_FCDA_in_LN_refers_LDevice_in_same_IED;'
           + self.lineNumber.toString() + ';'
           + 'FCDA in IED shall reference LDevice in the same IED via ldInst'
         )
@@ -88,9 +88,9 @@ context IED
             else true endif
         else true endif
 
-    inv FCDA_in_LN0_refers_LDevice_in_same_IED
+    inv IED_FCDA_in_LN0_refers_LDevice_in_same_IED
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/FCDA_in_LN0_refers_LDevice_in_same_IED;'
+          + 'OCL/SemanticConstraints/IED_FCDA_in_LN0_refers_LDevice_in_same_IED;'
           + self.lineNumber.toString() + ';'
           + 'FCDA in IED shall reference LDevice in the same IED via ldInst'
         )
@@ -111,9 +111,9 @@ context IED
         else true endif
         
     -- The ServerAt shall refer to AccessPoint in the same IED (from SCL_IED.ocl)
-    inv ServerAt_refers_AccessPoint_in_same_IED
+    inv IED_ServerAt_refers_AccessPoint_in_same_IED
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/ServerAt_refers_AccessPoint_in_same_IED;'
+          + 'OCL/SemanticConstraints/IED_ServerAt_refers_AccessPoint_in_same_IED;'
           + self.lineNumber.toString() + ';'
           + 'ServerAt in IED shall reference AccessPoint in the same IED via ldInst'
         )

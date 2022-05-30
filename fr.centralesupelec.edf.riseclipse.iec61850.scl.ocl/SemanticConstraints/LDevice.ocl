@@ -27,9 +27,9 @@ context LDevice
 
     -- The ldName, if specified, must be unique within each SubNetwork
     
-    inv Unique_LDevice_ldName
+    inv LDevice_Unique_ldName
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/Unique_LDevice_ldName;'
+          + 'OCL/SemanticConstraints/LDevice_Unique_ldName;'
           + self.lineNumber.toString() + ';'
           + 'ldName attribute in LDevice must be unique within each Subnetwork'
         )

@@ -26,9 +26,9 @@ package scl
 context DA
 
     -- The DA in DOType shall have unique ProtNs type (from SCL_DataTypeTemplates.xsd)
-    inv unique_ProtNs_type_in_DA_from_DOType
+    inv DA_unique_ProtNs_type_in_DA_from_DOType
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_ProtNs_type_in_DA_from_DOType;'
+          + 'OCL/SemanticConstraints/DA_unique_ProtNs_type_in_DA_from_DOType;'
           + self.lineNumber.toString() + ';'
           + 'Unique ProtNs type in DA from DOType'
         )
@@ -36,9 +36,9 @@ context DA
         self.oclContainer.oclIsTypeOf(DOType) implies self.ProtNs -> isUnique( p : ProtNs | p.type )
         
     -- DA.type is allowed only if bType = Struct or Enum
-    inv DAType_allowedWhen_Enum
+    inv DA_DAType_allowedWhen_Enum
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/DAType_allowedWhen_Enum;'
+          + 'OCL/SemanticConstraints/DA_DAType_allowedWhen_Enum;'
           + self.lineNumber.toString() + ';'
           + 'DA.type is allowed only if bType = Struct or Enum'
         )

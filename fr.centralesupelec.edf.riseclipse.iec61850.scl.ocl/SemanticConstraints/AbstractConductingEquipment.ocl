@@ -23,14 +23,14 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
 
-context PowerTransformer
-        
-    -- The SubEquipment in PowerTransformer shall have unique child name (from SCL_Substation.xsd)
-    inv PowerTransformer_unique_name_of_SubEquipment
+context AbstractConductingEquipment
+
+    -- The SubEquipment in AbstractConductingEquipment shall have unique child name (from SCL_Substation.xsd)
+    inv AbstractConductingEquipment_unique_name_of_SubEquipment
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/PowerTransformer_unique_name_of_SubEquipment;'
+          + 'OCL/SemanticConstraints/AbstractConductingEquipment_unique_name_of_SubEquipment;'
           + self.lineNumber.toString() + ';'
-          + 'Unique child name of SubEquipment in PowerTransformer'
+          + 'Unique child name of SubEquipment in AbstractConductingEquipment'
         )
     :
         self.SubEquipment -> isUnique( n : Naming | n.name )

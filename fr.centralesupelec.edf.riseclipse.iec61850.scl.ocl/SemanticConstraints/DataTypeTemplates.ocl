@@ -26,14 +26,18 @@ package scl
 context DataTypeTemplates
 
     -- The children of DataTypeTemplates shall have unique id (from SCL_DataTypeTemplates.xsd)
-    inv unique_child_id_from_DataTypeTemplates
+    inv DataTypeTemplates_unique_child_id
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_child_id_from_DataTypeTemplates;'
+          + 'OCL/SemanticConstraints/DataTypeTemplates_unique_child_id;'
           + self.lineNumber.toString() + ';'
           + 'Unique child id from DataTypeTemplates'
         )
     :
-        self.oclContents -> isUnique(i : IDNaming | i.id)
+                  self.LNodeType-> collect( i : IDNaming | i.id )
+         ->union( self.DOType   -> collect( i : IDNaming | i.id ))
+         ->union( self.DAType   -> collect( i : IDNaming | i.id ))
+         ->union( self.EnumType -> collect( i : IDNaming | i.id ))
+         -> isUnique( id | id )
         
     
 

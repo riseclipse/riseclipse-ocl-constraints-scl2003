@@ -26,9 +26,9 @@ package scl
 context AbstractDataObject
 
     -- a AbstractDataObject must refer an existing DOType
-    inv Control_RefersToDataSet
+    inv AbstractDataObject_RefersToDataSet
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/Control_RefersToDataSet;'
+          + 'OCL/SemanticConstraints/AbstractDataObject_RefersToDataSet;'
           + self.lineNumber.toString() + ';'
           + 'DO or SDO (name=' + self.name.toString() + ')  does not refer an existing DOType in DataTypeTemplates section'
         )

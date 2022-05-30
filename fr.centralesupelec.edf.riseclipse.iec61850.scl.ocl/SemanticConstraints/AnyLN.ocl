@@ -26,9 +26,9 @@ package scl
 context AnyLN
 
     --  The name of the log control block shall be unique within the LN.
-    inv LN_LogControl_name_unique
+    inv AnyLN_LogControl_name_unique
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/LN_LogControl_name_unique;'
+          + 'OCL/SemanticConstraints/AnyLN_LogControl_name_unique;'
           + self.lineNumber.toString() + ';'
           + 'name of the log control block shall be unique within the AnyLN'
         )
@@ -36,9 +36,9 @@ context AnyLN
         self.LogControl -> isUnique( l : LogControl | l.name )
 
     -- The name of the report control block shall be unique within the LN.
-    inv LN_ReportControl_name_unique
+    inv AnyLN_ReportControl_name_unique
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/LN_ReportControl_name_unique;'
+          + 'OCL/SemanticConstraints/AnyLN_ReportControl_name_unique;'
           + self.lineNumber.toString() + ';'
           + 'name of the report control block shall be unique within the AnyLN'
         )
@@ -46,9 +46,9 @@ context AnyLN
         self.ReportControl -> isUnique( r: ReportControl | r.name )
 
     -- The Log element has as its only attribute its name, which shall be unique within the LN.
-    inv LN_Log_name_unique
+    inv AnyLN_Log_name_unique
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/LN_Log_name_unique;'
+          + 'OCL/SemanticConstraints/AnyLN_Log_name_unique;'
           + self.lineNumber.toString() + ';'
           + 'name of the Log shall be unique within the AnyLN'
         )
@@ -56,9 +56,9 @@ context AnyLN
         self.Log -> isUnique( l : Log | l.name ) 
 
     -- In DOI.name: "Its value must be unique at this level, i.e. there shall be at maximum one DOI element for the same data object."
-    inv LN_DOI_name_unique
+    inv AnyLN_DOI_name_unique
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/LN_DOI_name_unique;'
+          + 'OCL/SemanticConstraints/AnyLN_DOI_name_unique;'
           + self.lineNumber.toString() + ';'
           + 'name of the DOI shall be unique within the AnyLN'
         )
@@ -67,9 +67,9 @@ context AnyLN
     
 
     -- The lnClass in LN or LN must be the same as the referenced LNodeType lnClass
-    inv LNodeType_lnClass_consistent
+    inv AnyLN_LNodeType_lnClass_consistent
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/LNodeType_lnClass_consistent;'
+          + 'OCL/SemanticConstraints/AnyLN_LNodeType_lnClass_consistent;'
           + self.lineNumber.toString() + ';'
           + 'lnClass shall be the same as the referenced LNodeType lnClass'
         )

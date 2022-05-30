@@ -32,9 +32,9 @@ context BDA
     --    self.oclContainer.oclIsTypeOf(DOType) implies self.ProtNs -> isUnique( p : ProtNs | p.type )
         
     -- BDA.type is allowed only if bType = Struct or Enum
-    inv BDAType_allowedWhen_Enum
+    inv BDA_BDAType_allowedWhen_Enum
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/BDAType_allowedWhen_Enum;'
+          + 'OCL/SemanticConstraints/BDA_BDAType_allowedWhen_Enum;'
           + self.lineNumber.toString() + ';'
           + 'BDA.type is allowed only if bType = Struct or Enum'
         )

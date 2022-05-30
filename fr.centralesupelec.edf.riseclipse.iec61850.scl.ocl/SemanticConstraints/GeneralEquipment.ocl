@@ -26,54 +26,59 @@ package scl
 context GeneralEquipment
         
     -- The GeneralEquipment in Function shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_GeneralEquipment_from_Function
+    inv GeneralEquipment_unique_name_from_Function
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_GeneralEquipment_from_Function;'
+          + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_Function;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from Function'
         )
     :
-        self.oclContainer.oclIsTypeOf(Function) implies self.oclContents -> isUnique(n:Naming|n.name)
+        self.oclContainer.oclIsTypeOf( Function ) implies
+        self.oclContainer.oclAsType  ( Function ) -> isUnique( n:Naming | n.name )
         
     -- The GeneralEquipment in SubFunction shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_GeneralEquipment_from_SubFunction
+    inv GeneralEquipment_unique_name_from_SubFunction
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_GeneralEquipment_from_SubFunction;'
+          + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_SubFunction;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from SubFunction'
         )
     :
-        self.oclContainer.oclIsTypeOf(SubFunction) implies self.oclContents -> isUnique(n:Naming|n.name)
+        self.oclContainer.oclIsTypeOf( SubFunction ) implies
+        self.oclContainer.oclAsType  ( SubFunction ) -> isUnique( n:Naming | n.name )
         
     -- The GeneralEquipment in AbstractEqFuncSubFunc shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_GeneralEquipment_from_AbstractEqFuncSubFunc
+    inv GeneralEquipment_unique_name_from_AbstractEqFuncSubFunc
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_GeneralEquipment_from_AbstractEqFuncSubFunc;'
+          + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_AbstractEqFuncSubFunc;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from AbstractEqFuncSubFunc'
         )
     :
-        self.oclContainer.oclIsKindOf(AbstractEqFuncSubFunc) implies self.oclContents -> isUnique(n:Naming|n.name)
+        self.oclContainer.oclIsKindOf( AbstractEqFuncSubFunc ) implies
+        self.oclContainer.oclAsType  ( AbstractEqFuncSubFunc ) -> isUnique( n:Naming | n.name )
         
     -- The GeneralEquipment in GeneralEquipmentContainer shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_GeneralEquipment_from_GeneralEquipmentContainer
+    inv GeneralEquipment_unique_name_from_GeneralEquipmentContainer
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_GeneralEquipment_from_GeneralEquipmentContainer;'
+          + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_GeneralEquipmentContainer;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from GeneralEquipmentContainer'
         )
     :
-        self.oclContainer.oclIsKindOf(GeneralEquipmentContainer) implies self.oclContents -> isUnique(n:Naming|n.name)
+        self.oclContainer.oclIsKindOf( GeneralEquipmentContainer ) implies
+        self.oclContainer.oclAsType  ( GeneralEquipmentContainer ) -> isUnique( n:Naming | n.name )
         
     -- The GeneralEquipment in EquipmentContainer shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_GeneralEquipment_from_EquipmentContainer
+    inv GeneralEquipment_unique_name_from_EquipmentContainer
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_GeneralEquipment_from_EquipmentContainer;'
+          + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_EquipmentContainer;'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from EquipmentContainer'
         )
     :
-        self.oclContainer.oclIsKindOf(EquipmentContainer) implies self.oclContents -> isUnique(n:Naming|n.name)
+        self.oclContainer.oclIsKindOf( EquipmentContainer ) implies
+        self.oclContainer.oclAsType  ( EquipmentContainer ) -> isUnique( n:Naming | n.name )
 
 
 endpackage

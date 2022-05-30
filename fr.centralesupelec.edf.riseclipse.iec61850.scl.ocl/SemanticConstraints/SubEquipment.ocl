@@ -49,36 +49,6 @@ context SubEquipment
             else true endif
         endif
         
-    -- The SubEquipment in AbstractConductingEquipment shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment_from_AbstractConductingEquipment
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_AbstractConductingEquipment;'
-          + self.lineNumber.toString() + ';'
-          + 'Unique child name in SubEquipment from AbstractConductingEquipment'
-        )
-    :
-        self.oclContainer.oclIsKindOf(AbstractConductingEquipment) implies self.oclContents -> isUnique(n:Naming|n.name)
-        
-    -- The SubEquipment in PowerTransformer shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment_from_PowerTransformer
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_PowerTransformer;'
-          + self.lineNumber.toString() + ';'
-          + 'Unique child name in SubEquipment from PowerTransformer'
-        )
-    :
-        self.oclContainer.oclIsTypeOf(PowerTransformer) implies self.oclContents -> isUnique(n:Naming|n.name)
-        
-    -- The SubEquipment in TapChanger shall have unique child name (from SCL_Substation.xsd)
-    inv unique_name_in_SubEquipment_from_TapChanger
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_SubEquipment_from_TapChanger;'
-          + self.lineNumber.toString() + ';'
-          + 'Unique child name in SubEquipment from TapChanger'
-        )
-    :
-        self.oclContainer.oclIsTypeOf(TapChanger) implies self.oclContents -> isUnique(n:Naming|n.name)
-
 
 endpackage
 
