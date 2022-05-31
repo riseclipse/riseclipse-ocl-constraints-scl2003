@@ -48,7 +48,7 @@ context LogControl
           + 'LogControl does not refer an existing Log'
         )
     :
-        self.RefersToLog <> null            
+        self.RefersToLog <> null
             
             
             

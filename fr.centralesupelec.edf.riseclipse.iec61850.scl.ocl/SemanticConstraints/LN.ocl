@@ -30,9 +30,9 @@ context LN
     -- The name of the report control block shall be unique within the LN: in AnyLN
     
     -- The ReportControl in LN shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_ReportControl_from_LN
+    inv LN_unique_name_in_ReportControl
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_ReportControl_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_name_in_ReportControl;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in ReportControl from LN'
@@ -41,9 +41,9 @@ context LN
         self.ReportControl -> isUnique(c:ReportControl|c.name)
         
     -- The ReportControl in LN shall have unique datSet (from SCL_IED.xsd)
-    inv unique_datSet_in_ReportControl_from_LN
+    inv LN_unique_datSet_in_ReportControl
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_datSet_in_ReportControl_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_datSet_in_ReportControl;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique datSet in ReportControl from LN'
@@ -52,9 +52,9 @@ context LN
         self.ReportControl -> isUnique(c:ReportControl|c.datSet)
         
     -- The LogControl in LN shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_LogControl_from_LN
+    inv LN_unique_name_in_LogControl
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_LogControl_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_name_in_LogControl;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in LogControl from LN'
@@ -63,9 +63,9 @@ context LN
         self.LogControl -> isUnique(c:LogControl|c.name)
 
     -- The LogControl in LN shall have unique datSet (from SCL_IED.xsd)
-    inv unique_datSet_in_LogControl_from_LN
+    inv LN_unique_datSet_in_LogControl
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_datSet_in_LogControl_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_datSet_in_LogControl;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique datSet in LogControl from LN'
@@ -74,9 +74,9 @@ context LN
         self.LogControl -> isUnique(c:LogControl|c.datSet)
         
     -- The DataSet in LN shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_DataSet_from_LN
+    inv LN_unique_name_in_DataSet
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_DataSet_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_name_in_DataSet;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DataSet from LN'
@@ -85,9 +85,9 @@ context LN
         self.DataSet -> isUnique(d:DataSet|d.name)
         
     -- The DOI in LN shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_DOI_from_LN
+    inv LN_unique_name_in_DOI
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_DOI_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_name_in_DOI;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DOI from LN'
@@ -96,17 +96,15 @@ context LN
         self.DOI -> isUnique(d:DOI|d.name)
         
     -- The Log in LN shall have unique name (from SCL_IED.xsd)
-    inv unique_name_in_Log_from_LN
+    inv LN_unique_name_in_Log
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_in_Log_from_LN;'
+          + 'OCL/SemanticConstraints/LN_unique_name_in_Log;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in Log from LN'
         )
     :
         self.Log -> isUnique(l:Log|l.name)
-
-inv:true
 
 endpackage
 

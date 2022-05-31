@@ -26,9 +26,9 @@ package scl
 context EnumType
 
     -- The EnumType in DataTypeTemplates shall have unique EnumType (from SCL_DataTypeTemplates.xsd)
-    inv unique_EnumVal_ord_in_EnumType_from_DataTypeTemplates
+    inv EnumType_unique_EnumVal_ord_in_from_DataTypeTemplates
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_EnumVal_ord_in_EnumType_from_DataTypeTemplates;'
+          + 'OCL/SemanticConstraints/EnumType_unique_EnumVal_ord_from_DataTypeTemplates;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique EnumVal ord in EnumType from DataTypeTemplates'

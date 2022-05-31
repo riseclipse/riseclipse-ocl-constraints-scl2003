@@ -40,9 +40,9 @@ context SampledValueControl
         self.datSet <> null implies self.ParentLN0.DataSet -> exists( d : DataSet | self.datSet = d.name )
         
     -- multicast = "false indicates Unicast SMV services only meaning that smvID = UsvID"
-    inv false_multicast
+    inv SampledValueControl_false_multicast
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/false_multicast;'
+          + 'OCL/SemanticConstraints/SampledValueControl_false_multicast;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'smvID = UsvID in SampledValueControl for multicast = false'

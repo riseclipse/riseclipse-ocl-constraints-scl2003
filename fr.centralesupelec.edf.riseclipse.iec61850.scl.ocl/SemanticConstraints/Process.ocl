@@ -63,32 +63,5 @@ context Process
         --in let childs_4 : OrderedSet( Naming ) = childs_3->union( self.VoltageLevel )
         --in childs_4->isUnique( n : Naming | n.name )
     
-    -- TODO: Process elements at different levels in a hierarchy branch, 
-    -- which have a type defined, should have different types. 
-    -- Any exceptions shall be explicitly defined for this usage.  
-    
-    -- In general, at each hierarchy level within the Process section all names shall be
-    -- unique, leading to unique object references (path names) of all objects defined by the
-    -- substation naming hierarchy.
-    inv unique_name_same_level_in_Process
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_name_same_level_in_Process;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'All names shall be unique at each hierarchy level within the Process'
-        )
-    :   
-        self.ParentSCL <> null implies
-        (SclObject.allInstances()->
-        select(s:SclObject|self.ParentSCL.oclContents()->
-            select(s:SclObject|s.lineNumber>self.lineNumber)->
-            forAll(s1:SclObject|s1.lineNumber>s.lineNumber) 
-            and s.lineNumber>self.lineNumber)->
-            select(s:SclObject|s.oclIsKindOf(Naming))->
-            exists(n1:Naming;n2:Naming|n1<>n2 
-                and n1.oclContainer=n2.oclContainer 
-                and n1.name=n2.name) implies false)
-
-
 endpackage
 

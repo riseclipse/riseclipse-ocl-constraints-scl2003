@@ -27,7 +27,7 @@ context DOType
 
     -- Recursive references are not allowed
     def: getReferencedDOTypeIDs() : Set( String ) =
-        self.SDO->iterate( s : SDO, res : Set( String ) = Set{} |
+        self.SDO->iterate( s : SDO; res : Set( String ) = Set{} |
             res->including( s.type )
         )
     
@@ -42,7 +42,7 @@ context DOType
         endif endif
     
     def: checkRecursiveReferenced( current : Set( String )) : Tuple( ok : Boolean, set : Set( String )) =
-        let newIDs  : Set( String ) = current->iterate( s : String, res : Set( String ) = Set{} |
+        let newIDs  : Set( String ) = current->iterate( s : String; res : Set( String ) = Set{} |
             let doType : DOType = self.getReferencedDOType( s ) in
             if( doType.oclIsInvalid() ) then
                 invalid
@@ -71,16 +71,16 @@ context DOType
         self.checkRecursiveReferenced( Set{ self.id } ).ok
         
     -- The DOType in DataTypeTemplates shall have unique child name (from SCL_DataTypeTemplates.xsd)
-    inv unique_child_name_in_DOType_from_DataTypeTemplates
+    inv DOType_unique_child_name_from_DataTypeTemplates
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_child_name_in_DOType_from_DataTypeTemplates;'
+          + 'OCL/SemanticConstraints/DOType_unique_child_name_from_DataTypeTemplates;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in DOType from DataTypeTemplates'
         )
     :
         self.oclContainer.oclIsTypeOf(DataTypeTemplates) implies
-        self.DA.name -> union(self.SDO.name) -> isUnique(s:SclObject|s)
+        self.DA.name -> union( self.SDO.name ) -> isUnique( name | name )
         
 
 endpackage

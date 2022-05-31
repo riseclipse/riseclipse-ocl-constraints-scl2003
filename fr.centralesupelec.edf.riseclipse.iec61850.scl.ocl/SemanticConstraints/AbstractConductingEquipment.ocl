@@ -23,18 +23,18 @@ import scl: 'http://www.iec.ch/61850/2003/SCL'
 
 package scl
 
-context TapChanger
-        
-    -- The SubEquipment in TapChanger shall have unique child name (from SCL_Substation.xsd)
-    inv TapChanger_unique_name_of_SubEquipment
+context AbstractConductingEquipment
+
+    -- The SubEquipment in AbstractConductingEquipment shall have unique child name (from SCL_Substation.xsd)
+    inv AbstractConductingEquipment_unique_name_of_SubEquipment
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/TapChanger_unique_name_of_SubEquipment;'
-          + self.filename + ';'
+          + 'OCL/SemanticConstraints/AbstractConductingEquipment_unique_name_of_SubEquipment;'
           + self.lineNumber.toString() + ';'
-          + 'Unique child name of SubEquipment in TapChanger'
+          + 'Unique child name of SubEquipment in AbstractConductingEquipment'
         )
     :
         self.SubEquipment -> isUnique( n : Naming | n.name )
+        
 
 endpackage
 

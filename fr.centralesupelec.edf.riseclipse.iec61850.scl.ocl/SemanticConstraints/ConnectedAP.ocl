@@ -38,9 +38,9 @@ context ConnectedAP
         self.iedName <> null implies scl.IED->exists( i : IED | i.name = self.iedName )
         
     -- The ConnectedAP in SubNetwork shall have unique GSE cbName and ldInst (from SCL_Communication.xsd)
-    inv unique_attributes_combination_GSE_in_ConnectedAP_from_SubNetwork
+    inv ConnectedAP_unique_attributes_combination_GSE_from_SubNetwork
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_attributes_combination_GSE_in_ConnectedAP_from_SubNetwork;'
+          + 'OCL/SemanticConstraints/ConnectedAP_unique_attributes_combination_GSE_from_SubNetworkk;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique GSE cbName and ldInst combination in ConnectedAP from SubNetwork'
@@ -49,9 +49,9 @@ context ConnectedAP
         self.oclContainer.oclIsTypeOf(SubNetwork) implies self.GSE -> isUnique( g : GSE | Sequence{ g.cbName , g.ldInst } )
 
     -- The ConnectedAP in SubNetwork shall have unique SMV cbName and ldInst (from SCL_Communication.xsd)
-    inv unique_attributes_combination_SMV_in_ConnectedAP_from_SubNetwork
+    inv ConnectedAP_unique_attributes_combination_SMV_from_SubNetwork
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_attributes_combination_SMV_in_ConnectedAP_from_SubNetwork;'
+          + 'OCL/SemanticConstraints/ConnectedAP_unique_attributes_combination_SMV_from_SubNetwork;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique SMV cbName and ldInst combination in ConnectedAP from SubNetwork'

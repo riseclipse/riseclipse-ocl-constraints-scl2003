@@ -26,19 +26,18 @@ package scl
 context DOI
         
     -- The DOI in AnyLN shall have unique DAI and SDI ix and name combination (from SCL_IED.xsd)
-    inv unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
+    inv DOI_unique_DAI_SDI_ix_name_in_DOI_from_AnyLN
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/unique_DAI_SDI_ix_name_in_DOI_from_AnyLN;'
+          + 'OCL/SemanticConstraints/DOI_unique_DAI_SDI_ix_name_in_DOI_from_AnyLN;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique DAI and SDI ix and name combination in DOI from AnyLN'
         )
     :
-       let dai = self.DAI -> collect(d : DAI | Sequence{d.ix, d.name}) -> asOrderedSet() -> asBag()
-       ,
-       sdi = self.SDI -> collect(s : SDI | Sequence{s.ix, s.name}) -> asOrderedSet() -> asBag()
+       let dai = self.DAI -> collect( d : DAI | Tuple{ ix:Integer=d.ix, name:String=d.name } ),
+           sdi = self.SDI -> collect( s : SDI | Tuple{ ix:Integer=s.ix, name:String=s.name } )
        in
-       self.oclContainer.oclIsKindOf(AnyLN) implies dai -> union(sdi) -> isUnique(s:SclObject | s)
+       dai -> includingAll( sdi ) -> isUnique( ix_name_tuple | ix_name_tuple )
        
     -- The DOI in AnyLN must have a reference to a DO, that is, the AnyLN that contains the DOI must reference a valid LNType
     -- The consistency of the reference is already established in AnyLNImpl.java

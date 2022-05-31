@@ -44,11 +44,11 @@ context GSE
                 self.Address.P->isUnique( p : P | p.type )
             else   -- R-GOOSE
                 true
-            endif            	
+            endif
         else
             true
         endif
-    
+
 
 endpackage
 

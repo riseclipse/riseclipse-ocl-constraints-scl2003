@@ -42,9 +42,9 @@ context ReportControl
         
     -- confRev is "The configuration revision number of this report control block. 
     -- The value 0 is only allowed for a control block without data set reference."
-    inv conRef_zero_no_DataSet_reference
+    inv ReportControl_conRef_zero_no_DataSet_reference
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/conRef_zero_no_DataSet_reference;'
+          + 'OCL/SemanticConstraints/ReportControl_conRef_zero_no_DataSet_reference;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute in ReportControl equals zero only for no DataSet reference'

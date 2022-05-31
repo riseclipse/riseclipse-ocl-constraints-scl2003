@@ -25,28 +25,15 @@ package scl
 
 context DAI
 
-    -- For DAI and SDI:
-    -- the combination of name value and ix value shall be unique at each level (e.g. inside a DOI element)
-    
-    inv Unique_DAI_SDI_name_ix_combination
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/Unique_DAI_SDI_name_ix_combination;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'name and ix combination must be unique in DAI and SDI under the same DOI'
-        )
-        :
-        self.ParentDOI -> size() > 0
-        implies
-        self.ParentDOI.SDI -> collect(s:SDI|s.name.toString()+s.ix.toString()) -> 
-        union(self.ParentDOI.DAI->collect(d:DAI|d.name.toString()+d.ix.toString())) -> 
-        isUnique(d:DAI|d)
+    inv DAI_nothing
+    :
+    true
     
     -- a DAI must refer an existing DA in DataTypeTemplate section
-   -- inv DAI_RefersToAbstractDataAttribute
-  --  ( 'ERROR:[SemanticConstraints] DAI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DA in DataTypeTemplates section' )
-   --   :
-   --   self.RefersToAbstractDataAttribute <> null
+    -- inv DAI_RefersToAbstractDataAttribute
+    --  ( 'ERROR:[SemanticConstraints] DAI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DA in DataTypeTemplates section' )
+    --   :
+    --   self.RefersToAbstractDataAttribute <> null
 
 
 endpackage

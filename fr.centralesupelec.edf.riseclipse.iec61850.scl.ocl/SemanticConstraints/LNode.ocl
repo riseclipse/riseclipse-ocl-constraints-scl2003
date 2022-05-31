@@ -83,9 +83,9 @@ context LNode
      -- If the logical node is later allocated to an IED within an SCD, 
      -- then the value of this lnType attribute can be ignored, or may be used to check if 
      -- the logical node type used on the IED fulfills the requirements.
-    inv lnType_consistencyDO
+    inv LNode_lnType_consistencyDO
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/lnType_consistencyDO;'
+          + 'OCL/SemanticConstraints/LNode_lnType_consistencyDO;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnType in LNode specifies something different from what is implemented in the IED : missing DO or SDO'
@@ -102,9 +102,9 @@ context LNode
             else true endif
         else true endif
 
-    inv lnType_consistencyDA
+    inv LNode_lnType_consistencyDA
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/lnType_consistencyDA;'
+          + 'OCL/SemanticConstraints/LNode_lnType_consistencyDA;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnType in LNode specifies something different from what is implemented in the IED : different parameters'

@@ -25,52 +25,6 @@ package scl
 
 context ClientLN
 
-    -- iedName definition: "The name of the IED where the LN resides"
-    inv iedName_consistency
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/iedName_consistency;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'iedName from ClientLN shall be the name of the IED containing the referred LN'
-        )
-    :
-        if self.iedName <> null and self.RefersToAnyLN <> null then 
-        if self.RefersToAnyLN.oclContainer.oclIsTypeOf(LDevice) then 
-            self.RefersToAnyLN.oclContainer.oclContainer.oclContainer.oclContainer -> collect(i:IED|i.name).matches(self.iedName)
-                -> includes(true)
-        else self.RefersToAnyLN.oclContainer.oclContainer -> collect(i:IED|i.name).matches(self.iedName) -> includes(true)
-        endif else true endif
-        
-    -- ldInst definition: "The instance identification of the LD where the LN resides"
-    inv ldInst_consistency
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/ldInst_consistency;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'ldInst from ClientLN shall be the inst of the LDevice containing the referred LN'
-        )
-    :
-        if self.ldInst <> null and self.RefersToAnyLN <> null then 
-        if self.RefersToAnyLN.oclContainer.oclIsTypeOf(LDevice) then 
-            self.RefersToAnyLN.oclContainer -> collect(l:LDevice|l.inst).matches(self.ldInst)
-                -> includes(true)
-        else true
-        endif else true endif
-
-    -- prefix definition: "The LN prefix"
-    inv perfix_consistency
-        (   'ERROR;'
-          + 'OCL/SemanticConstraints/perfix_consistency;'
-          + self.filename + ';'
-          + self.lineNumber.toString() + ';'
-          + 'prefix from ClientLN shall be the prefix of the referred LN'
-        )
-    :
-        if self.prefix <> null and self.RefersToAnyLN <> null then 
-            self.RefersToAnyLN -> collect(l:LN|l.prefix).matches(self.prefix)
-                -> includes(true)
-        else true endif
-        
     -- a ClientLN must refer an existing LN
     inv ClientLN_RefersToLNodeType
         (   'ERROR;'
@@ -83,32 +37,32 @@ context ClientLN
         self.RefersToAnyLN <> null    
    
      
-   	-- Checks that the IED sending the Report is connected to the same subNetwork that the receiver IED
+    -- Checks that the IED sending the Report is connected to the same subNetwork that the receiver IED
      inv ClientLN_Sender_and_receiver_not_in_same_subnetwork
-		(   'ERROR;'
+        (   'ERROR;'
           + 'OCL/SemanticConstraints/ClientLN_Sender_and_receiver_not_in_same_subnetwork;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Sender and receiver of the Report are not in the same Subnetwork'
         )
     :
- 			if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN0))
-  			then (
-			self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN0).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
-  				  				-> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
-  				  				-> size() = 1
-  			)
-  			else(
-  				if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN))
-  				then (
-				self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
-  				  				-> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
-  				  				-> size() = 1
-  				)
-  				else true			
-  				endif
-  			)
-  			endif
+            if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN0))
+            then (
+            self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN0).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+                                -> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
+                                -> size() = 1
+            )
+            else(
+                if (self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclIsTypeOf(LN))
+                then (
+                self.ParentRptEnabled.ParentReportControl.ParentAnyLN.oclAsType(LN).ParentLDevice.ParentServer.ParentAccessPoint.ReferredByConnectedAP.ParentSubNetwork.ConnectedAP
+                                -> select (c : ConnectedAP | c.iedName = self.iedName and (if self.apRef <> null then c.apName = self.apRef else true endif)) 
+                                -> size() = 1
+                )
+                else true           
+                endif
+            )
+            endif
 
 endpackage
 
