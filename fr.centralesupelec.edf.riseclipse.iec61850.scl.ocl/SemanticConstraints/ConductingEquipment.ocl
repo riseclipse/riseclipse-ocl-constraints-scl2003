@@ -64,7 +64,7 @@ context ConductingEquipment
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ConductingEquipment_number_of_Terminals;'
           + self.lineNumber.toString() + ';'
-          + 'the number of Terminals in ConductingEquipment of type ' + self.type + ') is wrong, it is '
+          + 'the number of Terminals in ConductingEquipment of type ' + self.type + ' is wrong, it is '
           + self.Terminal->size().toString() + ', it should be ' + self.expectedNumberOfTerminals()
         )
         :
