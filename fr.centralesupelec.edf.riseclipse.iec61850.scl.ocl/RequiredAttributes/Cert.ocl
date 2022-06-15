@@ -30,6 +30,7 @@ context Cert
     inv Cert_commonName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Cert_commonName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'commonName attribute shall be present in Cert'
         )
@@ -40,6 +41,7 @@ context Cert
     inv Cert_commonName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Cert_commonName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'commonName attribute shall be valid in Cert. ' + 'Current value is ' + self.commonName.toString()
         )
@@ -51,6 +53,7 @@ context Cert
     inv Cert_idHierarchy_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Cert_idHierarchy_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'idHierarchy attribute shall be present in Cert'
         )
@@ -61,6 +64,7 @@ context Cert
     inv Cert_idHierarchy_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Cert_idHierarchy_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'idHierarchy attribute shall be valid in Cert. ' + 'Current value is ' + self.idHierarchy.toString()
         )

@@ -21,32 +21,22 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context ExtRef
+context SubNetwork
 
-    -- Relations found in the Table 35 from 61850-6-Ed2 (line 3651)
-
-    -- The intAddr attribute shall be present
-    inv intAddr_required
+    -- If the file is an SCD the Type attribute is not optional
+    inv SubNetwork_type_required
         (   'ERROR;'
-          + 'OCL/ICD File/intAddr_required;'
+          + 'OCL/FileSpecifics/SCD/SubNetwork_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'intAddr attribute shall be present in ExtRef'
+          + 'type attribute shall be present in SubNetwork'
         )
     :
-        self.intAddr <> null
-    
-    -- The desc attribute shall be present
-    inv desc_required
-        (   'ERROR;'
-          + 'OCL/ICD File/desc_required;'
-          + self.lineNumber.toString() + ';'
-          + 'desc attribute shall be present in ExtRef'
-        )
-    :
-        self.desc <> null
-   
+        self.isInSCDFile() implies self.type <> null
 
 endpackage
 

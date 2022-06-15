@@ -29,6 +29,7 @@ context Control
     inv Control_RefersToDataSet
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Control_RefersToDataSet;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Control (name=' + self.name.toString() + ')  does not refer an existing DataSet'
         )

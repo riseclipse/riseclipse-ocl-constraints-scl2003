@@ -29,6 +29,7 @@ context SubNetwork
     inv SubNetwork_at_least_one_ConnectedAP_required
         (   'ERROR;'
           + 'OCL/RequiredElements/SubNetwork_at_least_one_ConnectedAP_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SubNetwork shall contain at least one ConnectedAP'
         )

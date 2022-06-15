@@ -29,6 +29,7 @@ context ConnectedAP
     inv ConnectedAP_ied_exists
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ConnectedAP_ied_exists;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall refer to an existing IED in ConnectedAP. ' + 'Current value is ' + self.iedName.toString()
         )
@@ -40,6 +41,7 @@ context ConnectedAP
     inv ConnectedAP_unique_attributes_combination_GSE_from_SubNetwork
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ConnectedAP_unique_attributes_combination_GSE_from_SubNetworkk;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique GSE cbName and ldInst combination in ConnectedAP from SubNetwork'
         )
@@ -50,6 +52,7 @@ context ConnectedAP
     inv ConnectedAP_unique_attributes_combination_SMV_from_SubNetwork
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ConnectedAP_unique_attributes_combination_SMV_from_SubNetwork;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique SMV cbName and ldInst combination in ConnectedAP from SubNetwork'
         )
@@ -60,6 +63,7 @@ context ConnectedAP
     inv ConnectedAP_RefersToAccessPoint
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ConnectedAP_RefersToAccessPoint;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ConnectedAP (apName=' + self.apName.toString() + ')  does not refer an existing AccessPoint in IED section'
         )

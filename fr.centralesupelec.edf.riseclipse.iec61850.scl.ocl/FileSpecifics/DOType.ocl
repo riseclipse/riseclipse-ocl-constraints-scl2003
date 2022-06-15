@@ -19,4 +19,25 @@
 *************************************************************************
 */
 
-import '../Common/ExtRef.ocl'
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/GetFileType.ocl'
+
+package scl
+
+context DOType
+
+    -- At least one SDO or DA is required for SCD and ICD files
+    inv DOType_at_least_one_SDO_or_DA_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/ICD-SCD/DOType_at_least_one_SDO_or_DA_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'DOType shall contain at least one SDO or DA'
+        )
+    :
+        ( self.isInICDFile() or self.isInSCDFile() ) implies ( self.SDO->notEmpty() or self.DA->notEmpty() )
+
+
+endpackage
+

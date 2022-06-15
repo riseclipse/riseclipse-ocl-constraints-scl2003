@@ -30,6 +30,7 @@ context DurationInSec
     inv DurationInSec_unit_value_fixed
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DurationInSec_unit_value_fixed;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'unit attribute shall be s in DurationInSec. ' + 'Current value is ' + self.unit.toString()
         )

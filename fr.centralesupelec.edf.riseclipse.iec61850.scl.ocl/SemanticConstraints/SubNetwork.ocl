@@ -31,6 +31,7 @@ context SubNetwork
     inv SubNetwork_unique_ConnectedAP_combination
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SubNetwork_unique_ConnectedAP_combination;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ConnectedAP in SubNetwork shall have different combination of { iedName, apName }'
         )
@@ -42,6 +43,7 @@ context SubNetwork
     inv SubNetwork_IP_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SubNetwork_IP_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'IP Addresses shall be unique in a Subnetwork'
         )

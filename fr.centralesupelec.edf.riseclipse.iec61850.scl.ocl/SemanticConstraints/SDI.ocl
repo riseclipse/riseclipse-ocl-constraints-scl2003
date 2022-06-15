@@ -29,6 +29,7 @@ context SDI
     inv SDI_RefersToSDOorAbstractDataAttribute
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SDI_RefersToSDOorAbstractDataAttribute;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SDI (name=' + self.name.toString() + ')  does not refer an existing SDO or DA or BDA in DataTypeTemplates section'
         )

@@ -34,6 +34,7 @@ context Bay
     inv Bay_unique_ConductingEquipment_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Bay_unique_ConductingEquipment_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ConductingEquipment in Bay shall have different name'
         )
@@ -49,6 +50,7 @@ context Bay
     inv Bay_unique_DirectChild_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Bay_unique_DirectChild_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All direct childs in Bay shall have different name'
         )

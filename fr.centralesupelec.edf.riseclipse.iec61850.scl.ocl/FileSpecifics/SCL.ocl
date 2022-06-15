@@ -21,24 +21,35 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context Substation
+context SCL
 
-    -- For a primary system template within an ICD file, the substation name
-    -- shall be TEMPLATE. There can be a maximum of one substation template in one
-    -- SCL file.
-
-    inv Unique_Substation_name_TEMPLATE
+    -- Substation section is mandatory in a SSD file
+    inv SCL_Substation_required
         (   'ERROR;'
-          + 'OCL/FileSpecifics/ICD/Unique_Substation_name_TEMPLATE;'
+          + 'OCL/FileSpecifics/SSD/SCL_Substation_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'Must have only one Substation.name = TEMPLATE'
+          + 'Substation section is mandatory'
         )
-        :
-        self.ParentSCL.Substation->size() > 0
-        implies self.ParentSCL.Substation -> exists(s : Substation|s.name = 'TEMPLATE')
-        and self.ParentSCL.Substation -> isUnique(s : Substation|s.name = 'TEMPLATE')
+    :
+        self.isInSSDFile() implies self.Substation->notEmpty()
+
+    -- DataTypeTemplates section is mandatory in a ICD/IID/SED files
+    inv SCL_DataTypeTemplates_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/ICD-IID-SED-SCD/SCL_DataTypeTemplates_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'DataTypeTemplates section is mandatory'
+        )
+    :
+        ( self.isInICDFile() or self.isInIIDFile() or self.isInSEDFile() or self.isInSCDFile() ) implies
+            self.DataTypeTemplates <> null
+
 
 endpackage
 

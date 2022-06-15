@@ -1,0 +1,173 @@
+/*
+*************************************************************************
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      https://riseclipse.github.io/
+*************************************************************************
+*/
+
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+import '../Helpers/GetFileType.ocl'
+
+package scl
+
+context ExtRef
+
+    -- Relations found in the Table 35 from 61850-6-Ed2 (line 3651)
+
+    -- The iedName attribute shall be present
+    inv ExtRef_iedName_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SCD-SSD/ExtRef_iedName_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
+        )
+    :
+        ( self.isInSCDFile() implies (
+            self.iedName <> null
+        ))
+        and
+        ( self.isInSSDFile() implies (
+            (( self.intAddr = null ) or ( self.desc = null )) implies
+                self.iedName <> null
+        ))
+    
+    -- The ldInst attribute shall be present
+    inv ExtRef_ldInst_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SCD-SSD/ExtRef_ldInst_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'ldInst attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
+        )
+    :
+        ( self.isInSCDFile() implies (
+            self.ldInst <> null
+        ))
+        and
+        ( self.isInSSDFile() implies (
+            (( self.intAddr = null ) or ( self.desc = null )) implies
+                self.ldInst <> null
+        ))
+
+    -- The lnClass attribute shall be present
+    inv ExtRef_lnClass_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SCD-SSD/ExtRef_lnClass_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'lnClass attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
+        )
+    :
+        ( self.isInSCDFile() implies (
+            self.lnClass <> null
+        ))
+        and
+        ( self.isInSSDFile() implies (
+            (( self.intAddr = null ) or ( self.desc = null )) implies
+                self.lnClass <> null
+        ))
+    
+    -- The doName attribute shall be present
+    inv ExtRef_doName_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SCD-SSD/ExtRef_doName_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'doName attribute shall be present in ExtRef (SSD: if intAddr and desc are not present)'
+        )
+    :
+        ( self.isInSCDFile() implies (
+            self.doName <> null
+        ))
+        and
+        ( self.isInSSDFile() implies (
+            (( self.intAddr = null ) or ( self.desc = null )) implies
+                self.doName <> null
+        ))
+
+    -- a ExtRef must refer an existing Data Object or data Attribute
+    inv ExtRef_RefersToAbstractDataAttribute
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/ExtRef_RefersToAbstractDataAttribute;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'ExtRef does not refer an existing Data Object or Data Attribute'
+        )
+    :
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            self.doName ->notEmpty() implies (
+                self.RefersToAbstractDataAttribute <> null or self.RefersToAbstractDataObject <> null
+            )
+        )
+        
+    -- a ExtRef must refer an existing Control
+    inv ExtRef_RefersToControl
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/ExtRef_RefersToControl;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'ExtRef does not refer an existing Control'
+        )
+    :
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            ( self.srcCBName <> null implies self.RefersToControl <> null )
+        )
+
+    -- a ExtRef must be correctly mapped - CDC specified by  pDO and, if given, the attribute (base) type specified by pDA are met
+    inv ExtRef_ServIncorrectlyMapped
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/ExtRef_ServIncorrectlyMapped;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'ExtRef service is not correctly binded'
+        )
+    :
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            ( self.intAddr = null or self.desc = null ) implies (
+                self.pServT <> null implies self.pServT = self.serviceType
+            )
+        )
+
+    -- Relations found in the Table 35 from 61850-6-Ed2 (line 3651)
+
+    -- The intAddr attribute shall be present
+    inv ExtRef_intAddr_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/ICD/ExtRef_intAddr_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'intAddr attribute shall be present in ExtRef'
+        )
+    :
+        self.isInICDFile() implies self.intAddr <> null
+    
+    -- The desc attribute shall be present
+    inv ExtRef_desc_required
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/ICD/ExtRef_desc_required;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'desc attribute shall be present in ExtRef'
+        )
+    :
+        self.isInICDFile() implies self.desc <> null
+   
+
+endpackage
+

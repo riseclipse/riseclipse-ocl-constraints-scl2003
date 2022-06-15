@@ -30,6 +30,7 @@ context Certificate
     inv Certificate_serialNumber_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Certificate_serialNumber_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'serialNumber attribute shall be present in Certificate'
         )
@@ -40,6 +41,7 @@ context Certificate
     inv Certificate_serialNumber_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Certificate_serialNumber_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'serialNumber attribute shall be valid in Certificate. ' + 'Current value is ' + self.serialNumber.toString()
         )
@@ -50,6 +52,7 @@ context Certificate
     inv Certificate_xferNumber_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Certificate_xferNumber_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'xferNumber attribute shall be valid in Certificate. ' + 'Current value is ' + self.xferNumber.toString()
         )

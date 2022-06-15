@@ -32,6 +32,7 @@ context GSEControl
     inv GSEControl_datSet_valid_reference
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GSEControl_datSet_valid_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'datSet attribute shall reference a valid DataSet in LLN0 in GSEControl'
         )

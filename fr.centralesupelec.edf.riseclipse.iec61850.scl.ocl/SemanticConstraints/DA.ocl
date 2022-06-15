@@ -29,6 +29,7 @@ context DA
     inv DA_unique_ProtNs_type_in_DA_from_DOType
         (   'ERROR;'
           + 'OCL/SemanticConstraints/DA_unique_ProtNs_type_in_DA_from_DOType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique ProtNs type in DA from DOType'
         )
@@ -39,6 +40,7 @@ context DA
     inv DA_DAType_allowedWhen_Enum
         (   'ERROR;'
           + 'OCL/SemanticConstraints/DA_DAType_allowedWhen_Enum;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DA.type is allowed only if bType = Struct or Enum'
         )
@@ -49,6 +51,7 @@ context DA
     inv DA_RefersToDATypeorEnumType
         (   'ERROR;'
           + 'OCL/SemanticConstraints/DA_RefersToDATypeorEnumType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DA (name=' + self.name.toString() + ')  does not refer an existing DAType or EnumType in DataTypeTemplates section'
         )
@@ -59,6 +62,7 @@ context DA
     inv DA_Struct_no_valKind_or_valImport
         (   'WARNING;'
           + 'OCL/SemanticConstraints/DA_Struct_no_valKind_or_valImport;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'The attributes valKind and valImport make no sense for DA elements with bType = Struct'
         )

@@ -29,6 +29,7 @@ context DAType
     inv DAType_unique_BDA_name_in_DAType_from_DataTypeTemplates
         (   'ERROR;'
           + 'OCL/SemanticConstraints/DAType_unique_BDA_name_from_DataTypeTemplates;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique BDA name in DAType from DataTypeTemplates'
         )
@@ -40,6 +41,7 @@ context DAType
     inv DAType_unique_ProtNs_type_in_DAType_from_DataTypeTemplates
         (   'ERROR;'
           + 'OCL/SemanticConstraints/DAType_unique_ProtNs_type_from_DataTypeTemplates;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique ProtNs type in DAType from DataTypeTemplates'
         )

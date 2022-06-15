@@ -33,6 +33,7 @@ context AnyLN
     inv LN_lnClass_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN_lnClass_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be present in ' + self.oclType().toString()
         )
@@ -43,6 +44,7 @@ context AnyLN
     inv LN_lnClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN_lnClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be valid in ' + self.oclType().toString() + '. ' + 'Current value is ' + self.lnClass.toString()
         )
@@ -53,6 +55,7 @@ context AnyLN
     inv LN_inst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN_inst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'inst attribute shall be present in ' + self.oclType().toString()
         )
@@ -66,6 +69,7 @@ context AnyLN
     inv AnyLN_lnType_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/AnyLN_lnType_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnType attribute shall be present in AnyLN'
         )
@@ -76,6 +80,7 @@ context AnyLN
     inv AnyLN_lnType_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/AnyLN_lnType_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnType attribute shall be valid in AnyLN. ' + 'Current value is ' + self.lnType.toString()
         )

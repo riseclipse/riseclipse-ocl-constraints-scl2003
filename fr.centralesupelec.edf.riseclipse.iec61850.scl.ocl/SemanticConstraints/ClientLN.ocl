@@ -29,6 +29,7 @@ context ClientLN
     inv ClientLN_RefersToLNodeType
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ClientLN_RefersToLNodeType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ClientLN does not refer an existing LN'
         )
@@ -40,6 +41,7 @@ context ClientLN
      inv ClientLN_Sender_and_receiver_not_in_same_subnetwork
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ClientLN_Sender_and_receiver_not_in_same_subnetwork;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Sender and receiver of the Report are not in the same Subnetwork'
         )

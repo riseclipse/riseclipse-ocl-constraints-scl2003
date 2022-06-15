@@ -21,24 +21,28 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context Line
+context IED
 
-    -- For a primary system template within an ICD file, the line name
-    -- shall be TEMPLATE. There can be a maximum of one line template in one
-    -- SCL file.
+    -- Within an ICD file describing a device type, the name shall be TEMPLATE
 
-    inv Unique_Line_name_TEMPLATE
+    inv IED_Unique_name_TEMPLATE
         (   'ERROR;'
-          + 'OCL/FileSpecifics/ICD/Unique_Line_name_TEMPLATE;'
+          + 'OCL/FileSpecifics/ICD/IED_Unique_name_TEMPLATE;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'Must have only one Line.name = TEMPLATE'
+          + 'Must have only one IED.name = TEMPLATE'
         )
-        :
-        self.ParentSCL.Line->size() > 0
-        implies self.ParentSCL.Line -> exists(l : Line|l.name = 'TEMPLATE')
-        and self.ParentSCL.Line -> isUnique(l : Line|l.name = 'TEMPLATE')
+    :
+        self.isInICDFile() implies (
+                self.ParentSCL.IED -> size() > 0
+            implies (
+                self.ParentSCL.IED -> exists  ( i : IED | i.name = 'TEMPLATE' )
+            and self.ParentSCL.IED -> isUnique( i : IED | i.name = 'TEMPLATE' ))
+        )
 
 endpackage
 

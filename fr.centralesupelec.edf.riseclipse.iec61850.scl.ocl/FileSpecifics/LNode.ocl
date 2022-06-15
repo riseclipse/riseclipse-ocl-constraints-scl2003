@@ -21,28 +21,47 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
 context LNode
 
+    -- The LNode element can be used within an SSD for functional specification, without allocation to an IED. 
+    -- In this case the iedName shall be None.
+    -- The name of the IED which contains the LN, none if used for specification (default if attribute is not specified)
+
+    inv LNode_iedName_None_in_SSD
+        (   'ERROR;'
+          + 'OCL/FileSpecifics/SSD/LNode_iedName_None_in_SSD;'
+          + self.filename + ';'
+          + self.lineNumber.toString() + ';'
+          + 'iedName attribute from LNode shall be None in SSD files'
+        )
+    :
+        self.isInSSDFile() implies ( self.RefersToAnyLN <> null implies self.iedName.matches( 'None' ))
+
     -- a LNode must refer an existing LN
     inv LNode_RefersToAnyLN
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SCD/FunctionalConstraints/LNode_RefersToAnyLN;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/LNode_RefersToAnyLN;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNode does not refer an existing Logical Node in IED section'
         )
     :
-        self.RefersToAnyLN <> null 
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies self.RefersToAnyLN <> null 
         
     -- a LNode must refer an existing LNodeType
     inv LNode_RefersToLNodeType
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SCD/FunctionalConstraints/LNode_RefersToLNodeType;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/LNode_RefersToLNodeType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNode does not refer an existing LNodeType in DataTypeTemplates section'
         )
     :
-        self.RefersToLNodeType <> null 
+        ( self.isInCIDFile() or self.isInIIDFile()  or self.isInSCDFile() ) implies self.RefersToLNodeType <> null 
+
 endpackage
 

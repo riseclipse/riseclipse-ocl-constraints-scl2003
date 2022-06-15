@@ -21,28 +21,34 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context LNode
+context ConnectedAP
 
-    -- a LNode must refer an existing LN
-    inv LNode_RefersToAnyLN
+    -- For a complete SCD file, either the server address or at least
+    -- one control block address shall be specified.
+    inv ConnectedAP_address_required
         (   'ERROR;'
-          + 'OCL/FileSpecifics/CID-IID/LNode_RefersToAnyLN;'
+          + 'OCL/FileSpecifics/SCD/ConnectedAP_address_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'LNode does not refer an existing Logical Node in IED section'
+          + 'address attribute shall be present in ConnectedAP'
         )
     :
-        self.RefersToAnyLN <> null 
-        
-    -- a LNode must refer an existing LNodeType
-    inv LNode_RefersToLNodeType
+        self.isInSCDFile() implies self.Address -> notEmpty()
+
+    -- Further each ConnectedAP element shall reference an IED access point existing in the IED section.
+    inv ConnectedAP_AccessPoint_reference
         (   'ERROR;'
-          + 'OCL/FileSpecifics/CID-IID/LNode_RefersToLNodeType;'
+          + 'OCL/FileSpecifics/SCD/ConnectedAP_AccessPoint_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'LNode does not refer an existing LNodeType in DataTypeTemplates section'
+          + 'ConnectedAP must refer to an AccessPoint defined in an IED'
         )
     :
-        self.RefersToLNodeType <> null 
+        self.isInSCDFile() implies self.RefersToAccessPoint <> null
+
 endpackage
 

@@ -29,6 +29,7 @@ context Inputs
     inv Inputs_at_least_one_ExtRef_required
         (   'ERROR;'
           + 'OCL/RequiredElements/Inputs_at_least_one_ExtRef_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Inputs shall contain at least one ExtRef'
         )

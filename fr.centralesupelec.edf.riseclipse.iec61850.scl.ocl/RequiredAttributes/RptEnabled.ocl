@@ -29,6 +29,7 @@ context RptEnabled
     inv RptEnabled_max_unsigned_int
         (   'ERROR;'
           + 'OCL/RequiredAttributes/RptEnabled_max_unsigned_int;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'max attribute shall be valid in RptEnabled. ' + 'Current value is ' + self.max.toString()
         )

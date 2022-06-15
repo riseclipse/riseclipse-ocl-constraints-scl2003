@@ -29,6 +29,7 @@ context Address
     inv Address_at_least_one_P_required
         (   'ERROR;'
           + 'OCL/RequiredElements/Address_at_least_one_P_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Address shall contain at least one P'
         )

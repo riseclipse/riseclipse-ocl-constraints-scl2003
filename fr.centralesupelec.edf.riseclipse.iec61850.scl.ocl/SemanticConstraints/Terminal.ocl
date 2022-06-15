@@ -34,6 +34,7 @@ context Terminal
     inv Terminal_must_refer_CNode
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_must_refer_CNode;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Terminal element must reference one of the defined ConnectivityNodes'
         )
@@ -49,6 +50,7 @@ context Terminal
     inv Terminal_cNode_in_Line_or_Substation
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_cNode_in_Line_or_Substation;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Terminal.cNode must reference a ConnectivityNodes either in Line either in Substation'
         )
@@ -61,6 +63,7 @@ context Terminal
     inv Terminal_consistent_lineName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_consistent_lineName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lineName of Terminal shall be the name of the Line containing the cNode'
         )
@@ -78,6 +81,7 @@ context Terminal
     inv Terminal_consistent_bayName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_consistent_bayName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'bayName of Terminal shall be the name of the Bay containing the cNode'
         )
@@ -95,6 +99,7 @@ context Terminal
     inv Terminal_consistent_voltageLevelName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_consistent_voltageLevelName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'voltageLevelName of Terminal shall be the name of the VoltageLevel containing the cNode'
         )
@@ -113,6 +118,7 @@ context Terminal
     inv Terminal_consistent_substationName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_consistent_substationName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'substationName of Terminal shall be the name of the VoltageLevel containing the cNode'
         )
@@ -132,6 +138,7 @@ context Terminal
     inv Terminal_consistent_processName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_consistent_processName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'processName of Terminal shall be the name of the Process containing the cNode'
         )
@@ -171,6 +178,7 @@ context Terminal
     inv Terminal_consistent_cNodeName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_consistent_cNodeName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'cNodeName of Terminal shall be the name of the cNode'
         )
@@ -188,6 +196,7 @@ context Terminal
     inv Terminal_RefersToConnectivityNode
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Terminal_RefersToConnectivityNode;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Terminal (name=' + self.name.toString() + ')  does not refer an existing ConnectivityNode'
         )

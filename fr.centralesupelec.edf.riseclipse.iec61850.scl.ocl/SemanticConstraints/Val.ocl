@@ -55,6 +55,7 @@ context Val
     inv Val_enum_value_valid
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Val_enum_value_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Value of Val is invalid according to Enum'
         )
@@ -71,6 +72,7 @@ context Val
     inv Val_consistency
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Val_consistency;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Val in DAI must abide to DA.bType'
         )

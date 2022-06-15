@@ -33,6 +33,7 @@ context IED
     inv IED_name_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IED_name_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be present in IED'
         )
@@ -43,6 +44,7 @@ context IED
     inv IED_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IED_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall have between 1 and 64 alphanumeric characters in IED. ' + 'Current value is ' + self.name.toString()
         )
@@ -57,6 +59,7 @@ context IED
     inv IED_name_not_None
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IED_name_not_None;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute cannot be None in IED'
         )
@@ -71,6 +74,7 @@ context IED
     inv IED_originalSclVersion_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IED_originalSclVersion_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'originalSclVersion attribute shall be valid in IED. ' + 'Current value is ' + self.originalSclVersion.toString()
         )
@@ -81,6 +85,7 @@ context IED
     inv IED_originalSclRevision_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IED_originalSclRevision_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'originalSclRevision attribute shall be an uppercase letter in IED. ' + 'Current value is ' + self.originalSclRevision.toString()
         )
@@ -91,6 +96,7 @@ context IED
     inv IED_originalSclRelease_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/IED_originalSclRelease_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'originalSclRelease attribute shall be an uppercase letter in IED. ' + 'Current value is ' + self.originalSclRelease.toString()
         )
@@ -101,6 +107,7 @@ context IED
     inv engRight_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/engRight_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'engRight attribute shall be valid in IED. ' + 'Current value is ' + self.engRight.toString()
         )

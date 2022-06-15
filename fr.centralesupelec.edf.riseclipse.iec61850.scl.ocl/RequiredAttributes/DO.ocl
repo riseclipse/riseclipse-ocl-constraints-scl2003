@@ -35,6 +35,7 @@ context DO
     inv DO_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DO_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be valid in DO. ' + 'Current value is ' + self.name.toString()
         )

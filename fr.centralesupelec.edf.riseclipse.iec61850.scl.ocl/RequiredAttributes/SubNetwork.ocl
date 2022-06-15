@@ -33,6 +33,7 @@ context SubNetwork
     inv SubNetwork_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SubNetwork_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be valid in SubNetwork. ' + 'Current value is ' + self.type.toString()
         )

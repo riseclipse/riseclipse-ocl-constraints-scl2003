@@ -29,6 +29,7 @@ context GeneralEquipment
     inv GeneralEquipment_unique_name_from_Function
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_Function;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from Function'
         )
@@ -40,6 +41,7 @@ context GeneralEquipment
     inv GeneralEquipment_unique_name_from_SubFunction
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_SubFunction;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from SubFunction'
         )
@@ -51,6 +53,7 @@ context GeneralEquipment
     inv GeneralEquipment_unique_name_from_AbstractEqFuncSubFunc
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_AbstractEqFuncSubFunc;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from AbstractEqFuncSubFunc'
         )
@@ -62,6 +65,7 @@ context GeneralEquipment
     inv GeneralEquipment_unique_name_from_GeneralEquipmentContainer
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_GeneralEquipmentContainer;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from GeneralEquipmentContainer'
         )
@@ -73,6 +77,7 @@ context GeneralEquipment
     inv GeneralEquipment_unique_name_from_EquipmentContainer
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GeneralEquipment_unique_name_from_EquipmentContainer;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name in GeneralEquipment from EquipmentContainer'
         )

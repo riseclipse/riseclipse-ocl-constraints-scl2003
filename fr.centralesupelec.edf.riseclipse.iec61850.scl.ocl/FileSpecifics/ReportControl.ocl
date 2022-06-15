@@ -21,27 +21,31 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
 context ReportControl
         
     -- "In case of buffered control blocks indexed may only be set to false, 
     -- if only one instance of this type is possible, i.e. max=1."(in RptEnabled)
-    inv buffered_true_indexed_false
+    inv ReportControl_buffered_true_indexed_false
         (   'ERROR;'
-          + 'OCL/FileSpecifics/CID-IID-SCD/buffered_true_indexed_false;'
+          + 'OCL/FileSpecifics/CID-IID-SCD/ReportControl_buffered_true_indexed_false;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'buffered = true and indexed = false in ReportControl only if RptEnabled.max = 1'
         )
-        :
-    if( self.RptEnabled <> null ) then
-        if( self.RptEnabled.max <> null ) then
-            self.buffered = true and self.indexed = false implies self.RptEnabled.max = 1
-        else
-            true
-        endif
-    else
-        true
-    endif
+    :
+        ( self.isInCIDFile() or self.isInIIDFile() or self.isInSCDFile() ) implies (
+            self.RptEnabled <> null implies (
+                self.RptEnabled.max <> null implies (
+                    self.buffered = true and self.indexed = false implies (
+                        self.RptEnabled.max = 1
+                    )
+                )
+            )
+        )
+
 
 endpackage

@@ -29,6 +29,7 @@ context ControlBlock
     inv ControlBlock_RefersToControlWithIEDName
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ControlBlock_RefersToControlWithIEDName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ControlBlock does not refer an existing Control'
         )

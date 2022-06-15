@@ -29,6 +29,7 @@ context SubEquipment
     inv SubEquipment_phase_value
         (   'ERROR;'
           + 'OCL/SemanticConstraints/SubEquipment_phase_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SubEquipment phase attribute value AB, BC CA are allowed only if ConductingEquipment above has type VTR'
         )

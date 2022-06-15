@@ -33,6 +33,7 @@ context LN
     inv LN_unique_name_in_ReportControl
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_name_in_ReportControl;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in ReportControl from LN'
         )
@@ -43,6 +44,7 @@ context LN
     inv LN_unique_datSet_in_ReportControl
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_datSet_in_ReportControl;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique datSet in ReportControl from LN'
         )
@@ -53,6 +55,7 @@ context LN
     inv LN_unique_name_in_LogControl
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_name_in_LogControl;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in LogControl from LN'
         )
@@ -63,6 +66,7 @@ context LN
     inv LN_unique_datSet_in_LogControl
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_datSet_in_LogControl;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique datSet in LogControl from LN'
         )
@@ -73,6 +77,7 @@ context LN
     inv LN_unique_name_in_DataSet
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_name_in_DataSet;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DataSet from LN'
         )
@@ -83,6 +88,7 @@ context LN
     inv LN_unique_name_in_DOI
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_name_in_DOI;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in DOI from LN'
         )
@@ -93,6 +99,7 @@ context LN
     inv LN_unique_name_in_Log
         (   'ERROR;'
           + 'OCL/SemanticConstraints/LN_unique_name_in_Log;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique name in Log from LN'
         )

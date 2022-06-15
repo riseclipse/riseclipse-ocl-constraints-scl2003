@@ -33,6 +33,7 @@ context ReportControl
     inv ReportControl_datSet_valid_reference
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ReportControl_datSet_valid_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'datSet attribute shall reference a valid DataSet in ReportControl'
         )
@@ -44,6 +45,7 @@ context ReportControl
     inv ReportControl_conRef_zero_no_DataSet_reference
         (   'ERROR;'
           + 'OCL/SemanticConstraints/ReportControl_conRef_zero_no_DataSet_reference;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute in ReportControl equals zero only for no DataSet reference'
         )

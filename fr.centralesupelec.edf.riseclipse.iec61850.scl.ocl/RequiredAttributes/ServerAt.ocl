@@ -32,6 +32,7 @@ context ServerAt
     inv ServerAt_apName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ServerAt_apName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apName attribute shall be present in ServerAt'
         )
@@ -42,6 +43,7 @@ context ServerAt
     inv ServerAt_apName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ServerAt_apName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apName attribute shall be valid in ServerAt. ' + 'Current value is ' + self.apName.toString()
         )

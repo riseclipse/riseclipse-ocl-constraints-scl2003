@@ -29,6 +29,7 @@ context TapChanger
     inv TapChanger_unique_name_of_SubEquipment
         (   'ERROR;'
           + 'OCL/SemanticConstraints/TapChanger_unique_name_of_SubEquipment;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name of SubEquipment in TapChanger'
         )

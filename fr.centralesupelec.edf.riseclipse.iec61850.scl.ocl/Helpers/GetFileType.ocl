@@ -19,5 +19,31 @@
 *************************************************************************
 */
 
--- DataTypeTemplates section is mandatory in a IID file
-import '../Common/DataTypeTemplates.ocl'
+import scl: 'http://www.iec.ch/61850/2003/SCL'
+
+package scl
+
+context SclObject
+
+def: filenameHasExtension( extension : String ) : Boolean =
+    self.filename.substring( self.filename.size() - 2, self.filename.size() ).equalsIgnoreCase( extension )
+
+def: isInCIDFile() : Boolean =
+    self.filenameHasExtension( 'CID' )
+
+def: isInICDFile() : Boolean =
+    self.filenameHasExtension( 'ICD' )
+
+def: isInIIDFile() : Boolean =
+    self.filenameHasExtension( 'IID' )
+
+def: isInSCDFile() : Boolean =
+    self.filenameHasExtension( 'SCD' )
+
+def: isInSEDFile() : Boolean =
+    self.filenameHasExtension( 'SED' )
+
+def: isInSSDFile() : Boolean =
+    self.filenameHasExtension( 'SSD' )
+
+endpackage

@@ -33,6 +33,7 @@ context FCDA
     inv FCDA_fc_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_fc_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'fc attribute shall be present in FCDA'
         )
@@ -45,6 +46,7 @@ context FCDA
     inv FCDA_ldInst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_ldInst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall always be specified except for GSSE in FCDA'
         )
@@ -55,6 +57,7 @@ context FCDA
     inv FCDA_lnClass_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_lnClass_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall always be specified except for GSSE in FCDA'
         )
@@ -65,6 +68,7 @@ context FCDA
     inv FCDA_lnClass_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_lnClass_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be valid in FCDA. ' + 'Current value is ' + self.lnClass.toString()
         )
@@ -75,6 +79,7 @@ context FCDA
     inv FCDA_lnInst_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_lnInst_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnInst attribute in FCDA shall be specified (except for LLN0)'
         )
@@ -90,6 +95,7 @@ context FCDA
     inv FCDA_lnInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_lnInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnInst attribute shall be a number with no more than 7 digits in FCDA. ' + 'Current value is ' + self.lnInst.toString()
         )
@@ -123,6 +129,7 @@ context FCDA
     inv FCDA_ldInst_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_ldInst_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ldInst attribute shall be valid in FCDA. ' + 'Current value is ' + self.ldInst.toString()
         )
@@ -133,6 +140,7 @@ context FCDA
     inv FCDA_prefix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_prefix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'prefix attribute shall be valid in FCDA. ' + 'Current value is ' + self.prefix.toString()
         )
@@ -143,6 +151,7 @@ context FCDA
     inv FCDA_doName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_doName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'doName attribute shall be valid in FCDA. ' + 'Current value is ' + self.doName.toString()
         )
@@ -153,6 +162,7 @@ context FCDA
     inv FCDA_daName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_daName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'daName attribute shall be valid in FCDA. ' + 'Current value is ' + self.daName.toString()
         )
@@ -163,6 +173,7 @@ context FCDA
     inv FCDA_ix_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/FCDA_ix_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ix attribute shall be valid in FCDA. ' + 'Current value is ' + self.ix.toString()
         )

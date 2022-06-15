@@ -33,6 +33,7 @@ context ConnectedAP
     inv ConnectedAP_iedName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConnectedAP_iedName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall be present in ConnectedAP'
         )
@@ -43,6 +44,7 @@ context ConnectedAP
     inv ConnectedAP_iedName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConnectedAP_iedName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall be valid in ConnectedAP. ' + 'Current value is ' + self.iedName.toString()
         )
@@ -53,6 +55,7 @@ context ConnectedAP
     inv ConnectedAP_apName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConnectedAP_apName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apName attribute shall be present in ConnectedAP'
         )
@@ -63,6 +66,7 @@ context ConnectedAP
     inv ConnectedAP_apName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConnectedAP_apName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apName attribute shall be valid in ConnectedAP. ' + 'Current value is ' + self.apName.toString()
         )
@@ -73,6 +77,7 @@ context ConnectedAP
     inv ConnectedAP_redProt_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConnectedAP_redProt_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'redProt attribute shall be valid if present in ConnectedAP. ' + 'Current value is ' + self.redProt.toString()
         )

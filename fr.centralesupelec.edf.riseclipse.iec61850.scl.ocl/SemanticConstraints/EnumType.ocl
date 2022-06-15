@@ -29,6 +29,7 @@ context EnumType
     inv EnumType_unique_EnumVal_ord_in_from_DataTypeTemplates
         (   'ERROR;'
           + 'OCL/SemanticConstraints/EnumType_unique_EnumVal_ord_from_DataTypeTemplates;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique EnumVal ord in EnumType from DataTypeTemplates'
         )

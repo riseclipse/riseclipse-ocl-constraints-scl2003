@@ -29,6 +29,7 @@ context DataTypeTemplates
     inv DataTypeTemplates_at_least_one_LNodeType_required
         (   'ERROR;'
           + 'OCL/RequiredElements/DataTypeTemplates_at_least_one_LNodeType_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DataTypeTemplates shall contain at least one LNodeType'
         )
@@ -39,6 +40,7 @@ context DataTypeTemplates
     inv DataTypeTemplates_at_least_one_DOType_required
         (   'ERROR;'
           + 'OCL/RequiredElements/DataTypeTemplates_at_least_one_DOType_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'DataTypeTemplates shall contain at least one DOType'
         )

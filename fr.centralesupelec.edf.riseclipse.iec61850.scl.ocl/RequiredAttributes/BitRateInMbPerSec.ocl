@@ -30,6 +30,7 @@ context BitRateInMbPerSec
     inv BitRateInMbPerSec_value_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/BitRateInMbPerSec_value_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be present in BitRateInMbPerSec'
         )
@@ -41,6 +42,7 @@ context BitRateInMbPerSec
     inv BitRateInMbPerSec_value_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/BitRateInMbPerSec_value_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be positive in BitRateInMbPerSec. ' + 'Current value is ' + self.value.toString()
         )
@@ -51,6 +53,7 @@ context BitRateInMbPerSec
     inv BitRateInMbPerSec_unit_value
         (   'ERROR;'
           + 'OCL/RequiredAttributes/BitRateInMbPerSec_unit_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'unit attribute if present shall be b/s in BitRateInMbPerSec. ' + 'Current value is ' + self.unit.toString()
         )
@@ -61,6 +64,7 @@ context BitRateInMbPerSec
     inv BitRateInMbPerSec_multiplier_value
         (   'ERROR;'
           + 'OCL/RequiredAttributes/BitRateInMbPerSec_multiplier_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'multiplier attribute if present shall be M in BitRateInMbPerSec. ' + 'Current value is ' + self.multiplier.toString()
         )

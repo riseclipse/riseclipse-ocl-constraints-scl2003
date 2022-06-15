@@ -28,6 +28,7 @@ context EnumType
     inv EnumType_at_least_one_EnumVal_required
         (   'ERROR;'
           + 'OCL/RequiredElements/EnumType_at_least_one_EnumVal_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'EnumType shall contain at least one EnumVal'
         )

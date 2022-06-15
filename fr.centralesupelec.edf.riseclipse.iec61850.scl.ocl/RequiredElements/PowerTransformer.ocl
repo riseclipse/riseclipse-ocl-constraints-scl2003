@@ -29,6 +29,7 @@ context PowerTransformer
     inv PowerTransformer_at_least_one_TransformerWinding_required
         (   'ERROR;'
           + 'OCL/RequiredElements/PowerTransformer_at_least_one_TransformerWinding_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'PowerTransformer shall contain at least one TransformerWinding'
         )

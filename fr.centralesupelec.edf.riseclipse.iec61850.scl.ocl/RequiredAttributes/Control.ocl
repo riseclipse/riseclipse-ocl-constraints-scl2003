@@ -32,6 +32,7 @@ context Control
     inv Control_name_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Control_name_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be present in Control'
         )
@@ -42,6 +43,7 @@ context Control
     inv Control_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Control_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be valid in Control. ' + 'Current value is ' + self.name.toString()
         )
@@ -52,6 +54,7 @@ context Control
     inv Control_datSet_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Control_datSet_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'datSet attribute shall be valid in Control. ' + 'Current value is ' + self.datSet.toString()
         )

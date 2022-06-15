@@ -21,20 +21,30 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context SubNetwork
+context Process
 
+    -- For a primary system template within an ICD file, the process name
+    -- shall be TEMPLATE. There can be a maximum of one process template in one
+    -- SCL file.
 
-    -- If the file is an SCD the Type attribute is not optional
-    inv SubNetwork_type_required
+    inv Process_Unique_name_TEMPLATE
         (   'ERROR;'
-          + 'OCL/SCD File/SubNetwork_type_required;'
+          + 'OCL/FileSpecifics/ICD/Process_Unique_name_TEMPLATE;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'type attribute shall be present in SubNetwork'
+          + 'Must have only one Process.name = TEMPLATE'
         )
     :
-        self.type <> null
+        self.isInICDFile() implies (
+                self.ParentSCL.Process -> size() > 0
+            implies (
+                self.ParentSCL.Process -> exists  ( p : Process | p.name = 'TEMPLATE' )
+            and self.ParentSCL.Process -> isUnique( p : Process | p.name = 'TEMPLATE' ))
+        )
 
 endpackage
 

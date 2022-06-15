@@ -31,6 +31,7 @@ context LN0
     inv LN0_lnClass_value
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN0_lnClass_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'lnClass attribute shall be LLN0 in LN0. ' + 'Current value is ' + self.lnClass.toString()
         )
@@ -42,6 +43,7 @@ context LN0
     inv LN0_inst_empty
         (   'ERROR;'
           + 'OCL/RequiredAttributes/LN0_inst_empty;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'inst attribute shall be empty in LN0. ' + 'Current value is ' + self.inst.toString()
         )

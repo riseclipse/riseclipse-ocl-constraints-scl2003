@@ -30,6 +30,7 @@ context EquipmentContainer
     inv EquipmentContainer_unique_PowerTransformer_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/EquipmentContainer_unique_PowerTransformer_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'PowerTransformer in EquipmentContainer shall have different name'
         )
@@ -41,6 +42,7 @@ context EquipmentContainer
     inv EquipmentContainer_unique_GeneralEquipment_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/EquipmentContainer_unique_GeneralEquipment_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'GeneralEquipment in EquipmentContainer shall have different name'
         )

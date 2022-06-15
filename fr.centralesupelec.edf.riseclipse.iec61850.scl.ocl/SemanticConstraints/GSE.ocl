@@ -30,6 +30,7 @@ context GSE
     inv GSE_for_L2_GOOSE_has_right_addresses
         (   'ERROR;'
           + 'OCL/SemanticConstraints/GSE_for_L2_GOOSE_has_right_addresses;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'GSE for L2 GOOSE should have APPID VLAN_ID VLAN-PRIORITY and MAC-Address'
         )

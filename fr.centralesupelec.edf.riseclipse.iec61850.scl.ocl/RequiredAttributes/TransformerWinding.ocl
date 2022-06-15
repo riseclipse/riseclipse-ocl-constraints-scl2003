@@ -30,6 +30,7 @@ context TransformerWinding
     inv TransformerWinding_type_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/TransformerWinding_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in ' + self.oclType().toString()
         )
@@ -40,6 +41,7 @@ context TransformerWinding
     inv TransformerWinding_type_value_PTW
         (   'ERROR;'
           + 'OCL/RequiredAttributes/TransformerWinding_type_value_PTW;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be PTW in TransformerWinding. ' + 'Current value is ' + self.type.toString()
         )

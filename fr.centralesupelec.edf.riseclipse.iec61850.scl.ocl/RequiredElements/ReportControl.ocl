@@ -29,6 +29,7 @@ context ReportControl
     inv ReportControl_one_OptFields_required
         (   'ERROR;'
           + 'OCL/RequiredElements/ReportControl_one_OptFields_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ReportControl shall contain an OptFields'
         )

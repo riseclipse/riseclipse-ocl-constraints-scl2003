@@ -32,6 +32,7 @@ context ConductingEquipment
     inv ConductingEquipment_type_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConductingEquipment_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in ConductingEquipment'
         )
@@ -42,6 +43,7 @@ context ConductingEquipment
     inv ConductingEquipment_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ConductingEquipment_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be valid in ConductingEquipment. ' + 'Current value is ' + self.type.toString()
         )

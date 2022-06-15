@@ -32,6 +32,7 @@ context Process
     inv Process_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Process_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be valid in Process. ' + 'Current value is ' + self.type.toString()
         )

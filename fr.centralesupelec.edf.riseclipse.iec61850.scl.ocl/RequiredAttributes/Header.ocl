@@ -30,6 +30,7 @@ context Header
     inv Header_id_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Header_id_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'id attribute shall be present in Header'
         )
@@ -45,6 +46,7 @@ context Header
     inv Header_nameStructure_value_IEDName
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Header_nameStructure_value_IEDName;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'nameStructure attribute shall be equal to IEDName in Header. ' + 'Current value is ' + self.nameStructure.toString()
         )

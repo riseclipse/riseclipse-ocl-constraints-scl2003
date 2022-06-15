@@ -29,6 +29,7 @@ context PowerTransformer
     inv PowerTransformer_unique_name_of_SubEquipment
         (   'ERROR;'
           + 'OCL/SemanticConstraints/PowerTransformer_unique_name_of_SubEquipment;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name of SubEquipment in PowerTransformer'
         )

@@ -38,6 +38,7 @@ context ClientServices
     inv ClientServices_maxAttributes_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ClientServices_maxAttributes_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxAttributes attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxAttributes.toString()
         )
@@ -48,6 +49,7 @@ context ClientServices
     inv ClientServices_maxReports_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ClientServices_maxReports_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxReports attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxReports.toString()
         )
@@ -58,6 +60,7 @@ context ClientServices
     inv ClientServices_maxGOOSE_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ClientServices_maxGOOSE_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxGOOSE attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxGOOSE.toString()
         )
@@ -68,6 +71,7 @@ context ClientServices
     inv ClientServices_maxSMV_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ClientServices_maxSMV_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'maxSMV attribute shall be valid in ClientServices. ' + 'Current value is ' + self.maxSMV.toString()
         )

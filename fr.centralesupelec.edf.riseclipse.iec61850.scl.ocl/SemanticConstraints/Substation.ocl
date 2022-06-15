@@ -42,6 +42,7 @@ context Substation
     inv Substation_unique_VoltageLevel_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Substation_unique_VoltageLevel_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'VoltageLevel in Substation shall have different name'
         )
@@ -53,6 +54,7 @@ context Substation
     inv Substation_unique_Function_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Substation_unique_Function_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Function in Substation shall have different name'
         )
@@ -64,6 +66,7 @@ context Substation
     inv Substation_unique_DirectChild_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Substation_unique_DirectChild_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All direct childs in Substation shall have different name'
         )
@@ -102,6 +105,7 @@ context Substation
     inv Substation_Terminal_CNode_not_refererences_Line_CNode
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Substation_Terminal_CNode_not_refererences_Line_CNode;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'ConnectivityNode from Terminal shall not reference a ConnectivityNode from Line'
         )
@@ -112,7 +116,6 @@ context Substation
 
 
     -- A logical node instance within an IED can only be referenced once within all substation sections.
-    
     
 
 endpackage

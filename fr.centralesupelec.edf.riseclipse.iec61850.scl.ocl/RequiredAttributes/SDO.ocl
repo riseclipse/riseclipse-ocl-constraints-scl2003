@@ -36,6 +36,7 @@ context SDO
     inv DO_name_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DO_name_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'name attribute shall be valid in SDO. ' + 'Current value is ' + self.name.toString()
         )
@@ -49,6 +50,7 @@ context SDO
     inv SDO_count_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/SDO_count_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'count attribute shall be valid in SDO. ' + 'Current value is ' + self.type.toString()
         )

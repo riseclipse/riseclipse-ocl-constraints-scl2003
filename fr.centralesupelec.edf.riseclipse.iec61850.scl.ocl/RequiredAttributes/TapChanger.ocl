@@ -32,6 +32,7 @@ context TapChanger
     inv TapChanger_type_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/TapChanger_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in TapChanger'
         )
@@ -42,6 +43,7 @@ context TapChanger
     inv TapChanger_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/TapChanger_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be valid in TapChanger. ' + 'Current value is ' + self.type.toString()
         )
@@ -52,6 +54,7 @@ context TapChanger
     inv TapChanger_type_value
         (   'ERROR;'
           + 'OCL/RequiredAttributes/TapChanger_type_value;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be LTC in TapChanger. ' + 'Current value is ' + self.type.toString()
         )

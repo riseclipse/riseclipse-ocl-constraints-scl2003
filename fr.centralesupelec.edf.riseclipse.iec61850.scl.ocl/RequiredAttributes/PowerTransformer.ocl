@@ -30,6 +30,7 @@ context PowerTransformer
     inv PowerTransformer_type_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/PowerTransformer_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in ' + self.oclType().toString()
         )
@@ -40,6 +41,7 @@ context PowerTransformer
     inv PowerTransformer_type_value_PTR
         (   'ERROR;'
           + 'OCL/RequiredAttributes/PowerTransformer_type_value_PTR;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be PTR in PowerTransformer. ' + 'Current value is ' + self.type.toString()
         )

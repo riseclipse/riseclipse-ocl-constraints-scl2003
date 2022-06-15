@@ -33,6 +33,7 @@ context KDC
     inv KDC_iedName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/KDC_iedName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall be present in KDC'
         )
@@ -43,6 +44,7 @@ context KDC
     inv KDC_iedName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/KDC_iedName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'iedName attribute shall have between 1 and 64 alphanumeric characters in KDC. ' + 'Current value is ' + self.iedName.toString()
         )
@@ -53,6 +55,7 @@ context KDC
     inv KDC_apName_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/KDC_apName_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apName attribute shall be present in KDC'
         )
@@ -63,6 +66,7 @@ context KDC
     inv KDC_apName_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/KDC_apName_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'apName attribute shall be valid in KDC. ' + 'Current value is ' + self.apName.toString()
         )

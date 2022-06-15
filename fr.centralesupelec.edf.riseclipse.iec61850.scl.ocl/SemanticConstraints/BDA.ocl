@@ -35,6 +35,7 @@ context BDA
     inv BDA_BDAType_allowedWhen_Enum
         (   'ERROR;'
           + 'OCL/SemanticConstraints/BDA_BDAType_allowedWhen_Enum;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'BDA.type is allowed only if bType = Struct or Enum'
         )
@@ -45,6 +46,7 @@ context BDA
     inv BDA_RefersToDATypeorEnumType
         (   'ERROR;'
           + 'OCL/SemanticConstraints/BDA_RefersToDATypeorEnumType;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'BDA (name=' + self.name.toString() + ')  does not refer an existing DAType or EnumType in DataTypeTemplates section'
         )

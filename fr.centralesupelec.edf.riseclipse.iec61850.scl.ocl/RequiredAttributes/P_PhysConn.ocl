@@ -32,6 +32,7 @@ context P_PhysConn
     inv P_PhysConn_type_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/P_PhysConn_type_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be present in P_PhysConn'
         )
@@ -42,6 +43,7 @@ context P_PhysConn
     inv P_PhysConn_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/P_PhysConn_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall start with a capital letter, and contain only alphanumeric characters in P_PhysConn. ' + 'Current value is ' + self.type.toString()
         )

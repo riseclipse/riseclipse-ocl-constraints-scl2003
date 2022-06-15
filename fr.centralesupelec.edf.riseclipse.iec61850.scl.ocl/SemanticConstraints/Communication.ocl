@@ -30,6 +30,7 @@ context Communication
     inv Communication_unique_SubNetwork_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Communication_unique_SubNetwork_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'SubNetwork in Communication shall have different name'
         )
@@ -42,6 +43,7 @@ context Communication
     inv Communication_GSE_SMV_MACAddress_unique
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Communication_GSE_SMV_MACAddress_unique;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'GSE and SMV MAC-Addresses shall be unique in the file'
         )

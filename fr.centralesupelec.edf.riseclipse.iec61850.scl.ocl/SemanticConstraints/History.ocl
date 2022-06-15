@@ -30,6 +30,7 @@ context History
     inv History_unique_Hitem
         (   'ERROR;'
           + 'OCL/SemanticConstraints/History_unique_Hitem;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Hitem in History must have different version or revision'
         )

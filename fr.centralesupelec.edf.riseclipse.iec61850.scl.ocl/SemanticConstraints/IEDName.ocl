@@ -32,6 +32,7 @@ context IEDName
     inv IEDName_not_declared_as_ExtRef
         (   'ERROR;'
           + 'OCL/SemanticConstraints/IEDName_not_declared_as_ExtRef;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'IEDName has no corresponding ExtRef in the receiver IED'
         )
@@ -42,6 +43,7 @@ context IEDName
      inv IEDName_Sender_and_receiver_not_in_same_subnetwork
         (   'ERROR;'
           + 'OCL/SemanticConstraints/IEDName_Sender_and_receiver_not_in_same_subnetwork;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Sender and receiver are not in the same Subnetwork'
         )

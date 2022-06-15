@@ -32,6 +32,7 @@ context ReportControl
     inv ReportControl_confRev_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ReportControl_confRev_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute shall be present in ReportControl'
         )
@@ -42,6 +43,7 @@ context ReportControl
     inv ReportControl_confRev_unsigned_int
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ReportControl_confRev_unsigned_int;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'confRev attribute shall be an unsigned int in ReportControl. ' + 'Current value is ' + self.confRev.toString()
         )
@@ -55,6 +57,7 @@ context ReportControl
     inv ReportControl_rptID_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ReportControl_rptID_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'rptID attribute shall be valid in ReportControl. ' + 'Current value is ' + self.rptID.toString()
         )
@@ -67,6 +70,7 @@ context ReportControl
     inv ReportControl_bufTime_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ReportControl_bufTime_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'bufTime attribute shall be valid in ReportControl. ' + 'Current value is ' + self.bufTime.toString()
         )

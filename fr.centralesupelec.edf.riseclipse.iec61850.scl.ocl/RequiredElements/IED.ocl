@@ -29,6 +29,7 @@ context IED
     inv IED_at_least_one_AccessPoint_required
         (   'ERROR;'
           + 'OCL/RequiredElements/IED_at_least_one_AccessPoint_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'IED shall contain at least one AccessPoint'
         )

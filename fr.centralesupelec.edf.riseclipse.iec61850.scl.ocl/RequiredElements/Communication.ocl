@@ -29,6 +29,7 @@ context Communication
     inv Communication_at_least_one_SubNetwork_required
         (   'ERROR;'
           + 'OCL/RequiredElements/Communication_at_least_one_SubNetwork_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Communication shall contain at least one SubNetwork'
         )

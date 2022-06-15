@@ -30,6 +30,7 @@ context Line
     inv Line_unique_DirectChild_name
         (   'ERROR;'
           + 'OCL/SemanticConstraints/Line_unique_DirectChild_name;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'All direct childs in Line shall have different name'
         )

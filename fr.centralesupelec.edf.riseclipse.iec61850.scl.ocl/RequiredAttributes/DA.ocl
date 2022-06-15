@@ -30,6 +30,7 @@ context DA
     inv DA_fc_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/DA_fc_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'fc attribute shall be present in DA'
         )

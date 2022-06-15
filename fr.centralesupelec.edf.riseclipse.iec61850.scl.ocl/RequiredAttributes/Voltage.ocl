@@ -30,6 +30,7 @@ context Voltage
     inv Voltage_unit_value_fixed
         (   'ERROR;'
           + 'OCL/RequiredAttributes/Voltage_unit_value_fixed;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'unit attribute shall be V in Voltage. ' + 'Current value is ' + self.unit.toString()
         )

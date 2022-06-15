@@ -21,22 +21,30 @@
 
 import scl: 'http://www.iec.ch/61850/2003/SCL'
 
+import '../Helpers/GetFileType.ocl'
+
 package scl
 
-context LNode
+context Line
 
-    -- The LNode element can be used within an SSD for functional specification, without allocation to an IED. 
-    -- In this case the iedName shall be None.
-    -- The name of the IED which contains the LN, none if used for specification (default if attribute is not specified)
+    -- For a primary system template within an ICD file, the line name
+    -- shall be TEMPLATE. There can be a maximum of one line template in one
+    -- SCL file.
 
-    inv LNode_iedName_None_in_SSD
+    inv Line_Unique_name_TEMPLATE
         (   'ERROR;'
-          + 'OCL/FileSpecifics/SSD/LNode_iedName_None_in_SSD;'
+          + 'OCL/FileSpecifics/ICD/Line_Unique_name_TEMPLATE;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
-          + 'iedName attribute from LNode shall be None in SSD files'
+          + 'Must have only one Line.name = TEMPLATE'
         )
-        :
-        self.RefersToAnyLN <> null implies self.iedName.matches( 'None' )
+    :
+        self.isInICDFile() implies (
+                self.ParentSCL.Line -> size() > 0
+            implies (
+                self.ParentSCL.Line -> exists  ( l : Line | l.name = 'TEMPLATE' )
+            and self.ParentSCL.Line -> isUnique( l : Line | l.name = 'TEMPLATE' ))
+        )
 
 endpackage
 

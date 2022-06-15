@@ -32,6 +32,7 @@ context ProtNs
     inv ProtNs_value_required
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ProtNs_value_required;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be present in ProtNs'
         )
@@ -42,6 +43,7 @@ context ProtNs
     inv ProtNs_value_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ProtNs_value_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'value shall be valid in ProtNs. ' + 'Current value is ' + self.value.toString()
         )
@@ -52,6 +54,7 @@ context ProtNs
     inv ProtNs_type_valid
         (   'ERROR;'
           + 'OCL/RequiredAttributes/ProtNs_type_valid;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'type attribute shall be valid in ProtNs. ' + 'Current value is ' + self.type.toString()
         )
