@@ -35,7 +35,7 @@ context DAI
       (  'ERROR;'
           + 'OCL/SemanticConstraints/DAI_RefersToAbstractDataAttribute;'
           + self.lineNumber.toString() + ';'
-          + 'DAI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DA in DataTypeTemplates section'
+          + 'DAI (name=' + self.name.toString() + ') does not refer an existing DA in DataTypeTemplates section'
 	 )
        :
        self.RefersToAbstractDataAttribute <> null
