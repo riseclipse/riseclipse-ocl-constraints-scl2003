@@ -28,12 +28,17 @@ context DAI
     inv DAI_nothing
     :
     true
-    
-    -- a DAI must refer an existing DA in DataTypeTemplate section
-    -- inv DAI_RefersToAbstractDataAttribute
-    --  ( 'ERROR:[SemanticConstraints] DAI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DA in DataTypeTemplates section' )
-    --   :
-    --   self.RefersToAbstractDataAttribute <> null
+
+
+   --  a DAI must refer an existing DA in DataTypeTemplate section
+     inv DAI_RefersToAbstractDataAttribute
+      (  'ERROR;'
+          + 'OCL/SemanticConstraints/DAI_RefersToAbstractDataAttribute;'
+          + self.lineNumber.toString() + ';'
+          + 'DAI (name=' + self.name.toString() + ') (line ' + self.lineNumber.toString() + ') does not refer an existing DA in DataTypeTemplates section'
+	 )
+       :
+       self.RefersToAbstractDataAttribute <> null
 
 
 endpackage
