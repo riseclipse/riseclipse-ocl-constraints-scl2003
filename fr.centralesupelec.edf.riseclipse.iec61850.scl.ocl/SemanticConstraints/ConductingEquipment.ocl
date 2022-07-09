@@ -61,7 +61,7 @@ context ConductingEquipment
 
     -- The number of terminals depends on type
     inv ConductingEquipment_number_of_Terminals
-        (   'ERROR;'
+        (   'WARNING;'
           + 'OCL/SemanticConstraints/ConductingEquipment_number_of_Terminals;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
