@@ -26,9 +26,9 @@ package scl
 context LNodeType
 
     -- At least one DO is required
-    inv History_at_least_one_DO_required
+    inv LNodeType_at_least_one_DO_required
         (   'ERROR;'
-          + 'OCL/RequiredElements/History_at_least_one_DO_required;'
+          + 'OCL/RequiredElements/LNodeType_at_least_one_DO_required;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'LNodeType shall contain at least one DO'
