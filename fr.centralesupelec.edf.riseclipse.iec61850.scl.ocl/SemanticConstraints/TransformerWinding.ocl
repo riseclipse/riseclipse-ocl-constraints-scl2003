@@ -41,6 +41,7 @@ context TransformerWinding
     inv TransformerWinding_unique_name_of_TapChanger
         (   'ERROR;'
           + 'OCL/SemanticConstraints/TransformerWinding_unique_name_of_TapChanger;'
+          + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Unique child name of TapChanger in TransformerWinding'
         )

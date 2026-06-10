@@ -26,9 +26,9 @@ package scl
 context Server
 
 --   The association ID shall be unique within the Server.
-    inv Server_Association_AssoiationID_unique
+    inv Server_Association_AssociationID_unique
         (   'ERROR;'
-          + 'OCL/SemanticConstraints/Server_Association_AssoiationID_unique;'
+          + 'OCL/SemanticConstraints/Server_Association_AssociationID_unique;'
           + self.filename + ';'
           + self.lineNumber.toString() + ';'
           + 'Association in Server shall have different AssociationID'
